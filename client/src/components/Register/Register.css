@@ -1,0 +1,98 @@
+.registerModal{
+    width:40%;
+    min-width: 450px;
+    max-width: 600px;
+}
+
+/* .form-actions{
+    height:1rem;
+    width: 2rem;
+} */
+
+.registerControl-input{
+    display: flex;
+    padding:.5rem 3rem;
+    
+}
+.registerControl-input label{
+    /* flex:1; */
+    flex:1;
+    color:white;
+
+    font-weight: 500;
+}
+.registerControl-input input{
+    /* flex:1; */
+    flex:1;
+
+    border:none;
+    background-color: transparent;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.466);
+    outline: none;
+    color:white;
+}
+
+.registerControl-input input:focus{
+
+    border-bottom: 2px solid rgba(0, 0, 0, 0.800);
+}
+
+.registerControl-input input::placeholder{
+    color:white;
+    opacity: 0.6;
+    font-style: italic;
+}
+
+
+
+
+.registerForm-actions{
+    /* flex-direction: flex-end; */
+    
+}
+
+.registerForm-actions button{
+    margin-top:.4rem;
+    margin-right:.6rem;
+    /* float:right; */
+    height:2rem;
+    left:0;
+    width: 4.2rem;
+    border:none;
+    box-shadow: 0px 0px 9px 9px rgba(0,0,0, 0.2);
+    font-weight: 550;
+    font-size:.8rem;
+
+    border-radius: .5rem;
+    background-color: rgb(77, 90, 57);
+    color:white;
+}
+.registerForm-actions button:hover{
+    /* height: 2rem;
+    width:4.2rem; */
+    box-shadow: 0px 0px 9px 9px rgba(0,0,0, 0.4);
+    font-size:.9rem;
+
+    background-color: rgb(122, 141, 93);
+    color:black;
+
+}
+
+
+.registerError{
+    margin-left: 1rem;
+    color:white;
+}
+.registerError span{
+    color:rgb(207, 34, 34);
+    font-size:.9rem;
+    
+}
+
+@media only screen and (max-width:461px){
+    
+}
+
+@media only screen and (max-width:360px){
+    
+}

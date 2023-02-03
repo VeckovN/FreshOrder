@@ -1,0 +1,34 @@
+/* .admin-h1{
+    margin:2rem 0 5rem 0;
+} */
+
+.cardInfo_container{
+    margin:3rem 0;
+    display:flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    color: white;
+}
+
+.cardInfo{
+    width:10rem;
+    height: 13rem;
+    background-color:rgb(40, 25, 22);
+
+    margin:1rem .3rem;
+    z-index:10;
+    border-radius: 12px;
+
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:space-around;
+    
+}
+.Info{
+    text-align: center;
+}
+  
+.circle{
+
+}

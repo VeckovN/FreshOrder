@@ -1,0 +1,264 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Varela+Round&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
+/* ------------------CATEGORY ITEM --------------- */
+.item{
+    height: 13rem;
+    
+    background-color: beige;
+    margin:1rem .2rem;
+    /* padding:0.5rem 1rem; */
+
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    /* //Because children(img will be as background, and 
+    //content will be over the img(in aboslute position) ) */
+    position: relative;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 1) 0px 10px 36px 0px;
+
+}
+.item:hover img {
+    opacity: .9;
+}
+.item:hover button{
+    width:35%;
+}
+.item:hover .title{
+    letter-spacing: .7rem;
+    /* animation: title_letter_spacing 1s ease-in; */
+    transition: letter-spacing .8s;
+}
+
+.title{
+    /* contra effect on hover */
+    transition: letter-spacing .4s;
+
+    text-align: center;
+    font-size: 1.5rem;
+    letter-spacing: .3rem;
+    font-weight: 700;
+    font-family: 'Pacifico', cursive;
+
+}
+
+.item img{
+    width: 18rem;
+    height: 13rem;
+    position:relative;
+    border-radius: 10px;
+}
+ 
+.unselected img{
+    opacity: .5;
+}
+
+.unselected:hover img{
+    opacity: .4;
+}
+
+.unselected .content p{
+    font-size:2rem;
+    color:black;
+}
+
+.content{
+    position: absolute;
+    color:white;
+    width: 100%;
+    height: 100%;
+}
+.content button{
+    position:absolute;
+    bottom:.5rem;
+    left:50%;
+    transform: translate(-50%, 0);
+
+    width:30%;
+    height: 1.9rem;
+
+    font-family: 'Prata', serif;
+    font-weight: 600;
+    font-size:1rem;
+    letter-spacing: 3px;
+
+    border-style: none;
+    border-top:3px solid;
+    border-bottom: 3px solid;
+    border-color: #fff;
+    color:#fff;
+    cursor:pointer;
+    background-color: transparent;
+}
+.content button:hover{
+    border-color:#fff;
+    animation-duration: 50ms;
+    animation-name: SelectHover;
+
+    border-left: 3px solid;
+    border-right: 3px solid;
+    border-top:0;
+    border-bottom: 0;
+}
+
+/* LINK BUTTON TEST */
+.LinkCategory{
+    position:absolute;
+    bottom:.5rem;
+    left:50%;
+    transform: translate(-50%, 0);
+
+    width:30%;
+    height: 1.9rem;
+
+    font-family: 'Prata', serif;
+    font-weight: 600;
+    font-size:1rem;
+    letter-spacing: 3px;
+
+    border-style: none;
+    border-top:3px solid;
+    border-bottom: 3px solid;
+    border-color: #fff;
+    color:#fff;
+    cursor:pointer;
+    background-color: transparent;
+}
+.LinkCategory:hover{
+    border-color:#fff;
+    animation-duration: 200ms;
+    animation-name: SelectHover;
+
+    border-left: 3px solid;
+    border-right: 3px solid;
+    border-top:0;
+    border-bottom: 0;
+}
+
+
+/* ------------------ */
+
+
+
+.content p{
+    text-align: center;
+}   
+
+/* ------------------- CATEGORY MEALS ---------------*/
+.categoryMain{
+    margin:1rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.categoryMain h2{
+    text-align:center;
+    font-size: 2.5rem;
+    letter-spacing: .1rem;
+    font-family: 'Pacifico', cursive;
+}
+
+.categoryItems{
+    width:100%;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin:1rem;
+    /* display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap:40px;
+    grid-auto-flow:column */
+}
+
+/* @media screen and (max-width: 931px){
+    display: grid;
+} */
+
+@media screen and (max-width:400px){
+
+    /* .content{
+        width: 80%;
+        height: 80%;
+    } */
+
+    .item{
+        
+        height: 12rem;
+    }
+
+    .item img{
+        width: 17rem;
+        height: 12rem;
+    }
+
+    .categoryMain h2{
+        font-size:1.6rem;
+    }
+
+}
+
+
+@media screen and (max-width:901px){
+    .categoryItems > *{
+        
+    }
+}
+
+@media screen and (max-width:340px){
+    .item{
+        
+        height: 10rem;
+    }
+
+    .item img{
+        width: 14rem;
+        height: 11rem;
+    }
+}
+
+
+@keyframes SelectHover {
+    
+    0%{
+        border-top:  2px solid;
+        border-bottom:  2px solid;
+    }
+
+    25%{
+        border-top:  1px solid;
+        border-bottom:  1px solid;
+
+        border-left: 1px solid;
+        border-right: 2px solid;
+    }
+
+    50%{
+        border-top:  0;
+        border-bottom: 0;
+
+        border-left: 2px solid;
+        border-right: 2px solid;
+    }
+
+    75%{
+        border-left: 3px solid;
+        border-right: 3px solid;
+
+        border-top:  0;
+        border-bottom: 0;
+       
+    }
+
+    100%{
+
+        border-left: 3px solid;
+        border-right: 3px solid;
+
+        border-top:  0;
+        border-bottom: 0;
+
+    }
+}

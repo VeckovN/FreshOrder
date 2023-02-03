@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+  box-sizing: border-box;
+
+  /* setup for rem (1rem = 16px , setup 1rem = 10px) */
+  margin: 0;
+  padding:0;
+}
+
+/* html{
+  min-height: 100%;
+  position:relative;
+} */
+
+body {
+  margin: 0;
+  /* height: 100%; */
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; */
+  font-family: 'Poppins', sans-serif;
+
+  background: rgba(255,255,255,2) url('../public/Background.jpg');
+
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+#root{
+  height: 100%;
+  display:flex;
+  flex-direction:column;
+  /* flex:1; */
+}
+
+/* @media screen and (max-width:360px){
+  #root{
+    width: 100%;
+  }
+} */

@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Varela+Round&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
+
+h1{
+    font-weight: bold;
+    font-family: 'Pacifico', cursive;
+    letter-spacing: 3px;
+    
+}
+
+
+/*----------------WELCOME -------------- */
+.welcome{
+    /* background-color: aquamarine; */
+    /* margin-top: 5rem; */
+    /* width:100%; */
+    /* height: 8rem; */
+    padding:1rem;
+
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    text-align: center;
+
+    margin:8rem 0rem 5rem 0;
+}
+
+.welcome p{
+    /* text-align: center; */
+    margin:5px 0;
+    font-family: 'Gloria Hallelujah', cursive;
+    font-size:1.4rem;
+    font-weight: 500;
+
+}
+
+
+/*------------ ABOUT US -------------- */
+
+.aboutUs-container{
+    text-align: center;
+    margin:5rem 0;
+    padding:2rem 0;
+
+    margin-bottom: 5rem;
+}
+.aboutUs-container p{
+    margin:5px 5px;
+    font-family: 'Gloria Hallelujah', cursive;
+    font-size:1.4rem;
+    font-weight: 500;
+}
+
+
+ 
+/* -------------- CONTACT -------------- */
+.contactList{
+    margin-top:4rem;
+}
+
+.contactItem{
+    margin:3rem 0;
+    position: relative;
+}
+
+/* ::after on all chidren of a contactItem except the last child */
+.contactItem:not(:last-child)::after{
+    content: '';
+    /* //This block was fixed to draw the line from the beginning of <Card>  */
+    display:block;
+    position:absolute;
+
+    left:50%;
+    /* transform: translate(-50%,0); */
+    transform: translateX(-50%); 
+  
+    max-width:600px;
+    width:80%;
+    
+    border-bottom: 1px solid black;
+    margin:.5rem 0;
+}
+
+.contactImg{
+    width:3.5rem;
+    height: 3.5rem;
+}
+.contactName{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+@media screen and (max-width:400px) {
+
+    h1{
+        font-size: 1.5rem;
+    }
+    .welcome{
+        margin-bottom: 2rem;
+    }
+    .welcome p{
+        font-size:1rem;
+    }
+
+
+    .aboutUs-container{
+        margin:1rem 0 2rem 0;
+    }
+
+    .aboutUs-container p{
+        font-size:1rem;
+    }
+
+    .contactList{
+        margin-top:1rem;
+    }
+
+    .contactItem{
+        margin:1.2rem 0;
+        
+    }
+
+    .contactImg{
+        width:2.5rem;
+        height: 2.5rem;
+    }
+    
+}

@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
+
+.mealCard{
+    padding:10px 10px;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: aliceblue;
+
+    width: 22rem;
+    height: 17rem;
+
+    margin:.8rem .2rem;
+    position: relative;
+
+    border-radius:.6rem;
+    box-shadow: 6px 5px 15px 10px rgba(0,0,0,0.9), inset 4px 4px 15px 0 rgba(0,0,0,0.9);
+}
+
+.mealCard:hover img{
+    opacity: .3;
+    transform: scale();
+}
+.mealCard:hover h3{
+    font-size: 1.7rem;
+    color:black;
+} 
+
+.mealCard:hover .price{
+    font-size: 1.7rem;
+}
+
+.mealCard:hover .description{
+    visibility: visible;
+    font-weight: 800;
+}
+
+.mealCard:hover form label{
+    
+    visibility: visible;
+}
+.mealCard:hover form input{
+    visibility: visible;
+}
+.mealCard:hover form button{
+    visibility: visible;
+}
+
+/* visiability turn on for label and input */
+
+
+.mealCard img{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height: 100%;
+    opacity:.9;
+
+    object-fit: cover;
+    border-radius:.6rem;
+
+    outline: 3px solid rgba(0,0,0,0.4);
+    outline-offset: 0px;
+}
+
+.mealInfo{
+    /* position:absolute; */
+    padding:1.2rem 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    
+    padding-bottom: 10px;
+
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+.mealInfo h3{
+    margin:0.3rem;
+    font-size: 1.6rem;
+    z-index: 10;
+    color:White;
+}
+
+.price{
+    position: absolute;
+    top:0;
+    left:.2rem;
+    font-weight: 700;
+    font-size:1.5rem;
+    z-index: 10;
+}
+
+.description{
+    font-family: 'Gloria Hallelujah', cursive;
+    text-align: center;
+    color:black;
+    font-weight: 800;
+    font-size:1.2rem;
+
+    position:absolute;
+    top: 50%;
+    transform: translateY(-50% );
+
+    z-index: 30;
+
+    visibility: hidden;
+}
+
+.mealButtonForm{
+    display:flex;
+   
+    justify-content: center;
+    padding-bottom: 10px;
+
+    z-index: 10;
+}
+.mealButtonForm form{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.mealButtonForm form{
+    font-weight: 600;
+    color:black;
+}
+.mealButtonForm form input{
+    margin:0 .5rem;
+    width: 2.3rem;
+    height: 1.6rem;
+    /* padding:1.5rem; */
+    
+    font-size:1.2rem;
+    font-weight: 700;
+    text-align: end;
+
+
+    background-color: transparent;
+    border:none;
+    border-bottom: 2px solid black;
+
+    visibility: hidden;
+}
+.mealButtonForm form label{
+    font-size:1.1rem;
+
+    visibility:hidden;
+}
+
+.mealButtonForm form button{
+    height: 2rem;
+    width: 7rem;
+    background-color: rgba(0,0,0, 0.9);
+    color:white;
+    letter-spacing: .1rem;
+    padding:0px;
+
+    visibility: hidden;
+
+}
+.mealButtonForm form button:hover{
+    background-color: rgba(0,0,0,1);
+    border: 2px solid white;
+    transform:translateX(2px);
+}
+
+.mealButtonForm form button:active{
+    background-color: rgba(0,0,0, 0.4);
+    border:none;
+    box-shadow: 0 0 10px #95ffa9;
+
+}
+
+
+
+@media screen and (max-width:1410px){
+    .mealCard{
+        margin:1rem 0.3rem;
+    }
+}
+
+@media screen and (max-width:1435px){
+    .mealCard{
+        width: 21rem;
+        height: 17rem;
+    }
+}
+
+@media screen and (max-width:1355px){
+    .mealCard{
+        width: 22rem;
+        height: 17rem;
+    }
+}
+
+@media screen and (max-width:482px){
+    /* .mealCard{
+        width: 19rem;
+        height: 13rem;
+    } */
+}
+
+@media screen and (max-width:420px){
+    .mealCard{
+        width: 19rem;
+        height: 13rem;
+    }
+    .mealInfo h3{
+        font-size: 1.3rem;
+    }
+    .mealInfo .price{
+        font-size: 1.3rem;
+    }
+
+}
+
+@media screen and (max-width:330px){
+    .mealCard{
+        width: 17rem;
+        height: 12rem;
+    }
+    .mealInfo h3{
+        font-size: 1.3rem;
+    }
+    .mealInfo .price{
+        font-size: 1.3rem;
+    }
+
+}
+
+/* @media screen and (max-width:370px){
+    .mealCard{
+        width: 14rem;
+        height: 10rem;
+    }
+}
+
+@media screen and (max-width:320px){
+    .mealCard{
+        width: 13rem;
+        height: 10rem;
+    }
+} */

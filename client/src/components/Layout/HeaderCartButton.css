@@ -1,0 +1,97 @@
+.cartButton{
+    cursor: pointer;
+    border: transparent;
+    background-color: transparent;
+    position: relative;
+
+}
+.cartIconContainer{
+    position: relative;
+}
+
+.cartButton img{
+    width: 2.4rem;
+
+}
+.cartButton img:hover{
+    width: 2.5rem;
+    /* opacity: 60%; */
+}
+
+.blink{
+    animation-name: AddItemToCart;
+    animation-duration:.3s;
+}
+
+.badge{
+    position: absolute;
+    top:-.5rem;
+    right:-1rem;
+    
+    font-size:.8rem;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;
+    color:white;
+
+    /* circle */
+    border:2px solid red;
+    border-radius: 50%;
+    text-align: center;
+    padding:2px;
+    width:25px;
+    height: 25px;
+    
+}
+
+
+@media screen and (max-width:640px) {
+
+    .cartButton{
+        position: absolute;
+        top:1.5rem;
+    
+    }
+
+    .badge{
+        position: relative;
+        top:-4rem
+    }
+}
+
+
+@media screen and (max-width:340px){
+    .cartButton{
+        position: absolute;
+        top:2rem;
+        right:0;
+    
+    }
+
+    
+}
+
+/* AddtoCartItem animation */
+
+@keyframes AddItemToCart {
+    
+    /* from */
+    0% { 
+        opacity:100%;
+        width:2.4rem;
+    }
+
+    30% {
+        opacity: 30%;
+        width:2.6rem;
+    }
+
+    60% {
+        opacity: 30%;
+        width:2.6rem;
+    }
+
+    /* to */
+    100%{
+        opacity:80%;
+        width:2.4rem;
+    }
+}

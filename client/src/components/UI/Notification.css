@@ -1,0 +1,63 @@
+.notification-container{
+    z-index: 100;
+    /* width:15rem;
+    height: 4rem; */
+    position:fixed;
+    /* right:0; */
+    /* right:1rem; */
+    right:-400px;
+    
+    top:5rem;
+
+    /* width:15rem;
+    height: 3.5rem; */
+
+    min-width:15rem;
+    min-height: 3.5rem;
+
+    border:2px solid black;
+
+    padding:1rem;
+
+    display:flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+
+    border-radius: 1rem;
+
+    animation: movein .5s ease forwards, moveout .5s 2s  ease forwards;
+    
+}
+
+.notification-title{
+    
+    margin:.4rem 0;
+    font-size:1rem;
+    font-weight: 500;
+}
+
+.notification-context{
+    font-family: 'Fredoka One', cursive;
+    padding:.1rem;
+    font-size:1.1rem;
+   
+}
+
+.error{
+    background-color: red;
+}
+.success{
+    background-color: rgb(68, 177, 68);
+}
+
+
+@keyframes movein {
+    from {right: -200px}
+    to {right: 2%}
+}
+
+@keyframes moveout {
+    from {right:2%}
+    to {right:-400px}
+}

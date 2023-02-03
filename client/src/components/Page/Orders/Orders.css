@@ -1,0 +1,161 @@
+.container-table{
+    top:2rem;
+    position: relative;
+    /* margin:auto; */
+    margin-left:auto;
+    margin-right: auto;
+    padding:0px 10px;
+    /* margin-top:15rem; */
+    height:100%;
+    /* height: 100%; */
+    max-width: 1000px;
+    width: 60%;
+
+}
+h2{
+    margin-top:2rem;
+    text-align: center;
+
+}
+
+.table{
+    display: flex;
+    flex-direction: column;
+    margin:3rem 0 11rem 0;
+    
+    /* white-space: nowrap; */
+
+}
+
+.table li{
+    display:flex;
+    border-radius: 4px;
+    padding: 20px 30px;
+    margin: .5rem;
+    justify-content: space-between;
+}
+
+.table-header{
+    /* background-color: rgb(243, 243, 243); */
+    background-color: rgb(133, 134, 129);
+    box-shadow: 0px 0px 9px 9px rgba(255,255,255, 0.2);
+
+    text-transform: uppercase;
+    letter-spacing: .8px;
+
+    /* display:inline-block;
+    vertical-align: top; */
+}
+
+
+
+.table-row{
+    /* background-color: rgb(133, 134, 129); */
+    background-color: rgb(243, 243, 243);
+    box-shadow: 0px 0px 9px 9px rgba(0,0,0, 0.2);
+
+    color:black;
+
+    /* we want cance_order to be in top of order Item  */
+    position:relative;
+}
+.table-row-complited{
+    background-color: rgb(231, 224, 224);
+    box-shadow: 0px 0px 9px 9px rgba(0,0,0, 0.2);
+    opacity:.6;
+
+    color:black;
+}
+
+.cancel_order{
+    top:-.3rem;
+    right:-1.2rem;
+    font-weight: 700;
+    font-size:.8rem;
+    position:absolute;
+    cursor: pointer;
+    color:rgb(226, 35, 35)
+}
+
+.cancel_order:hover{
+    color:black
+}
+
+.colone {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.col-1{
+    flex-basis: 30%;
+}
+.col-2{
+    flex-basis: 20%;
+}
+.col-3{
+    flex-basis: 25%;
+}
+.col-4{
+    flex-basis: 25%;
+}
+.col-5{
+    flex-basis: 20%;
+}
+
+/* .prod_item{
+    margin:1rem;
+} */
+
+.no_orders{
+    background-color: rgb(218, 213, 213);
+    box-shadow: 0px 0px 9px 9px rgba(0,0,0, 0.2);
+    
+    color:black;
+    font-size:18px;
+    font-weight: 600;
+    text-align: center;
+    padding:10px;
+}
+
+.no_orders span{
+    font-weight: 700;
+    font-size:20px;
+}
+
+
+.prod_item{
+    margin:.2rem
+}
+
+
+
+@media only screen and (max-width:1100px){
+    .table-header{
+        font-size:13px;
+        letter-spacing: .2px;
+    }
+    .container-table{
+        font-size:13px;
+    }
+}
+
+@media only screen and (max-width:825px){
+    .table-header{
+        font-size:11px;
+        letter-spacing: .2px;
+    }
+    /* .container-table{
+        font-size:9px;
+    } */
+}
+
+@media screen and (max-width:790px){
+    .table-header{
+        
+    }
+
+   
+}
+
+

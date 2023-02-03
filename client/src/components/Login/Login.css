@@ -1,0 +1,163 @@
+
+/* THIS PASSED AS PROPERTY TO MODAL COMPONENT */
+.loginModal{
+    /* background-color: red; */
+    width: 30%;
+    min-width: 450px;
+    max-width: 600px;
+    
+}
+
+
+.loginForm{
+    display:flex;
+    flex-direction:column;
+    justify-content: space-evenly;
+    margin:1rem 0 .2rem 0;
+
+    
+    
+}
+
+/* LOADING  */
+.loadingBackground{
+    position:absolute;
+    background-color: rgba(0, 0, 0, .7);
+    width:100%;
+    height: 100%;
+    top:0;
+
+}
+
+.loader{
+    position:absolute;
+    left: 45%; 
+    top:40%;
+    /* transform: translate(-50%, -50%); */
+    transform:translate(-50%, -40%);
+
+    border:10px solid rgb(202, 84, 84);
+    border-top: 10px solid #3498db;
+    border-radius: 50%; 
+    width:70px;
+    height:70px ;
+    animation: spin 1s  infinite;
+
+    z-index: 1;
+
+}
+
+@keyframes spin{
+    0%{
+        transform:rotate(0deg);
+    }
+    100%{
+        transform:rotate(360deg);
+    }
+}
+
+
+
+
+
+
+.loginControl-input{
+    display: flex;
+    padding:.5rem 3rem;
+    
+}
+.loginControl-input label{
+    /* flex:1; */
+    flex:1;
+    color:white;
+
+    font-weight: 500;
+}
+.loginControl-input input{
+    /* flex:1; */
+    flex:1;
+
+    border:none;
+    background-color: transparent;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.466);
+    outline: none;
+    color:white;
+}
+
+
+
+.loginControl-input input:focus{
+    border-bottom: 2px solid rgba(0, 0, 0, 0.800);
+}
+
+.loginControl-input input::placeholder{
+    color:white;
+    opacity: 0.6;
+    font-style: italic;
+}
+
+
+.loginForm-actions{
+    flex-direction: flex-end;
+}
+
+.loginForm-actions button{
+    margin-top:.4rem;
+    margin-right:.6rem;
+    float:right;
+    height:2rem;
+    width: 4.2rem;
+    border:none;
+    box-shadow: 0px 0px 9px 9px rgba(0,0,0, 0.2);
+    font-weight: 550;
+    font-size:.8rem;
+
+    border-radius: .5rem;
+    background-color: rgb(77, 90, 57);
+    color:white;
+}
+.loginForm-actions button:hover{
+    /* height: 2rem;
+    width:4.2rem; */
+    box-shadow: 0px 0px 9px 9px rgba(0,0,0, 0.4);
+    font-size:.9rem;
+
+    background-color: rgb(122, 141, 93);
+    color:black;
+
+}
+
+
+.loginError{
+    margin-left: 1rem;
+    color:white;
+}
+.loginError span{
+    color:rgb(207, 34, 34);
+    font-size:.9rem;
+    
+}
+
+
+
+@media only screen and (max-width:461px){
+    .loginModal{
+        /* background-color: red; */
+        min-width: 380px;  
+    }
+    .loginForm{
+        
+    }
+    .loginControl-input{
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width:360px){
+    .loginModal{
+        /* background-color: red; */
+        min-width: 300px;
+    }
+}
+
+
