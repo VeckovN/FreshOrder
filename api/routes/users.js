@@ -1,6 +1,6 @@
 import express from 'express'
 
-import {updateUser, deleteUser, getUser, getUsers} from '../controllers/userController.js'
+import {updateUser, deleteUser, getUser, getUsers, getUserCount} from '../controllers/userController.js'
 
 import {verifyUser, verifyAdmin} from '../utility/verifyToken.js';
 
@@ -35,6 +35,7 @@ router.put('/:id', verifyUser ,updateUser);
 //delete --- api/products/:id
 router.delete('/:id', verifyUser, deleteUser);
 //get himself(information) to show self info in fromnted
+router.get('/count', getUserCount);
 //RRRRR router.get('/:id', verifyUser, getUser);
 router.get('/:id', getUser);
 //But only admin could see all users

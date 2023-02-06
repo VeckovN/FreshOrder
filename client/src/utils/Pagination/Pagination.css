@@ -1,0 +1,22 @@
+.pagination_container{
+    display:flex;
+    flex-direction: row;
+}
+
+.pagination_numbers{
+    display: flex;
+
+}
+
+.page_number{
+    width: 2rem;
+    height: 1.8rem;
+    margin:0 .2rem;
+
+    font-weight: 600;
+}
+
+.current{
+    background-color: rgb(29, 29, 28);
+    color:white;
+}

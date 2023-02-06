@@ -1,5 +1,8 @@
 import {useState, useEffect } from 'react';
+import {convertDate} from '../../../../../utils/Helper.js'
 import {Link} from 'react-router-dom';
+import Pagination from '../../../../../utils/Pagination/Pagination';
+
 import axios from 'axios';
 
 
@@ -9,6 +12,14 @@ const Users = (props) =>{
 
     const [edit, setEdit] = useState(false);
     const [data, setData] = useState([]);
+
+    const [totalData, setTotalData] = useState('');
+
+    // //there is button wiht left and right arrow -> to move on next or back page
+    const [currentPage, setCurrentPage] = useState('1');
+
+    //we can't choose one of three options (5, 10, 15 ) items per page
+    const [itemsPerPage, setItemsPerPage] = useState('5');
 
     const [updatedData, setUpdatedData] = useState({
         username:'',
@@ -20,10 +31,19 @@ const Users = (props) =>{
     const {username} = updatedData;
 
     
+
     useEffect(()=>{
-       getData();
+    //    getData();
+        getDataPerPage();
+        getTotalData();
     },[])
 
+    // useEffect(()=>{
+    //     getDataPerPage();
+    // },[currentPage])
+
+
+    //On Initial (pageNumber by default is 1, and limit is 5)
     const getData = async ()=>{
         try{
             const res = await axios.get('http://localhost:8800/api/users')
@@ -35,45 +55,35 @@ const Users = (props) =>{
         }
     }
 
-    const convertDate=(date) =>{
-        //2022-11-01T09:25:53.161Z
-        //Date 2022-11-01 BEFORE T
-        //time  09:25 (Only 5word AFTER T) 
-        const T_sign = date.indexOf('T');
-
-        //2022-11-01 replaceAll 2022/11/01 
-        //final show revers 01/11/2022
-        let stringDate = date.slice(0,T_sign).replaceAll('-','/');
-        let stringTime = date.substring(T_sign, 5).replace('-', ':');
-        console.log();
-
-        // return stringDate.concate(' ' , stringTime);
-        return stringDate.concat(" - ", stringTime);
+    //initial (onMountCompoennt) pageNumber is ofc 1
+    //this will called in Pagination 
+    // const getDataPerPage = async(pageNumber, itemsPerPage) =>{
+    const getDataPerPage = async(pageNumber) =>{
+        try{
+            // const res = await axios.get(`http://localhost:8800/api/users?page=${pageNumber}&limit=${itemsPerPage}`)
+            const res = await axios.get(`http://localhost:8800/api/users?page=${pageNumber}&limit=${itemsPerPage}`)
+            const users = res.data;
+            setData(users);
+            setCurrentPage(pageNumber);
+        }
+        catch(err){
+            console.log(err);
+        }
     }
 
-    // const onChangeUpdateData = (event)=>{
-
-    //     const name = event.target.name;
-    //     const value = event.target.value;
-
-    //     setUpdatedData(prev => ({
-    //         ...prev,
-    //         [name]: value
-    //     }))
-    // }
-
-    // const commitHandler = () =>{
-
-    // }
-    
+    const getTotalData = async() =>{
+        const response = await axios.get('http://localhost:8800/api/users/count');
+        const result = response.data;
+        // setTotalData(result);
+        console.log("COUNT : " + result.count);
+        setTotalData(result.count);
+    }
 
 
     const onEditHandler = () =>{
         setEdit(true);
-
         //call that for triggering USerModal Show State
         props.onEditUserUpdateHandler();
-
         //show modal with update User info
     }
 
@@ -116,6 +126,9 @@ const Users = (props) =>{
                         
                     </tbody>
                 </table>
+
+                <Pagination itemsPerPage={itemsPerPage} totalItems={totalData} onPageNumberSelect={getDataPerPage} />
+
             </div>
         </main>
     )

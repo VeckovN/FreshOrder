@@ -8,7 +8,8 @@ const router = express.Router();
 //RRRR router.post('/',verifyAdmin ,createProduct); //controller insted func implementation as parameter of router
 router.post('/' ,createProduct); //controller insted func implementation as parameter of router
 //Update --- api/products/:id
-router.put('/:id',verifyAdmin ,updateProduct);
+// router.put('/:id',verifyAdmin ,updateProduct);
+router.put('/:id', updateProduct);
 //delete --- api/products/:id
 router.delete('/:id',verifyAdmin ,deleteProduct);
 // router.put('/softDelete/:id', verifyAdmin, softDeleteProduct);

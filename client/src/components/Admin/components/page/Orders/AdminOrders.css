@@ -1,15 +1,18 @@
 .table_container{
-    top:2rem;
-    position: relative;
-    /* margin:auto; */
-    margin-left:auto;
-    margin-right: auto;
+    /* top:2rem; */
+    /* position: relative; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin:0rem auto 8rem auto;
     padding:0px 10px;
     /* margin-top:15rem; */
     height:100%;
     /* height: 100%; */
     max-width: 1000px;
     width: 90%;
+
+    position: relative;
 }
 
 .table_container h1{
@@ -22,11 +25,72 @@ h2{
 
 }
 
+.table_filter{
+    display: flex;
+
+    /* align-self: start; */
+    
+    gap:1rem;
+    /* margin:1rem; */
+}
+
+.table_perPage_select{
+    display: flex;
+    flex-direction: column;
+    margin:.2rem 0rem;
+    gap:.3rem;
+}
+.table_perPage_buttons{
+   
+}
+
+.table_perPage_buttons .selected{
+    background-color:rgb(44, 44, 43);
+    color:white;
+    font-weight: 600;
+}
+
+.table_perPage_buttons button{
+    width: 2rem;
+    height: 1.5rem;
+    margin-left: .2rem;
+    cursor: pointer;
+    
+}
+
+
+.table_sort_select{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin:.2rem 0rem;
+    gap:.3rem;
+
+    margin:0rem .5rem;
+    
+}
+.table_sort_select button{
+    width: 6rem;
+    height: 1.8rem;
+
+    margin:0rem 0rem 0rem .5rem;
+
+    cursor: pointer;
+}
+
+.table_sort_select  .selected {
+    background-color:rgb(44, 44, 43);
+    color:white;
+    font-weight: 600;
+}
+
 .table_order{
     display: flex;
     flex-direction: column;
-    margin:3rem 0 11rem 0;
+    margin:3rem 0 4rem 0;
     
+    /* LoadingSpinner needed  */
+    position:relative;
     /* white-space: nowrap; */
 
 }
@@ -39,10 +103,30 @@ h2{
     justify-content: space-between;
 }
 
+.table_context{
+    display:flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/*all children of loading */
+.table_context_loading >  .table-row{
+    /* position: relative; */
+    background-color: rgba(0, 0, 0, 0.856);
+    opacity: .5;
+    border-radius: .2rem;
+}
+/* .table_context_loading{
+    background-color: rgba(0, 0, 0, 0.856);
+    
+} */
+
+
 .table_header{
     /* background-color: rgb(243, 243, 243); */
-    background-color: rgb(133, 134, 129);
+    background-color: rgb(27, 27, 27);
     box-shadow: 0px 0px 9px 9px rgba(255,255,255, 0.2);
+    color:white;
 
     text-transform: uppercase;
     letter-spacing: .5px;
@@ -88,7 +172,8 @@ h2{
     color:black;
 }
 
-.table-row-complited{
+/* element with 2 classes together -> table-row and completed */
+.completed{
     background-color: rgb(63, 61, 61);
     box-shadow: 0px 0px 9px 9px rgba(0,0,0, 0.2);
     opacity:.8;

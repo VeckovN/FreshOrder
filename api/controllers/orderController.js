@@ -206,19 +206,70 @@ export const getOrder = async(req,res,next) =>{
 
 export const getOrders = async(req,res,next)=>{
 
-    try{
-        // const orders = await Order.find().populate('products.product');
-        
-        // console.log("DIIIIRENNNN : " + __dirname);
+    // try{
+    //     // const orders = await Order.find().populate('products.product'); 
+    //     const orders = await Order.find().populate('products.product user')
+    //     console.log(orders);
+    //     res.status(200).json(orders);
+    // }catch(err){
+    //     next(err);
+    // }
 
-        const orders = await Order.find().populate('products.product user')
-        
-        console.log(orders);
-        res.status(200).json(orders);
-    }catch(err){
-        next(err);
+    const page = req.query.page;
+    const limit =req.query.limit;
+    const sort = req.query.sort;
+
+
+    console.log("SORT : " + sort);
+
+    //default
+    let sortObj = {createdAt:-1}
+
+    let completedSelect ;
+
+    if(sort =='completed')
+    {
+        completedSelect +='isCompleted:-1'
+        sortObj ={isCompleted:-1, ...sortObj}
     }
-        
+    if(sort =='notCompleted')
+    {
+        completedSelect +='isCompleted';
+        sortObj ={isCompleted:1, ...sortObj}
+    }
+
+    console.log("SORTTTT: " + JSON.stringify(sortObj));
+
+    
+
+    //startIndex for selected Page
+    const startIndex = (page - 1) * limit;
+
+    //PAGINATION
+        // const orders = await Order.find().populate('products.product'); 
+        await Order.find().populate('products.product user')
+        .skip(startIndex)
+        .limit(limit)
+        // .sort({isCompleted:-1, createdAt:-1})
+          //default is only createdAt:-1
+        // .sort({createdAt:-1})
+        .sort(sortObj)
+        .exec((err,doc)=>{
+            if(err) {res.status(500).send(err); return;}
+            res.status(200).json(doc);
+        })
+
+}
+
+export const getOrdersCount = (req,res) =>{
+    Order.count({}, function(err, result){
+        if(err){
+            res.status(400).send(err);
+            console.log("ERRR: " + err)
+        }
+        else
+            res.json({count:result})  
+    })
 }
 
 export const getAllUserOrders = async(req,res,next)=>{
