@@ -1,3 +1,5 @@
+
+
 .table_container{
     /* top:2rem; */
     /* position: relative; */
@@ -231,37 +233,16 @@ h2{
     font-size:20px;
 }
 
-
 .prod_item{
     margin:.2rem
 }
 
 
-
-/* Delivery order */
-.delivery_container{
-    display:flex;
-    flex-direction: column;
+.dateLabel{
+    align-self: center;
+    display: flex;
     justify-content: center;
-    align-items: center;
-
-    margin:1rem 0rem;
 }
-
-.delivery_container h3{
-    color:white;
-}
-
-.delivery_input_fields{
-    margin:1rem 0;
-    display:flex;
-    flex-direction: column;
-}
-
-.delivery_input_fields input{
-    margin:1rem 0
-}
-
 
 @media only screen and (max-width:1100px){
     .table-header{
