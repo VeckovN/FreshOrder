@@ -19,7 +19,7 @@ const Users = (props) =>{
     const [currentPage, setCurrentPage] = useState('1');
 
     //we can't choose one of three options (5, 10, 15 ) items per page
-    const [itemsPerPage, setItemsPerPage] = useState('5');
+    const [itemsPerPage, setItemsPerPage] = useState('10');
 
     const [updatedData, setUpdatedData] = useState({
         username:'',
@@ -110,14 +110,12 @@ const Users = (props) =>{
                             <td>{item.email}</td>
                             <td>{item.address}a</td>
                             <td>{item.phone_number}</td>
-                            <td>{convertDate(item.createdAt)}</td>
                             <td>
-                            {/* <button onClick={onEditHandler}>Edit</button> */}
-                            {/* <Link className='' to='/usersUpdate' state={item}>Edit</Link> */}
-                            
-                            {/* wiht /update will lead to /update not on nasted route /users/update */}
-                            <Link className='' to='update' state={item}>Edit</Link>
-                               
+                                <div>{convertDate(item.createdAt).day}</div>
+                                <div>{convertDate(item.createdAt).hour}</div>
+                            </td>
+                            <td >
+                                <Link className='users_edit_link' to='update' state={item}>Edit</Link>
                             </td>
                             
                         </tr>
@@ -127,7 +125,11 @@ const Users = (props) =>{
                     </tbody>
                 </table>
 
-                <Pagination itemsPerPage={itemsPerPage} totalItems={totalData} onPageNumberSelect={getDataPerPage} />
+                <Pagination 
+                    itemsPerPage={itemsPerPage} 
+                    totalItems={totalData} 
+                    onPageNumberSelect={getDataPerPage} 
+                />
 
             </div>
         </main>

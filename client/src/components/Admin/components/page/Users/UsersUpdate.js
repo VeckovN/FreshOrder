@@ -85,11 +85,20 @@ const UsersUpdate = () =>{
             console.log("Error: " + err);
             addError("You can't update right now")
         }
-      
-
     }
 
-
+    const deleteUserHandler = async() =>{
+        try{
+            const res = await axios.delete(`http://localhost:8800/api/users/${data._id}`);
+            const resMessage = res.data;
+            addSuccess(resMessage);
+            navigate('/users');
+        }
+        catch(err){
+            console.log("Delete Error: " + err);
+            addError("You can't delete user right now")
+        }
+    }
 
     return(
 
@@ -158,6 +167,10 @@ const UsersUpdate = () =>{
                     <div className='users_commit_container'>
                         {/* <button onClick={commitHandler} disabled={!checkForCommit()} className='commitButton'>Commit</button> */}
                         <button onClick={commitHandler} className='commitButton'>Commit</button>
+    
+                    </div>
+                    <div className='users_delete_container'>
+                        <button onClick={deleteUserHandler} className='deleteButton'>Delete User</button>
                     </div>
                 </div>
                 :    
