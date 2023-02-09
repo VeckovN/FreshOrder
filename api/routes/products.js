@@ -11,7 +11,8 @@ router.post('/' ,createProduct); //controller insted func implementation as para
 // router.put('/:id',verifyAdmin ,updateProduct);
 router.put('/:id', updateProduct);
 //delete --- api/products/:id
-router.delete('/:id',verifyAdmin ,deleteProduct);
+// router.delete('/:id',verifyAdmin ,deleteProduct);
+router.delete('/:id',deleteProduct);
 // router.put('/softDelete/:id', verifyAdmin, softDeleteProduct);
 router.put('/softDelete/:id', softDeleteProduct);
 // router.put('/softAdd/:id', verifyAdmin, softAddProduct);

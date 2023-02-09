@@ -1,6 +1,6 @@
 import express from 'express'
 import dotenv from 'dotenv'
-import mongoose from 'mongoose'
+import mongoose, { mongo } from 'mongoose'
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import multer from 'multer';
@@ -15,8 +15,9 @@ dotenv.config();
 
 const connection = async () =>{
     try{
-        await mongoose.connect(process.env.MONGO_URL);
+        const conn = await mongoose.connect(process.env.MONGO_URL);
         console.log("Connsected to mongoDB");
+        
     }
     catch(err){
         throw err;

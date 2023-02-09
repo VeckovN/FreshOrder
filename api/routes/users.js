@@ -33,7 +33,8 @@ router.put('/updateuser/:id', updateUser);
 // permision to admin) can change your account 
 router.put('/:id', verifyUser ,updateUser);
 //delete --- api/products/:id
-router.delete('/:id', verifyUser, deleteUser);
+// router.delete('/:id', verifyUser, deleteUser);
+router.delete('/:id', deleteUser);
 //get himself(information) to show self info in fromnted
 router.get('/count', getUserCount);
 //RRRRR router.get('/:id', verifyUser, getUser);

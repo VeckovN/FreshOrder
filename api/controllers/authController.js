@@ -4,6 +4,9 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv'
 import {createError} from '../utility/error.js'
 
+//MongoDB Indexes
+//https://www.mongodb.com/blog/post/performance-best-practices-indexing
+
 dotenv.config();
 
 export const register = async (req,res,next) =>{

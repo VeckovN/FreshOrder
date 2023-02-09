@@ -8,6 +8,12 @@ import {transporter} from '../utility/email.js';
 import dotenv from 'dotenv'
 dotenv.config();
 
+Order.collection.getIndexes({full: true}).then(indexes => {
+    console.log("indexes:", indexes);
+    // ...
+}).catch(console.error);
+
+
 //Nested populate in a document --- https://dev.to/paras594/how-to-use-populate-in-mongoose-node-js-mo0
 
 
@@ -77,19 +83,9 @@ export const completeOrder = async(req,res,next)=>{
         // //maybe userEmail instead ID(beacuse we need to find That userByID and take email prop from it)
         // const {userID, deliveryTime} = req.body;
         const updatedOrder = await Order.findByIdAndUpdate(id, {isCompleted:true}, {new:true})
-
-       // //take userName email 
-       // //_id and email is returned() -_id beacause we don't need it
-
-        // const user = await User.findOne({_id:userID}).select('email');
-        // const userEmail = user.email; //take value of key=email
-
-        //with passed user Email
         const {userEmail, deliveryTime} = req.body
 
         const textContext = "OrderApp, Expect an order for" + deliveryTime + 'min';
-
-
         //EMAIL
         //Obj for sending email {email, text} = sendObj;
         //const sendObj = {email:userEmail, text: textContext};
@@ -103,16 +99,16 @@ export const completeOrder = async(req,res,next)=>{
             text:"Order app, expect an order for " + deliveryTime +'min'
         } 
     
-        transporter.sendMail(message, (err,info)=>{
-            if(err){
-                console.log(err);
-                //res.status(400).send("Emaill not send");
-            }
-            else{
-                console.log(info);
-                //res.status(200).send("Email send");
-            }
-        })
+        // transporter.sendMail(message, (err,info)=>{
+        //     if(err){
+        //         console.log(err);
+        //         //res.status(400).send("Emaill not send");
+        //     }
+        //     else{
+        //         console.log(info);
+        //         //res.status(200).send("Email send");
+        //     }
+        // })
         res.status(200).send("Order completed");
 
     }catch(err){
@@ -224,6 +220,7 @@ export const getOrders = async(req,res,next)=>{
 
     //default
     let sortObj = {createdAt:-1}
+    let findOption ={};
 
     let completedSelect ;
 
@@ -231,11 +228,13 @@ export const getOrders = async(req,res,next)=>{
     {
         completedSelect +='isCompleted:-1'
         sortObj ={isCompleted:-1, ...sortObj}
+        findOption={isCompleted:true}
     }
     if(sort =='notCompleted')
     {
         completedSelect +='isCompleted';
         sortObj ={isCompleted:1, ...sortObj}
+        findOption={isCompleted:false}
     }
 
     console.log("SORTTTT: " + JSON.stringify(sortObj));
@@ -245,9 +244,10 @@ export const getOrders = async(req,res,next)=>{
     //startIndex for selected Page
     const startIndex = (page - 1) * limit;
 
+
     //PAGINATION
         // const orders = await Order.find().populate('products.product'); 
-        await Order.find().populate('products.product user')
+        await Order.find(findOption).populate('products.product user')
         .skip(startIndex)
         .limit(limit)
         // .sort({isCompleted:-1, createdAt:-1})
@@ -257,12 +257,28 @@ export const getOrders = async(req,res,next)=>{
         .exec((err,doc)=>{
             if(err) {res.status(500).send(err); return;}
             res.status(200).json(doc);
+            
         })
+        
 
 }
 
 export const getOrdersCount = (req,res) =>{
-    Order.count({}, function(err, result){
+    //If There is a sort option(Completed or notCompleted)
+
+
+    
+    const sortStatus = req.query.sort;
+    // console.log("SORT STATUS:" + sortStatus);
+
+    let sortOption = {}
+    if(sortStatus == 'completed')
+        sortOption = {isCompleted:true}
+    else if(sortStatus == 'notCompleted')
+        sortOption = {isCompleted:false};
+
+    //index created for isCompleted:false
+    Order.count(sortOption, function(err, result){
         if(err){
             res.status(400).send(err);
             console.log("ERRR: " + err)
