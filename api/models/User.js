@@ -1,6 +1,9 @@
 import mongoose from 'mongoose'
 import Order from './Order.js'
 
+//indexes 
+//https://www.percona.com/blog/using-partial-and-sparse-indexes-in-mongodb/
+
 
 const { Schema } = mongoose;
 
@@ -9,7 +12,7 @@ const UserSchema = new mongoose.Schema({
     username:{
         type:String,
         required:true,
-        unique:true
+        unique:true,
     },
     email:{
         type:String,
@@ -25,9 +28,9 @@ const UserSchema = new mongoose.Schema({
         required:true,
     },
     phone_number:{
-        type:Number,
-        min:9, //yetel valjda?
-        // max:13, //A1 valjda?
+        type:String,
+        min:9, 
+        // max:13, 
         required:true
     },
     isAdmin:{
@@ -39,9 +42,13 @@ const UserSchema = new mongoose.Schema({
         type:Schema.Types.ObjectId,
         ref:'Order'
     }]
+
 },
     {timestamps: true}
 )
+//Indexes 
+//index user on isAdmin field -> false 
+// UserSchema.index({isAdmin})
 
 //CASSCADE DELETE- DELETE ALL ORDERS WHICH USER CONTAINS
 //THIS WILL BE EXECUTED BEFORE WE DELETE USER
@@ -58,6 +65,7 @@ UserSchema.pre('remove', async function(next){
     console.log("ORDERS DELETED WHICH USER CONTAINS");
     next(); //go to next middleware (this not neccessary in this case but its preventive)
 })
+
 
 
 export default mongoose.model('User', UserSchema);

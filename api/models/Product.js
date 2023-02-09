@@ -11,7 +11,7 @@ const ProductSchema = new mongoose.Schema({
     // category: {type:String, enum:[] , required:true}
     category: {
         type:String, 
-        enum:['Meals','Pizza','Pasta', 'Drinks'], 
+        enum:['Pizza', 'Pasta', 'Burger' ,'Salat','Drinks', 'Desert'], 
         required:true
     },
     description: {
@@ -31,7 +31,7 @@ const ProductSchema = new mongoose.Schema({
     isDeleted: {
         type:Boolean,
         default:false, 
-        required: true
+        // required: true
     }, //soft-shadow delete
     //last prop is the array of orders in which this product belongs
     orders:{
@@ -40,5 +40,6 @@ const ProductSchema = new mongoose.Schema({
     }
 
 })
+
 
 export default mongoose.model('Product', ProductSchema);
