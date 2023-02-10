@@ -2,11 +2,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     margin-top:4rem;
     margin-bottom: 10rem;
     /* position: relative; */
     height: 70vh;
-    max-width: 1200px;
 
     width:100%;
     
@@ -18,7 +18,7 @@
 
 .input_container{
 
-    padding:1.5rem 2rem;
+    padding:1.5rem 3rem;
     display:flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -28,6 +28,8 @@
     border-radius: 10px;
 
     width:40%;
+    max-width: 500px;
+    min-width: 400px;
 
     position: relative;
     
@@ -51,12 +53,19 @@
     
     border:none;
     background-color: transparent;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.466);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.781);
     width: 12rem;
     color:white;
     font-size: 14px;
     outline: none;
     
+}
+.input_field input::placeholder{
+    color:white;
+}
+
+.input_field input:hover::placeholder{
+    color:black;
 }
 
 
@@ -88,8 +97,12 @@
     font-weight: 600;
 }
 
-
 .errorInput{
+    border-bottom: 2px solid rgb(190, 48, 48);
+    color:red;
+}
+
+.errorInputLabel{
     margin-left:0.4rem;
     color:rgb(190, 48, 48);
     font-weight: 500;

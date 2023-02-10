@@ -1,5 +1,7 @@
 import User from '../models/User.js'
 import Order from '../models/Order.js'
+import { createError } from '../utility/error.js';
+import bcrypt from 'bcryptjs';
 
 //Register function exists 
 
@@ -12,9 +14,34 @@ export const updateUser  = async (req,res,next)=>{
 
         console.log("UPDATEEEEEE : " + JSON.stringify(newContext));
 
+        if(newContext.username){
+            console.log("HWWWWWASSSSSSSSSSSSS");
+            // if(User.findOne)
+            const user = await User.findOne({username: newContext.username})
+            if(user){
+                console.log("HSSSSSSS");
+                // return next(createError(404, 'Username exists'));
+                // res.status(404).send("Username exists");
+                return next(createError(404, "Username exists"))
+            }
+        }
+
+        if(newContext.email){
+            const user = await User.findOne({email: newContext.email})
+            if(user){
+                return next(createError(404, 'Email exists'));
+            }
+        }
+        
+        if(newContext.password){
+                // hash password
+            const salt = bcrypt.genSaltSync(10);
+            const hash = bcrypt.hashSync(newContext.password, salt);
+            newContext.password = hash;
+        }
+
         const updatedUser = await User.findByIdAndUpdate(id, newContext, {new:true});
         //without {new:true} prop - this findByIdAndUpdate returns prev(notUpdated) Product
-        
         const {_id, isAdmin, password, orders, createdAt, updatedAt, ...others} = updatedUser._doc;
 
         console.log("UPDATED " + JSON.stringify(updatedUser._doc))
