@@ -28,7 +28,7 @@ import Home from './components/Page/Home'
 import Register from './components/Register/Register.js';
 import Login from './components/Login/Login.js';
 import NotFound from './components/Page/NotFound.js';
-import Profile from './components/Page/Profile.js';
+import Profile from './components/Page/Profile/Profile.js';
 import Orders from './components/Page/Orders/Orders.js';
 
 import Notification from './components/UI/Notification.js'
@@ -61,8 +61,6 @@ function App() {
 
   const onShowCart = () =>{
     setShowModalCart(true);
-
-    addSuccess('TEst');
 
     console.log("SUCESS: " + success);
 
@@ -102,7 +100,7 @@ function App() {
   }
 
   const onShowAdminOrderDelivery = (deliveryInfo)=>{
-    alert("DLEIVERYT INFO :" + JSON.stringify(deliveryInfo))
+    // alert("DLEIVERYT INFO :" + JSON.stringify(deliveryInfo))
     setDeliveryTimeInfo(deliveryInfo);
     //take OrderID in state instead showModalDelivery state
     setShowAdminModalDeliveryTime(true);

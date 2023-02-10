@@ -1,10 +1,10 @@
 import {isValidElement, useState, useEffect, useContext} from 'react';
 import axios from 'axios'
 
-import notificationContext from '../Store/notification-context';
-import LoadingSpinner from '../../utils/LoadingSpinner';
+import notificationContext from '../../Store/notification-context';
+import LoadingSpinner from '../../../utils/LoadingSpinner';
 
-import Card from '../UI/Card'
+import Card from '../../UI/Card'
 
 
 import './Profile.css'

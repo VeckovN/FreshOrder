@@ -1,12 +1,12 @@
 import {isValidElement, useState, useEffect, useContext, useDebugValue} from 'react';
 import axios from 'axios'
 
-import notificationContext from '../Store/notification-context';
-import LoadingSpinner from '../../utils/LoadingSpinner';
+import notificationContext from '../../Store/notification-context';
+import LoadingSpinner from '../../../utils/LoadingSpinner';
 
-import useForm from '../../utils/Hooks/useFormSelect';
+import useForm from '../../../utils/Hooks/useFormSelect';
 import ProfileContext from './ProfileContext';
-import Card from '../UI/Card'
+import Card from '../../UI/Card'
 
 
 import './Profile.css'
