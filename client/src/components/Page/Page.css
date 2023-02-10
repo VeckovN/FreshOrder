@@ -93,6 +93,13 @@ h1{
     align-items: center;
 }
 
+/* --- */
+.notFound{
+    margin:10rem 0 35rem 0rem;
+    display: flex;
+    justify-content: center;
+}
+
 
 @media screen and (max-width:400px) {
 
