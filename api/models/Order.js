@@ -37,6 +37,16 @@ const OrderSchema = new mongoose.Schema({
 },
     {timestamps: true}
 )
+//index on isComplited Field
+
+https://stackoverflow.com/questions/67649159/how-to-sort-index-and-paginate-posts-mongodb-mongoose
+
+//https://www.percona.com/blog/using-partial-and-sparse-indexes-in-mongodb/
+//isCompleted:false is maybe 5%,10% of all orders(docs)(more orders are completed) so we need to create index for better search performace
+OrderSchema.index({isCompleted:1}, {partialFilterExpression: {isCompleted:false}})
+
+
+
 //MOngoose Middleware
 
 // //THIS WILL HAPPED BEFORE WE DELETE ORDER(THIS MODEL)

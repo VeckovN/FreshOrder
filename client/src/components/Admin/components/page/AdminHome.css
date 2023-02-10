@@ -16,14 +16,14 @@
 
 }
 
-@media screen and (max-width:900px){
-    .main{
+@media screen and (max-width:1150px){
+    .mainAdmin{
         width:100%;
     }
 }
 
-@media screen and (max-width:1400px){
-    .main{
+/* @media screen and (max-width:1400px){
+    .mainAdmin{
         width:100%;
     }
-}
+} */

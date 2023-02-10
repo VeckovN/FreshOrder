@@ -24,12 +24,12 @@ const OrdersTable = (props)=>{
                                 
                                 <div className ='colone col-1'>
                                     {order.products.map(prod =>{
-                                    return <p className='prod_item'>{prod.product.name}</p>
+                                    return <p className='prod_item'>{prod.product!=null ? prod.product.name : 'Deleted Product'}</p>
                                     })}
                                 </div>
                                 <div className ='colone col-2'>  
                                         {order.products.map(prod =>{
-                                            totalPrice+=prod.amount * prod.product.price;
+                                            totalPrice+=prod.amount * prod.product?.price;
                                             return <p className='prod_item'>{prod.amount}</p>
                                         })}
                                     {/* {order.products.map(prod =>{

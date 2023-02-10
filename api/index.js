@@ -16,14 +16,12 @@ dotenv.config();
 const connection = async () =>{
     try{
         const conn = await mongoose.connect(process.env.MONGO_URL);
-        console.log("Connsected to mongoDB");
-        
+        console.log("Connsected to mongoDB"); 
     }
     catch(err){
         throw err;
     }
 }
-
 
 //CORS Configuration
 //allow only React App on :3000 port
@@ -47,7 +45,7 @@ app.use(cors(corsOptions))
 //middlewares - it's able to reach our request and response(req,res) before sending anything to user 
 app.use(express.json()); //to send Json from Client to express
 app.use(cookieParser()); //for cookies
-
+// app.use(express.static(__dirname + '/public'));
 
 // app.use()
 const storage = multer.diskStorage({
@@ -60,7 +58,6 @@ const storage = multer.diskStorage({
 })
 
 const upload = multer({storage:storage});
-
 //upload image
 app.post('/api/products/create', upload.single('image'), 
     (req,res)=>{
@@ -74,7 +71,6 @@ app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute); 
 app.use("/api/products", productRoute);
 app.use("/api/orders", orderRoute);
-
 
 //error handler middlaware
 //using this insted res.status(500).json(err); in routes

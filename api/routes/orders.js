@@ -9,20 +9,15 @@ router.post('/', createOrder);
 //Complete Order
 // router.put('/complete/:id', verifyAdmin, completeOrder);
 router.put('/complete/:id', completeOrder);
-
 router.get('/count', getOrdersCount)
-
 //GetOne
 router.get('/:id', verifyUser, getOrder);
 //GetAll\
-
 //RRRRR router.get('/', verifyAdmin, getOrders);
 router.get('/',  getOrders);
 // router.post('/orders', )
-
 //RRRRR router.get('/userOrders/:userID', verifyUser, getAllUserOrders);
 router.get('/userOrders/:userID', getAllUserOrders);
-
 // router.delete('/:id', verifyAdmin, deleteOrder);
 router.delete('/:idOrder/:idClient',  deleteOrder);
 

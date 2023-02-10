@@ -3,6 +3,7 @@ import {useContext} from 'react'
 import cartContext from '../Store/cart-context';
 import CartItem from './CartItem';
 
+import authContext from '../Store/auth-context';
 import notificationContext from '../Store/notification-context.js'
 
 
@@ -14,6 +15,7 @@ import './Cart.css'
 
 const Cart = props =>{
 
+    const {user} = useContext(authContext);
 
     const ctxCart = useContext(cartContext);
 
@@ -37,12 +39,16 @@ const Cart = props =>{
     }
 
     const orderCartItems = () =>{
-        if(cartItems.length >0){
-            ctxCart.orderItems(); 
-            addSuccess("You have successfully ordered")
+        if(user){
+            if(cartItems.length >0){
+                ctxCart.orderItems(); 
+                addSuccess("You have successfully ordered")
+            }
+            else
+                addError("You can't order empty cart");
         }
         else
-            addError("You can't order empty cart");
+            addError("You must be logged in")
 
     }
     const ItemsList = 

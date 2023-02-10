@@ -33,12 +33,16 @@ const AdminOrderList = ({orders, onComfirmOrder}) =>{
                                 </div>
                                 <div className ='colone col-3'>
                                     {order.products.map(prod =>{
-                                    return <p>{prod.product.name}</p>
+                                    //when is product deleted , in order it will be targeted as 'Deleted'
+                                    return <p>{prod.product!=null ? prod.product.name : 'Deleted Product'}</p>
                                     })}
                                 </div>
                                 <div className ='colone col-4'>  
                                         {order.products.map(prod =>{
-                                            totalPrice+=prod.amount * prod.product.price;
+                                            //prod.product.price could be null -(when is product deleted)
+                                            //?. return undentified when is price null 
+                                            
+                                            totalPrice+=prod.amount * prod.product?.price;
                                             return <p>{prod.amount}</p>
                                         })}
                                     {/* {order.products.map(prod =>{

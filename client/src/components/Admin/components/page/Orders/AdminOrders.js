@@ -25,28 +25,38 @@ const AdminOrders = (props)=>{
 
     const firstRender = useRef(true);
     
-    //On initial Redner (only once)
-    useEffect(()=>{
-        getDataPerPage();
-        getTotalOrders();
-        console.log("FIRSTTTTTTTTTTTTTT");
-    },[])
-  
-
-    //But on running the app, you will realize that the text is shown even before the button is clicked(itemsPerpage and sort). 
-    //The reason? Well, useEffect’s callback function gets called not only when one of the dependencies 
-    //changes but also during the initial render.
-
-    //THIS WILL ALSO BE RUN ON INTIAL RENDER AS [] BUT ANOTHER TIME WILL BE
-    //RENDER ONLY ON itemsPerPage or sort state change
     useEffect(()=>{
         //This will prevent to not render on INITIAL 
         //after first Fetch in getdataPerPage this firstRender will become true
-        if(firstRender.current == false){ 
-            getDataPerPage();
-            console.log("SECOOOOOOOND");
-        }
+        getDataPerPage();
+        getTotalOrders(sort); //for each request get TotalOrders wiht sort options
+        console.log("FIRST NOW");
     },[itemsPerPage, sort])
+
+
+
+
+    //On initial Redner (only once)
+    // useEffect(()=>{
+    //     getDataPerPage();
+    //     getTotalOrders(sort);
+    //     console.log("FIRSTTTTTTTTTTTTTT");
+    // },[])
+  
+    //But on running the app, you will realize that the text is shown even before the button is clicked(itemsPerpage and sort). 
+    //The reason? Well, useEffect’s callback function gets called not only when one of the dependencies 
+    //changes but also during the initial render.
+    //THIS WILL ALSO BE RUN ON INTIAL RENDER AS [] BUT ANOTHER TIME WILL BE
+    //RENDER ONLY ON itemsPerPage or sort state change
+    // useEffect(()=>{
+    //     //This will prevent to not render on INITIAL 
+    //     //after first Fetch in getdataPerPage this firstRender will become true
+    //     if(firstRender.current == false){ 
+    //         getDataPerPage();
+    //         getTotalOrders(sort); //for each request get TotalOrders wiht sort options
+    //         console.log("SECOOOOOOOND");
+    //     }
+    // },[itemsPerPage, sort])
 
     //OnEvery paggination page click
     const getDataPerPage = async (pageNumber)=>{
@@ -83,9 +93,9 @@ const AdminOrders = (props)=>{
     }
 
 
-    const getTotalOrders = async () =>{
+    const getTotalOrders = async (sort) =>{
         try{
-            const res = await axios.get('http://localhost:8800/api/orders/count');
+            const res = await axios.get(`http://localhost:8800/api/orders/count?sort=${sort.status}`);
             const data = res.data;
             setTotalOrders(data.count);
             console.log("ORDERS NUMB: " + data.count);
@@ -130,18 +140,18 @@ const AdminOrders = (props)=>{
                     <div className='table_sort_select'>
                         <label>Status sort {sort.status && `: ${sort.status}`}</label>
                         <div className='table_sort_buttons'>
-                            {sort.status !='completed' 
-                                ? 
-                                <button onClick={()=>{setSort( {status:'completed'} )}}>Completed</button> 
-                                :
-                                <button className='selected' onClick={()=>{setSort({})}}>Completed</button> 
-                            }
-
                             {sort.status !='notCompleted' 
                                 ?
                                 <button onClick={()=>{setSort( {status:'notCompleted'} )}}>NoCompleted</button>
                                 :
                                 <button className='selected' onClick={()=>{setSort({})}}>NoCompleted</button> 
+                            }
+
+                            {sort.status !='completed' 
+                                ? 
+                                <button onClick={()=>{setSort( {status:'completed'} )}}>Completed</button> 
+                                :
+                                <button className='selected' onClick={()=>{setSort({})}}>Completed</button> 
                             }
 
                         </div>

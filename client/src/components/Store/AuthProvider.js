@@ -77,6 +77,11 @@ const AuthProvider = props =>{
     }, [userState.user])    
 
 
+    //dispatchAction({type:"LOGIN_SUCCESS", payload:res.data})
+    const logginHandler = (data) =>{
+        dispatchAction({type:"LOGIN_SUCCESS", payload:data})
+    }
+
     //This is available in other component wiht
     //{loading, error, dispatchAction} = useContext(THIS CONTEXT)
     const authContext={
@@ -84,6 +89,7 @@ const AuthProvider = props =>{
         loading: userState.loading,
         error: userState.error,
         dispatchAction,
+        loggin:logginHandler,
         //we can use only dispatchAction as dispatchAction({type:LOGIN_SUCCESS})
         //in components instead defined function from here like a
         //logginSuccess: loginSuccessAuthHandler

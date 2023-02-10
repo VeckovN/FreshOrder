@@ -9,7 +9,7 @@ import {Redirect, Navigate, Route} from 'react-router-dom';
     console.log("this", typeof(user));
     //We got null as a string , to check if value in LocalStorage is null we cant with !user (because 'null' string exists)
 
-    console.log("ADMIN: " + user.isAdmin)
+    console.log("ADMIN: " + user?.isAdmin)
     if(!user ){
         return <Navigate to={navigate}/>
     }

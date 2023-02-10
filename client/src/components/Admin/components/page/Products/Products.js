@@ -5,16 +5,20 @@ import axios from 'axios';
 
 import AddProduct from './AddProduct';
 import ProductItem from './ProductItem';
+import UpdateProduct from './UpdateProduct';
 import './Products.css'
 
 const Products = () =>{
 
-    const categoryOptions = ['Pizza', 'Pasta', 'Meals' ,'Drinks', 'Desert', 'Salat']
+    const categoryOptions = ['Pizza', 'Pasta', 'Burger' ,'Salat','Drinks', 'Desert']
 
     const [category, setCategory] = useState('');
     const [categoryItems, setCategoryItems] = useState('');
 
     const [showAddProduct, setShowAddProduct] = useState(false);
+
+    //when is EditButton click then data of clicked product will be store in this state
+    // const [editData, setEditData] = useState();
 
     const fetchProductsByCategory = async(category) =>{
         try{
@@ -31,22 +35,8 @@ const Products = () =>{
     }
 
     const onShowCategoryItems = (category) =>{
-        // alert("CATEGORY: " + category);
         setCategory(category);
-
         fetchProductsByCategory(category);
-
-        // try{
-        //     const res = await axios.get(`http://localhost:8800/api/products/category/${category}`);
-        //     const products = res.data;
-        //     products.forEach(element => {
-        //         console.log(element);
-        //     });
-        //     setCategoryItems(products);
-        // }
-        // catch(err){
-        //     console.log("Err: " + err);
-        // }
     }
 
     //Triggered in ProductItem compoennt(on Edit,SDel or Del action to reFetch users)
@@ -60,6 +50,12 @@ const Products = () =>{
     }
 
 
+    //productData returend from ProductItem(child commponent)
+    // const onEditProductHandler = (productData)=>{
+    //     // alert("PRDATA : " + JSON.stringify(productData))
+    //     setEditData(productData);
+    // }
+
     return (
         <main className='mainAdmin'>
             <div className='products_container'>
@@ -68,7 +64,7 @@ const Products = () =>{
                 {/* <Link to='/products/add'>Add Product</Link>  will lead to index/products/add (index is products -> /products/products/add)  */}
                 {/* wihtout /add because this add is neasted */}
                 {/* <Link to='add'>Add Product Link</Link>  */}
-                <button className='addProduct' onClick={() => {setShowAddProduct(!showAddProduct)}}>Add Product</button>
+                <button className='addProduct_button' onClick={() => {setShowAddProduct(!showAddProduct)}}>Add Product</button>
                 
                 {showAddProduct && <AddProduct></AddProduct>}
                 {/* <AddProduct></AddProduct> */}
@@ -81,8 +77,12 @@ const Products = () =>{
                         // <AdminCategory ></AdminCategory>
                         <div className='category'>
                             {/* <h1>Pizza</h1> */}
-                            <h1>{el}</h1>
-                            <button onClick={() => {onShowCategoryItems(el)}}>Show{el}</button>
+                            <div className='category_select'>
+                                <h1>{el}</h1>
+                                <button className='category_show_button' onClick={() => {onShowCategoryItems(el)}}>Show {el}</button>
+                            </div>
+                            
+                            {/* {editData && <UpdateProduct data={editData}></UpdateProduct>} */}
                             {category== el 
                                 && 
                                 <table className='category_table'>
@@ -98,21 +98,8 @@ const Products = () =>{
                                         <tbody>
                                             {categoryItems && categoryItems.map(item =>{
                                                 return(
-                                                    // <tr>
-                                                    //     <td>{item.name}</td>
-                                                    //     <td>{item.price}</td>
-                                                    //     <td>{item.description}</td>
-                                                    //     <td>{item.isDeleted ? 'Yes' : 'No'}</td>
-                                                    //     <td>
-                                                    //         {/* <button onClick={onEditProduct}>Edit</button>
-                                                    //         <button onClick={onSoftDeleteProduct}>SDel</button>
-                                                    //         <button onClick={onDeleteProduct}>Del</button> */}
-                                                    //         <button>Edit</button>
-                                                    //         <button>SDel</button>
-                                                    //         <button>Del</button>
-                                                    //     </td>
-                                                    // </tr>
-                                                    <ProductItem item={item} isChanged={onChangeProduct}></ProductItem>
+                                                   
+                                                    <ProductItem item={item} isChanged={onChangeProduct} ></ProductItem>
                                                 )
                                             })}
                                         </tbody>

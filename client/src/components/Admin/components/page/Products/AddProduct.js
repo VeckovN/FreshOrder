@@ -160,10 +160,10 @@ const AddProduct = () =>{
                             <option value=''  disabled> Select Category </option>
                             <option value='Pizza'>Pizza</option>
                             <option value='Pasta'>Pasta</option>
-                            <option value='Special'>Special</option>
+                            <option value='Burger'>Burger</option>
                             <option value='Salad'>Salad</option>
+                            <option value='Desert'>Desert</option>
                             <option value='Drinks'>Drinks</option>
-                            <option value='Salad'>Salad</option>
                         </select>
                     </div>
 

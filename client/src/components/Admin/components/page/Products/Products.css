@@ -1,6 +1,6 @@
 
 .products_container{
-    margin:0rem 0rem 5rem 0rem;
+    margin:2rem 0rem 5rem 0rem;
 
     display: flex;
     flex-direction: column;
@@ -25,8 +25,10 @@
 .products_category{
     display: flex;
     flex-direction: column;
-
     width: 90%;
+    margin:3rem 0rem;
+
+
 }
 
 .category_table{
@@ -61,8 +63,42 @@
     padding: .5rem .5rem;
 }
 
-/* ----------- ADD PRODUCTS  --------- */
+.category{
+    margin:1rem 0rem;
+}
 
+.category_select{
+    display: flex;
+    flex-direction: row;
+   
+    align-items: center;
+}
+
+.category_select h1{
+    margin:0 1rem;
+}
+
+.category_show_button{
+    width: 6rem;
+    height: 2rem;
+
+    border:none;
+    border-radius: .5rem;
+    background-color: rgb(31, 29, 29);
+    color:white;
+
+    font-weight: 500;
+
+}
+
+.category_show_button:hover{
+    cursor: pointer;
+    background-color: rgb(99, 94, 94);
+    color:black;
+}
+
+
+/* ----------- ADD PRODUCTS  --------- */
 
 .addProduct_container{
     margin:1rem 0rem;
@@ -76,7 +112,7 @@
 
     background-color: rgb(97, 97, 97);
     width: 70%;
-
+    min-width:600px;
 }
 
 .addProduct_container h2{
@@ -86,10 +122,9 @@
 .addProduct_container form {
     display:flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
 
     position: relative;
-
 }
 
 .addProduct_inputFields{
@@ -167,6 +202,27 @@
     color:rgb(202, 183, 183);
 }
 
+.addProduct_button{
+    margin:.5rem 0rem 0rem 0rem;
+    width: 11rem;
+    height: 2.5rem;
+
+    border:none;
+    border-radius: .5rem;
+    background-color: rgb(31, 29, 29);
+    color:white;
+    
+
+    font-size: .9rem;
+    font-weight: 600;
+}
+
+.addProduct_button:hover{
+    cursor: pointer;
+    background-color: rgb(54, 54, 54);
+    color:black;
+}
+
 .button_container{
     position:absolute;
     bottom: -2rem;
@@ -183,6 +239,168 @@
     background-color: rgb(214, 214, 205);
 }
 
+/* product action buttons */
+.table_td_actions{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    /* flex-wrap: wrap; */
+}
+
+.editProduct_button{
+    margin:0rem .3rem;
+    width: 3rem;
+    height: 1.5rem;
+    /* border:none; */
+    border:1px solid black;
+    background-color: rgb(207, 205, 90);
+    border-radius: .3rem;
+    cursor: pointer;
+
+    font-weight: 600;
+}
+.editProduct_button:hover{
+    background-color: rgb(0, 0, 0);
+    color:white;
+}
+
+
+.softDeleteProduct_button{
+    margin:0rem .3rem;
+    width: 3rem;
+    height: 1.5rem;
+    border:1px solid black;
+    background-color: rgb(207, 143, 90);
+    border-radius: .3rem;
+    cursor: pointer;
+
+    font-weight: 600;
+}
+.softDeleteProduct_button:hover{
+    background-color: rgb(0, 0, 0);
+    color:white;
+}
+
+.deleteProduct_button{
+    margin:0rem .3rem;
+    width: 3rem;
+    height: 1.5rem;
+    border:1px solid black;
+    background-color: rgb(204, 104, 91);
+    border-radius: .3rem;
+    cursor: pointer;
+
+    font-weight: 600;
+}
+.deleteProduct_button:hover{
+    background-color: rgb(0, 0, 0);
+    color:white;
+}   
+
+
+/* edit buttons */
+.showEditProduct_buttonContainer{
+    display: flex;
+    flex-direction: column;
+    /* width: 40%; */
+
+    background-color: rgb(207, 205, 90);
+    /* border:1px solid black; */
+    border-radius: .5rem;
+    padding: 1rem 1rem;
+
+    position: relative;
+}
+.showEditProduct_buttonContainer label{
+    position: absolute;
+    top:-.4rem;
+    left:1.8rem;
+    font-size: .8rem;
+    font-weight: 800;
+}
+
+.showEditProduct_buttonContainer button{
+    margin:.1rem 0rem
+}
+
+.editCancelProduct_button{
+    margin:0rem .3rem;
+    width: 3.5rem;
+    height: 1.5rem;
+    border:1px solid black;
+    background-color: rgb(216, 74, 56);
+    border-radius: .3rem;
+    cursor: pointer;
+
+    font-weight: 600;
+}
+.editCancelProduct_button:hover{
+    background-color: rgb(0, 0, 0);
+    color:white;
+}
+
+.editAcceptProduct_button{
+    margin:0rem .3rem;
+    width: 3.5rem;
+    height: 1.5rem;
+    border:1px solid black;
+    background-color: rgb(84, 189, 80);
+    border-radius: .3rem;
+    cursor: pointer;
+
+    font-weight: 600;
+}
+.editAcceptProduct_button:hover{
+    background-color: rgb(0, 0, 0);
+    color:white;
+}
+
+
+
+
+
+
+/* ---------- Update Product in ProductItem  -------*/
+.table_td_product{
+
+}
+
+
+.td_product_input_name{
+    margin:.1rem 0;
+    border:none;
+    background-color: transparent;
+    border-bottom: 2px solid rgb(32, 30, 30);
+    outline: none;
+    color:black
+}
+
+.td_product_input_price{
+    width: 7rem;
+    margin:.1rem 0;
+    border:none;
+    background-color: transparent;
+    border-bottom: 2px solid rgb(32, 30, 30);
+    outline: none;
+    color:black
+}
+.td_product_input_price::placeholder{
+    text-align: center;
+    font-weight: 500;
+}
+
+.td_product_textarea_description{
+    /* margin:.1rem 0;
+    border:none;
+    background-color: transparent;
+    border-bottom: 2px solid rgb(32, 30, 30);
+    outline: none;
+    color:rgb(202, 183, 183); */
+}
+
+
 
 @media screen and (max-width:1000px){
     .products_category{
@@ -190,6 +408,13 @@
         
     }
 }
+
+@media screen and (max-width:1255px){
+    .table_td_actions{
+        flex-wrap:wrap
+    }
+}
+
 
 
 

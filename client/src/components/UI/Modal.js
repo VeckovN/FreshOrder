@@ -7,7 +7,8 @@ import ReactDom from 'react-dom';
 
 
 const ModalViewOverlay = props =>{ 
-    const modalStyle = 'modal ' +  props.ModalContainer;
+    // const modalStyle = 'modal ' +  props.ModalContainer;
+    const modalStyle = props.ModalContainer=== undefined ? `modal` : `modal ${props.ModalContainer}`;
     // return <div className='modal' >
     return <div className={modalStyle}>
         <div className='modal-conatiner'>

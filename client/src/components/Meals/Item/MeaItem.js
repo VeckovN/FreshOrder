@@ -46,7 +46,7 @@ const MealItem = props =>{
     // }
 
     return <div className='mealCard'>
-        <img src= {'./products/' + props.img_path} alt='mealItems'></img>     
+        <img src={`products/${props.img_path}`} alt='mealItems'></img>     
         <div className='mealInfo'>
             <h3>{props.name}</h3>
             <div className='description'>{props.description}</div>

@@ -23,8 +23,6 @@ const UsersModal = (props) =>{
     const commitHandler = () =>{
         //save Users new values
         alert("You successfully updated");
-
-
     }
 
     //MODAL FOR UPDATING
