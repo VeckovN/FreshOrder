@@ -3,37 +3,32 @@ import Modal from '../UI/Modal.js'
 import axios from 'axios'
 
 import './Login.css'
+import useForm from '../../utils/Hooks/useForm.js'
 
 import authContext from '../Store/auth-context'
 import notificationContext from '../Store/notification-context.js'
 
 const Login = (props) =>{
 
-    //creaentials
-    const [enteredEmail, setEnteredEmail] = useState('');
-    const [enteredPassword, setEnteredPassword] = useState('');
-
+    const initialInputObject ={
+        email:'',
+        password:''
+    }
+    const {values, errors, handleChanges, setEmptyFieldError } = useForm(initialInputObject)
+   
     //another way to DispatchAction without defined function in auhtContext like in cartContext
-    const {user,loading,error,dispatchAction} = useContext(authContext);
+    const {user,loading,error,dispatchAction, loggin} = useContext(authContext);
 
     //Notification
     const {addSuccess} = useContext(notificationContext);
-
-
-    const changeEmailHandler = (event) =>{
-        setEnteredEmail(event.target.value)
-    }
-
-    const changePasswordHandler = (event) =>{
-        setEnteredPassword(event.target.value)
-    }
 
     const submitForm = async (event)=>{
         event.preventDefault();
 
         //Not send request if is form empty
-        if(enteredEmail ==='' && enteredPassword ==='' ){
+        if(values.email ==='' && values.password ==='' ){
             const error = {message:'Enter email address and password'}
+            setEmptyFieldError();
             dispatchAction({type:"LOGIN_FAILURE", payload:error})
         }
         else{
@@ -41,32 +36,27 @@ const Login = (props) =>{
             dispatchAction({type:"LOGIN_START"})
             try{
                 //send HTTP post Request to localhost:8800/api/auth/login
-                const res = await axios.post('http://localhost:8800/api/auth/login', {email: enteredEmail, password:enteredPassword })
+                const res = await axios.post('http://localhost:8800/api/auth/login', {email: values.email, password:values.password })
                 //With setted proxy
                 //const res = await axios.post('/login', {email: enteredEmail, password:enteredPassword })
 
                 //set timer(to show animation little bit longer) before we change loading to false
                 setTimeout(()=>{
-                    //This will called after 2000ms =>2s
-                    dispatchAction({type:"LOGIN_SUCCESS", payload:res.data})
+                    loggin(res.data);
                     console.log("RES DATA: " + res.data._id);
-                    //after success logged, unshown login form
                     props.onClose();
                     addSuccess("You successfuly logged")
                 }, 1000);
-
-                // dispatchAction({type:"LOGIN_SUCCESS", payload:res.data})
-                // console.log("RES DATA: " + res.data._id);
-                // //after success logged, unshown login form
-                // props.onClose();
             }
             catch(err){
-                console.log("ERROR: " + err.response.data);
+                console.log("ERR: " + err);
+                // console.log("ERROR: " + err.response.data);
                 dispatchAction({type:"LOGIN_FAILURE", payload:err.response.data})
-                //delete context in input field, TRY ON BEST WAY
-                setEnteredPassword('');
-                setEnteredEmail('');
-
+                // setEnteredPassword('');
+                // setEnteredEmail('');
+                values.email = '';
+                values.password ='';
+                
                 console.log("ERROR: " + err.response.data.message);
             }
 
@@ -88,26 +78,35 @@ const Login = (props) =>{
                 <div className='loader'></div>
             </div>
             }
+
             <div className='loginControl-input'>
-                <label>Email Address</label>
-                <input
-                    type='text'
-                    id='email'
-                    onChange={changeEmailHandler}
-                    value={enteredEmail}
-                    placeholder='example@gmail.com'
-                    
-                />
+                <label className='reg_label'>Email Address</label>
+                <div className='login_input_field'>
+                    <input
+                        type='text'
+                        name='email'
+                        onChange={handleChanges}
+                        value={values.email || ''}
+                        placeholder='example@gmail.com'
+                        className={errors.email && 'error'}
+                    />
+                    {errors.email && <label>{errors.email}</label>}
+                </div>
             </div>
 
             <div className='loginControl-input'>
-                <label>Password</label>
-                <input
-                    type='password'
-                    id='password'
-                    onChange={changePasswordHandler}
-                    value={enteredPassword}
-                />
+                <label className='reg_label'>Password</label>
+                <div className='login_input_field'>
+                    <input
+                        type='password'
+                        name='password'
+                        onChange={handleChanges}
+                        value={values.password || ''}
+                        placeholder='Enter password'
+                        className={errors.password && 'error'}
+                    />
+                    {errors.password && <label>{errors.password}</label>}
+                </div>
             </div>
             <div className ='loginForm-actions'>
                 <button>Submit</button>
@@ -115,7 +114,7 @@ const Login = (props) =>{
         </form>
 
     const regFooterContext = 
-        error && <div className='loginError'>Error: <span>{error.message}</span></div>
+        error && <div className='loginError'> <span>{error.message}</span></div>
 
     //When is modal closed set error,loading and user to initiated value(false,null,null)
     const onCloseLoginModal =()=>{

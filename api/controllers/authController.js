@@ -17,12 +17,18 @@ export const register = async (req,res,next) =>{
         //     return res.status(400).send('Data missing in form')
         // }
 
-        // const userRegisted = await User.findOne({email: body.email});
-        // if(userRegisted){
-        //     //user exists in DB - registed 
-        //     res.send('You already have an account')
-        //     res.redirect('/api/auth/login');
-        // }
+        const userRegisted = await User.findOne({email: body.email});
+        if(userRegisted){
+            //user exists in DB - registed 
+            // res.send('You already have an account')
+            // res.redirect('/api/auth/login');
+            return next(createError(404, 'Email Addres exists'));
+        }
+        const user = await User.findOne({username:body.username});
+        if(user){
+            return next(createError(404, 'Username exists'));
+        }
+
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(req.body.password, salt);
 
