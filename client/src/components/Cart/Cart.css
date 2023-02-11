@@ -43,6 +43,7 @@
     height: 100%;
     margin:-.4rem 0;
     border-radius: 1rem;
+    object-fit: cover;
 }
 
 
@@ -63,8 +64,10 @@
 /* all children */
 .cart_info > *{
     margin:.2rem 0;
-    font-weight: 500;
-    color:rgb(182, 179, 179);
+    font-weight: 800;
+    font-size: 1.1rem;
+    /* color:rgb(182, 179, 179); */
+    color:rgb(0, 0, 0);
 }
 
 .cart_info span {

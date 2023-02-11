@@ -5,8 +5,10 @@ import CategoryItem  from './CategoryItem'
 import './CategoryItem.css'
 import pizzaCategoryImg from '../../../assets/category/PizzaCategoryE.jpg';
 import pastaCategoryImg from '../../../assets/category/PastaCategoryE.jpg';
-import mealsCategoryImg from '../../../assets/category/MealsCategoryE.jpg';
-import dringsCategoryImg from '../../../assets/category/DrinksCategoryE.jpg';
+import burgersCategoryImg from '../../../assets/category/BurgersCategory.jpg';
+import drinksCategoryImg from '../../../assets/category/DrinksCategoryE.jpg';
+import desertCategoryImg from '../../../assets/category/DesertCategory.jpg'
+import saladCategoryImg from '../../../assets/category/SaladCategory.jpg'
 
 import categoryContext from '../../Store/category-context'
 
@@ -20,10 +22,10 @@ const CategoryMeals = props =>{
             {/* <button value='Pizza' onClick={testClickHanlder}> <CategoryItem itemName='Pizza' onCategory={onSelectCategory}/> </button> */}
             <CategoryItem itemName='Pizza' image={pizzaCategoryImg}/>
             <CategoryItem itemName='Pasta' image={pastaCategoryImg}/>
-            <CategoryItem itemName='Burger' image={mealsCategoryImg}/>
-            <CategoryItem itemName='Salad' image={pastaCategoryImg}/>
-            <CategoryItem itemName='Drinks' image={dringsCategoryImg}/>
-            <CategoryItem itemName='Desert' image={mealsCategoryImg}/>
+            <CategoryItem itemName='Burger' image={burgersCategoryImg}/>
+            <CategoryItem itemName='Salad' image={saladCategoryImg}/>
+            <CategoryItem itemName='Drinks' image={drinksCategoryImg}/>
+            <CategoryItem itemName='Desert' image={desertCategoryImg}/>
         </div>
     </div>
     //'Pizza', 'Pasta', 'Burger' ,'Salat','Drinks', 'Desert'

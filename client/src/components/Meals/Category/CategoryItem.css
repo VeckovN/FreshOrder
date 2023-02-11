@@ -49,6 +49,8 @@
     height: 13rem;
     position:relative;
     border-radius: 10px;
+
+    object-fit: cover;
 }
  
 .unselected img{
@@ -185,7 +187,6 @@
     } */
 
     .item{
-        
         height: 12rem;
     }
 
