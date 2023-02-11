@@ -17,7 +17,7 @@ router.delete('/:id',deleteProduct);
 router.put('/softDelete/:id', softDeleteProduct);
 // router.put('/softAdd/:id', verifyAdmin, softAddProduct);
 router.put('/softAdd/:id', softAddProduct);
-// router.get('/:id', getProduct);
+router.get('/:id', getProduct);
 router.get('/', getProducts);
 router.get('/category/:name', getProductsByCategory);
 

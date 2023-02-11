@@ -1,3 +1,5 @@
+import { convertDate } from "../../../utils/Helper";
+
 
 const OrdersTable = (props)=>{
 
@@ -39,7 +41,7 @@ const OrdersTable = (props)=>{
                                 </div>
                                 <div className ='colone col-3'>{totalPrice.toFixed(2)}€</div>
                                 <div className ='colone col-4'>{order.isCompleted ? <p>Completed</p> : <p>Pending</p>}</div>
-                                <div className ='colone col-5'>22.11.2022 11:34</div>
+                                <div className ='colone col-5'><div className='dateLabel'>{convertDate(order.createdAt).day} {convertDate(order.createdAt).hour}</div></div>
                         </li>
             })}
         </ul> 

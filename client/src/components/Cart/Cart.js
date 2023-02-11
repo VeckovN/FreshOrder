@@ -59,6 +59,7 @@ const Cart = props =>{
                         name={item.name}
                         price={item.price}
                         amount={item.amount}
+                        img_path={item.img_path}
                         description={item.description}
                         onDecrease = {decreaseCartItemAmount.bind(null, item.id)}
                         onIncrease = {increseCartItemAmount.bind(null, item.id)}                 

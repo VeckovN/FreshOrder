@@ -20,12 +20,13 @@ const CategoryMeals = props =>{
             {/* <button value='Pizza' onClick={testClickHanlder}> <CategoryItem itemName='Pizza' onCategory={onSelectCategory}/> </button> */}
             <CategoryItem itemName='Pizza' image={pizzaCategoryImg}/>
             <CategoryItem itemName='Pasta' image={pastaCategoryImg}/>
+            <CategoryItem itemName='Burger' image={mealsCategoryImg}/>
+            <CategoryItem itemName='Salad' image={pastaCategoryImg}/>
             <CategoryItem itemName='Drinks' image={dringsCategoryImg}/>
-            <CategoryItem itemName='Meals' image={mealsCategoryImg}/>
             <CategoryItem itemName='Desert' image={mealsCategoryImg}/>
-            <CategoryItem itemName='Salat' image={pastaCategoryImg}/>
         </div>
     </div>
+    //'Pizza', 'Pasta', 'Burger' ,'Salat','Drinks', 'Desert'
 
 }
 

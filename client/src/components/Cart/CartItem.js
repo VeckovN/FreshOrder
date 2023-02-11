@@ -4,11 +4,12 @@ import pizzaCategoryImg from '../../assets/category/PizzaCategoryE.jpg'
 
 const CartItem = props =>{
 
+    
 
     return(
         <div className='cart_item'>
             {/* <img scr={props.image}></img> */}
-            <img src={pizzaCategoryImg} alt="pizza"></img>
+            <img src={`products/${props.img_path}`} alt={props.name}></img>
             <div className='cart_info_container'>
                 <div className='cart_info'>
                     <div>Name: <span>{props.name}</span></div>
