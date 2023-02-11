@@ -8,7 +8,7 @@ const LoadingSpinner = () =>{
         //     <div>LOADING</div>
         // </div>
 
-        <div class="spinner_container">
+        <div className="spinner_container">
             <div className='spinner_ellipsis'>
                 <div className='spinner_dot'>
                 </div>

@@ -4,8 +4,9 @@ import { convertDate } from "../../../utils/Helper";
 const OrdersTable = (props)=>{
 
     return(
+        
         <ul className='table'>
-            <li className ='table-header'>
+            <li className ='table-header' >
                 {/* <div className='colone col-1'>OR ID</div> */}
                 <div className='colone col-1'>Product</div>
                 <div className='colone col-2'>Amount</div>
@@ -14,7 +15,7 @@ const OrdersTable = (props)=>{
                 <div className ='colone col-5'>Created</div>
             </li>
             {props.orders.map(order =>{
-                console.log("ORDE:"+ order);
+                console.log("ORDE:"+ order._id);
                     let totalPrice =0;
                     const completed = order.isCompleted ? 'table-row-complited' : 'table-row'
                     // return <li className='table-row' key={order._id}>
