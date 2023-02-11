@@ -9,6 +9,7 @@ import notificationContext from '../../../../Store/notification-context';
 //notify parent(Product) to reFetch new updated items
 const ProductItem = ({item, isChanged, onEditProduct}) =>{
 
+    console.log('\n PPRODD \n')
     const productItemID = item._id;
 
     //state used for notify parrent(Product.js) component to reFetch showed items

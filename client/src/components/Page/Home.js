@@ -10,6 +10,8 @@ import './Home.css'
 
 const Home = () =>{
     console.log("HOMEEEEEE");
+
+  
     return (
         <main className='home-container'>
           <Card>

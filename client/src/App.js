@@ -61,9 +61,6 @@ function App() {
 
   const onShowCart = () =>{
     setShowModalCart(true);
-
-    console.log("SUCESS: " + success);
-
     setShowModalRegistar(false);
     setShowModalLogin(false);
   }

@@ -46,14 +46,8 @@ const Header = props => {
                 </ul>
                 :
                 <ul className='links'>
-                    {/* <li className='link'><ScrollLink activeClass='active' to='welcome' spy={true} offset={-70} smooth={true}>Welcome</ScrollLink></li>                
-                    <li className='link'><ScrollLink activeClass='active' to='category' spy={true} offset={-70} smooth={true}>Menu</ScrollLink></li>
-                    <li className='link'><ScrollLink activeClass='active' to='aboutUs' offset={-70} spy={true} smooth={true}>AboutUs</ScrollLink></li> */}
-                    {/* <li className='link' to='/'><Link ></Link>Orders</li> */}
                     <li><Link className='link' to='/products'>Products</Link></li>
                     <li><Link className='link' to='/users'>Users</Link></li>
-                    {/* <li className='link'>Products</li>
-                    <li className='link'>Users</li> */}
                     <li className='logout' onClick={logoutHandler}>Logout</li>
                 </ul>
             }
