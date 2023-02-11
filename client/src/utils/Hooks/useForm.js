@@ -72,7 +72,7 @@ const useForm = (inputObj) =>{
     const submitHandler = (e) =>{
         // e.preventDefault();
 
-        submitCallback();
+        // submitCallback();
 
         //check there isn't empty field
         // Object.keys(values).forEach(el =>{

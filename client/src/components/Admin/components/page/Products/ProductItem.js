@@ -117,7 +117,7 @@ const ProductItem = ({item, isChanged, onEditProduct}) =>{
             isChanged();
 
         }
-        catch{
+        catch(err){
             console.log("Delete Product Error: " + err);
             addError("You can't delete the product right now");
         }
