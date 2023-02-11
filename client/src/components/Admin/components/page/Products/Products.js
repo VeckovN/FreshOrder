@@ -10,7 +10,7 @@ import './Products.css'
 
 const Products = () =>{
 
-    const categoryOptions = ['Pizza', 'Pasta', 'Burger' ,'Salat','Drinks', 'Desert']
+    const categoryOptions = ['Pizza', 'Pasta', 'Burger' ,'Salad','Drinks', 'Desert']
 
     const [category, setCategory] = useState('');
     const [categoryItems, setCategoryItems] = useState('');
