@@ -1,6 +1,6 @@
 import react, {Fragment, useRef, useContext} from 'react'
 import {Link as ScrollLink} from 'react-scroll';
-import {Link, useNavigate} from 'react-router-dom'
+import {Link, useNavigate, useLocation} from 'react-router-dom'
 
 import './Header.css'
 import HeaderCartButton from './HeaderCartButton';
@@ -8,17 +8,12 @@ import HeaderCartButton from './HeaderCartButton';
 import authContext from '../Store/auth-context'
 import notificationContext from '../Store/notification-context.js'
 
-//check if user user or not
-//const user = false;
-
-//equal as user
-// const {user} = useContext(AuthContext);
-
 
 const Header = props => {
     const {user, dispatchAction} = useContext(authContext);
     const {addSuccess} = useContext(notificationContext)
     const nav = useNavigate();
+    const location = useLocation();
 
     //TEST THIS
     const logoutHandler =()=>{
@@ -38,11 +33,15 @@ const Header = props => {
             {/* if Admin not logged */}
             {!isAdmin ?
                 <ul className='links'>
-                    {/* <a className='link ' href='#welcome'>Introduce</a> */}
-                    {/* to property is element For Scroll */}
-                    <li className='link'><ScrollLink activeClass='active' to='welcome' spy={true} offset={-70} smooth={true}>Welcome</ScrollLink></li>                
-                    <li className='link'><ScrollLink activeClass='active' to='category' spy={true} offset={-70} smooth={true}>Menu</ScrollLink></li>
-                    <li className='link'><ScrollLink activeClass='active' to='aboutUs' offset={-70} spy={true} smooth={true}>AboutUs</ScrollLink></li>     
+                    {/* show only on / index page */}
+                    {location.pathname == '/' && 
+                    <>
+                        <li className='link'><ScrollLink activeClass='active' to='welcome' spy={true} offset={-70} smooth={true}>Welcome</ScrollLink></li>                
+                        <li className='link'><ScrollLink activeClass='active' to='category' spy={true} offset={-70} smooth={true}>Menu</ScrollLink></li>
+                        <li className='link'><ScrollLink activeClass='active' to='aboutUs' offset={-70} spy={true} smooth={true}>AboutUs</ScrollLink></li>     
+                    </>
+                    }
+                    
                 </ul>
                 :
                 <ul className='links'>
@@ -55,7 +54,6 @@ const Header = props => {
             {/* user authenticated but isn't Admin */}
             {user && !isAdmin &&
                <ul className='authList'>
-                    {/* <Link className='link' to='/logout'> Logout </Link> */}
                     <li><Link className='authLink' to='/profile'>Profile</Link></li>
                     <li><Link className='authLink' to='/orders'>Orders</Link></li>
                     <li className='authLinkLogout' onClick={logoutHandler}>Logout</li>
