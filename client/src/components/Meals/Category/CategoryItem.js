@@ -35,6 +35,11 @@ const CategoryItem = props =>{
             ctxCategory.setCategory(props.itemName);
             setSelected(true);
 
+            //ON category CLICK SET THE sliderRef 
+            props.sliderRef?.current.scrollIntoView({behavior: 'smooth'})
+            //THIS REF IS USED on DIV in AvailabelMeals with ref={sliderRef}
+
+
             //MAYBE HERE FETCH PRODUCTS BY CATEGORY AND STORE IT IN CTX
         }   
         else

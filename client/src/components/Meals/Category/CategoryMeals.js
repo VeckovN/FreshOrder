@@ -20,12 +20,12 @@ const CategoryMeals = props =>{
         <div className='categoryItems'>
             {/* Fetch all category from DB and render CategoryItem for Every category */}
             {/* <button value='Pizza' onClick={testClickHanlder}> <CategoryItem itemName='Pizza' onCategory={onSelectCategory}/> </button> */}
-            <CategoryItem itemName='Pizza' image={pizzaCategoryImg}/>
-            <CategoryItem itemName='Pasta' image={pastaCategoryImg}/>
-            <CategoryItem itemName='Burger' image={burgersCategoryImg}/>
-            <CategoryItem itemName='Salad' image={saladCategoryImg}/>
-            <CategoryItem itemName='Drinks' image={drinksCategoryImg}/>
-            <CategoryItem itemName='Desert' image={desertCategoryImg}/>
+            <CategoryItem itemName='Pizza' image={pizzaCategoryImg} sliderRef={props.sliderRef}/>
+            <CategoryItem itemName='Pasta' image={pastaCategoryImg} sliderRef={props.sliderRef}/>
+            <CategoryItem itemName='Burger' image={burgersCategoryImg} sliderRef={props.sliderRef}/>
+            <CategoryItem itemName='Salad' image={saladCategoryImg} sliderRef={props.sliderRef}/>
+            <CategoryItem itemName='Drinks' image={drinksCategoryImg} sliderRef={props.sliderRef}/>
+            <CategoryItem itemName='Desert' image={desertCategoryImg} sliderRef={props.sliderRef}/>
         </div>
     </div>
     //'Pizza', 'Pasta', 'Burger' ,'Salat','Drinks', 'Desert'

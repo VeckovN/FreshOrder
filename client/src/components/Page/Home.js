@@ -1,4 +1,5 @@
-import react from 'react';
+import {useRef} from 'react';
+
 import Card from '../UI/Card'
 import Welcome from './Welcome'
 import AboutUs from './AboutUs'
@@ -9,8 +10,8 @@ import CategoryProvider from '../Store/CategoryProvider';
 import './Home.css'
 
 const Home = () =>{
-    console.log("HOMEEEEEE");
 
+    const sliderRef = useRef(null);
   
     return (
         <main className='home-container'>
@@ -19,8 +20,8 @@ const Home = () =>{
           </Card>
 
           <CategoryProvider>
-            <CategoryMeals />
-            <AvailableMeals />
+            <CategoryMeals  sliderRef={sliderRef}/>
+            <AvailableMeals sliderRef={sliderRef}/>
           </CategoryProvider>
 
           <Card>

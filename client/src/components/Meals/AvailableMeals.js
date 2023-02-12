@@ -91,7 +91,7 @@ const AvailableMeals = props =>{
     }
 
     // return <p>Meals: {Meals[1].id}</p>
-    return <div className='available_meal_container' id="menu"> 
+    return <div className='available_meal_container' id="menu" ref={props.sliderRef}> 
         {categorySelected && <h1 id="Meals"><span>{categorySelected}</span> Menu </h1>} 
         <div className='meal_list' id='meal_list'>
             {MealList} 
