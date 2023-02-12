@@ -88,7 +88,6 @@ const AddProduct = () =>{
         }
 
         // imagePath will be created in Backaned on Upload (currentImgName + dateNow)
-        // const imagePath = 
         else{
 
             try{
@@ -156,7 +155,7 @@ const AddProduct = () =>{
 
                     <div className='addProduct_input'>
                         <label>Category</label>
-                        <select name='category' defaultValue={''} onChange={onChangeCategorySelect}>
+                        <select name='category' value={category} defaultValue={''} onChange={onChangeCategorySelect}>
                             <option value=''  disabled> Select Category </option>
                             <option value='Pizza'>Pizza</option>
                             <option value='Pasta'>Pasta</option>

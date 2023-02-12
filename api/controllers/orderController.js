@@ -208,7 +208,7 @@ export const getOrders = async(req,res,next)=>{
         findOption={isCompleted:false}
     }
 
-    console.log("SORTTTT: " + JSON.stringify(sortObj));
+    // console.log("SORTTTT: " + JSON.stringify(sortObj));
 
     
     //startIndex for selected Page
