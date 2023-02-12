@@ -40,7 +40,7 @@ const Orders = () =>{
 
     const onCancelOrderHandler = async(orderID)=>{
         //orderID taken from OrdersTable children comp
-        alert("ORDERID: " + orderID )
+        // alert("ORDERID: " + orderID )
         
         //delete order by ID
         try{
