@@ -46,9 +46,6 @@ const UserSchema = new mongoose.Schema({
 },
     {timestamps: true}
 )
-//Indexes 
-//index user on isAdmin field -> false 
-// UserSchema.index({isAdmin})
 
 //CASSCADE DELETE- DELETE ALL ORDERS WHICH USER CONTAINS
 //THIS WILL BE EXECUTED BEFORE WE DELETE USER

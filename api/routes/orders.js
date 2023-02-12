@@ -3,7 +3,6 @@ const router = express.Router();
 import {createOrder, completeOrder, getOrder, getOrders, getAllUserOrders, deleteOrder, getOrdersCount }from '../controllers/orderController.js'
 import { verifyAdmin, verifyUser } from '../utility/verifyToken.js';
 
-//Create -> when user order products
 //RRR router.post('/', verifyUser,createOrder);
 router.post('/', createOrder);
 //Complete Order

@@ -1,7 +1,6 @@
 import react,{useState, useContext, useEffect, useRef} from 'react'
 import axios from 'axios';
 
-import Meals from './MealsData';
 import MealItem from './Item/MeaItem';
 
 import './AvailableMeal.css'

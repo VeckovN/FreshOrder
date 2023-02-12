@@ -1,8 +1,6 @@
 import {useState, useReducer, useEffect, useContext} from 'react'
 import axios from 'axios';
-
 import CartContext from "./cart-context";
-import MealItems from '../Meals/MealsData';
 
 
 const InitialCartState = {

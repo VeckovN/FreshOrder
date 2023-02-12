@@ -17,17 +17,7 @@ Order.collection.getIndexes({full: true}).then(indexes => {
 //Nested populate in a document --- https://dev.to/paras594/how-to-use-populate-in-mongoose-node-js-mo0
 
 
-//A better option is that we use productID and pass it in request,
-//instead pass product name with which we would have to Find productByName and take ID from it
-
-//req expect-> products[productId, amount] req.body
-//user_id; => req.body.id
 export const createOrder = async (req,res,next) =>{
-
-    //who create?
-    //take parameters from cookie -token =>// userID
-    //products[ productID, amount]
-    //user-FindByID
 
     const id = req.body.user; //test- id user
     //EXPECTED JSON FROM FRONTEND
@@ -74,14 +64,12 @@ export const createOrder = async (req,res,next) =>{
     }
 }
 
-//middleware verifyAdmin will be executed
+
 export const completeOrder = async(req,res,next)=>{
 
     try{
         //orderID
         const id = req.params.id;
-        // //maybe userEmail instead ID(beacuse we need to find That userByID and take email prop from it)
-        // const {userID, deliveryTime} = req.body;
         const updatedOrder = await Order.findByIdAndUpdate(id, {isCompleted:true}, {new:true})
         const {userEmail, deliveryTime} = req.body
 
@@ -96,9 +84,10 @@ export const completeOrder = async(req,res,next)=>{
             from:process.env.EMAIL_USERNAME,
             to:userEmail,
             subject:'Order from OrderApp',
-            text:"Order app, expect an order for " + deliveryTime +'min'
+            text:"Order app, expect an order for " + deliveryTime +'minutes'
         } 
     
+        
         // transporter.sendMail(message, (err,info)=>{
         //     if(err){
         //         console.log(err);
@@ -116,12 +105,6 @@ export const completeOrder = async(req,res,next)=>{
     }
 }
 
-//How to populate with array of objects contaninig ref?
-//products:[
-    // {
-    //     product: type:mongoose.Types.ObjectId, ref="Product"
-    // }
-//]
 export const getOrder = async(req,res,next) =>{
 
     try{
@@ -202,21 +185,9 @@ export const getOrder = async(req,res,next) =>{
 
 export const getOrders = async(req,res,next)=>{
 
-    // try{
-    //     // const orders = await Order.find().populate('products.product'); 
-    //     const orders = await Order.find().populate('products.product user')
-    //     console.log(orders);
-    //     res.status(200).json(orders);
-    // }catch(err){
-    //     next(err);
-    // }
-
     const page = req.query.page;
     const limit =req.query.limit;
     const sort = req.query.sort;
-
-
-    console.log("SORT : " + sort);
 
     //default
     let sortObj = {createdAt:-1}
@@ -240,19 +211,14 @@ export const getOrders = async(req,res,next)=>{
     console.log("SORTTTT: " + JSON.stringify(sortObj));
 
     
-
     //startIndex for selected Page
     const startIndex = (page - 1) * limit;
-
 
     //PAGINATION
         // const orders = await Order.find().populate('products.product'); 
         await Order.find(findOption).populate('products.product user')
         .skip(startIndex)
         .limit(limit)
-        // .sort({isCompleted:-1, createdAt:-1})
-          //default is only createdAt:-1
-        // .sort({createdAt:-1})
         .sort(sortObj)
         .exec((err,doc)=>{
             if(err) {res.status(500).send(err); return;}
@@ -265,11 +231,8 @@ export const getOrders = async(req,res,next)=>{
 
 export const getOrdersCount = (req,res) =>{
     //If There is a sort option(Completed or notCompleted)
-
-
     
     const sortStatus = req.query.sort;
-    // console.log("SORT STATUS:" + sortStatus);
 
     let sortOption = {}
     if(sortStatus == 'completed')
@@ -303,97 +266,6 @@ export const getAllUserOrders = async(req,res,next)=>{
                     
                 }
             })
-
-        //#region Without populate 
-        // [
-        //     {
-        //         "_id": "635cf33dda63cc160a071344",
-        //         "orders": [
-        //             "635d5b7022bc1d68c38d751c"
-        //         ]
-        //     }    
-        // ]
-        //#endregion
-
-        //#region With populate 'orders.
-        //.populate('orders');
-        // [
-        //     {
-        //         "_id": "635cf33dda63cc160a071344",
-        //         "orders": [
-        //             {
-        //                 "_id": "635d5b7022bc1d68c38d751c",
-        //                 "products": [
-        //                     {
-        //                         "product": "6359734b0abd5b6771c9845e",
-        //                         "amount": 2,
-        //                         "_id": "635d5b7022bc1d68c38d751d"
-        //                     },
-        //                     {
-        //                         "product": "63595879835e201be6fa15eb",
-        //                         "amount": 4,
-        //                         "_id": "635d5b7022bc1d68c38d751e"
-        //                     }
-        //                 ],
-        //                 "isCompleted": false,
-        //                 "createdAt": "2022-10-29T16:57:20.417Z",
-        //                 "updatedAt": "2022-10-29T16:57:20.417Z",
-        //                 "__v": 0
-        //             }
-        //         ]
-        // ]
-        //#endregion
-
-        //orders now contain product wiht ObjectID,
-        //used populate to found all product data BY objectID
-        
-        //#region wiht populate 'product which is inside of products array' inside first populate 'order'
-        
-        // [
-        //     {
-        //         "_id": "635cf33dda63cc160a071344",
-        //         "orders": [
-        //             {
-        //                 "_id": "635d5b7022bc1d68c38d751c",
-        //                 "products": [
-        //                     {
-        //                         "product": {
-        //                             "_id": "6359734b0abd5b6771c9845e",
-        //                             "name": "Margarita",
-        //                             "category": "Pizza",
-        //                             "description": "Only Large Size",
-        //                             "price": 35,
-        //                             "img_path": "/",
-        //                             "isDeleted": false,
-        //                             "__v": 0
-        //                         },
-        //                         "amount": 2,
-        //                         "_id": "635d5b7022bc1d68c38d751d"
-        //                     },
-        //                     {
-        //                         "product": {
-        //                             "_id": "63595879835e201be6fa15eb",
-        //                             "name": "Capricciosa",
-        //                             "category": "Pizza",
-        //                             "description": "Big One",
-        //                             "price": 45,
-        //                             "img_path": "/",
-        //                             "isDeleted": false,
-        //                             "__v": 0
-        //                         },
-        //                         "amount": 4,
-        //                         "_id": "635d5b7022bc1d68c38d751e"
-        //                     }
-        //                 ],
-        //                 "isCompleted": false,
-        //                 "createdAt": "2022-10-29T16:57:20.417Z",
-        //                 "updatedAt": "2022-10-29T16:57:20.417Z",
-        //                 "__v": 0
-        //             }
-        //         ]
-        //     }
-        // ]
-        //#endregion
         if(!allUserOrders)
             return next(createError(400, "User not found!"));
         res.status(200).json(allUserOrders)

@@ -13,15 +13,9 @@ export const register = async (req,res,next) =>{
 
     try{
         const body = req.body;
-        // if(!(body.email && body.password)){
-        //     return res.status(400).send('Data missing in form')
-        // }
 
         const userRegisted = await User.findOne({email: body.email});
         if(userRegisted){
-            //user exists in DB - registed 
-            // res.send('You already have an account')
-            // res.redirect('/api/auth/login');
             return next(createError(404, 'Email Addres exists'));
         }
         const user = await User.findOne({username:body.username});
@@ -41,7 +35,6 @@ export const register = async (req,res,next) =>{
         })
 
         const saveUser = await newUser.save();
-        //if sucessfully
         res.status(200).send('User: ' + saveUser.username + ' created');
         //other way without await
         //newUser.save().then((doc) => res.status(200).send("UserCreated: /n"  + doc));
@@ -59,8 +52,7 @@ export const login = async (req,res,next)=>{
         //const emailUser = body.email  ---- ES5
         const user = await User.findOne({email: emailUser})
         if(!user){
-            // return res.status(400).send("User not Found"); instead sending handling error like this , we could use middleware
-            //create custom error here - and put it as argument of next-error middleware
+
             return next(createError(404, 'Email Addres or Password not correct'));
         }
         
@@ -82,7 +74,7 @@ export const login = async (req,res,next)=>{
             httpOnly:true, //doesn't allow any client secret tool to access the cookie
         })
         .status(200)
-        .json({...otherProps}); /// ... send only props inside otherProps object not whole object
+        .json({...otherProps}); 
         
         console.log("LOGGED");
     }

@@ -1,13 +1,8 @@
 import Product from '../models/Product.js'
 
 export const createProduct = async (req,res) =>{
-    //we expect Object with Products props from Frontend(REACT)-form
     const newProduct = new Product(req.body);
-
     const image = newProduct.image;
-    //take image and get ImageName
-    
-
 
     try {
         //save() is async and this is reason why we use await --- THIS ISN'T PROMISE 
@@ -40,8 +35,6 @@ export const updateProduct  = async (req,res,next)=>{
 export const deleteProduct = async (req,res,next)=>{
     try{
         await Product.findByIdAndDelete(req.params.id)
-        //if everything is fine
-        //res.status(200).json({message:"Product deleted"});
         res.status(200).send("Product has been deleted");
     }
     catch(err){
@@ -92,8 +85,8 @@ export const getProducts = async (req,res,next)=>{
         res.status(200).json(products);
     }
     catch(err){
-        next(err); // calling next error handling middleware
-        //instead 
+        next(err); 
+        // calling next error handling middleware insted
         // res.status(500).json(err);
     }
 }

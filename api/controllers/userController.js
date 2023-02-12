@@ -12,11 +12,7 @@ export const updateUser  = async (req,res,next)=>{
         const id = req.params.id; //from url
         const newContext = req.body; //from html-req body
 
-        console.log("UPDATEEEEEE : " + JSON.stringify(newContext));
-
         if(newContext.username){
-            console.log("HWWWWWASSSSSSSSSSSSS");
-            // if(User.findOne)
             const user = await User.findOne({username: newContext.username})
             if(user){
                 console.log("HSSSSSSS");
@@ -116,9 +112,6 @@ export const getUsers = async (req,res,next)=>{
         const startIndex = (page - 1) * limit;
         //SKIP PROPS SHOULD BE startIndex
         
-        console.log("PAGE :" +page + " LIMIT: " + limit);
-        // const users = await User.find(); //find all
-        // const users = await User.find({isAdmin:false})
         await User.find({isAdmin:false})
         .skip(startIndex) //page 1 -> from 0 is going to index 5(not 5)(limit) , page 2 ->5
         .limit(limit)
@@ -147,7 +140,3 @@ export const getUserCount = (req,res) =>{
         
     })
 }
-
-
-// //THIS DELETED USER (DELETE USER WHEN IS ORDER : orderId)
-        // const userOrder = await User.findOneAndRemove({$pull: { 'orders': orderId}})

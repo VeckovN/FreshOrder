@@ -9,23 +9,6 @@ const router = express.Router();
 //used in index.js (all routes of users starts with /users)
 //app.use("/users", userRoute); 
 
-
-//HOW MIDDLEWARE WORKS PASSED IN ROUTER
-//Whenever we make request /checkauthentication it's gonna go to 
-//verifyToken(and if everything is alright it's gonna say next())
-//and we are gonna come back here on (req,res,next) function ->when is next() executed in verifyToken
-// router.get('/checkauthentication', verifyToken, (req,res,next)=>{
-//     res.send("Hello user, you are authenticated(logged)")
-// });
-
-// router.get('/updateuser/:id', verifyUser, (req,res,next)=>{
-//     res.send("Hello user, you are authenticated(logged)")
-// });
-
-// router.get('/admin/:id', verifyAdmin, (req,res,next)=>{
-//     res.send("HEllo admin")
-// });
-
 //RRRRR router.put('/updateuser/:id', verifyAdmin, updateUser);
 router.put('/updateuser/:id', updateUser);
 
