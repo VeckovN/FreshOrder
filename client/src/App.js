@@ -8,6 +8,7 @@ import logo from './logo.svg';
 // import './App.css';
 import './components/Layout/Header.css'
 
+
 import Header from './components/Layout/Header'
 import Footer from './components/Layout/Footer'
 import Card from './components/UI/Card'
@@ -110,9 +111,8 @@ function App() {
   const isAdmin = ctxAuth.user ? ctxAuth.user.isAdmin : false;
   return (
       <CartProvider>
-
         {/* IT's not mather where is this modal(becase modal will be centered on center of screen) */}
-        {showModalCart && <Cart onClose={onCloseCart}/>}; 
+        {showModalCart && <Cart onClose={onCloseCart}/>}
         {/* //onHideCart handler for closing modal */}
 
         {/* REGISTER MODAL */}
@@ -127,7 +127,7 @@ function App() {
         {deliveryTimeInfo!=null && <AdminDeliveryModal deliveryObj={deliveryTimeInfo} onClose={onCloseAdminOrderDelivery}/>}
 
 
-        {/* {error || success && <Notification/>} */}
+        {/* {error || success &&y <Notification/>} */}
         {(success || error) && <Notification />}
 
         <Header 
@@ -255,7 +255,7 @@ function App() {
 
         <Footer/>
       </CartProvider>
-  );
+  )
 }
 
 export default App;
