@@ -68,6 +68,7 @@ const Cart = props =>{
     </div>
 
 
+
     //MODAL STRUCTURE
     const cartHeaderContext =
             'FreshOrder';
@@ -87,17 +88,12 @@ const Cart = props =>{
                     <button onClick={orderCartItems} id='Order'>Order</button>
                 </div>
             </>
-
-
-
     // //Order func
     // const orderProducts = (e) =>{
     //     //e.preventDefault();
     //     alert("You have to been logged")
     // }
-            
-            
-            
+
     console.log("CARTTT");
     return (
         //this onCloseModal handler is in parrent of Modal

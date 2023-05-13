@@ -17,17 +17,13 @@ const AvailableMeals = props =>{
 
     // const [filteredMeals, setFilteredMeals] = useState('');
     const [filteredProducts, setFilteredProducts] = useState(null);
-
     //this triggered a re-rendering
     const ctxCategory = useContext(categoryContext);
-
     const categorySelected = ctxCategory.category;
     console.log("CATEGORY:" + categorySelected);
 
     useEffect(()=>{
-
         const fetchData = async()=>{
-
             //if this condition is omitted , products will be setted on categorySelect change (select any category)
             //but when u diselect category products will continue to exist
             if(categorySelected !=''){
@@ -39,9 +35,7 @@ const AvailableMeals = props =>{
                     notSoftDeleted = products.filter(el => {
                         return  el.isDeleted === false
                     })
-
                     console.log("NOT SOFT DELETE: " + JSON.stringify(notSoftDeleted));
-
                     // setFilteredProducts(products);
                     setFilteredProducts(notSoftDeleted);
                 }catch(err){
@@ -52,9 +46,8 @@ const AvailableMeals = props =>{
                 setFilteredProducts([]);
             }    
         }
-
         fetchData();
-        
+
     },[categorySelected])
 
     // const filtered = Meals.filter(meal => meal.category === categorySelected);    

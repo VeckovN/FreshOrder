@@ -38,8 +38,6 @@ const CategoryItem = props =>{
             //ON category CLICK SET THE sliderRef 
             props.sliderRef?.current.scrollIntoView({behavior: 'smooth'})
             //THIS REF IS USED on DIV in AvailabelMeals with ref={sliderRef}
-
-
             //MAYBE HERE FETCH PRODUCTS BY CATEGORY AND STORE IT IN CTX
         }   
         else
@@ -52,16 +50,19 @@ const CategoryItem = props =>{
 
     let selectedCategoryItem = selected ? 'unselected' : '';
 
-    return <div className={'item ' + selectedCategoryItem}>
-        <img src={props.image} alt={`${props.itemName} Category Menu`}></img> 
-        <div className='content'>
-            <p className='title'>{props.itemName}</p>      
-            {/* {selected ? <p>Info Showned</p> : <p>Info Unshowned </p>} */}
-            <button onClick={clickedCardHandler}>{selected ? 'Deselect' : 'Select'}
-            </button>    
-            {/* <Link className='LinkCategory' to='meal_list' spy={true} offset={-70} smooth={true} onSetActive={clickedCardHandler} >{selected ? 'Deselect' : 'Select'}</Link> */}
+    return(     
+        <div className={'item ' + selectedCategoryItem}>
+            <img src={props.image} alt={`${props.itemName} Category Menu`}></img> 
+            <div className='content'>
+                <p className='title'>{props.itemName}</p>      
+                {/* {selected ? <p>Info Showned</p> : <p>Info Unshowned </p>} */}
+                <button onClick={clickedCardHandler}>{selected ? 'Deselect' : 'Select'}
+                </button>    
+                {/* <Link className='LinkCategory' to='meal_list' spy={true} offset={-70} smooth={true} onSetActive={clickedCardHandler} >{selected ? 'Deselect' : 'Select'}</Link> */}
+            </div>
         </div>
-    </div>
+    )
+        
 }
 
 export default CategoryItem
