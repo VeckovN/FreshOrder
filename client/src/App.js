@@ -1,11 +1,23 @@
 //REACT FOLDER STRUCTURE-----------
 //https://www.xenonstack.com/insights/reactjs-project-structure
 
-import {useState, useContext, useEffect} from 'react';
+import {useState, useContext, useEffect, useReducer} from 'react';
 import {Route, Routes, BrowserRouter} from 'react-router-dom';
+// import {
+//     showCart, 
+//     closeCart, 
+//     showRegister, 
+//     closeRegister, 
+//     showLogin, 
+//     closeLogin, 
+//     showAdminUserUpdate, 
+//     closeAdminUserUpdate,
+//     showAdminDeliveryUpdate,
+//     closeAdminDeliveryUpdate
+// } from './components/UI/Modal/ModalUseReducerActions.js'
+import {reducer} from './components/UI/Modal/ModalUseReducer.js'
+import {initialState} from './components/UI/Modal/ModalUseReducer.js'
 
-import logo from './logo.svg';
-// import './App.css';
 import './components/Layout/Header.css'
 
 
@@ -45,98 +57,60 @@ import AddProducts from './components/Admin/components/page/Products/AddProduct'
 import UsersUpdate from './components/Admin/components/page/Users/UsersUpdate.js'
 
 
+
 function App() {
-
-
-  //descrese this useState logic to optimal 
-
-  const [showModalCart, setShowModalCart] = useState(false);
-  const [showModalRegistar, setShowModalRegistar] = useState(false);
-  const [showModalLogin, setShowModalLogin] = useState(false);
-  const [showModalAdminUpdateUser, setShowModalAdminUpdateUser] = useState(false);
-
-  const [showAdminModalDeliveryTime, setShowAdminModalDeliveryTime] = useState(false);
-  const [deliveryTimeInfo, setDeliveryTimeInfo] = useState(null);
-
-
   const {error, success, addError, removeError, addSuccess, removeSuccess} = useContext(notificationContext);
   const ctxAuth = useContext(authContext);
+  const [state,dispatch] = useReducer(reducer, initialState)
+
+  const showCart = () => dispatch({type:"SHOW_CART"});
+  // const showCart = () => {
+  //   dispatch({type:"SHOW_CART"});
+  // }
+  const closeCart = () => dispatch({type:"CLOSE_CART"});
+  const showRegister = () => dispatch({type:"SHOW_REGISTER"});
+  const closeRegister = () => dispatch({type:"CLOSE_REGISTER"});
+  const showLogin = () => dispatch({type:"SHOW_LOGIN"});
+  const closeLogin = () => dispatch({type:"CLOSE_LOGIN"});
+  const showAdminUserUpdate = () => dispatch({type:"SHOW_ADMIN_USER_UPDATE"});
+  const closeAdminUserUpdate = () => dispatch({type:"CLOSE_ADMIN_USER_UPDATE"});
+  const showAdminDeliveryUpdate = (deliveryTime) => dispatch({type:"SHOW_ADMIN_ORDER_DELIVERY", payload:deliveryTime});
+  const closeAdminDeliveryUpdate = () => dispatch({type:"CLOSE_ADMIN_ORDER_DELIVERY"});
 
 
-  const onShowCart = () =>{
-    setShowModalCart(true);
-    setShowModalRegistar(false);
-    setShowModalLogin(false);
-  }
-  const onCloseCart = () =>{
-    setShowModalCart(false);
-  }
-
-  const onShowRegister = ()=>{
-    setShowModalRegistar(true);
-
-    //Unshown Other Modals
-    setShowModalCart(false);
-    setShowModalLogin(false);
-  }
-  const onCloseRegister = ()=>{
-    setShowModalRegistar(false);
-  }
-
-  const onShowLogin =() =>{
-    setShowModalLogin(true);
-    setShowModalCart(false);
-    setShowModalRegistar(false);
-  }
-  const onCloseLogin = ()=>{
-    setShowModalLogin(false);
-  }
-
-  // ADmin
-  const onShowAdminUsersUpdate= ()=>{
-    setShowModalAdminUpdateUser(true);
-  }
-  const onCloseAdminUsersUpdate = () =>{
-    setShowModalAdminUpdateUser(false);
-  }
-
+  //This take delivertInfo from children component(forwarding)
   const onShowAdminOrderDelivery = (deliveryInfo)=>{
-    // alert("DLEIVERYT INFO :" + JSON.stringify(deliveryInfo))
-    setDeliveryTimeInfo(deliveryInfo);
-    //take OrderID in state instead showModalDelivery state
-    setShowAdminModalDeliveryTime(true);
+    showAdminDeliveryUpdate(deliveryInfo)
   }
-  const onCloseAdminOrderDelivery = ()=>{
-    setDeliveryTimeInfo(null)
-    setShowAdminModalDeliveryTime(false);
-  }
+  // const onCloseAdminOrderDelivery = ()=>{
+  //   setDeliveryTimeInfo(null)
+  //   setShowAdminModalDeliveryTime(false);
+  // }
 
   const isAdmin = ctxAuth.user ? ctxAuth.user.isAdmin : false;
   return (
       <CartProvider>
+
         {/* IT's not mather where is this modal(becase modal will be centered on center of screen) */}
-        {showModalCart && <Cart onClose={onCloseCart}/>}
-        {/* //onHideCart handler for closing modal */}
-
+        {state.showModalCart && 
+          <Cart onClose={closeCart}/>}
         {/* REGISTER MODAL */}
-        {/* If is clicked on register link */}
-        {showModalRegistar && <Register onClose={onCloseRegister} showLogin={onShowLogin}/>}
-        {showModalLogin && <Login onClose={onCloseLogin}/>}
-
+        {state.showModalRegister && 
+          <Register onClose={closeRegister} showLogin={showLogin}/>}
+        {state.showModalLogin && 
+          <Login onClose={closeLogin}/>}
         {/* Admin Users Update Modal */}
-        {showModalAdminUpdateUser && <AdminModalUsersUpdate onClose={onCloseAdminUsersUpdate}/>}
-        {/* Admin delivery time picker */}
-        {/* {showAdminModalDeliveryTime && } */}
-        {deliveryTimeInfo!=null && <AdminDeliveryModal deliveryObj={deliveryTimeInfo} onClose={onCloseAdminOrderDelivery}/>}
+        {state.showModalAdminUpdateUser && 
+          <AdminModalUsersUpdate onClose={closeAdminUserUpdate}/>}
+        {state.deliveryTimeInfo!=null && 
+          <AdminDeliveryModal deliveryObj={state.deliveryTimeInfo} onClose={closeAdminDeliveryUpdate}/>}
 
-
-        {/* {error || success &&y <Notification/>} */}
-        {(success || error) && <Notification />}
-
+        {(success || error) && 
+          <Notification />}
         <Header 
-          onShowCartModal={onShowCart}
-          onShowRegisterModal={onShowRegister}
-          onShowLoginModal={onShowLogin}
+          onShowCartModal={showCart}
+          onShowRegisterModal={showRegister}
+          onShowLoginModal={showLogin}
         />
 
         {/*  THIS INS'T OPTIMIZED, ON EVERY user CHange 
@@ -173,14 +147,16 @@ function App() {
         </Routes>
         }
 
-
         {/* Admin Route */}
         {/* This <Routes> will only exists when is user Admin, if isn't admin
         he will get NotFound Page when try to go on some routes */}
+
+        {/* THis check we can do in ProtectedRoute and be sure there is loged user and admin user */}
         {ctxAuth.user && ctxAuth.user.isAdmin && 
         <Routes>
-          <Route path="/" element={<AdminHome onUserEditUpdate={onShowAdminUsersUpdate} onOrderDeliveryTime={onShowAdminOrderDelivery}/>}/>
-          
+          {/* <Route path="/" element={<AdminHome onUserEditUpdate={onShowAdminUsersUpdate} onOrderDeliveryTime={onShowAdminOrderDelivery}/>}/> */}
+          <Route path="/" element={<AdminHome onUserEditUpdate={showAdminUserUpdate} onOrderDeliveryTime={onShowAdminOrderDelivery}/>}/>
+    
           <Route path='/users'>
             <Route
               index
@@ -191,7 +167,6 @@ function App() {
                 </ProtectedRoute>
               }
             />
-
             <Route
               // path='/usersUpdate'
               path='update' // without / because is nested
@@ -203,24 +178,14 @@ function App() {
             />
           </Route>
 
-
           {/* <Route
-            path='/users'
-            element ={
-              <ProtectedRoute isAdmin={true} navigate='/'>
-                <Users/>
-              </ProtectedRoute>
-            }
-          /> */}
-
-          <Route
           path='/usersUpdate'
           element ={
             <ProtectedRoute isAdmin={true} navigate='/'>
               <UsersUpdate/>
             </ProtectedRoute>
           }
-          />
+          /> */}
 
           <Route path='/products' >
               <Route 
@@ -231,7 +196,6 @@ function App() {
                   </ProtectedRoute>
                 }
               />
-
               {/* nested route -> /products/add */}
               <Route
                 path='add'
@@ -242,15 +206,6 @@ function App() {
                 }
               />
           </Route>
-
-            {/* <Route
-              path='/products'
-              element ={
-                <ProtectedRoute isAdmin={true} navigate='/'>
-                  <Products/>
-                </ProtectedRoute>
-              }
-            /> */}
 
           <Route path="*" element ={<NotFound/>}></Route> 
         </Routes>
