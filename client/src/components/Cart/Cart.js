@@ -7,7 +7,7 @@ import authContext from '../Store/auth-context';
 import notificationContext from '../Store/notification-context.js'
 
 
-import Modal from '../UI/Modal';
+import Modal from '../UI/Modal/Modal';
 
 import './Cart.css'
 

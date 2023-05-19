@@ -2,7 +2,7 @@ import {useState, useRef, useContext} from 'react'
 
 import axios from 'axios';
 
-import Modal from '../../../../UI/Modal.js'
+import Modal from '../../../../UI/Modal/Modal.js'
 import notificationContext from '../../../../Store/notification-context.js';
 
 import './AdmiDelivery.css'

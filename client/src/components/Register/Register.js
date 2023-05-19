@@ -1,5 +1,5 @@
 import {useState, useContext} from 'react'
-import Modal from "../UI/Modal.js"
+import Modal from "../UI/Modal/Modal.js"
 
 import axios from 'axios';
 import useForm from '../../utils/Hooks/useForm.js';
