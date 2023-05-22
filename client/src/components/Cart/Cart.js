@@ -6,17 +6,12 @@ import CartItem from './CartItem';
 import authContext from '../Store/auth-context';
 import notificationContext from '../Store/notification-context.js'
 
-
-import Modal from '../UI/Modal/Modal';
-
+import CartModal from './CartModal';
 import './Cart.css'
-
-//MODAL
 
 const Cart = props =>{
 
     const {user} = useContext(authContext);
-
     const ctxCart = useContext(cartContext);
 
     const cartItems = ctxCart.items;
@@ -49,8 +44,8 @@ const Cart = props =>{
         }
         else
             addError("You must be logged in")
-
     }
+
     const ItemsList = 
     <div className='item_list' >
                 {cartItems.map(item =>
@@ -67,50 +62,18 @@ const Cart = props =>{
                 )}
     </div>
 
-
-
-    //MODAL STRUCTURE
-    const cartHeaderContext =
-            'FreshOrder';
-
-    const cartBodyContext =
-            //props.children
-        cartItems.length > 0      
-            ? ItemsList
-            : <div className='no_items'>No Items in cart</div> 
-    
-    const cartFooterContext = 
-            <>
-                <div className='total_amount'>
-                    TotalAmont: <span>{convertedTotalAmount}</span>
-                </div>
-                <div className='order'>
-                    <button onClick={orderCartItems} id='Order'>Order</button>
-                </div>
-            </>
-    // //Order func
-    // const orderProducts = (e) =>{
-    //     //e.preventDefault();
-    //     alert("You have to been logged")
-    // }
-
     console.log("CARTTT");
     return (
-        //this onCloseModal handler is in parrent of Modal
-        <Modal 
-            HeaderContext = {cartHeaderContext}
-            BodyContext = {cartBodyContext}
-            FooterContext = {cartFooterContext}
-            onCloseModal={props.onClose} 
-            onCloseSignClick={props.onCloseCart}>
-            {/* {cartItems.length >0      
-                ? ItemsList
-                : <div className='no_items'>No Items in cart</div> 
-            } */}
-        </Modal>
+        <CartModal
+            cartItems={cartItems}
+            itemsList={ItemsList}
+            totalAmount={convertedTotalAmount}
+            orderCartItems={orderCartItems}
+            onClose={props.onClose}
+            onCloseSignClick={props.onCloseCart}
+        />
         
     )
-    // <div>TotalAmount: {convertedTotalAmount}</div>
 
 }
 
