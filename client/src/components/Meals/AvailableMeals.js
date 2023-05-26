@@ -1,4 +1,4 @@
-import react,{useState, useContext, useEffect, useRef} from 'react'
+import React,{useState, useContext, useEffect, useRef} from 'react'
 import axios from 'axios';
 
 import MealItem from './Item/MeaItem';
@@ -63,9 +63,6 @@ const AvailableMeals = props =>{
     //         img_name={meal.img_name}
     //     />
     // ))
-
-    // const filtered = Meals.filter(meal => meal.category === categorySelected);    
-
     let MealList;
     {filteredProducts ? 
         MealList = filteredProducts.map(meal =>(
@@ -89,7 +86,6 @@ const AvailableMeals = props =>{
             {MealList} 
         </div>
     </div>
-
 }
 
 export default AvailableMeals

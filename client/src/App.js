@@ -1,20 +1,8 @@
 //REACT FOLDER STRUCTURE-----------
 //https://www.xenonstack.com/insights/reactjs-project-structure
 
-import {useState, useContext, useEffect, useReducer} from 'react';
+import {useContext, useReducer} from 'react';
 import {Route, Routes, BrowserRouter} from 'react-router-dom';
-// import {
-//     showCart, 
-//     closeCart, 
-//     showRegister, 
-//     closeRegister, 
-//     showLogin, 
-//     closeLogin, 
-//     showAdminUserUpdate, 
-//     closeAdminUserUpdate,
-//     showAdminDeliveryUpdate,
-//     closeAdminDeliveryUpdate
-// } from './components/UI/Modal/ModalUseReducerActions.js'
 import {reducer} from './components/UI/Modal/ModalUseReducer.js'
 import {initialState} from './components/UI/Modal/ModalUseReducer.js'
 
@@ -23,14 +11,6 @@ import './components/Layout/Header.css'
 
 import Header from './components/Layout/Header'
 import Footer from './components/Layout/Footer'
-import Card from './components/UI/Card'
-
-import Welcome from './components/Page/Welcome'
-import AboutUs from './components/Page/AboutUs';
-import CategoryMeals from './components/Meals/Category/CategoryMeals';
-import AvailableMeals from './components/Meals/AvailableMeals';
-
-import CategoryProvider from './components/Store/CategoryProvider';
 
 import Cart from './components/Cart/Cart.js';
 import CartProvider from './components/Store/CartProvider';
@@ -57,16 +37,14 @@ import AddProducts from './components/Admin/components/page/Products/AddProduct'
 import UsersUpdate from './components/Admin/components/page/Users/UsersUpdate.js'
 
 
-
 function App() {
   const {error, success, addError, removeError, addSuccess, removeSuccess} = useContext(notificationContext);
   const ctxAuth = useContext(authContext);
   const [state,dispatch] = useReducer(reducer, initialState)
 
+  //this show modal (example Login) will couse re-rendering child components of App.js(header for example)
+  
   const showCart = () => dispatch({type:"SHOW_CART"});
-  // const showCart = () => {
-  //   dispatch({type:"SHOW_CART"});
-  // }
   const closeCart = () => dispatch({type:"CLOSE_CART"});
   const showRegister = () => dispatch({type:"SHOW_REGISTER"});
   const closeRegister = () => dispatch({type:"CLOSE_REGISTER"});
@@ -77,30 +55,22 @@ function App() {
   const showAdminDeliveryUpdate = (deliveryTime) => dispatch({type:"SHOW_ADMIN_ORDER_DELIVERY", payload:deliveryTime});
   const closeAdminDeliveryUpdate = () => dispatch({type:"CLOSE_ADMIN_ORDER_DELIVERY"});
 
-
   //This take delivertInfo from children component(forwarding)
   const onShowAdminOrderDelivery = (deliveryInfo)=>{
     showAdminDeliveryUpdate(deliveryInfo)
   }
-  // const onCloseAdminOrderDelivery = ()=>{
-  //   setDeliveryTimeInfo(null)
-  //   setShowAdminModalDeliveryTime(false);
-  // }
 
   const isAdmin = ctxAuth.user ? ctxAuth.user.isAdmin : false;
   return (
       <CartProvider>
 
-        {/* IT's not mather where is this modal(becase modal will be centered on center of screen) */}
         {state.showModalCart && 
           <Cart onClose={closeCart}/>}
-        {/* REGISTER MODAL */}
         {state.showModalRegister && 
           <Register onClose={closeRegister} showLogin={showLogin}/>}
         {state.showModalLogin && 
           <Login onClose={closeLogin}/>}
-        {/* Admin Users Update Modal */}
-        {state.showModalAdminUpdateUser && 
+        {state.showModalAdminUserUpdate && 
           <AdminModalUsersUpdate onClose={closeAdminUserUpdate}/>}
         {state.deliveryTimeInfo!=null && 
           <AdminDeliveryModal deliveryObj={state.deliveryTimeInfo} onClose={closeAdminDeliveryUpdate}/>}
@@ -115,101 +85,95 @@ function App() {
 
         {/*  THIS INS'T OPTIMIZED, ON EVERY user CHange 
         ROUTES WILL BE RECREATED AND ALL CHILDREN COMPONENT WILL BE ALSO RERENDERED*/}
-        {!isAdmin && 
+        
         <Routes>
-          {/* HOME PAGE */}
-          {/* Not admin */}
-          <Route path="/" element={<Home/>}/>
-          {/* Admin */}
-          {/* <Route path="/" element={<AdminHome/>}/> */}
-
-          {/* Register is a modal not whole page */}
-          {/* <Route path='/register' element={<Register/>}></Route>
-          <Route path='/login' element={<Login/>}></Route> */}
-
-          {/* Only authenticated user has access , our created component
-          Prevent to unauthenicated user can access to route through url /profile */}        
-          <Route
-            path='/profile' 
-            element= //return Profile if is authenitcated, or return <Navigate to='/'
-            {<ProtectedRoute isAdmin={false} navigate='/'> 
-              <Profile/> 
-            </ProtectedRoute>}
-          />
-          <Route
-            path='/orders'
-            element =
-            {<ProtectedRoute isAdmin={false} navigate='/'>
-              <Orders/>
-            </ProtectedRoute>}
-          />
-          <Route path="*" element ={<NotFound/>}></Route>
-        </Routes>
-        }
+          {!isAdmin && (
+            <>
+              {/* HOME PAGE(NotAdmin) */}
+              <Route path="/" element={<Home/>}/>
+              {/* Only authenticated user has access , our created component
+              Prevent to unauthenicated user can access to route through url /profile */}        
+              <Route 
+                path='/profile' 
+                element={//return Profile if is authenitcated, or return <Navigate to='/'
+                  <ProtectedRoute isAdmin={false} navigate='/'> 
+                    <Profile/> 
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path='/orders'
+                element = {
+                  <ProtectedRoute isAdmin={false} navigate='/'>
+                    <Orders/>
+                  </ProtectedRoute>
+                }
+              />
+              <Route path="*" element ={<NotFound/>}></Route>
+          </>
+        )}
 
         {/* Admin Route */}
         {/* This <Routes> will only exists when is user Admin, if isn't admin
         he will get NotFound Page when try to go on some routes */}
-
         {/* THis check we can do in ProtectedRoute and be sure there is loged user and admin user */}
-        {ctxAuth.user && ctxAuth.user.isAdmin && 
-        <Routes>
-          {/* <Route path="/" element={<AdminHome onUserEditUpdate={onShowAdminUsersUpdate} onOrderDeliveryTime={onShowAdminOrderDelivery}/>}/> */}
-          <Route path="/" element={<AdminHome onUserEditUpdate={showAdminUserUpdate} onOrderDeliveryTime={onShowAdminOrderDelivery}/>}/>
-    
-          <Route path='/users'>
-            <Route
-              index
-              element ={
-                <ProtectedRoute isAdmin={true} navigate='/'>
-                  {/* <Admin/> */}
-                  <Users/>
-                </ProtectedRoute>
+        {ctxAuth.user && ctxAuth.user.isAdmin && (
+          <>
+            <Route 
+              path="/" 
+              element={
+                <AdminHome 
+                  onUserEditUpdate={showAdminUserUpdate} 
+                  onOrderDeliveryTime={onShowAdminOrderDelivery}
+                />
               }
             />
-            <Route
-              // path='/usersUpdate'
-              path='update' // without / because is nested
-              element ={
-                <ProtectedRoute isAdmin={true} navigate='/'>
-                  <UsersUpdate/>
-                </ProtectedRoute>
-              }
-            />
-          </Route>
-
-          {/* <Route
-          path='/usersUpdate'
-          element ={
-            <ProtectedRoute isAdmin={true} navigate='/'>
-              <UsersUpdate/>
-            </ProtectedRoute>
-          }
-          /> */}
-
-          <Route path='/products' >
-              <Route 
-                index 
-                element ={
-                  <ProtectedRoute isAdmin={true} navigate='/'>
-                    <Products/>
-                  </ProtectedRoute>
-                }
-              />
-              {/* nested route -> /products/add */}
+      
+            <Route path='/users'>
               <Route
-                path='add'
+                index
                 element ={
                   <ProtectedRoute isAdmin={true} navigate='/'>
-                    <AddProducts/>
+                    {/* <Admin/> */}
+                    <Users/>
                   </ProtectedRoute>
                 }
               />
-          </Route>
+              <Route
+                // path='/usersUpdate'
+                path='update' // without / because is nested
+                element ={
+                  <ProtectedRoute isAdmin={true} navigate='/'>
+                    <UsersUpdate/>
+                  </ProtectedRoute>
+                }
+              />
+            </Route>
 
-          <Route path="*" element ={<NotFound/>}></Route> 
+            <Route path='/products' >
+                <Route 
+                  index 
+                  element ={
+                    <ProtectedRoute isAdmin={true} navigate='/'>
+                      <Products/>
+                    </ProtectedRoute>
+                  }
+                />
+                {/* nested route -> /products/add */}
+                <Route
+                  path='add'
+                  element ={
+                    <ProtectedRoute isAdmin={true} navigate='/'>
+                      <AddProducts/>
+                    </ProtectedRoute>
+                  }
+                />
+            </Route>
+
+            <Route path="*" element ={<NotFound/>}></Route> 
+          </>
+        )}
         </Routes>
-        }
 
         <Footer/>
       </CartProvider>

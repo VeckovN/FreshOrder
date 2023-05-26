@@ -21,8 +21,6 @@ const CartModal = ({itemsList,cartItems,totalAmount,orderCartItems, onClose, onC
                     <button onClick={orderCartItems} id='Order'>Order</button>
                 </div>
             </>
-
-    console.log("CARTTT");
     return (
         //this onCloseModal handler is in parrent of Modal
         <Modal 

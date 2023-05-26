@@ -1,4 +1,4 @@
-import {useRef} from 'react';
+import React, {useRef} from 'react';
 
 import Card from '../UI/Card'
 import Welcome from './Welcome'
@@ -9,8 +9,12 @@ import CategoryProvider from '../Store/CategoryProvider';
 
 import './Home.css'
 
-const Home = () =>{
+//react Memo is used because when is click on cart to open modal (showModal state is changed in App.js )
+//and this trigger all App.js children component reRendering(this Home page will be always reREnder ) 
+//React.Memo prevent unnecessary rerendering when the props of the parrent component changed(App.js)
+const Home = React.memo( () =>{
 
+    //slide on clicked category item
     const sliderRef = useRef(null);
   
     return (
@@ -31,7 +35,7 @@ const Home = () =>{
           {/* HOME PAGE */} 
         </main>
     )
-}
+})
 
 
 export default Home;

@@ -17,7 +17,7 @@ import {Redirect, Navigate, Route} from 'react-router-dom';
         return <Navigate to={navigate}/>
     }
     
-    return children;
+    return children;//compoenent
 }   
 
 

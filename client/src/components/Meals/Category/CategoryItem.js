@@ -12,7 +12,6 @@ import categoryContext from '../../Store/category-context';
 
 const CategoryItem = props =>{
 
-    //this category selected
     const [selected, setSelected] = useState(false);
     const ctxCategory = useContext(categoryContext);
     const category = ctxCategory.category;
@@ -38,7 +37,6 @@ const CategoryItem = props =>{
             //ON category CLICK SET THE sliderRef 
             props.sliderRef?.current.scrollIntoView({behavior: 'smooth'})
             //THIS REF IS USED on DIV in AvailabelMeals with ref={sliderRef}
-            //MAYBE HERE FETCH PRODUCTS BY CATEGORY AND STORE IT IN CTX
         }   
         else
         {
@@ -58,7 +56,6 @@ const CategoryItem = props =>{
                 {/* {selected ? <p>Info Showned</p> : <p>Info Unshowned </p>} */}
                 <button onClick={clickedCardHandler}>{selected ? 'Deselect' : 'Select'}
                 </button>    
-                {/* <Link className='LinkCategory' to='meal_list' spy={true} offset={-70} smooth={true} onSetActive={clickedCardHandler} >{selected ? 'Deselect' : 'Select'}</Link> */}
             </div>
         </div>
     )

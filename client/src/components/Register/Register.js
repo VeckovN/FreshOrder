@@ -1,12 +1,14 @@
 import {useState, useContext} from 'react'
 import Modal from "../UI/Modal/Modal.js"
+import RegisterForm from './RegisterForm.js';
+import RegisterModal from './RegisterModal.js';
 
 import axios from 'axios';
 import useForm from '../../utils/Hooks/useForm.js';
 
 import notificationContext from '../Store/notification-context'
 
-import './Register.css'
+// import './Register.css'
 
 const Register = (props) =>{
 
@@ -72,124 +74,19 @@ const Register = (props) =>{
         }
     }
 
-
-    const regHeaderContext =
-    'Registration';
-
     const regBodyContext =
-        <form onSubmit={submitForm}>
-            <div className='registerControl-input'>
-                <label className='reg_label'>Username</label>
-                <div className='register_input_field'>
-                    <input
-                        type='text'
-                        name='username'
-                        onChange={handleChanges}
-                        value={values.username || ''}
-                        placeholder='Enter name'
-                        className={errors.username && 'error'}
-                    />
-                    {errors.username && <label>{errors.username}</label>}
-                </div>
-            </div>
-
-
-            <div className='registerControl-input'>
-                <label className='reg_label'>Email Address</label>
-                <div className='register_input_field'>
-                    <input
-                        type='text'
-                        name='email'
-                        onChange={handleChanges}
-                        value={values.email || ''}
-                        placeholder="example@gmail.com"
-                        className={errors.email && 'error'}
-                    />
-                    {errors.email &&<label>{errors.email}</label>}
-                </div>
-                
-            </div>
-
-            <div className='registerControl-input'>
-                <label className='reg_label'>Password</label>
-                <div className='register_input_field'>
-                    <input
-                        type='password'
-                        name='password'
-                        onChange={handleChanges}
-                        value={values.password || ''}
-                        placeholder='Enter password'
-                        className={errors.password && 'error'}
-                    />
-                    {errors.password &&<label>{errors.password}</label>}
-                </div>
-                
-            </div>
-
-            <div className='registerControl-input'>
-                <label className='reg_label'>Repeat Password</label>
-                <div className='register_input_field'>
-                    <input
-                        type='password'
-                        name='repeat_password'
-                        onChange={handleChanges}
-                        value={values.repeat_password || ''}
-                        placeholder='Enter password'
-                        className={errors.repeat_password && 'error'}
-                    />
-                    {errors.repeat_password && <label>{errors.repeat_password}</label>}
-                </div>
-                
-            </div>
-
-            <div className='registerControl-input'>
-                <label className='reg_label'>Address</label>
-                <div className='register_input_field'>
-                    <input
-                        type='text'
-                        name='address'
-                        onChange={handleChanges}
-                        value={values.address || ''}
-                        placeholder="Enter address"
-                        className={errors.address && 'error'}
-                    />
-                    {errors.address && <label>{errors.address}</label>}
-                </div>
-            </div>
-
-            <div className='registerControl-input'>
-                <label className='reg_label'>Phone Number</label>
-                <div className='register_input_field'>
-                    <input
-                        type='number'
-                        name='phone_number'
-                        onChange={handleChanges}
-                        value={values.phone_number || ''}
-                        min='9'
-                        placeholder='Enter digit values'
-                        className={errors.phone_number && 'error'}
-                    />
-                    {errors.phone_number && <label>{errors.phone_number}</label>}
-                </div>
-                
-            </div>
-
-            <div className = 'registerForm-actions'>
-                <button>Submit</button>
-            </div>
-        </form>
-
-    const regFooterContext = 
-    error && <div className='registerError'>Error: <span>{error}</span></div>
+        <RegisterForm 
+            submitForm={submitForm}
+            values={values}
+            errors={errors}
+            handleChanges={handleChanges}
+        />
 
     return (
-        <Modal
-        ModalContainerStyle='registerModal'
-        HeaderContext = {regHeaderContext}
-        BodyContext = {regBodyContext}
-        FooterContext = {regFooterContext}
-        onCloseModal={props.onClose} 
-        // onCloseSignClick={props.onCloseCart}>
+        <RegisterModal 
+            onCloseRegister={props.onClose}
+            regBodyContext={regBodyContext}
+            error={error}
         />
             
     )
