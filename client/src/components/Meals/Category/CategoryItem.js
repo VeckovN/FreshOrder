@@ -33,7 +33,6 @@ const CategoryItem = props =>{
             console.log('You select: ' + props.itemName);      
             ctxCategory.setCategory(props.itemName);
             setSelected(true);
-
             //ON category CLICK SET THE sliderRef 
             props.sliderRef?.current.scrollIntoView({behavior: 'smooth'})
             //THIS REF IS USED on DIV in AvailabelMeals with ref={sliderRef}
