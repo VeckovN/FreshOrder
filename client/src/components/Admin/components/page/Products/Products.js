@@ -14,11 +14,7 @@ const Products = () =>{
 
     const [category, setCategory] = useState('');
     const [categoryItems, setCategoryItems] = useState('');
-
     const [showAddProduct, setShowAddProduct] = useState(false);
-
-    //when is EditButton click then data of clicked product will be store in this state
-    // const [editData, setEditData] = useState();
 
     const fetchProductsByCategory = async(category) =>{
         try{
@@ -60,23 +56,14 @@ const Products = () =>{
         <main className='mainAdmin'>
             <div className='products_container'>
                 <h1 className='product_title'>Products</h1>
-                {/* nested route -> /products/add */}
-                {/* <Link to='/products/add'>Add Product</Link>  will lead to index/products/add (index is products -> /products/products/add)  */}
-                {/* wihtout /add because this add is neasted */}
-                {/* <Link to='add'>Add Product Link</Link>  */}
                 <button className='addProduct_button' onClick={() => {setShowAddProduct(!showAddProduct)}}>Add Product</button>
                 
                 {showAddProduct && <AddProduct></AddProduct>}
-                {/* <AddProduct></AddProduct> */}
-                
                 
                 <div className='products_category'>
-                    {/* Loop through category */}
                     {categoryOptions.map(el =>{
                         return (
-                        // <AdminCategory ></AdminCategory>
                         <div className='category'>
-                            {/* <h1>Pizza</h1> */}
                             <div className='category_select'>
                                 <h1>{el}</h1>
                                 <button className='category_show_button' onClick={() => {onShowCategoryItems(el)}}>Show {el}</button>
@@ -98,14 +85,12 @@ const Products = () =>{
                                         <tbody>
                                             {categoryItems && categoryItems.map(item =>{
                                                 return(
-                                                   
                                                     <ProductItem item={item} isChanged={onChangeProduct} ></ProductItem>
                                                 )
                                             })}
                                         </tbody>
                                     </table> 
                                 }
-
                             </div>
                         )
 

@@ -13,15 +13,11 @@ import './AdminOrders.css'
 const AdminOrders = (props)=>{
 
     const [isloading, setIsLoading] = useState(false);
-
-    const [orderChange, setOrderChange] = useState(false);
-
     const [orders, setOrders] = useState([]);
     const [totalOrders,  setTotalOrders] = useState();
     const [itemsPerPage, setItemsPerPage] = useState('5');
     const [currentPage, setCurrentPage] = useState('1');
     const [sort, setSort] = useState({});
-    // const timeoutRef = useRef();
 
     const firstRender = useRef(true);
     
@@ -32,8 +28,6 @@ const AdminOrders = (props)=>{
         getTotalOrders(sort); //for each request get TotalOrders wiht sort options
         console.log("FIRST NOW");
     },[itemsPerPage, sort])
-
-
 
 
     //On initial Redner (only once)
@@ -67,13 +61,8 @@ const AdminOrders = (props)=>{
             const res = await axios.get(`http://localhost:8800/api/orders?page=${pageNumber}&limit=${itemsPerPage}&sort=${sort.status}`)
             const data = res.data;
 
-            //In useEffect Becase useTimer has to be deleted
-            //timer on IsLoading state
-
-            //This should be custom Hook
             const timer = setTimeout(()=>{
                 setIsLoading(false);
-                //affter loader is gone then show data
                 setOrders(data);
                 setCurrentPage(pageNumber);
                 //prevent to Only useEffect[] run on intial
@@ -106,11 +95,9 @@ const AdminOrders = (props)=>{
     }
 
     const onComfirmOrder = (orderID,userEmail)=>{
-        // alert("Ts: " + orderID);
         const deliveryInfo = {
             orderID:orderID,
-            userEmail:userEmail,
-            
+            userEmail:userEmail,      
         }
         //pass value to MODAL(which is called in APP.js)
         props.onEnterOrderDeliveryTime(deliveryInfo);
@@ -127,9 +114,7 @@ const AdminOrders = (props)=>{
                 {isloading && <LoadingSpinner/>}
                 <li className='table_filter'>
                     <div className='table_perPage_select'>
-                        {/* <label>Items per Page {`: ${itemsPerPage}`}</label> */}
                         <label>Items per Page</label>
-                        {/* this will re-render component wiht new itemsPerPage */}
                         <div className='table_perPage_buttons'>
                             <button className={itemsPerPage=='5' && 'selected'} onClick={() => {setItemsPerPage('5')}}>5</button>
                             <button className={itemsPerPage=='10' && 'selected'} onClick={() => {setItemsPerPage('10')}}>10</button>

@@ -12,7 +12,6 @@ const AdminHome = (props) =>{
             {/* this handler show modal (userModal) adminUserModalUpdate */}
             {/* onEnterOrderDeliveryTime(orderID) from AdminOrders */}
             <AdminOrders onEnterOrderDeliveryTime={props.onOrderDeliveryTime}/>
-            {/* <Users onEditUserUpdateHandler={props.onUserEditUpdate}/> */}
         </main>
     )
 }

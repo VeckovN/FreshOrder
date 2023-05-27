@@ -19,9 +19,7 @@ const AdminOrderList = ({orders, onComfirmOrder}) =>{
                 console.log("ORDE:"+ order);
                     let totalPrice =0;
                     const completed = order.isCompleted ? 'table-row completed' : 'table-row'
-                    // return <li className='table-row' key={order._id}>
                     return <li className={completed}  key={order._id}>
-                                {/* {!order.isCompleted && <button className="comfirm_button" onClick={onComfirmOrder(order._id)}>Comfirm</button>} */}
                                 {!order.isCompleted && <button className="comfirm_button" onClick={() =>{onComfirmOrder(order._id, order.user.email);}}>Comfirm</button>}
                                 
                                 <div className='colone col-1'>
@@ -41,14 +39,9 @@ const AdminOrderList = ({orders, onComfirmOrder}) =>{
                                         {order.products.map(prod =>{
                                             //prod.product.price could be null -(when is product deleted)
                                             //?. return undentified when is price null 
-                                            
                                             totalPrice+=prod.amount * prod.product?.price;
                                             return <p>{prod.amount}</p>
                                         })}
-                                    {/* {order.products.map(prod =>{
-                                        totalAmount+=prod.product.amount * prod.product.price;
-                                        <p>{prod.product.amount}</p>
-                                    })} */}
                                 </div>
                                 <div className ='colone col-5'>{totalPrice}</div>
                                 <div className ='colone col-6'>{order.isCompleted ? <p>Completed</p> : <p>Pending</p>}</div>

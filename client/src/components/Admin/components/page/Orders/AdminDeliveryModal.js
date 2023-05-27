@@ -15,28 +15,16 @@ const AdminDeliveryModal = ({deliveryObj, onClose}) =>{
     const onClickComfirm = async() =>{
         const deliveryTime = deliveryTimeRef.current.value;
         const userEmail = deliveryObj.userEmail;
-
-        console.log("DELIVERY INFO : \n" + JSON.stringify(deliveryObj) )
-
-        // const reFetchNewOrders = deliveryObj.reFetch();
-
-        //in url
-        //orderID 
-        
+        // console.log("DELIVERY INFO : \n" + JSON.stringify(deliveryObj) )        
         //in Body
         // const {userEmail, deliveryTime} = req.body
-        // alert("DTIME: " + deliveryTime + "for OrderID: " + deliveryObj.orderID + "UserID :" + deliveryObj.userEmail);
-    
         const deliveryBodyObject = {
             userEmail,
             deliveryTime
         }
-        // alert("BODY: " + JSON.stringify(deliveryBodyObject));
-        try{
-            const result = await axios.put(`http://localhost:8800/api/orders/complete/${deliveryObj.orderID}`, deliveryBodyObject);
-            const resultResponse = result.data;
-            console.log("RES: " + resultResponse);
 
+        try{
+            await axios.put(`http://localhost:8800/api/orders/complete/${deliveryObj.orderID}`, deliveryBodyObject);
             addSuccess(`You comfirm order`);
 
             const timer = setTimeout( ()=>{
@@ -59,9 +47,6 @@ const AdminDeliveryModal = ({deliveryObj, onClose}) =>{
     }
 
 
-
-    
-
     const deliveryHeaderContext =
             'FreshOrder';
 
@@ -78,25 +63,18 @@ const AdminDeliveryModal = ({deliveryObj, onClose}) =>{
                 </div>
             </div>
         
-    
     const deliveryFooterContext = 
-            <>
-                
+            <> 
             </>
-
 
     return (
         <Modal
-            //aditionalProp for overriding container width and height
-            //this .DeliveryModal is from AdminOrder.css
             ModalContainerStyle='DeliveryModal'
             HeaderContext = {deliveryHeaderContext}
             BodyContext = {deliveryBodyContext}
             FooterContext = {deliveryFooterContext}
             onCloseModal={onClose}
         />
-            
-
     )
 }
 

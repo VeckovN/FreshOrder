@@ -41,6 +41,13 @@ const ProductItem = ({item, isChanged, onEditProduct}) =>{
     const onEditCancel = ()=>{
         setShowEdit(false)
     }
+
+    const restartInputs = () =>{
+        setName('');
+        setPrice('');
+        setDescription('');
+    }
+
     const onEditAccept = async()=>{
         const newContext = {}
         if(name!='')
@@ -58,9 +65,10 @@ const ProductItem = ({item, isChanged, onEditProduct}) =>{
         addSuccess("You successfully updated product")
 
         //and update on frontend
-        setName('');
-        setPrice('');
-        setDescription('');
+        // setName('');
+        // setPrice('');
+        // setDescription('');
+        restartInputs();
 
         //trigger Parrent component re-render(reFetch) to show new Item value 
         isChanged();
@@ -75,9 +83,7 @@ const ProductItem = ({item, isChanged, onEditProduct}) =>{
                 const result = await axios.put(`http://localhost:8800/api/products/softDelete/${item._id}`)
                 const resultData = result.data;
 
-                // addSuccess("You solf deleted the : " + item.name)
-                addSuccess(resultData);
-
+                addSuccess(resultData); //notify
                 //this will re-render compoennt( parrent function that reFetch selected category products)
                 isChanged(true);
             }

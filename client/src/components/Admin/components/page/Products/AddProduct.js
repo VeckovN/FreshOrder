@@ -60,9 +60,7 @@ const AddProduct = () =>{
         setImage();
     }
 
-
     console.log("IMG: " + JSON.stringify(image))
-    
 
     const resetInputs = () =>{
         setName('');
@@ -72,11 +70,8 @@ const AddProduct = () =>{
         setImage('');
     }
 
-    // const onChange
-
     const onSubmitAddProduct = async(event) =>{
         event.preventDefault();
-        
 
         if(name =='' || category =='' || price =='' || description ==''){
             addError("Inputs can not be empty!!!");
@@ -89,7 +84,6 @@ const AddProduct = () =>{
 
         // imagePath will be created in Backaned on Upload (currentImgName + dateNow)
         else{
-
             try{
                 //upload image(call api request for it) image uplaod and product create are seperated calls
                 const formData = new FormData();
@@ -98,11 +92,9 @@ const AddProduct = () =>{
                 //generatedName as request --- res.status(200).json(file.filename);
                 const result = await axios.post('http://localhost:8800/api/products/create', formData);
                 const imageName = result.data;
-
-
-                console.log("UPLOAD RESULT :" + result.data);
                 addSuccess("You successfuly uploaded " + result.data);
 
+                console.log("UPLOAD RESULT :" + result.data);
                 //useImgURL - image Name to create product 
                 const otherData ={
                     name:name,
@@ -112,9 +104,8 @@ const AddProduct = () =>{
                     description:description,
                 }
                 console.log("DATAAAAAAAA: " + JSON.stringify(otherData))
-                const resultProduct = await axios.post('http://localhost:8800/api/products', otherData);
-                const res = resultProduct.data;
-
+                await axios.post('http://localhost:8800/api/products', otherData);
+  
                 addSuccess("You successfully added product")
                 resetInputs();
                 removeSelectedImage();
@@ -123,16 +114,8 @@ const AddProduct = () =>{
                 console.log("UPLOAD ERROR : " + err);
                 addError("UPLOAD ERROR")
             }
-            
         }
-            
-
-        //addSuccess("You successfuly added product");
-        // resetInputs();
-
-
     }
-
     console.log("DATA: " + name + " C: " + category + " Price " + price + " Disc: " + description)
 
     return(
@@ -141,18 +124,6 @@ const AddProduct = () =>{
             <form className='addProduct_form' onSubmit={onSubmitAddProduct}>  
 
                 <div className='addProduct_inputFields'>
-
-                    {/* <div className='addProduct_input'>
-                        <label>Category</label>
-                        <input
-                            type='text'
-                            name='name'
-                            onChange={onChangeValue}
-                            value={name}
-                            placeholder='Select category'
-                        />
-                    </div> */}
-
                     <div className='addProduct_input'>
                         <label>Category</label>
                         <select name='category' value={category} defaultValue={''} onChange={onChangeCategorySelect}>
@@ -171,7 +142,6 @@ const AddProduct = () =>{
                         <input
                             type='text'
                             name='name'
-                            // onChange={onChangeValue}
                             onChange={onChangeNameInput}
                             value={name}
                             placeholder='Enter product name'
@@ -211,7 +181,6 @@ const AddProduct = () =>{
                     </div>
 
                     <div className='image_place'>
-                        {/* <div classname='image_container'>IMG</div> */}
                         {image && (
                             <div className='image_container'>
                                 <img
