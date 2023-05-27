@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useRef, useContext, useEffect } from 'react'
 import axios from 'axios'
 
 import './Login.css'
@@ -11,6 +11,7 @@ import LoginModal from './LoginModal.js'
 
 const Login = (props) =>{
 
+    const timerRef = useRef(null);
     const initialInputObject ={
         email:'',
         password:''
@@ -41,8 +42,9 @@ const Login = (props) =>{
                 //FIX THIS-> this setTimeout ins't used properly 
                 // https://felixgerschau.com/react-hooks-settimeout/
 
+                //Moved this to useEffect 
                 //set timer(to show animation little bit longer) before we change loading to false
-                setTimeout(()=>{
+                timerRef.current = setTimeout(()=>{
                     loggin(res.data);
                     console.log("RES DATA: " + res.data._id);
                     props.onClose();
@@ -60,6 +62,28 @@ const Login = (props) =>{
             }
         }
     }
+
+    //useState changes will trigger compoennt reRendering (This isn't good option)
+    // useEffect( () =>{
+    //     const timer = setTimeout(()=>{
+    //         loggin(res.data);
+    //         console.log("RES DATA: " + res.data._id);
+    //         props.onClose();
+    //         addSuccess("You successfuly logged")
+    //     }, 1000);
+
+    //     return () =>clearTimeout(timer);
+    // },[isLogin])
+    
+    //With useREf
+    useEffect( () =>{
+        //clear the inteval on component unmount
+        return() => clearTimeout(timerRef.current);
+    })
+
+
+
+    
 
     //When is modal closed set error,loading and user to initiated value(false,null,null)
     const onCloseLoginModal =()=>{

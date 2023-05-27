@@ -26,10 +26,14 @@ const Notification = () =>{
     //after some second set Erro and succes to '' and that will
     //trigger useCOntext in APP.js to unshowned compoennt
     useEffect(()=>{
-        setTimeout(()=>{
+        const timer = setTimeout(()=>{
             //after 3s remove error and succes notification
             removeNotification();
         },3000)
+
+        return() =>{
+            clearTimeout(timer);
+        }
     },[])
 
     return(
