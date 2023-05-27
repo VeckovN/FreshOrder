@@ -110,7 +110,8 @@ const useForm = (inputObj) =>{
                     break;
 
                 case 'phone_number':
-                    if(!value.match(/[0-9]{9,10}/)){
+                    // if(!value.match(/^\[0-9]{9,10}$/)){
+                        if(!value.match(/^\d{9,10}$/)){
                         setErrorWithMessage("phone_number", "Between 9 and 10 digits")
                     }
                     else{
