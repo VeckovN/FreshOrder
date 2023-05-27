@@ -97,8 +97,6 @@ const ProductItem = ({item, isChanged, onEditProduct}) =>{
                 //change to false (return on no delete)
                 const result = await axios.put(`http://localhost:8800/api/products/softAdd/${item._id}`)
                 const resultData = result.data;
-
-                //addSuccess("You return the : " + item.name)
                 addSuccess(resultData);
                 //Trigger reFetching on Product compoennt
                 isChanged();
