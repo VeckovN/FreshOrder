@@ -21,13 +21,20 @@ const useForm = (inputObj, callback) =>{
         })
     }
 
+    const resetAllValues = () =>{
+        Object.keys(values).forEach(key =>{
+            values[key] = ''
+        })
+    }
+
     const setEmptyFieldError =() =>{
         console.log("VAU: " + JSON.stringify(values));
         console.log("USERNMALE: " + values.username)
 
         //THIS WILL ONLY UPDATE LAST STATE ( etc. phone_number)
         Object.keys(values).forEach(key =>{
-            if(values[key]==""){ //on intial all non entered inputs have '' as value
+            //image has null as default value
+            if(values[key]=="" || values[key] == null){ //on intial all non entered inputs have '' as value
                 setErrors((prevState)=>{ //notify all empty fields 
                     return({
                         ...prevState,
@@ -69,6 +76,34 @@ const useForm = (inputObj, callback) =>{
         const key = e.target.name;
         const value = e.target.value;
 
+        //differnet way to handle image(file) from input
+        if(key == 'image'){
+            console.log("Key: " + key + " Values : " + e.target.files.length)
+            //validation
+            // validateField('image', e.target.files)
+            // setValues({
+            //     ...values,
+            //     [key]:e.target.files[0]
+            // })
+            if (e.target.files && e.target.files.length > 0){
+                alert('Image')
+                setValues({
+                    ...values,
+                    [key]:e.target.files[0]
+                })
+                RemoveErrorFromObject('image');
+            }
+            else{
+                setErrors((prevState) =>{
+                    return({
+                        ...prevState,
+                        image:"Image Error !!!"
+                    })
+                })
+            }
+            return
+        }
+
         validateField(key,value);
         setValues({
             ...values,
@@ -94,13 +129,39 @@ const useForm = (inputObj, callback) =>{
                 setPasswordFieldError();
                 return
             }
-            
+
             //call callback func passed in useForm as second paramater
             callback(); //execute it when on valid inputs
         }
         else{
             addError("Incorrect input")
         }
+    }
+
+    const handleProductSubmit = (event) =>{
+        event.preventDefault();
+
+        if(values.product_name =='' && values.category =='' && values.product_price =='' && values.product_description =='' && !values.image){
+            addError("Inputs can not be empty!!!");
+            // setAllErrors();
+            setEmptyFieldError();
+            return
+        }
+   
+        if(values.product_name =='' || values.category =='' || values.product_price =='' || values.product_description ==''){
+            addError("Inputs can not be empty!!!");
+            setEmptyFieldError();
+            return
+        }
+        if(!values.image){ 
+            addError("Choose a image")
+            // setImageError(true);
+            setErrorWithMessage('image',`The image isn't selected`)
+            return
+        }
+
+        //all passed
+        callback();
     }
 
     const validateField = (keyName, value ) =>{
@@ -166,42 +227,49 @@ const useForm = (inputObj, callback) =>{
                     }
                     break;
 
+                case 'image':
+                    if (!value && !value.length > 0){
+                        setErrorWithMessage('image', "Image error ")
+                    }
+                    else{
+                        RemoveErrorFromObject('image')
+                    }
+                    break;
+
                 //other cases instead of just login and register forms  :D
-                // case 'product_name':
-                //     if(!){
+                case 'product_name':
+                    if(!value.match(/^[A-Z]/))
+                        setErrorWithMessage('product_name', 'Must start with capital letter')
+                    else if(!value.match(/[A-Za-z]+$/))
+                        setErrorWithMessage('product_name', "Only latters alowed")
+                    else{
+                        RemoveErrorFromObject('product_name');
+                    }
+                    break;
 
-                //     }
-                //     else{
-
-                //     }
-                //     break;
+                case 'product_description':
+                    if(!value.match(/^(?=.{0,30}$)/)){
+                        setErrorWithMessage('product_description', "Only 30 characters alowed")
+                    }   
+                    else{
+                        RemoveErrorFromObject('product_description')
+                    } 
+                    break;
                 
-                // case 'product_category':
-                //     if(!){
+                case 'product_price':
+                    if(!value.match(/[0-9]/)){
+                        setErrorWithMessage('product_price', "Only digits availabed")
+                    }
+                    else{
+                        RemoveErrorFromObject('product_price');
+                    }
+                    break;
 
-                //     }
-                //     else{
-
-                //     }
-                //     break;
-
-                // case 'product_description':
-                //     if(!){
-
-                //     }   
-                //     else{
-
-                //     } 
-                //     break;
-                
-                // case 'product_price':
-                //     if(!){
-
-                //     }
-                //     else{
-
-                //     }
-                //     break;
+                //remove error after selecting empty category
+                case 'category':
+                    if(value){
+                        RemoveErrorFromObject('category');
+                    }
 
                 default:
                     break;
@@ -216,8 +284,11 @@ const useForm = (inputObj, callback) =>{
         values,
         errors,
         setEmptyFieldError,
+        resetAllValues,
+        RemoveValueFromObject,
         handleChanges,
-        handleRegSubmit
+        handleRegSubmit,
+        handleProductSubmit
     }
 
 }
