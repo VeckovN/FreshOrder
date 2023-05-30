@@ -1,16 +1,18 @@
 //useForm hook used for classic form validation
 
-import { useState } from "react";
+import { useState, useContext } from "react";
+import notificationContext from "../../components/Store/notification-context";
 
 
-const useForm = (inputObj) =>{
+const useForm = (inputObj, callback) =>{
 
     const [values, setValues] = useState(inputObj);  //valuse={username:'novak', email:'novak@gmail.com'}
     const [errors, setErrors] = useState({});
 
+    const {addSuccess, addError} = useContext(notificationContext);
+
     console.log("\n VALUES : " + JSON.stringify(values));
     console.log("\n ERRORS " + JSON.stringify(errors));
-
 
     const setErrorWithMessage = (keyName, message) =>{
         setErrors({
@@ -22,17 +24,11 @@ const useForm = (inputObj) =>{
     const setEmptyFieldError =() =>{
         console.log("VAU: " + JSON.stringify(values));
         console.log("USERNMALE: " + values.username)
-        let Errorkeys=[]
 
-        //THIS WILL ONLY UPDATE LAST STATE ( phone_nubmer)
+        //THIS WILL ONLY UPDATE LAST STATE ( etc. phone_number)
         Object.keys(values).forEach(key =>{
-            if(values[key]==""){
-                //THIS WILL OVERIDE ALL PERVIPUS STATE (Only last state(phone_number) will have seted error)
-                // setErrors({
-                //     ...errors,
-                //     [key]:"It cant be empty"
-                // })
-                setErrors((prevState)=>{
+            if(values[key]==""){ //on intial all non entered inputs have '' as value
+                setErrors((prevState)=>{ //notify all empty fields 
                     return({
                         ...prevState,
                         [key]:"It cant be empty"
@@ -40,7 +36,24 @@ const useForm = (inputObj) =>{
                 })
             }
         })
-        
+    }
+    const setPasswordFieldError = () =>{
+        setErrors((prevState) =>{
+            return({
+                ...prevState,
+                password:`enter new password`,
+                repeat_password:`repeat entered password`
+            })
+        })
+        //Delete password from values(input)
+        setValues((prevState) =>{
+            return({
+                ...prevState,
+                password:'',
+                repeat_password:''
+            })
+        })
+
     }
 
     const RemoveErrorFromObject = (keyName) =>{
@@ -56,11 +69,6 @@ const useForm = (inputObj) =>{
         const key = e.target.name;
         const value = e.target.value;
 
-        if(value == ''){
-            console.log("VALUE = ''")
-        }
-
-        console.log("VALUEE: " + value);
         validateField(key,value);
         setValues({
             ...values,
@@ -69,18 +77,30 @@ const useForm = (inputObj) =>{
     }
 
 
-    const submitHandler = (e) =>{
-        // e.preventDefault();
+    const handleRegSubmit = (event) =>{
+        event.preventDefault(); //no page reload
+        console.log("username: " + values.username + " email : " + values.email +  " password: " + values.password + " address: " + values.address + " phone_number: " + values.phone_number)
+        
+        if((values.username=='' || values.username == undefined) || (values.email=='' || values.email == undefined) || (values.password=='' || values.password == undefined) || (values.repeat_password=='' || values.repeat_password == undefined) || (values.address=='' || values.address == undefined) || (values.phone_number=='' || values.phone_number == undefined) ){
+            setEmptyFieldError();
+            addError("Empty Fields")
+            return
+        }
 
-        // submitCallback();
-
-        //check there isn't empty field
-        // Object.keys(values).forEach(el =>{
-        //     if(values[el] == '' || values[el] == undefined)
-        //         setErrors(el, "Enter value in field")
-        // })
-
-        //submitCallback();
+        if(Object.keys(errors).length == 0) 
+        {
+            if((values.password != values.repeat_password)){
+                addError("Passwords aren't same")
+                setPasswordFieldError();
+                return
+            }
+            
+            //call callback func passed in useForm as second paramater
+            callback(); //execute it when on valid inputs
+        }
+        else{
+            addError("Incorrect input")
+        }
     }
 
     const validateField = (keyName, value ) =>{
@@ -146,6 +166,43 @@ const useForm = (inputObj) =>{
                     }
                     break;
 
+                //other cases instead of just login and register forms  :D
+                // case 'product_name':
+                //     if(!){
+
+                //     }
+                //     else{
+
+                //     }
+                //     break;
+                
+                // case 'product_category':
+                //     if(!){
+
+                //     }
+                //     else{
+
+                //     }
+                //     break;
+
+                // case 'product_description':
+                //     if(!){
+
+                //     }   
+                //     else{
+
+                //     } 
+                //     break;
+                
+                // case 'product_price':
+                //     if(!){
+
+                //     }
+                //     else{
+
+                //     }
+                //     break;
+
                 default:
                     break;
             }
@@ -155,14 +212,12 @@ const useForm = (inputObj) =>{
         }
     }
 
-
-
     return {
         values,
         errors,
         setEmptyFieldError,
         handleChanges,
-        submitHandler
+        handleRegSubmit
     }
 
 }
