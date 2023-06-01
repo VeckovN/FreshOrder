@@ -1,22 +1,21 @@
-const AddProductForm = ({values, errors, onChangeInput, onChangeImage, }) =>{
+const AddProductForm = ({values, errors, categoryOptions, removeSelectedImage, handleChanges, handleProductSubmit }) =>{
 
     return (
         <div className='addProduct_container'>
             <h2>Add Product</h2>
-            <form className='addProduct_form' onSubmit={onSubmitAddProduct}>  
+            {/* <form className='addProduct_form' onSubmit={onSubmitAddProduct}>   */}
+            <form className='addProduct_form' onSubmit={handleProductSubmit}>  
 
                 <div className='addProduct_inputFields'>
                     <div className='addProduct_input'>
                         <label>Category</label>
-                        {categoryError && <p>Select a category</p>}
-                        <select name='category' value={category} defaultValue={''} onChange={onChangeCategorySelect}>
+                        {errors.category && <p>Select a category</p>}
+                        {/* <select name='category' value={category} defaultValue={''} onChange={onChangeCategorySelect}> */}
+                        <select name='category' value={values.category} defaultValue={''} onChange={handleChanges}>
                             <option value=''  disabled> Select Category </option>
-                            <option value='Pizza'>Pizza</option>
-                            <option value='Pasta'>Pasta</option>
-                            <option value='Burger'>Burger</option>
-                            <option value='Salad'>Salad</option>
-                            <option value='Desert'>Desert</option>
-                            <option value='Drinks'>Drinks</option>
+                            {categoryOptions.map(category =>{
+                                return <option values={category}>{category}</option>
+                            })}
                         </select>
                     </div>
 
@@ -24,68 +23,67 @@ const AddProductForm = ({values, errors, onChangeInput, onChangeImage, }) =>{
                         <label>Name</label>
                         <input
                             type='text'
-                            name='name'
-                            onChange={onChangeNameInput}
-                            value={name}
+                            name='product_name'
+                            onChange={handleChanges}
+                            value={values.product_name}
                             placeholder='Enter product name'
                         />
-                        {nameError && <p>{nameError}</p>}
+                        {errors.product_name && <p>{errors.product_name}</p>}
                     </div>
-                    
+
                     <div className='addProduct_input'>
                         <label>Price</label>
                         <input
                             type='number'
-                            name='price'
+                            name='product_price'
                             maxLength='2'
-                            onChange={onChangePriceInput}
-                            value={price}
+                            onChange={handleChanges}
+                            value={values.product_price}
                             placeholder='Enter product price'
                         />
-                        {priceError && <p>{priceError}</p>}
+                        {errors.product_price && <p>{errors.product_price}</p>}
                     </div>
                     <div className='addProduct_input'>
                         <label>Description</label>
                         <textarea 
-                            onChange={onChangeDescriptionInput} 
                             rows="5" 
                             cols="20" 
-                            className="descriptionBox"  
-                            name="description"
-                            value={description}
+                            className="product_descriptionBox"  
+                            name="product_description"
+                            onChange={handleChanges} 
+                            value={values.product_description}
                         />
-                        {descriptionError && <p>{descriptionError}</p>}
+                        {errors.product_description && <p>{errors.product_description}</p>}
                     </div>
                 </div>
 
                 <div className='addProduct_images'>
                     <div className='addProduct_input'>
                         <label>Image</label>
-                        {imageError && <p>Import a image</p>}
-                        <input type="file" name="image" onChange={onImageChange} />
+                        {errors.image && <p>Import a image</p>}
+                        <input type="file" name="image" onChange={handleChanges} />
                     </div>
 
                     <div className='image_place'>
-                        {image && (
+                        {values.image && (
                             <div className='image_container'>
                                 <img
-                                    src={URL.createObjectURL(image)}
+                                    src={URL.createObjectURL(values.image)}
                                     alt="Product"
                                 />
                                 <button onClick={removeSelectedImage} className='removeImageButton'>
                                     Remove Image
                                 </button>
                             </div>
-                            
+
                         )}
                     </div>
                 </div>
-                
 
                 <div className='button_container'>
                     <button>Add Product</button>
                 </div>
-                
+
             </form>
         </div>
     )
