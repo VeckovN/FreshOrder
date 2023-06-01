@@ -3,8 +3,8 @@ import {Link} from 'react-router-dom';
 
 import axios from 'axios';
 
-import AddProduct from './AddProduct';
-import ProductItem from './ProductItem';
+import AddProduct from './AddProduct/AddProduct';
+import ProductItem from './ProductItem/ProductItem.js';
 import UpdateProduct from './UpdateProduct';
 import './Products.css'
 
@@ -45,19 +45,14 @@ const Products = () =>{
         
     }
 
-    //productData returend from ProductItem(child commponent)
-    // const onEditProductHandler = (productData)=>{
-    //     // alert("PRDATA : " + JSON.stringify(productData))
-    //     setEditData(productData);
-    // }
-
     return (
         <main className='mainAdmin'>
             <div className='products_container'>
                 <h1 className='product_title'>Products</h1>
                 <button className='addProduct_button' onClick={() => {setShowAddProduct(!showAddProduct)}}>Add Product</button>
                 
-                {showAddProduct && <AddProduct></AddProduct>}
+                {/* on addProduct click button */}
+                {showAddProduct && <AddProduct/>}
                 
                 <div className='products_category'>
                     {categoryOptions.map(el =>{

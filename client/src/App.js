@@ -33,7 +33,7 @@ import Users from './components/Admin/components/page/Users/Users.js'
 import AdminModalUsersUpdate  from './components/Admin/components/page/Users/UsersModal.js';
 import AdminDeliveryModal  from './components/Admin/components/page/Orders/AdminDeliveryModal.js'
 import Products from './components/Admin/components/page/Products/Products.js'
-import AddProducts from './components/Admin/components/page/Products/AddProduct';
+import AddProducts from './components/Admin/components/page/Products/AddProduct/AddProduct.js';
 import UsersUpdate from './components/Admin/components/page/Users/UsersUpdate.js'
 
 
