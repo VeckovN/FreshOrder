@@ -25,6 +25,8 @@ const useForm = (inputObj, callback) =>{
         Object.keys(values).forEach(key =>{
             values[key] = ''
         })
+
+        console.log("EMPY VALUES : " + JSON.stringify(values) )
     }
 
     const setEmptyFieldError =() =>{
@@ -164,6 +166,35 @@ const useForm = (inputObj, callback) =>{
         callback();
     }
 
+    //difference between productSubmit and this edit is that Edit inputs don't have be all filled out
+    //(exmaple you can fill ony one input not all of them) //just do validation 
+    const handleEditProductSubmit = (event) =>{
+
+        //check all empty input fields
+        if(values.product_name =='' && values.product_price =='' && values.product_description ==''){
+            addError("Inputs can not be empty!!!");
+            // setAllErrors();
+            // setEmptyFieldError();
+            return;
+        }
+
+        //Enter value error is appears after deleting invalid input values
+        if(errors.product_name){
+            addError("Name " + errors.product_name)
+            return;
+        }
+        else if(errors.product_price){
+            addError("Price " +errors.product_price)
+            return;
+        }
+        else if(errors.product_description){
+            addError(errors.product_description)
+            return;
+        }
+            
+        callback();
+    }
+
     const validateField = (keyName, value ) =>{
         console.log("KEYNAME: " + typeof(keyName) + ", VALUE: " + value )
         if(value != ''){
@@ -276,7 +307,9 @@ const useForm = (inputObj, callback) =>{
             }
         }
         else{
-            setErrorWithMessage(keyName, "Enter value");
+            // setErrorWithMessage(keyName, "Enter value"); //this is bug
+            RemoveErrorFromObject(keyName); //remove the error when the last letter is deleted from the input
+            //no letters no errors
         }
     }
 
@@ -288,7 +321,8 @@ const useForm = (inputObj, callback) =>{
         RemoveValueFromObject,
         handleChanges,
         handleRegSubmit,
-        handleProductSubmit
+        handleProductSubmit,
+        handleEditProductSubmit
     }
 
 }
