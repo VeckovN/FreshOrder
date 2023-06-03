@@ -38,13 +38,18 @@ const ProductItem = ({item, isChanged, onEditProduct}) =>{
         //{product_name:'margarita" ,product_price:'13.99'} -> [ ['product_name' , 'margarita'],  ['product_price' , ' 13.99']]
         let newContext = Object.entries(values).filter(([key,value]) => value !='').reduce((obj, [key,value]) =>{
             //example there is name="margarita", price = '3.99' , but description='' won't be added
+
+            //format it becase BE expects {name, price, description } instead product_ as prefix
+            if(key == 'product_name')
+                key = 'name';
+            else if(key == 'product_price')
+                key  = 'price'
+            else if (key == 'product_description')
+                key = 'desription'
+
             obj[key] = value; 
             return obj
-        }, {}); //{} as acc ->object
-
-        //Format it
-
-        alert("CONTEXT: \n" + JSON.stringify(newContext))
+        }, {}); //{} as acc ->object 
 
         const response = await axios.put(`http://localhost:8800/api/products/${productItemID}`, newContext)
         const updaterdProduct = response.data;
@@ -91,7 +96,6 @@ const ProductItem = ({item, isChanged, onEditProduct}) =>{
 
     const onDeleteProduct = async() =>{
         alert("delete It");
-
         try{
             const result = await axios.delete(`http://localhost:8800/api/products/${item._id}`)
             const resultData = result.data;
