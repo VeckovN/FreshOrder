@@ -5,7 +5,6 @@ import axios from 'axios';
 
 import AddProduct from './AddProduct/AddProduct';
 import ProductItem from './ProductItem/ProductItem.js';
-import UpdateProduct from './UpdateProduct';
 import './Products.css'
 
 const Products = () =>{
@@ -63,7 +62,6 @@ const Products = () =>{
                                 <button className='category_show_button' onClick={() => {onShowCategoryItems(el)}}>Show {el}</button>
                             </div>
                             
-                            {/* {editData && <UpdateProduct data={editData}></UpdateProduct>} */}
                             {category== el 
                                 && 
                                 <table className='category_table'>
