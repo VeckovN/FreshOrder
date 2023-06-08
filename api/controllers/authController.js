@@ -68,6 +68,7 @@ export const login = async (req,res,next)=>{
         //const {password, isAdmin, ...otherProps} = user._doc;  //use ._doc because user object has more information then necessary for us 
         const {password, ...otherProps} = user._doc;
 
+    
         //if everything is alright then login user and send him information about himself
         //set cookie and put created Token
         res.cookie('access_token', token,{
@@ -77,6 +78,7 @@ export const login = async (req,res,next)=>{
         .json({...otherProps}); 
         
         console.log("LOGGED");
+        console.log("TOKKEN: " + token);
     }
     catch(err){
         next(err)
