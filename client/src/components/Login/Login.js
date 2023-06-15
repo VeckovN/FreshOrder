@@ -24,7 +24,6 @@ const Login = (props) =>{
 
     const submitForm = async (event)=>{
         event.preventDefault();
-        //Not send request if is form empty
         if(values.email ==='' && values.password ==='' ){
             const error = {message:'Enter email address and password'}
             setEmptyFieldError();
@@ -35,7 +34,10 @@ const Login = (props) =>{
             dispatchAction({type:"LOGIN_START"})
             try{
                 //send HTTP post Request to localhost:8800/api/auth/login
-                const res = await axios.post('http://localhost:8800/api/auth/login', {email: values.email, password:values.password })
+                const res = await axios.post('http://localhost:8800/api/auth/login', {email: values.email, password:values.password }, 
+                {withCredentials: true,
+                    headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'}
+                })
                 //With setted proxy
                 //const res = await axios.post('/login', {email: enteredEmail, password:enteredPassword })
 
@@ -54,8 +56,6 @@ const Login = (props) =>{
             catch(err){
                 console.log("ERR: " + err);
                 dispatchAction({type:"LOGIN_FAILURE", payload:err.response.data})
-                // setEnteredPassword('');
-                // setEnteredEmail('');
                 values.email = '';
                 values.password ='';
                 console.log("ERROR: " + err.response.data.message);
@@ -63,27 +63,13 @@ const Login = (props) =>{
         }
     }
 
-    //useState changes will trigger compoennt reRendering (This isn't good option)
-    // useEffect( () =>{
-    //     const timer = setTimeout(()=>{
-    //         loggin(res.data);
-    //         console.log("RES DATA: " + res.data._id);
-    //         props.onClose();
-    //         addSuccess("You successfuly logged")
-    //     }, 1000);
 
-    //     return () =>clearTimeout(timer);
-    // },[isLogin])
-    
     //With useREf
     useEffect( () =>{
         //clear the inteval on component unmount
         return() => clearTimeout(timerRef.current);
-    })
+    },[])
 
-
-
-    
 
     //When is modal closed set error,loading and user to initiated value(false,null,null)
     const onCloseLoginModal =()=>{
