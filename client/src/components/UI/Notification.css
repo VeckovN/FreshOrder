@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap');
+
 .notification-container{
     z-index: 100;
     /* width:15rem;
@@ -7,7 +9,7 @@
     /* right:1rem; */
     right:-400px;
     
-    top:5rem;
+    top:6rem;
 
     /* width:15rem;
     height: 3.5rem; */
@@ -15,9 +17,11 @@
     min-width:15rem;
     min-height: 3.5rem;
 
-    border:2px solid black;
+    /* border:2px solid black; */
+    box-shadow: rgb(20, 5, 5) 5px 5px 15px 10px;
 
-    padding:1rem;
+    padding:1rem 2rem;
+    
 
     display:flex;
     flex-direction: column;
@@ -38,17 +42,20 @@
 }
 
 .notification-context{
-    font-family: 'Fredoka One', cursive;
+    /* font-family: 'Fredoka One', cursive; */
+    font-family: 'Kalam', cursive;
     padding:.1rem;
-    font-size:1.1rem;
+    font-size:1.3rem;
+    font-weight: 900;
+    
    
 }
 
 .error{
-    background-color: red;
+    background-color: rgb(204, 6, 6);
 }
 .success{
-    background-color: rgb(68, 177, 68);
+    background-color: rgb(37, 165, 37);
 }
 
 
@@ -59,5 +66,5 @@
 
 @keyframes moveout {
     from {right:2%}
-    to {right:-400px}
+    to {right:-500px}
 }
