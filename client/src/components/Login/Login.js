@@ -20,7 +20,7 @@ const Login = (props) =>{
     //another way to DispatchAction without defined function in auhtContext like in cartContext
     const {user,loading,error,dispatchAction, loggin} = useContext(authContext);
 
-    const {addSuccess} = useContext(notificationContext);
+    const {addSuccess, addError} = useContext(notificationContext);
 
     const submitForm = async (event)=>{
         event.preventDefault();
@@ -28,14 +28,17 @@ const Login = (props) =>{
             const error = {message:'Enter email address and password'}
             setEmptyFieldError();
             dispatchAction({type:"LOGIN_FAILURE", payload:error})
+            addError(error.message);
         }
         else{
             //Loading before we fetch user from DB
             dispatchAction({type:"LOGIN_START"})
             try{
+                //WITHOUT credentials:true and hedears cookies won't be saved in browser
                 //send HTTP post Request to localhost:8800/api/auth/login
                 const res = await axios.post('http://localhost:8800/api/auth/login', {email: values.email, password:values.password }, 
-                {withCredentials: true,
+                {   
+                    withCredentials: true,
                     headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'}
                 })
                 //With setted proxy
@@ -54,11 +57,10 @@ const Login = (props) =>{
                 }, 1000);
             }
             catch(err){
-                console.log("ERR: " + err);
                 dispatchAction({type:"LOGIN_FAILURE", payload:err.response.data})
                 values.email = '';
                 values.password ='';
-                console.log("ERROR: " + err.response.data.message);
+                addError(err.response.data.message);
             }
         }
     }
@@ -82,7 +84,7 @@ const Login = (props) =>{
         <LoginForm 
             loading={loading} 
             values={values} 
-            submitForm={submitForm} 
+            // submitForm={submitForm} 
             handleChanges={handleChanges} 
             errors={errors}
         />
@@ -92,6 +94,7 @@ const Login = (props) =>{
             onCloseLogin={onCloseLoginModal}
             logBodyContext={logBodyContext}
             error={error}
+            submitForm={submitForm}
         />
     )
 }

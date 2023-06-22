@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Tillana:wght@400;500;600;700;800&display=swap');
 
 /* THIS PASSED AS PROPERTY TO MODAL COMPONENT */
 .loginModal{
@@ -5,7 +6,6 @@
     width: 30%;
     min-width: 450px;
     max-width: 600px;
-    
 }
 
 
@@ -13,8 +13,8 @@
     display:flex;
     flex-direction:column;
     justify-content: space-evenly;
-    margin:1rem 0 .2rem 0;
-
+    margin:1rem 0rem;
+    height: 10rem;
     
     
 }
@@ -59,14 +59,18 @@
 
 .loginControl-input{
     display: flex;
-    padding:.5rem 3rem;
-    
+    flex-direction: row;
+    padding: 0.5em 3rem;
+
 }
 .reg_label{
     /* flex:1; */
     flex:1;
     color:white;
-    font-weight: 500;
+    font-family: 'Tillana', cursive;
+    font-weight: 800;
+    font-size:1rem;
+    letter-spacing: .05rem;
 }
 
 .login_input_field{
@@ -76,31 +80,33 @@
 }
 
 .login_input_field input{
-     flex:1;
+     /* flex:1;
 
      border:none;
      background-color: transparent;
      border-bottom: 2px solid rgba(0, 0, 0, 0.466);
      outline: none;
-     color:white;
+     color:white; */
 }
 
 .loginControl-input label{
     /* flex:1; */
     flex:1;
-    color:white;
-
+    color:rgb(0,0,0);
     font-weight: 500;
 }
 .loginControl-input input{
     /* flex:1; */
     flex:1;
-
+    
+    font-family: 'Tillana', cursive;
+    font-size: .9rem;
+    font-weight: 500;
     border:none;
     background-color: transparent;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.466);
+    border-bottom: 2px solid rgb(0, 0, 0);
     outline: none;
-    color:white;
+    color:rgb(0,0,0);
 }
 
 
@@ -109,19 +115,20 @@
 }
 
 .login_input_field input::placeholder{
-    color:white;
+    color:rgb(0,0,0);
     opacity: 0.6;
     font-style: italic;
+    font-family: 'Tillana', cursive;
 }
 
 .login_input_field .error{
-    border-bottom: 2px solid rgba(185, 11, 11, 0.842);
+    border-bottom: 2px solid rgba(216, 20, 20, 0.842);
 }
 
 /* When input has enterd value then it will be black(regular-no error) */
-.login_input_field .error:not(:placeholder-shown){
+/* .login_input_field .error:not(:placeholder-shown){
     border-bottom: 2px solid rgba(0, 0, 0, 0.800);
-}
+} */
 
 
 .loginError{
@@ -129,15 +136,19 @@
     color:white;
 }
 .loginError span{
-    color:rgb(207, 34, 34);
+    color:rgb(202, 22, 22);
     font-size:.9rem;
     font-weight: 600;
     
 }
 
 .login_input_field label{
-    font-size: .8rem;
-    color:rgb(182, 3, 3)
+    font-size: .9rem;
+    font-weight: 600;
+    letter-spacing: .05rem;
+    font-family: 'Shadows Into Light', cursive;
+    color:rgb(236, 0, 0)
+    
 }
 
 
@@ -169,6 +180,35 @@
     background-color: rgb(122, 141, 93);
     color:black;
 
+}
+
+.loginForm_submit{
+    display:flex;
+    justify-content: flex-end;
+    margin:.1rem .5rem .1rem 0;
+}
+
+.loginForm_submit button{   
+
+    cursor: pointer;
+    /* height: 1.7rem; */
+    border:2px solid black;
+    border-radius: .5rem;
+
+    font-family: 'Averia Sans Libre', cursive;
+    font-size: 1rem;
+    font-weight: 500;
+
+    height: 2rem;
+    width: 5.5rem;
+
+    
+}
+
+.loginForm_submit button:hover{
+    color:white;
+    background-color:rgb(124, 124, 124);
+    
 }
 
 

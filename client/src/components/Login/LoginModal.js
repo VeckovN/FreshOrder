@@ -1,7 +1,7 @@
 
 import Modal from '../UI/Modal/Modal.js'
 
-const LoginModal = ({onCloseLogin, logBodyContext, error})=>{
+const LoginModal = ({onCloseLogin, logBodyContext, error, submitForm})=>{
 
     
     const logHeaderContext =
@@ -13,8 +13,15 @@ const LoginModal = ({onCloseLogin, logBodyContext, error})=>{
     //in Login component
     // const regBodyContext
     
+    // const logFooterContext = 
+    //     error && <div className='loginError'> <span>{error.message}</span></div>
+
     const logFooterContext = 
-        error && <div className='loginError'> <span>{error.message}</span></div>
+            <>
+                <div className ='loginForm_submit'>
+                    <button onClick={submitForm}>Submit</button>
+                </div> 
+            </>
 
     return(
     <Modal

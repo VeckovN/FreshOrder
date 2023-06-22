@@ -1,7 +1,7 @@
-const LoginForm = ({loading, submitForm, values, handleChanges, errors }) =>{
+const LoginForm = ({loading, values, handleChanges, errors }) =>{
 
     return(
-        <form className='loginForm' onSubmit={submitForm}>
+        <div className='loginForm'>
             {loading &&
             <div className='loadingBackground'>
                 <div className='loader'></div>
@@ -37,10 +37,7 @@ const LoginForm = ({loading, submitForm, values, handleChanges, errors }) =>{
                     {errors.password && <label>{errors.password}</label>}
                 </div>
             </div>
-            <div className ='loginForm-actions'>
-                <button>Submit</button>
-            </div>
-        </form>
+        </div>
     )
 }
 
