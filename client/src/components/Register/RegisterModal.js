@@ -1,6 +1,6 @@
 import Modal from "../UI/Modal/Modal.js"
 
-const RegisterModal = ({regBodyContext, error, onCloseRegister}) =>{
+const RegisterModal = ({regBodyContext, error, onCloseRegister, submitForm}) =>{
 
     const regHeaderContext =
     'Registration';
@@ -8,7 +8,11 @@ const RegisterModal = ({regBodyContext, error, onCloseRegister}) =>{
     //const regBodyContext =
         
     const regFooterContext = 
-    error && <div className='registerError'>Error: <span>{error}</span></div>
+        <>
+            <div className = 'registerForm_submit'>
+                <button onClick={submitForm}>Submit</button>
+            </div> 
+        </>
 
 
     return(

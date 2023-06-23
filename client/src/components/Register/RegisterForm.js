@@ -3,7 +3,7 @@ import './Register.css'
 const RegisterForm = ({submitForm, values, errors, handleChanges,}) =>{
 
     return (
-        <form onSubmit={submitForm}>
+        <div className='regForm'>
             <div className='registerControl-input'>
                 <label className='reg_label'>Username</label>
                 <div className='register_input_field'>
@@ -100,10 +100,11 @@ const RegisterForm = ({submitForm, values, errors, handleChanges,}) =>{
                 
             </div>
 
-            <div className = 'registerForm-actions'>
+            {/* moved in Modal Footer */}
+            {/* <div className = 'registerForm-actions'>
                 <button>Submit</button>
-            </div>
-        </form>
+            </div> */}
+        </div>
     )
 }
 
