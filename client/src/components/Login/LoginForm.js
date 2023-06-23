@@ -9,7 +9,7 @@ const LoginForm = ({loading, values, handleChanges, errors }) =>{
             }
 
             <div className='loginControl-input'>
-                <label className='reg_label'>Email Address</label>
+                <label className='log_label'>Email Address</label>
                 <div className='login_input_field'>
                     <input
                         type='text'
@@ -24,7 +24,7 @@ const LoginForm = ({loading, values, handleChanges, errors }) =>{
             </div>
 
             <div className='loginControl-input'>
-                <label className='reg_label'>Password</label>
+                <label className='log_label'>Password</label>
                 <div className='login_input_field'>
                     <input
                         type='password'
