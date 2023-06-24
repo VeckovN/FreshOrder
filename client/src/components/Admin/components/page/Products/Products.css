@@ -180,12 +180,16 @@
 .addProduct_input{
     margin:.5rem 0rem;
     display: flex;
-    flex-direction: column;
+    flex-direction: column;    
+    font-family: 'Tillana', cursive;
 }
 
 .addProduct_input label{
     color:white;
-    font-size: 600;
+    font-size: 1rem;
+    letter-spacing: .06rem;
+    font-weight: 500;
+    /* font-family: 'Tillana', cursive; */
 }
 
 .addProduct_input input{
@@ -195,11 +199,28 @@
     background-color: transparent;
     border-bottom: 2px solid rgb(32, 30, 30);
     outline: none;
-    color:rgb(202, 183, 183);
+    color:rgb(194, 191, 191)
 }
 
 .addProduct_input input::placeholder{
-    color:rgb(202, 183, 183);
+    color:rgb(194, 191, 191);
+    font-weight: 600;
+    /* font-family: 'Tillana', cursive; */
+    font-size: .6rem;
+}
+
+.addProduct_input select {
+    font-family: 'Tillana', cursive;
+    font-size:.7rem;
+    font-weight: 600;
+}
+
+.error_product{
+    font-size:.8rem;
+    font-weight: 600;
+    letter-spacing: .07rem;
+    font-family: 'Shadows Into Light', cursive;
+    color:rgb(240, 6, 6)
 }
 
 .addProduct_button{
