@@ -50,14 +50,14 @@
 }
 .modal-header , .modal-footer{
     /* background-color:#381800; */
-    background-color:#140e05;
+    background-color:#0a0803;
 }
 
 .modal-header:first-child{
-    font-family: 'Skranji', cursive;
+    font-family: 'Handlee', cursive;
     letter-spacing: 0.05rem;
     font-weight: 700;
-    font-size: 1.0rem;
+    font-size: 1.1rem;
     padding-left: 1rem;
     color:white;
 }
@@ -65,7 +65,7 @@
 
 .modal-header button{ /* second div of modal-header */
     color:rgb(179, 40, 40);
-    font-size:1rem;
+    font-size:.9rem;
     font-weight: bold;
     margin-right:.7rem;
 
@@ -77,11 +77,11 @@
 
 .modal-header button:hover{
     color:white;
-    font-size:1.1rem;
+    font-size:.95rem;
 }
 
 .modal-body{
-    background-color: #323233;
+    background-color: #dddddd;
     /* background-image: url('../../../public/BackgroundCenter.jpg'); */
     padding:0.2rem 0;
 }
