@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Averia+Sans+Libre:wght@300;400;700&display=swap');
+
 /* @import url('https://fonts.googleapis.com/css2?family=Lobster+Two:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
@@ -27,8 +28,7 @@ font-family: 'Exo 2', sans-serif;
     align-content: center;
     width: 100%;
     flex-wrap:wrap;
-    
-    
+
 }
 
 .cart_item{
@@ -39,8 +39,6 @@ font-family: 'Exo 2', sans-serif;
 
     position:relative;
 
-    /* background-color: #c2c2c2; */
-    /* background-color: #afa5a5c9; */
     list-style:none;
     margin:1rem 1rem;
     padding:.5rem;
@@ -56,7 +54,7 @@ font-family: 'Exo 2', sans-serif;
 
 
 .cart_item img{
-    opacity: .5;
+    opacity: .8;
     position:absolute;
     width:100%;
     height: 100%;
@@ -86,17 +84,18 @@ font-family: 'Exo 2', sans-serif;
 .cart_info > *{
     margin:.2rem 0;
     font-family: 'Averia Sans Libre', cursive;
-    font-weight: 700;
-    font-size: 1.3rem;
+    font-weight: 1000;
+    font-size: 1.2rem;
     /* color:rgb(182, 179, 179); */
     color:rgb(0, 0, 0);
 }
 
 .cart_info span {
-    font-weight: 600;
-    font-size: 1.4rem;
-    font-family: 'Shadows Into Light', cursive;
+    font-weight: 1000;
+    font-size: 1.2rem;
+    font-family: 'Pacifico', cursive;
     color:white;
+    color:rgb(0, 0, 0);
 }
 
 
@@ -112,7 +111,7 @@ font-family: 'Exo 2', sans-serif;
 
 .no_items{
     text-align: center;
-    color:white;
+    color:rgb(0,0,0);
     font-weight: 600;
     font-size:1.3rem;
     margin:.5rem 0;
@@ -160,7 +159,6 @@ font-family: 'Exo 2', sans-serif;
 
 .cart_buttons button:active{
     transform: translateY(1px);
-    
 }
 
 

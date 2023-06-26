@@ -73,6 +73,7 @@
     color:rgb(0,0,0);
     opacity: 0.6;
     font-style: italic;
+    font-size: .8rem;
 }
 
 .register_input_field .error{
