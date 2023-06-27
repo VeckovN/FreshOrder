@@ -8,11 +8,13 @@ const useForm = (inputObj, callback) =>{
 
     const [values, setValues] = useState(inputObj);  //valuse={username:'novak', email:'novak@gmail.com'}
     const [errors, setErrors] = useState({});
+    const [shows, setShows] = useState({}); //on click user profile info show input to change it
 
     const {addSuccess, addError} = useContext(notificationContext);
 
     console.log("\n VALUES : " + JSON.stringify(values));
     console.log("\n ERRORS " + JSON.stringify(errors));
+    console.log("\n SHOWS " + JSON.stringify(shows));
 
     const setErrorWithMessage = (keyName, message) =>{
         setErrors({
@@ -27,6 +29,9 @@ const useForm = (inputObj, callback) =>{
         })
 
         console.log("EMPY VALUES : " + JSON.stringify(values) )
+    }
+    const unshowsAllInputs = () =>{
+        setShows({})
     }
 
     const setEmptyFieldError =() =>{
@@ -73,7 +78,26 @@ const useForm = (inputObj, callback) =>{
         let {[keyName]: anyValue, ...res} = values
         setValues(res);
     }
+    const RemoveShowsFromObject = (keyname)=>{
+        let{[keyname]: anyValue, ...res} = shows
+        setShows(res);
+    }
 
+    const handleShowClickHandler = (keyname) =>{
+        if(shows[keyname] ==  true)
+            RemoveShowsFromObject(keyname)
+        else
+            setShows({
+                ...shows,
+                [keyname]:true
+            })
+
+        //f the input is closed then remove Error and Value from it
+        RemoveErrorFromObject(keyname);
+        RemoveValueFromObject(keyname);
+    }
+
+    //Handle Changes on input changes
     const handleChanges = (e) =>{
         const key = e.target.name;
         const value = e.target.value;
@@ -113,7 +137,7 @@ const useForm = (inputObj, callback) =>{
         })
     }
 
-
+    //registration Submit 
     const handleRegSubmit = (event) =>{
         event.preventDefault(); //no page reload
         console.log("username: " + values.username + " email : " + values.email +  " password: " + values.password + " address: " + values.address + " phone_number: " + values.phone_number)
@@ -193,6 +217,36 @@ const useForm = (inputObj, callback) =>{
         }
             
         callback();
+    }
+
+    const handleUserEditSubmit = (event) =>{
+        if(Object.keys(values).length !=0){
+            //check Showed and Entered value,error of input
+            //if is Value empty show empty error, if is error show error
+            
+            //Entered values without errors
+            let validValues = {};
+            let updatedValues = "";
+            Object.keys(shows).forEach(key =>{
+                if(!errors[key] && values[key] !="")
+                    // validValues.key = values[key] ; //result is key:'novakveckov' key value isn't read
+                    validValues[key] = values[key] ; //this solved email:'novakveckov@gmail.com'
+                    updatedValues += key + ' ';
+            })
+
+            console.log("VALID VALUES : " + JSON.stringify(validValues));
+
+            //Only valid key:values to update
+            callback(validValues);
+            addSuccess('You updated: ' + updatedValues)
+            resetAllValues();
+            unshowsAllInputs();
+
+
+        }   
+        else{
+            addError("Inputs are empty");
+        }   
     }
 
     const validateField = (keyName, value ) =>{
@@ -316,13 +370,16 @@ const useForm = (inputObj, callback) =>{
     return {
         values,
         errors,
+        shows,
         setEmptyFieldError,
         resetAllValues,
         RemoveValueFromObject,
         handleChanges,
         handleRegSubmit,
         handleProductSubmit,
-        handleEditProductSubmit
+        handleEditProductSubmit,
+        handleShowClickHandler,
+        handleUserEditSubmit
     }
 
 }
