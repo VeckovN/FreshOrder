@@ -1,10 +1,10 @@
-import {isValidElement, useState, useEffect, useContext, useDebugValue} from 'react';
+import {useState, useEffect, useContext} from 'react';
 import axios from 'axios'
 
 import notificationContext from '../../Store/notification-context';
 import LoadingSpinner from '../../../utils/LoadingSpinner';
 
-import useForm from '../../../utils/Hooks/useFormSelect';
+import useForm from '../../../utils/Hooks/useForm';
 import ProfileContext from './ProfileContext';
 import Card from '../../UI/Card'
 
@@ -15,13 +15,13 @@ const Profile = () =>{
 
     const {addSuccess, addError} = useContext(notificationContext);
 
-    const updateUser = async(user) =>{
+    const onUpdateUser = async(user) =>{
         try{
             console.log("UPDATEEEEEEEEEEEEEEEEEEEssssssssssss");
             //proxy doesn't works
             const res = await axios.put(`http://localhost:8800/api/users/updateuser/${userID}`, user);
-
             console.log("JSON REZ: " + JSON.stringify(res));
+            //setReFetch val
             setReFetch(prevState => !prevState);
         }
         catch(err){
@@ -34,21 +34,28 @@ const Profile = () =>{
     }
 
     //updateUser as callback which will be call after submit validation
-    const {values, errors, shows, handleChanges, handleSubmit, onClickShowHandler} = useForm(updateUser);
+    // const {values, errors, shows, handleChanges, handleSubmit, onClickShowHandler} = useForm(updateUser);
 
-
+    const initialInputObject = {
+        username:"", 
+        email:"", 
+        address:"", 
+        phone_number:"" 
+    }
+    
     const [fetchLoading, setFetchLoading] = useState(true);
+    //User(props) profile info
     const [userInfo, setUserInfo] = useState({
-        username:'',
-        email:'',
-        address:'',
-        phone_number:'',
+        username:"", 
+        email:"", 
+        address:"", 
+        phone_number:""
     })
-    const [fetchError, setFetchError] = useState('');
-    const [reFetch, setReFetch] = useState(false);
-
+    const [reFetch, setReFetch] = useState(true);
     const User = localStorage.getItem('user')
     const userID = JSON.parse(User)._id;
+
+    const {values, errors, shows, handleChanges, handleShowClickHandler, handleUserEditSubmit, resetAllValues, RemoveValueFromObject, handleProductSubmit} = useForm(initialInputObject, onUpdateUser);
 
     //Fetch all data from current user and show it
     useEffect(()=>{
@@ -61,20 +68,21 @@ const Profile = () =>{
                 const response = await axios.get(`users/${userID}`);  
                 console.log("DATATATA:" + response.data._id);
                 const res = response.data;
-                // setUserInfo(state=> ({...state, username:res.username, email:res.data, address:res.address, phone_number:res.phone_number }))
+                setUserInfo(state=> ({...state, username:res.username, email:res.data, address:res.address, phone_number:res.phone_number }))
                 
-                // !!!!! useFectc ERROR WITH userINfo as DEPENDECIES !!!!!!!!
-                //THIS STATE CANT BE IN useEFFECT DEPENDECIES, Because this setUserInfo trigger re-rendering whcih is useEffect also reCalled,
-                // again in useEffect is setUserInfo which will again invoke re-renderin and we Are IN INFINITY LOOP
-                setUserInfo({
-                    username:res.username, 
-                    email:res.email, 
-                    address:res.address, 
-                    phone_number:res.phone_number 
-                })         
+                console.log("RESD ADATA: " + JSON.stringify(res));
+                console.log("RES USERNAME: " + res.username);
+                
+
+                console.log("VALUES SSSSS: " + JSON.stringify(values))
+                console.log("ERRORS SSSSS: " + JSON.stringify(errors))
+                console.log("SHOWS SSSSS: " + JSON.stringify(shows))
+
+                console.log('USER INFO : ' + JSON.stringify(userInfo))
+                
                 setFetchLoading(false);
+                console.log("FETCH LOADING: " + fetchLoading);
             }catch(err){
-                setFetchError(true);
                 console.log(err);
             }
         }
@@ -90,34 +98,25 @@ const Profile = () =>{
             return false;
     }
 
-    const commitHandler = async()=>{
-        //handleSubmit is async
-        const submit =  await handleSubmit(); //from useForm hook
-
-        console.log("SUBMIT: " + JSON.stringify(submit));
-
-        submit ? addSuccess("You have successfully updated your profile")  
-            : addError(errors.global)     
-    }
-
-
     return(
         <div className = "profile_container">
                 {/* THIS COULD RENDER profileContext Component and Another Component For Loading Animation  */}
-                {!fetchLoading ? 
+                
+            {!fetchLoading ? 
                     <>    
                         <h2 className='profile_title'>Client Profile</h2>
                         {/* {profileContext}  */}
                         <ProfileContext
-                            userInfo={userInfo}
+                            userInfo={userInfo} //user Data info
+                            values={values} //inputFrom values
                             errors={errors}
                             shows={shows}
-                            commitHandler={commitHandler}
+                            // commitHandler={commitHandler}
+                            commitHandler = {handleUserEditSubmit}
                             handleChanges={handleChanges}
                             checkForCommit={checkForCommit}
-                            onClickShowHandler={onClickShowHandler}
+                            onClickShowHandler={handleShowClickHandler}
                         />
-                        
                     </>
                 : <div><LoadingSpinner/></div>}   
         </div>
