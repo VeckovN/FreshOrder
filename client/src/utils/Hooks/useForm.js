@@ -81,6 +81,8 @@ const useForm = (inputObj, callback) =>{
     const RemoveShowsFromObject = (keyname)=>{
         let{[keyname]: anyValue, ...res} = shows
         setShows(res);
+
+        console.log("REMOVE SHOWS !!!!!!!!!!! " + keyname);
     }
 
     const handleShowClickHandler = (keyname) =>{
@@ -221,28 +223,22 @@ const useForm = (inputObj, callback) =>{
 
     const handleUserEditSubmit = (event) =>{
         if(Object.keys(values).length !=0){
-            //check Showed and Entered value,error of input
-            //if is Value empty show empty error, if is error show error
-            
-            //Entered values without errors
             let validValues = {};
-            let updatedValues = "";
+            const updatedObject = {...shows}
             Object.keys(shows).forEach(key =>{
-                if(!errors[key] && values[key] !="")
-                    // validValues.key = values[key] ; //result is key:'novakveckov' key value isn't read
-                    validValues[key] = values[key] ; //this solved email:'novakveckov@gmail.com'
-                    updatedValues += key + ' ';
+                console.log("VALUES KEY NOW: " +values[key])
+                if(!errors[key] && values[key] !="" && values[key] !=undefined)
+                {  // validValues.key = values[key] ; //result is key:'novakveckov' key value isn't read
+                    validValues[key] = values[key]; //this solved email:'novakveckov@gmail.com'
+                    //delete valid keys from shows(unshowned successfully updated inputs)
+                    delete updatedObject[key];
+                }
             })
 
-            console.log("VALID VALUES : " + JSON.stringify(validValues));
-
+            //set new Shows(show only not deleted key-s)
+            setShows(updatedObject);
             //Only valid key:values to update
             callback(validValues);
-            addSuccess('You updated: ' + updatedValues)
-            resetAllValues();
-            unshowsAllInputs();
-
-
         }   
         else{
             addError("Inputs are empty");
@@ -374,6 +370,7 @@ const useForm = (inputObj, callback) =>{
         setEmptyFieldError,
         resetAllValues,
         RemoveValueFromObject,
+        RemoveShowsFromObject,
         handleChanges,
         handleRegSubmit,
         handleProductSubmit,

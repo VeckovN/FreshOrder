@@ -17,25 +17,44 @@ const Profile = () =>{
 
     const onUpdateUser = async(user) =>{
         try{
-            console.log("UPDATEEEEEEEEEEEEEEEEEEEssssssssssss");
-            //proxy doesn't works
-            const res = await axios.put(`http://localhost:8800/api/users/updateuser/${userID}`, user);
-            console.log("JSON REZ: " + JSON.stringify(res));
-            //setReFetch val
-            setReFetch(prevState => !prevState);
+            const res = await axios.put(`http://localhost:8800/api/users/updateuser/${userID}`, user);            
+            let updatedKeys = '';   
+            let length = Object.keys(user).length;
+            // //get all keys of updated props
+            console.log("USERSsssss: " + JSON.stringify(user));
+            if(length > 0)
+            {
+                Object.keys(user).forEach((key, index)=>{
+                    console.log("!!!!!!! : " + key);
+                    if(index != length-1)
+                        updatedKeys+= key + ", "
+                    else
+                        updatedKeys+= key;
+                        //if is the last key there ins't + for next key
+                })
+                    //setReFetch val
+                addSuccess('You updated: ' + updatedKeys)
+                setReFetch(prevState => !prevState);
+            }
+            else
+                addError("Invalid inputs");
         }
         catch(err){
-            //return next(createError(404, 'Username exists')); cretatError returns new Error
-            console.log(err.response.data);
-            return {errorMessage:err.response.data.message}
+            //if exist error send from NODEJS as new Error(error.message , error.status)
+            if(err.response.data && err.response.data.message)
+            {
+                console.log("ERROROR" + err.response.data.message);
+                addError(err.response.data.message);
+            }
+            else
+                console.log("An error occurred : " + err);
         }
-        http://localhost:8800/api/users/updateuser/635ba836ff04dc580230a964
-        console.log("OBJECT:" + JSON.stringify(user));
+        // //http://localhost:8800/api/users/updateuser/635ba836ff04dc580230a964
+        // console.log("OBJECT:" + JSON.stringify(user));
     }
 
     //updateUser as callback which will be call after submit validation
     // const {values, errors, shows, handleChanges, handleSubmit, onClickShowHandler} = useForm(updateUser);
-
     const initialInputObject = {
         username:"", 
         email:"", 
@@ -55,7 +74,7 @@ const Profile = () =>{
     const User = localStorage.getItem('user')
     const userID = JSON.parse(User)._id;
 
-    const {values, errors, shows, handleChanges, handleShowClickHandler, handleUserEditSubmit, resetAllValues, RemoveValueFromObject, handleProductSubmit} = useForm(initialInputObject, onUpdateUser);
+    const {values, errors, shows, handleChanges, handleShowClickHandler, handleUserEditSubmit, RemoveShowsFromObject} = useForm(initialInputObject, onUpdateUser);
 
     //Fetch all data from current user and show it
     useEffect(()=>{
@@ -68,7 +87,7 @@ const Profile = () =>{
                 const response = await axios.get(`users/${userID}`);  
                 console.log("DATATATA:" + response.data._id);
                 const res = response.data;
-                setUserInfo(state=> ({...state, username:res.username, email:res.data, address:res.address, phone_number:res.phone_number }))
+                setUserInfo(state=> ({...state, username:res.username, email:res.email, address:res.address, phone_number:res.phone_number }))
                 
                 console.log("RESD ADATA: " + JSON.stringify(res));
                 console.log("RES USERNAME: " + res.username);
@@ -88,7 +107,6 @@ const Profile = () =>{
         }
     
         fetchData();
-
     }, [reFetch]); //fetch on every commit , When is user updated (setInfo state) we change this state reFetch
     
     const checkForCommit = ()=>{
