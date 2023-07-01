@@ -15,8 +15,12 @@ const Profile = () =>{
 
     const {addSuccess, addError} = useContext(notificationContext);
 
+
+    // callback(validValues) in useForm (user is validValues)
     const onUpdateUser = async(user) =>{
         try{
+            console.log("USSEERRR: " + JSON.stringify(user));
+
             const res = await axios.put(`http://localhost:8800/api/users/updateuser/${userID}`, user);            
             let updatedKeys = '';   
             let length = Object.keys(user).length;
@@ -74,7 +78,7 @@ const Profile = () =>{
     const User = localStorage.getItem('user')
     const userID = JSON.parse(User)._id;
 
-    const {values, errors, shows, handleChanges, handleShowClickHandler, handleUserEditSubmit, RemoveShowsFromObject} = useForm(initialInputObject, onUpdateUser);
+    const {values, errors, shows, handleChanges, handleShowClickHandler, handleUserEditSubmit} = useForm(initialInputObject, onUpdateUser);
 
     //Fetch all data from current user and show it
     useEffect(()=>{
@@ -88,17 +92,6 @@ const Profile = () =>{
                 console.log("DATATATA:" + response.data._id);
                 const res = response.data;
                 setUserInfo(state=> ({...state, username:res.username, email:res.email, address:res.address, phone_number:res.phone_number }))
-                
-                console.log("RESD ADATA: " + JSON.stringify(res));
-                console.log("RES USERNAME: " + res.username);
-                
-
-                console.log("VALUES SSSSS: " + JSON.stringify(values))
-                console.log("ERRORS SSSSS: " + JSON.stringify(errors))
-                console.log("SHOWS SSSSS: " + JSON.stringify(shows))
-
-                console.log('USER INFO : ' + JSON.stringify(userInfo))
-                
                 setFetchLoading(false);
                 console.log("FETCH LOADING: " + fetchLoading);
             }catch(err){

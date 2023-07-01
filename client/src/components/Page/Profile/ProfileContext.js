@@ -62,19 +62,27 @@ const ProfileContext = ({userInfo,values, errors, shows, commitHandler, handleCh
             <div className='input_field'>
                 <div onClick ={()=> onClickShowHandler("password")}>Password</div>
                 {shows.password && 
-                <div>
-                    <input onChange={handleChanges} type='password' placeholder='New password' name='password'></input> 
-                    {errors.password && <label className='errorInputLabel'>{errors.password}</label>}
-                    {/* //Only if password input exist then show repeatPassword */}
-                    <div>Repeat Password</div>
-                    <input
-                        onChange={handleChanges} 
-                        type='password' 
-                        placeholder='Repeat new password' 
-                        name ='repeat_password'
-                    />
-                    {errors.repeat_password && <label className='errorInputLabel'>{errors.repeat_password}</label>}
-                </div>}
+                    <div className="password_form">  
+                        <div className='password_input'>
+                            <input 
+                                onChange={handleChanges} 
+                                type='password' 
+                                placeholder='New password' 
+                                name='password'
+                            /> 
+                            {errors.password && <label className='errorInputLabel'>{errors.password}</label>}
+                        </div>
+                        <div className='password_input'>
+                            <input
+                                onChange={handleChanges} 
+                                type='password' 
+                                placeholder='Repeat new password' 
+                                name ='repeat_password'
+                            />
+                            {errors.repeat_password && <label className='errorInputLabel'>{errors.repeat_password}</label>}
+                        </div>    
+                    </div>
+                }
             </div>
 
             <div className='commit_container'>

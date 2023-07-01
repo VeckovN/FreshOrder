@@ -30,9 +30,6 @@ const useForm = (inputObj, callback) =>{
 
         console.log("EMPY VALUES : " + JSON.stringify(values) )
     }
-    const unshowsAllInputs = () =>{
-        setShows({})
-    }
 
     const setEmptyFieldError =() =>{
         console.log("VAU: " + JSON.stringify(values));
@@ -67,7 +64,6 @@ const useForm = (inputObj, callback) =>{
                 repeat_password:''
             })
         })
-
     }
 
     const RemoveErrorFromObject = (keyName) =>{
@@ -107,12 +103,6 @@ const useForm = (inputObj, callback) =>{
         //differnet way to handle image(file) from input
         if(key == 'image'){
             console.log("Key: " + key + " Values : " + e.target.files.length)
-            //validation
-            // validateField('image', e.target.files)
-            // setValues({
-            //     ...values,
-            //     [key]:e.target.files[0]
-            // })
             if (e.target.files && e.target.files.length > 0){
                 alert('Image')
                 setValues({
@@ -195,7 +185,6 @@ const useForm = (inputObj, callback) =>{
     //difference between productSubmit and this edit is that Edit inputs don't have be all filled out
     //(exmaple you can fill ony one input not all of them) //just do validation 
     const handleEditProductSubmit = (event) =>{
-
         //check all empty input fields
         if(values.product_name =='' && values.product_price =='' && values.product_description ==''){
             addError("Inputs can not be empty!!!");
@@ -203,7 +192,6 @@ const useForm = (inputObj, callback) =>{
             // setEmptyFieldError();
             return;
         }
-
         //Enter value error is appears after deleting invalid input values
         if(errors.product_name){
             addError("Name " + errors.product_name)
@@ -222,23 +210,51 @@ const useForm = (inputObj, callback) =>{
     }
 
     const handleUserEditSubmit = (event) =>{
-        if(Object.keys(values).length !=0){
+        if(Object.keys(values).length !=0){    
+            //Entered values without errors
             let validValues = {};
             const updatedObject = {...shows}
+            console.log("UPDATED OBJECT :" + JSON.stringify(updatedObject))
+            
             Object.keys(shows).forEach(key =>{
+                //this won't take repeat_password because it is showing only on password click (there isn't show for repeat_password)
                 console.log("VALUES KEY NOW: " +values[key])
                 if(!errors[key] && values[key] !="" && values[key] !=undefined)
-                {  // validValues.key = values[key] ; //result is key:'novakveckov' key value isn't read
-                    validValues[key] = values[key]; //this solved email:'novakveckov@gmail.com'
-                    //delete valid keys from shows(unshowned successfully updated inputs)
-                    delete updatedObject[key];
+                {   
+                    //handler password with repeat password 
+                    if(key == 'password'){
+                        if(values['password'] !== values['repeat_password']){
+                            //can't set error on both in the different time(becase one will trigger re-rendering and another will be overrided)
+                            // setErrorWithMessage("password", "Passwords aren't same")
+                            // setErrorWithMessage('repeat_password', "Passwords aren't same")
+                        
+                            //FIXED:set bot errors at the same time
+                            setErrors((prev)=>{
+                                return({
+                                    ...prev,
+                                    password:"Passwords aren't same",
+                                    repeat_password:"Passwords aren't same"
+                                })
+                            })            
+                        }
+                        else{
+                            validValues[key] = values[key];
+                            validValues['repeat_password'] = values[key]
+                            delete updatedObject[key]; //password = key
+                        }
+                    }
+                    else{ 
+                         // validValues.key = values[key] ; //result is key:'novakveckov' key value isn't read
+                        validValues[key] = values[key]; //this solved email:'novakveckov@gmail.com'
+                        //delete valid keys from shows(unshowned successfully updated)
+                        delete updatedObject[key];
+                    }           
                 }
             })
 
             //set new Shows(show only not deleted key-s)
             setShows(updatedObject);
-            //Only valid key:values to update
-            callback(validValues);
+            callback(validValues); 
         }   
         else{
             addError("Inputs are empty");
@@ -250,10 +266,8 @@ const useForm = (inputObj, callback) =>{
         if(value != ''){
             switch(keyName){
                 case 'username':
-                    // let usernameValid = value.match(/^[a-zA-Z\-]+$/);
                     if(value.length <=4)
                         setErrorWithMessage("username","Username atleast have 5 latters")
-                    // else if(!value.match(/^[a-zA-Z\-]+$/)){
                     else if(!value.match(/^[a-zA-Z][a-zA-Z0-9\-]+$/)){
                         setErrorWithMessage("username","No sign or number on start")
                     }
@@ -272,7 +286,6 @@ const useForm = (inputObj, callback) =>{
                     break;
 
                 case 'phone_number':
-                    // if(!value.match(/^\[0-9]{9,10}$/)){
                         if(!value.match(/^\d{9,10}$/)){
                         setErrorWithMessage("phone_number", "Between 9 and 10 digits")
                     }
@@ -294,6 +307,9 @@ const useForm = (inputObj, callback) =>{
                     if(!value.match(/[A-Za-z0-9]/)){
                         setErrorWithMessage("password", "Incorect Password")
                     }
+                    else if(!value.match(/^(?=.{1,15}$)[A-Za-z0-9]+$/)){
+                        setErrorWithMessage("password", "Long password")
+                    }
                     else{
                         RemoveErrorFromObject("password");
                     }
@@ -302,6 +318,9 @@ const useForm = (inputObj, callback) =>{
                 case 'repeat_password':
                     if(!value.match(/[A-Za-z0-9]/)){
                         setErrorWithMessage("repeat_password", "Incorect repeat password")
+                    }
+                    else if(!value.match(/^(?=.{1,15}$)[A-Za-z0-9]+$/)){
+                        setErrorWithMessage("repeat_password", "Long password")
                     }
                     else{
                         RemoveErrorFromObject("repeat_password");
