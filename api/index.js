@@ -13,6 +13,11 @@ import orderRoute from './routes/orders.js'
 const app = express();
 dotenv.config();
 
+//middlewares - it's able to reach our request and response(req,res) before sending anything to user 
+app.use(express.json()); //to send Json from Client to express
+app.use(cookieParser()); //for cookies
+// app.use(express.static(__dirname + '/public'));
+
 const connection = async () =>{
     try{
         const conn = await mongoose.connect(process.env.MONGO_URL);
@@ -42,10 +47,6 @@ app.use(cors(corsOptions))
 //example =- app.use(express.json) -ok in your api request you can use json()
 //then another bellow them , and everyone else until the end
 
-//middlewares - it's able to reach our request and response(req,res) before sending anything to user 
-app.use(express.json()); //to send Json from Client to express
-app.use(cookieParser()); //for cookies
-// app.use(express.static(__dirname + '/public'));
 
 // app.use()
 const storage = multer.diskStorage({

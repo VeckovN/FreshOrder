@@ -61,7 +61,7 @@ export const login = async (req,res,next)=>{
             return next(createError(400, 'Email Addres or Password not correct'))
         
         //hash this information in token
-        const token = jwt.sign({id:user._id, isAdmin:user.isAdmin}, process.env.SECRET_KEY);
+        const token = jwt.sign({id:user._id, isAdmin:user.isAdmin}, process.env.SECRET_KEY, {expiresIn:'1000'});
         //then store send token to client which he put it in cokie
 
         //won't send password and isAdmin prop to client as response
@@ -70,11 +70,11 @@ export const login = async (req,res,next)=>{
 
     
         //if everything is alright then login user and send him information about himself
-        //set cookie and put created Token
+        //set cookie and put created Token(with cookie-parser middleware)
         res.cookie('access_token', token,{
             httpOnly:true, //doesn't allow any client secret tool to access the cookie
         })
-        .status(200)
+        res.status(200)
         .json({...otherProps}); 
         
         console.log("LOGGED");

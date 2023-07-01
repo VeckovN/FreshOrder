@@ -75,6 +75,7 @@ function App() {
         {state.deliveryTimeInfo!=null && 
           <AdminDeliveryModal deliveryObj={state.deliveryTimeInfo} onClose={closeAdminDeliveryUpdate}/>}
 
+        {/* Show list of notification not only one notification */}
         {(success || error) && 
           <Notification />}
         <Header 

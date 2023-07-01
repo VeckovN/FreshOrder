@@ -30,10 +30,16 @@ export const updateUser  = async (req,res,next)=>{
         }
         
         if(newContext.password){
+            if(newContext.repeat_password){
+
+                if(newContext.password !== newContext.repeat_password)
+                    return next(createError(404, `Passwords aren't same`))
                 // hash password
-            const salt = bcrypt.genSaltSync(10);
-            const hash = bcrypt.hashSync(newContext.password, salt);
-            newContext.password = hash;
+                const salt = bcrypt.genSaltSync(10);
+                const hash = bcrypt.hashSync(newContext.password, salt);
+                newContext.password = hash;
+            }
+            
         }
 
         const updatedUser = await User.findByIdAndUpdate(id, newContext, {new:true});
