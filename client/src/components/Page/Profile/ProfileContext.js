@@ -9,7 +9,6 @@ const ProfileContext = ({userInfo,values, errors, shows, commitHandler, handleCh
                     <input 
                         className={errors.username && 'errorInput'} 
                         onChange={handleChanges}  
-                        // value={values.username || ""}
                         type='text' 
                         placeholder='New username'
                         name='username'
@@ -23,7 +22,6 @@ const ProfileContext = ({userInfo,values, errors, shows, commitHandler, handleCh
                     <input 
                         className={errors.email && 'errorInput'} 
                         onChange={handleChanges} 
-                        // values={values.username || ''}
                         type='text' 
                         placeholder='New email' 
                         name='email'
@@ -86,7 +84,7 @@ const ProfileContext = ({userInfo,values, errors, shows, commitHandler, handleCh
             </div>
 
             <div className='commit_container'>
-                <button onClick={commitHandler} disabled={!checkForCommit()} className='commitButton'>Commit</button>
+                <button onClick={commitHandler}  disabled={!checkForCommit()} className='commitButton'>Commit</button>
             </div>
 
             {/* <div className='edit_container'>

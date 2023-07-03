@@ -65,6 +65,17 @@ const Login = (props) =>{
         }
     }
 
+    // const handleEnterKey = (event) =>{
+
+    //     alert("KEYDOWN: " + event.key);
+    //     if(event.key === "Enter")
+    //     {
+    //         alert("ENTERR");
+    //         event.preventDefault();
+    //         this.submitForm();
+    //     }
+    // }
+
 
     //With useREf
     useEffect( () =>{

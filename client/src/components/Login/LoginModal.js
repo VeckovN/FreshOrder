@@ -16,10 +16,12 @@ const LoginModal = ({onCloseLogin, logBodyContext, error, submitForm})=>{
     // const logFooterContext = 
     //     error && <div className='loginError'> <span>{error.message}</span></div>
 
+    //When is Enter click also do submit
+
     const logFooterContext = 
             <>
                 <div className ='loginForm_submit'>
-                    <button onClick={submitForm}>Submit</button>
+                    <button onClick={submitForm} >Submit</button>
                 </div> 
             </>
 
