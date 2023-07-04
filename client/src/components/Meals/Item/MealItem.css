@@ -216,7 +216,17 @@
     .mealInfo .price{
         font-size: 1.3rem;
     }
+    .description{
+        font-size:1.1rem;
+    }
 
+    .mealCard:hover h3{
+        font-size: 1.3rem;
+        color:black;
+    } 
+    .mealCard:hover .price{
+        font-size:1.4rem;
+    }
 }
 
 @media screen and (max-width:330px){

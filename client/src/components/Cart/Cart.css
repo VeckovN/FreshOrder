@@ -231,6 +231,10 @@ font-family: 'Exo 2', sans-serif;
         width:17rem;
         height: 11rem;
     }
+
+    .cart_item:hover{
+        width: 18.5rem;
+    }
 }
 
 
@@ -240,6 +244,9 @@ font-family: 'Exo 2', sans-serif;
     .cart_item{
         width:16rem;
         height: 11rem;
+    }
+    .cart_item:hover{
+        width: 16.5rem;
     }
 
     /* .cart_info{
@@ -257,6 +264,9 @@ font-family: 'Exo 2', sans-serif;
         width:15rem;
         height: 10rem;
     }
+    .cart_item:hover{
+        width: 15.5rem;
+    }
    
     /* .cart_item{
         font-size: .8rem;
@@ -270,6 +280,10 @@ font-family: 'Exo 2', sans-serif;
         height: 11rem;
 
         margin:.7rem 1rem;
+    }
+
+    .cart_item:hover{
+        width: 18.5rem;
     }
 
 }
@@ -294,6 +308,10 @@ font-family: 'Exo 2', sans-serif;
         flex-direction: row;
         
     }
+    .no_items{
+        font-size:1.1rem;
+    }
+
     .total_amount{
         font-size:.9rem;
     }
@@ -328,7 +346,24 @@ font-family: 'Exo 2', sans-serif;
     }  */
 }
 
+@media screen and (max-width:400px) {
+    .total_amount{
+        font-size:.85rem;
+    }
+    .total_amount span {
+        font-size:1rem;
+    }
+
+    .order button{
+        width:4.5rem;
+        height: 1.45rem;
+    }
+}
+
 @media screen and (max-width:380px) {
+    .no_items{
+        font-size:1.0rem;
+    }
     .total_amount{
         font-size:.8rem;
     }
