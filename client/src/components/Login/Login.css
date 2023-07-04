@@ -203,10 +203,14 @@
         min-width: 380px;  
     }
     .loginForm{
-        
+        position: relative;
+        top:-1rem;
+        /* height: 200px; */
+        min-height: 150px;
     }
     .loginControl-input{
         flex-direction: column;
+        padding: .5rem 3rem;
     }
 }
 
@@ -215,6 +219,31 @@
         /* background-color: red; */
         min-width: 300px;
     }
+
+    .loginControl-input{
+        padding: .5rem 2rem;    
+    }
+    .log_label{
+        font-size:.9rem;
+        letter-spacing: .04rem;
+    }
+
+    .loginControl-input input{
+        font-size:.8rem;
+    }
+    .login_input_field label{
+        font-size: .7rem;
+    }
+
+
+    .loginForm_submit button{   
+
+        height: 1.8rem;
+        width: 4.5rem;
+
+        font-size: .9rem;
+    }
+
 }
 
 
