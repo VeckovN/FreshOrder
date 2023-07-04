@@ -47,8 +47,6 @@
     padding:.1rem;
     font-size:1.3rem;
     font-weight: 900;
-    
-   
 }
 
 .error{
@@ -57,6 +55,38 @@
 .success{
     background-color: rgb(37, 165, 37);
 }
+
+@media screen and (max-width:610px) {
+    .notification-container{
+        min-width:15rem;
+        min-height: 3rem;
+
+        max-width:20rem;
+        max-height: 4rem;
+        top:8rem;
+
+        /* border: 1px solid black; */
+
+        padding:.5rem 1rem;
+    }
+
+    .notification-title{
+        margin:.5rem 0;
+        font-size:1rem;
+        font-weight: 500;
+    }
+    
+    .notification-context{
+        /* font-family: 'Fredoka One', cursive; */
+        font-family: 'Kalam', cursive;
+        padding:.4rem;
+        font-size:1.0rem;
+        font-weight: 900;
+    }
+
+}
+
+
 
 
 @keyframes movein {
@@ -68,3 +98,4 @@
     from {right:2%}
     to {right:-500px}
 }
+
