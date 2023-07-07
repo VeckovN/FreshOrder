@@ -60,7 +60,7 @@ const RegisterForm = ({submitForm, values, errors, handleChanges,}) =>{
                         name='repeat_password'
                         onChange={handleChanges}
                         value={values.repeat_password || ''}
-                        placeholder='Enter password'
+                        placeholder='Repeat password'
                         className={errors.repeat_password && 'error'}
                     />
                     {errors.repeat_password && <label>{errors.repeat_password}</label>}
@@ -76,7 +76,7 @@ const RegisterForm = ({submitForm, values, errors, handleChanges,}) =>{
                         name='address'
                         onChange={handleChanges}
                         value={values.address || ''}
-                        placeholder="Enter address"
+                        placeholder="Enter your address"
                         className={errors.address && 'error'}
                     />
                     {errors.address && <label>{errors.address}</label>}

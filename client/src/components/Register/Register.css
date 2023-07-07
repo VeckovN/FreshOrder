@@ -2,7 +2,7 @@
 
 .registerModal{
     width:50%;
-    min-width: 450px;
+    min-width: 500px;
     max-width: 650px;
 }
 
@@ -132,7 +132,29 @@
 
 
 @media only screen and (max-width:461px){
-    
+    .registerModal{
+        width:40%;
+        min-width: 400px;
+        max-width: 420px;
+        /* max-width: 400px;    */
+    }
+
+
+    .registerControl-input{
+        display: flex;
+        padding:.7rem 2rem;
+        /* with set height InputForm height ins't changing on showing error  */
+        height: 3.2rem; 
+        
+    }
+
+    .reg_label{
+        font-size:.9rem;
+        letter-spacing: .04rem;
+    }
+
+
+
 }
 
 @media only screen and (max-width:360px){
