@@ -310,6 +310,8 @@ font-family: 'Exo 2', sans-serif;
     }
     .no_items{
         font-size:1.1rem;
+        letter-spacing: .05rem;
+        margin:.9rem 0;
     }
 
     .total_amount{
