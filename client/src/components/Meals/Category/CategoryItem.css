@@ -196,16 +196,16 @@
     }
 
     .categoryMain h2{
-        font-size:1.6rem;
+        font-size:1.5rem;
     }
 
 }
 
 
 @media screen and (max-width:901px){
-    .categoryItems > *{
+    /* .categoryItems > *{
         
-    }
+    } */
 }
 
 @media screen and (max-width:340px){

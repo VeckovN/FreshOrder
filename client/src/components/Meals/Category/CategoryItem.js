@@ -45,7 +45,19 @@ const CategoryItem = props =>{
         }
     }
 
-    let selectedCategoryItem = selected ? 'unselected' : '';
+    //let selectedCategoryItem = selected ? 'unselected' : '';
+    let selectedCategoryItem;
+    let buttonType;
+
+    if(selected){
+        selectedCategoryItem = 'unselected'
+        buttonType = "Deselect"
+    }
+    else{
+        selectedCategoryItem = '';
+        buttonType = 'Select'
+    }
+       
 
     return(     
         <div className={'item ' + selectedCategoryItem}>
@@ -53,7 +65,8 @@ const CategoryItem = props =>{
             <div className='content'>
                 <p className='title'>{props.itemName}</p>      
                 {/* {selected ? <p>Info Showned</p> : <p>Info Unshowned </p>} */}
-                <button onClick={clickedCardHandler}>{selected ? 'Deselect' : 'Select'}
+                {/* <button onClick={clickedCardHandler} className=''>{selected ? 'Deselect' : 'Select'} */}
+                <button onClick={clickedCardHandler} className={buttonType}>{buttonType}
                 </button>    
             </div>
         </div>
