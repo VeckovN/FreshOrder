@@ -348,8 +348,8 @@ const useForm = (inputObj, callback) =>{
                     break;
 
                 case 'product_description':
-                    if(!value.match(/^(?=.{0,30}$)/)){
-                        setErrorWithMessage('product_description', "Only 30 characters alowed")
+                    if(!value.match(/^(?=.{0,70}$)/)){
+                        setErrorWithMessage('product_description', "Only 70 characters alowed")
                     }   
                     else{
                         RemoveErrorFromObject('product_description')
