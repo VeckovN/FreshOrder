@@ -113,6 +113,7 @@
     background-color: rgb(97, 97, 97);
     width: 70%;
     min-width:600px;
+
 }
 
 .addProduct_container h2{
@@ -186,7 +187,7 @@
 
 .addProduct_input label{
     color:white;
-    font-size: 1rem;
+    font-size: 1.3rem;
     letter-spacing: .06rem;
     font-weight: 500;
     /* font-family: 'Tillana', cursive; */
@@ -206,7 +207,7 @@
     color:rgb(194, 191, 191);
     font-weight: 600;
     /* font-family: 'Tillana', cursive; */
-    font-size: .6rem;
+    font-size: .7rem;
 }
 
 .addProduct_input select {
@@ -216,11 +217,11 @@
 }
 
 .error_product{
-    font-size:.8rem;
-    font-weight: 600;
+    font-size:.9rem;
+    font-weight: 800;
     letter-spacing: .07rem;
     font-family: 'Shadows Into Light', cursive;
-    color:rgb(240, 6, 6)
+    color:rgb(255, 52, 52)
 }
 
 .addProduct_button{
