@@ -31,3 +31,9 @@
         width:100%;
     }
 } */
+
+@media screen and (max-width:650px){
+    .mainAdmin{
+        margin:-2rem 0;
+    }
+}

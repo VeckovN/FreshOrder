@@ -422,6 +422,11 @@
 }
 
 
+@media screen and (max-width:1255px){
+    .table_td_actions{
+        flex-wrap:wrap
+    }
+}
 
 @media screen and (max-width:1000px){
     .products_category{
@@ -430,9 +435,128 @@
     }
 }
 
-@media screen and (max-width:1255px){
+@media screen and (max-width:650px){
+
+    .addProduct_container{
+
+        min-width:400px;
+        max-width: 550px;
+    }
+
+    .addProduct_container form {
+        display:flex;
+        flex-direction: column;
+    }   
+
+    .addProduct_images{
+       padding:0rem 0rem .5rem 0rem;
+    }
+    
+    .image_container button{
+        margin-top:.5rem;
+    }
+    
+    .image_container img{
+        max-width: 400px;
+        max-height: 550px;
+       
+    }
+
+    .button_container{
+        position:absolute;
+        bottom: -2rem;
+        left:50%;
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        transform: translatex(-50%)
+    }
+
+
+    /* .category_table{
+        width: 100%;
+    } */
+
+    .category_table th{ 
+        font-size:.8rem;
+        padding:.4rem .3rem;
+
+    }
+    
+    .category_table tr{
+        
+    }
+    
+    .category_table td{
+        padding: 0rem 0rem;
+        font-size:.7rem;
+        margin:0rem 0;
+    }
+
     .table_td_actions{
-        flex-wrap:wrap
+        flex-direction: row;
+        justify-items: center;
+        flex-wrap: nowrap;
+    }
+
+
+    .editProduct_button,
+    .softDeleteProduct_button,
+    .deleteProduct_button{
+        margin:auto .1rem;
+        width: 2rem;
+        height: 1.2rem;
+        font-size:.6rem;
+    }
+
+}
+
+@media screen and (max-width:500px){
+ 
+    /* description */
+    .category_table tr .table_td_product:nth-child(3){
+        font-size:.5rem;
+    }
+}
+
+
+@media screen and (max-width:400px){
+    .addProduct_container{
+        min-width:300px;
+        max-width: 350px;
+    }
+
+    .addProduct_inputFields{
+        padding:.5rem 1rem;
+    }
+
+    .image_container button{
+        margin:.5rem 0;
+        width: 8rem;
+    }
+    
+    .image_container img{
+        /* width: 10rem; */
+        /* width: 10rem; */
+        min-width: 150px;
+        max-width: 200px;
+    }
+
+    .category_table td{
+        padding: 0rem 0rem;
+        font-size:.5rem;
+        margin:0rem 0;
+    }
+
+    .category_table th{ 
+        font-size:.8rem;
+        padding:.2rem .10rem;
+
+    }
+
+    .table_td_actions{
+        flex-direction: row;
+        justify-items: center;
+        flex-wrap: wrap;
     }
 }
 
