@@ -1,6 +1,6 @@
 .container-table{
     /* top:3rem; */
-    margin:6rem 0rem 2rem 0rem;
+    margin:5rem 0rem 2rem 0rem;
     position: relative;
 
     /* SET MARGIN TO AUTO FIIXED SPACE BETWEEN ORDERS AND FOOTER -> FOOTER IS SET ON BOOTOM  :D  */
@@ -15,19 +15,18 @@
     width: 60%;
 
 }
-h2{
-    margin-top:2rem;
+.container-table h2{
+    margin-top:3rem;
+    font-size:2rem;
     text-align: center;
-
+    font-family: 'Pacifico', cursive;
 }
 
 .table{
     display: flex;
     flex-direction: column;
-    margin:3rem 0 11rem 0;
-    
+    margin:1rem 0 11rem 0;
     /* white-space: nowrap; */
-
 }
 
 .table li{
@@ -45,28 +44,22 @@ h2{
 
     text-transform: uppercase;
     letter-spacing: .8px;
-
-    /* display:inline-block;
-    vertical-align: top; */
 }
 
 
 
 .table-row{
-    /* background-color: rgb(133, 134, 129); */
-    background-color: rgb(243, 243, 243);
-    box-shadow: 0px 0px 9px 9px rgba(0,0,0, 0.2);
-
-    color:black;
-
     /* we want cance_order to be in top of order Item  */
     position:relative;
+
+    color:black;
+    background-color: rgb(243, 243, 243);
+    box-shadow: 0px 0px 9px 9px rgba(0,0,0, 0.2);
 }
 .table-row-complited{
     background-color: rgb(231, 224, 224);
     box-shadow: 0px 0px 9px 9px rgba(0,0,0, 0.2);
     opacity:.6;
-
     color:black;
 }
 
@@ -74,7 +67,7 @@ h2{
     top:-.3rem;
     right:-1.2rem;
     font-weight: 700;
-    font-size:.8rem;
+    font-size:.9rem;
     position:absolute;
     cursor: pointer;
     color:rgb(226, 35, 35)
@@ -138,31 +131,101 @@ h2{
 
 
 @media only screen and (max-width:1100px){
-    .table-header{
-        font-size:13px;
-        letter-spacing: .2px;
-    }
     .container-table{
         font-size:13px;
+        width: 70%;
     }
+    .container-table h2{
+        font-size:1.8rem;
+    }
+    
 }
 
 @media only screen and (max-width:825px){
-    .table-header{
-        font-size:11px;
-        letter-spacing: .2px;
+
+    .container-table{
+        margin-top:5rem;
+        padding:0px 20px;
+
+        height:100%;
+        max-width:1200px;
+        width: 80%;
     }
-    /* .container-table{
-        font-size:9px;
-    } */
+
+    .container-table h2{
+        margin-top:3rem;
+        font-size:1.5rem;
+    }
+
+    .table-row-complited,
+    .table-row{
+        font-size:.7rem;
+    } 
+    
+    .table li{
+        padding: 10px 10px;
+        margin: .2rem;
+    }
+
+    .cancel_order{
+        top:-.3rem;
+        right:-1.5rem;
+        font-weight: 700;
+        font-size:.6rem;
+    }
 }
 
-@media screen and (max-width:790px){
-    .table-header{
-        
+@media screen and (max-width:650px){
+    .container-table{
+        padding:0px 20px;
+        margin-top:1rem;
+        max-width:1200px;
+        width: 90%;
     }
 
-   
+    .container-table h2{
+        margin-top:2rem;
+    }
+}
+
+@media screen and (max-width:430px){
+
+    .container-table{
+        width: 100%;
+        padding:0rem .4rem;
+    }
+
+    .container-table h2{
+        margin-top:1.5rem;
+        font-size:1.2rem;
+    }
+    
+    .colone{
+        font-size:.5rem;
+    }
+    .table-header{
+        font-size:.2rem;
+        letter-spacing: .2px;
+    }
+
+    .table-row-complited,
+    .table-row{
+        font-size:.6rem;
+        
+    } 
+    
+    .table li{
+        padding: 5px 10px;
+        margin: .2rem;
+    }
+
+
+    .cancel_order{
+        top:-.4rem;
+        right:-.5rem;
+        font-weight: 700;
+        font-size:.5rem;
+    }
 }
 
 
