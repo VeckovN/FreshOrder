@@ -55,6 +55,9 @@ export const login = async (req,res,next)=>{
 
             return next(createError(404, 'Email Addres or Password not correct'));
         }
+
+        //get Number of password(used to show number of character as * in user Password(info))
+        const password_length = passwordUser.length;
         
         const passwordCorrect = await bcrypt.compare(passwordUser, user.password);
         if(!passwordCorrect)
@@ -67,8 +70,8 @@ export const login = async (req,res,next)=>{
         //won't send password and isAdmin prop to client as response
         //const {password, isAdmin, ...otherProps} = user._doc;  //use ._doc because user object has more information then necessary for us 
         const {password, ...otherProps} = user._doc;
+        otherProps.password_length = password_length;
 
-    
         //if everything is alright then login user and send him information about himself
         //set cookie and put created Token(with cookie-parser middleware)
         res.cookie('access_token', token,{
