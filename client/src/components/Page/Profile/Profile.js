@@ -91,9 +91,11 @@ const Profile = () =>{
                 const response = await axios.get(`users/${userID}`);  
                 console.log("DATATATA:" + response.data._id);
                 const res = response.data;
-                setUserInfo(state=> ({...state, username:res.username, email:res.email, address:res.address, phone_number:res.phone_number }))
+                const password_length = JSON.parse(User).password_length;
+                setUserInfo(state=> ({...state, username:res.username, email:res.email, address:res.address, phone_number:res.phone_number, password_length }))
                 setFetchLoading(false);
                 console.log("FETCH LOADING: " + fetchLoading);
+                console.log("DATA: " +JSON.stringify(res));
             }catch(err){
                 console.log(err);
             }

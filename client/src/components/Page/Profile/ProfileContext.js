@@ -2,9 +2,13 @@
 const ProfileContext = ({userInfo,values, errors, shows, commitHandler, handleChanges, checkForCommit, onClickShowHandler}) =>{
 
     return (
+        
         <div className='input_container'>
             <div className='input_field'>
-                <div  onClick={() => onClickShowHandler("username")}>Username: <span> {userInfo.username} </span></div>        
+                {/* <div  onClick={() => onClickShowHandler("username")}>Username: <span> {userInfo.username} </span></div>         */}
+                <div className='user_info' onClick={() => onClickShowHandler("username")}> <span>{userInfo.username}</span> 
+                    <div className='input_label'>Username</div>
+                </div>        
                 {shows.username && 
                     <input 
                         className={errors.username && 'errorInput'} 
@@ -17,7 +21,10 @@ const ProfileContext = ({userInfo,values, errors, shows, commitHandler, handleCh
             </div>
 
             <div className='input_field'>
-                <div  onClick={() => onClickShowHandler("email")} >Email: <span>{userInfo.email}</span></div>
+                {/* <div  onClick={() => onClickShowHandler("email")} >Email: <span>{userInfo.email}</span></div> */}
+                <div className='user_info' onClick={() => onClickShowHandler("email")}> <span>{userInfo.email}</span> 
+                    <div className='input_label'>Email</div>
+                </div> 
                 {shows.email && 
                     <input 
                         className={errors.email && 'errorInput'} 
@@ -31,7 +38,10 @@ const ProfileContext = ({userInfo,values, errors, shows, commitHandler, handleCh
             </div>
 
             <div className='input_field'>
-                <div  onClick={()=>onClickShowHandler("phone_number")}>PhoneNumber: <span>{userInfo.phone_number}</span></div>
+                {/* <div  onClick={()=>onClickShowHandler("phone_number")}>PhoneNumber: <span>{userInfo.phone_number}</span></div> */}
+                <div className='user_info' onClick={() => onClickShowHandler("phone_number")}> <span>{userInfo.phone_number}</span> 
+                    <div className='input_label'>Phone Number</div>
+                </div>
                 {shows.phone_number && 
                     <input 
                         className={errors.phone_number && 'errorInput'} 
@@ -44,7 +54,10 @@ const ProfileContext = ({userInfo,values, errors, shows, commitHandler, handleCh
             </div>
 
             <div className='input_field'>
-                <div onClick={() => onClickShowHandler("address")}>Address: <span>{userInfo.address}</span></div>
+                {/* <div onClick={() => onClickShowHandler("address")}>Address: <span>{userInfo.address}</span></div> */}
+                <div className='user_info' onClick={() => onClickShowHandler("address")}> <span>{userInfo.address}</span> 
+                    <div className='input_label'>Address</div>
+                </div>
                 {shows.address && 
                     <input 
                         className={errors.address && 'errorInput'} 
@@ -58,7 +71,10 @@ const ProfileContext = ({userInfo,values, errors, shows, commitHandler, handleCh
             </div>
 
             <div className='input_field'>
-                <div onClick ={()=> onClickShowHandler("password")}>Password</div>
+                {/* <div onClick ={()=> onClickShowHandler("password")}>Password</div> */}
+                <div className='user_info' onClick={() => onClickShowHandler("password")}> <span>{'*'.repeat(userInfo.password_length)}</span>
+                    <div className='input_label'>Password</div>
+                </div>
                 {shows.password && 
                     <div className="password_form">  
                         <div className='password_input'>
