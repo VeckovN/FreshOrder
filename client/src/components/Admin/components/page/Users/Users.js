@@ -98,7 +98,7 @@ const Users = (props) =>{
                             <th>Username</th>
                             <th>Email</th>
                             <th>Address</th>
-                            <th>PhoneNumber</th>
+                            <th>Phone</th>
                             <th>CreatedAt</th>
                             <th>Action</th>
                         </tr>
