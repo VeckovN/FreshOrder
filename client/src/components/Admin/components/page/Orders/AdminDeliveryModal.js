@@ -18,32 +18,43 @@ const AdminDeliveryModal = ({deliveryObj, onClose}) =>{
         // console.log("DELIVERY INFO : \n" + JSON.stringify(deliveryObj) )        
         //in Body
         // const {userEmail, deliveryTime} = req.body
-        const deliveryBodyObject = {
-            userEmail,
-            deliveryTime
-        }
 
-        try{
-            await axios.put(`http://localhost:8800/api/orders/complete/${deliveryObj.orderID}`, deliveryBodyObject);
-            addSuccess(`You comfirm order`);
+        if(deliveryTime){
+            if(deliveryTime <= 300) //max 300 mins
+            {  
+                const deliveryBodyObject = {
+                    userEmail,
+                    deliveryTime
+                }
+                try{
+                    await axios.put(`http://localhost:8800/api/orders/complete/${deliveryObj.orderID}`, deliveryBodyObject);
+                    addSuccess(`You comfirm order`);
 
-            const timer = setTimeout( ()=>{
-                window.location.reload(false)
-            }, 500)
+                    const timer = setTimeout( ()=>{
+                        window.location.reload(false)
+                    }, 500)
 
-            return() =>{
-                clearTimeout(timer);
+                    return() =>{
+                        clearTimeout(timer);
+                    }
+                    
+                        // //refesh page after order comfirmation
+                        // // onClose();
+                        // //addSuccess(`You comfirm order: ${userEmail}  with delivery time:  ${deliveryTime} minutes`);
+                        // addSuccess(`You comfirm order`);
+                }
+                catch(err){
+                    console.log("ERROR: " + err);
+                    addError("You can't set delivery time")
+                }
             }
-        
-            // //refesh page after order comfirmation
-            // // onClose();
-            // //addSuccess(`You comfirm order: ${userEmail}  with delivery time:  ${deliveryTime} minutes`);
-            // addSuccess(`You comfirm order`);
+            else
+                addError("Maximum 300min for delivery")
         }
-        catch(err){
-            console.log("ERROR: " + err);
-            addError("You can't set delivery time")
+        else{
+            addError("Delivery time not set");
         }
+
     }
 
 

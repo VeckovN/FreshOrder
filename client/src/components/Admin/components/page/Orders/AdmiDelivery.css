@@ -12,26 +12,33 @@
     justify-content: center;
     align-items: center;
 
-    margin:1rem 0rem;
+    margin:0rem 0rem;
 }
 
 .delivery_container h3{
-    color:white;
+    color:rgba(0, 0, 0, 0.87);
+    margin:1rem 0 0 0;
 }
 
 .delivery_input_fields{
-    margin:1rem 0;
+    margin:0rem 0rem 1rem 0rem;
     display:flex;
     flex-direction: column;
     align-items: center;
+    
 }
 
 
 .delivery_input_fields input{
     margin:1rem 0;
-    height:1.5rem;
+    height:1.9rem;
+
     padding: 0rem 1rem;
+    border-radius: 5px;
+    text-align: center;
 }
+
+
 
 .delivery_input_fields input:focus{
     align-self: center;
@@ -39,6 +46,15 @@
 
 .delivery_input_fields button{
     width: 45%;
-    height:1.7rem;
+    height:1.8rem;
+    font-weight: 600;
+
     cursor: pointer;
+    border-radius: 5px;
+    border:1px solid black;
+}
+
+.delivery_input_fields button:hover{
+    background-color:rgba(233, 241, 229, 0.87);
+    width: 46%;
 }

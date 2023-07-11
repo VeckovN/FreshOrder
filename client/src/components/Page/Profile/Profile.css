@@ -151,23 +151,21 @@
     height: 2rem;
     width: max-content;
     padding:0rem 2rem;
-    text-align: center;
-
     border-radius: 5px;
 
     font-size:1.1rem;
 }
+
 
 .user_info span{
     color:black;
     font-weight: 600;
     font-size:1rem;
     font-family: 'Averia Sans Libre', cursive;
-    
 }
 
 .user_info span:hover{
-    color:blue;
+    color:rgb(148, 147, 67);
     font-weight: 600;
 }
 
