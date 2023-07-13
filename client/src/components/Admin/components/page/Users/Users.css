@@ -66,11 +66,12 @@
     display:flex;
     justify-content: center;
     padding:1rem 2rem;
+    
 }
 
 .users_input_container{
     background-color: rgb(39, 38, 39);
-    padding:3rem 3rem;
+    padding:2rem 3rem;
     width: 50%;
 
     border-radius: 1rem;
@@ -135,7 +136,7 @@
 }
 
 .users_input_field{
-    margin:1rem 0;
+    margin:.1rem 0;
 }
 
 @media screen and (max-width:840px){
