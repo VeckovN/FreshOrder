@@ -209,6 +209,7 @@ const useForm = (inputObj, callback) =>{
         callback();
     }
 
+    //edit only showned(opened) inputs
     const handleUserEditSubmit = (event) =>{
         if(Object.keys(values).length !=0){    
             //Entered values without errors
