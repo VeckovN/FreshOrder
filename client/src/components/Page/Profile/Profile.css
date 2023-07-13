@@ -156,6 +156,11 @@
     font-size:1.1rem;
 }
 
+.user_info:hover span{
+   color:rgb(172, 170, 62);
+
+}
+
 
 .user_info span{
     color:black;
@@ -164,10 +169,10 @@
     font-family: 'Averia Sans Libre', cursive;
 }
 
-.user_info span:hover{
+/* .user_info span:hover{
     color:rgb(148, 147, 67);
     font-weight: 600;
-}
+} */
 
 .user_info .input_label{
     position: absolute;
