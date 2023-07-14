@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin:5rem auto 8rem auto;
+    margin:1rem auto 8rem auto;
     padding:0px 10px;
 
     max-width: 1000px;
@@ -242,7 +242,7 @@ h2{
     justify-content: center;
 }
 
-@media only screen and (max-width:1100px){
+@media screen and (max-width:1100px){
     .table-header{
         font-size:13px;
         letter-spacing: .2px;
@@ -252,7 +252,7 @@ h2{
     }
 }
 
-@media only screen and (max-width:825px){
+@media screen and (max-width:825px){
     .table-header{
         font-size:11px;
         letter-spacing: .2px;
@@ -263,10 +263,18 @@ h2{
 }
 
 @media screen and (max-width:790px){
-    .table-header{
+    
+    /* .table_context{
         
     }
 
+    .table-header{
+        
+    } */
+    .table-row{
+    
+        margin:.5rem 0rem;
+    }
    
 }
 

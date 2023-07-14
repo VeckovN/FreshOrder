@@ -103,9 +103,6 @@ const AdminOrders = (props)=>{
         props.onEnterOrderDeliveryTime(deliveryInfo);
     }
 
-    //console.log("ORDERS INFO: " + JSON.stringify(orders));
-    //console.log("\n USERE:\n" + JSON.stringify(orders.user))
-
     const loadingTheme = isloading ? 'table_context_loading' : ''
     return(
         <div className="table_container">
