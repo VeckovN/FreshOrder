@@ -4,7 +4,17 @@ import NotificationContext from './notification-context'
 
 const InitialNotificationState = {
     success:'',
-    error:''
+    error:'',
+    // list = [{}];
+
+    // list =[{
+         // {
+        //     id:'0'
+        //     title: 'Product Deleting'
+        //     description: 'You have been deleted the product'
+        //     type: 'error or success or warning'
+        // }
+    // }]
 }
 
 
@@ -39,6 +49,7 @@ const ReducerNotification = (state,action) =>{
     }
 
     if(action.type === 'RemoveNotification'){
+        //action.NotificationID
         return {
             success:'',
             error:''
