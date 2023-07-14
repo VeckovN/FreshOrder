@@ -37,7 +37,7 @@ const Notification = () =>{
         const timer = setTimeout(()=>{
             //after 3s remove error and succes notification
             removeNotification();
-        },3000)
+        },2200)
 
         return() =>{
             clearTimeout(timer);
