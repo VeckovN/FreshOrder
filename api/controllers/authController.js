@@ -64,26 +64,46 @@ export const login = async (req,res,next)=>{
             return next(createError(400, 'Email Addres or Password not correct'))
         
         //hash this information in token
-        const token = jwt.sign({id:user._id, isAdmin:user.isAdmin}, process.env.SECRET_KEY, {expiresIn:'1000'});
+        const token = jwt.sign({id:user._id, isAdmin:user.isAdmin}, process.env.SECRET_KEY, {expiresIn:'5m'});
         //then store send token to client which he put it in cokie
 
         //won't send password and isAdmin prop to client as response
         //const {password, isAdmin, ...otherProps} = user._doc;  //use ._doc because user object has more information then necessary for us 
         const {password, ...otherProps} = user._doc;
         otherProps.password_length = password_length;
+        //set token in response
+        otherProps.accessToken = token;
 
         //if everything is alright then login user and send him information about himself
         //set cookie and put created Token(with cookie-parser middleware)
-        res.cookie('access_token', token,{
-            httpOnly:true, //doesn't allow any client secret tool to access the cookie
-        })
+        // res.cookie('access_token', token,{
+        //     httpOnly:true, //doesn't allow any client secret tool to access the cookie
+        // })
+        // res.status(200)
+        // .json({...otherProps}); 
+    
         res.status(200)
-        .json({...otherProps}); 
-        
+            .json({...otherProps});
+
         console.log("LOGGED");
         console.log("TOKKEN: " + token);
+
     }
     catch(err){
         next(err)
     }
+}
+
+export const refresh = async(req,res) =>{
+    //take the token from the user
+    const refresh_token = req.body.token; //it will be send through post method
+
+    //if token doesn't exist or it's invalid send error
+    if(!refresh_token)
+        return res.status(401).json("You're not authenticated");
+
+
+    //if is it ok then generate new token(refresh token and send to user)
+
+
 }
