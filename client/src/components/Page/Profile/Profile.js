@@ -15,13 +15,14 @@ const Profile = () =>{
 
     const {addSuccess, addError} = useContext(notificationContext);
 
-
     // callback(validValues) in useForm (user is validValues)
     const onUpdateUser = async(user) =>{
         try{
             console.log("USSEERRR: " + JSON.stringify(user));
-
-            const res = await axios.put(`http://localhost:8800/api/users/updateuser/${userID}`, user);            
+            const headers = {
+                'authorization' : "Bearer " + userAccessToken
+            };
+            const res = await axios.put(`http://localhost:8800/api/users/updateuser/${userID}`, user, {headers});            
             let updatedKeys = '';   
             let length = Object.keys(user).length;
             // //get all keys of updated props
@@ -75,8 +76,10 @@ const Profile = () =>{
         phone_number:""
     })
     const [reFetch, setReFetch] = useState(true);
-    const User = localStorage.getItem('user')
-    const userID = JSON.parse(User)._id;
+
+    const User = JSON.parse(localStorage.getItem('user'));
+    const userID = User._id;
+    const userAccessToken = User.accessToken
 
     const {values, errors, shows, handleChanges, handleShowClickHandler, handleUserEditSubmit} = useForm(initialInputObject, onUpdateUser);
 
@@ -88,10 +91,16 @@ const Profile = () =>{
             //http://localhost:8800/api/products/
             //const res = await axios.get('http://localhost:8800/api/products/');  
             try{
-                const response = await axios.get(`users/${userID}`);  
+                const headers = {
+                    'authorization' : "Bearer " + userAccessToken
+                };
+                //This route use verifyUser(token verification) that we need to send user token through header
+                const response = await axios.get(`users/${userID}`, {headers});  
+                //in verifyToken we access to token wiht header.authorization then take token with spilt
+
                 console.log("DATATATA:" + response.data._id);
                 const res = response.data;
-                const password_length = JSON.parse(User).password_length;
+                const password_length = User.password_length;
                 setUserInfo(state=> ({...state, username:res.username, email:res.email, address:res.address, phone_number:res.phone_number, password_length }))
                 setFetchLoading(false);
                 console.log("FETCH LOADING: " + fetchLoading);

@@ -24,7 +24,9 @@ const Orders = () =>{
     useEffect(()=>{
         const fetchAllUserOrders = async()=>{
             try{
-                const res = await axios.get(`http://localhost:8800/api/orders/userOrders/${userInfo._id}`)
+                const res = await axios.get(`http://localhost:8800/api/orders/userOrders/${userInfo._id}`,{
+                    headers:{ "authorization":"Bearer " + user.accessToken}
+                })
                 const data = res.data;
                 const orders = data[0].orders;
 
@@ -40,11 +42,12 @@ const Orders = () =>{
 
     const onCancelOrderHandler = async(orderID)=>{
         //orderID taken from OrdersTable children comp
-        // alert("ORDERID: " + orderID )
-        
+    
         //delete order by ID
         try{
-            const res = await axios.delete(`http://localhost:8800/api/orders/${orderID}/${user._id}`)
+            const res = await axios.delete(`http://localhost:8800/api/orders/${orderID}/${user._id}`, {
+                headers:{ "authorization":"Bearer " + user.accessToken}
+            })
             const dataResponse = res.data;
             //trigger ony state to re-render order - more costs then delete this order from ordersLIST state
 
@@ -53,11 +56,9 @@ const Orders = () =>{
             setOrders(newOrders);
             console.log('NEW DATA: ' + JSON.stringify(newOrders));
 
-            // addSuccess("You have successfully deleted order")
             addSuccess(dataResponse);
         }catch(err){
             console.log(err);
-            // addError("You can't delete order");
             addError("You can't delete order");
         }
     }
