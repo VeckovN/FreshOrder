@@ -64,7 +64,7 @@ export const login = async (req,res,next)=>{
             return next(createError(400, 'Email Addres or Password not correct'))
         
         //hash this information in token
-        const token = jwt.sign({id:user._id, isAdmin:user.isAdmin}, process.env.SECRET_KEY, {expiresIn:'5m'});
+        const token = jwt.sign({id:user._id, isAdmin:user.isAdmin}, process.env.SECRET_KEY, {expiresIn:'10s'});
         //then store send token to client which he put it in cokie
 
         //won't send password and isAdmin prop to client as response
@@ -95,15 +95,34 @@ export const login = async (req,res,next)=>{
 }
 
 export const refresh = async(req,res) =>{
-    //take the token from the user
-    const refresh_token = req.body.token; //it will be send through post method
 
-    //if token doesn't exist or it's invalid send error
-    if(!refresh_token)
-        return res.status(401).json("You're not authenticated");
+    try{
+        //take the token from the user
+        const refresh_token = req.body.token; //it will be send through post method
 
+        //if token doesn't exist or it's invalid send error
+        if(!refresh_token)
+            return res.status(401).json("You're not authenticated");
 
-    //if is it ok then generate new token(refresh token and send to user)
+        //if is it ok then generate new token based on old one(refresh token and send to user)
 
+        // let new_token;
+        //first verify token (take user info from it) and with this user info create new token
+        jwt.verify(refresh_token, process.env.SECRET_KEY, (err,user) =>{
+            if(err)
+                console.log(err);
 
+            //use same info as old token
+            const new_token  = jwt.sign({id:user._id, isAdmin:user.isAdmin}, process.env.SECRET_KEY, {expiresIn:'10s'});
+
+            res.status(200).json({
+                new_token: new_token
+            })
+        })
+    }
+    catch(err){
+        console.log(err);
+    }
+    
+    
 }
