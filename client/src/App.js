@@ -2,9 +2,11 @@
 //https://www.xenonstack.com/insights/reactjs-project-structure
 
 import {useContext, useReducer} from 'react';
-import {Route, Routes, BrowserRouter} from 'react-router-dom';
+import {Route, Routes, BrowserRouter, useNavigate} from 'react-router-dom';
 import {reducer} from './components/UI/Modal/ModalUseReducer.js'
 import {initialState} from './components/UI/Modal/ModalUseReducer.js'
+import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 
 import './components/Layout/Header.css'
 
@@ -36,11 +38,44 @@ import Products from './components/Admin/components/page/Products/Products.js'
 import AddProducts from './components/Admin/components/page/Products/AddProduct/AddProduct.js';
 import UsersUpdate from './components/Admin/components/page/Users/UsersUpdate.js'
 
+import {useAxiosJWTInterceptors} from './services/axiosJWTInstance.js';
+
 
 function App() {
   const {error, success, addError, removeError, addSuccess, removeSuccess} = useContext(notificationContext);
   const ctxAuth = useContext(authContext);
+  const {dispatchAction} = useContext(authContext);
+  const nav = useNavigate();
   const [state,dispatch] = useReducer(reducer, initialState)
+
+  //calling here ensure that interceptors will be configured before any request
+  useAxiosJWTInterceptors();
+  
+
+  //Axios instances(axiosJWT used for checking on JWT token expiration)
+  //default axios istance is used for unLoged users(they don't have JWT token)
+  // axios.interceptors.request.use(async (config) =>{
+  //     let currentDate = new Date();
+
+  //     console.log("CCCCCCCCCCCAAAAAAAAAAAAAWWWWWWWWWWWWWWWWWW");
+
+  //     if(ctxAuth.user){
+  //         const decodedToken = jwt_decode(ctxAuth.user.addSuccess);
+  //         if(currentDate.getTime() > decodedToken.exp *1000){
+  //           dispatchAction({type:"LOGOUT"});
+  //           nav('/');
+  //         }
+  //         // else{
+  //         //    //refresh Token
+  //         // }
+  //       }
+  //     return config;
+  //   },
+  //   (error) =>{
+  //     return Promise.reject(error);
+  //   }
+  // )
+
 
   //this show modal (example Login) will couse re-rendering child components of App.js(header for example)
   
