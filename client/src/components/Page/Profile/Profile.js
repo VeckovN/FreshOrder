@@ -1,5 +1,6 @@
 import {useState, useEffect, useContext} from 'react';
-import axios from 'axios'
+import axios from 'axios' //used for Non Authenticated users
+import {axiosJWT, useAxiosJWTInterceptors} from '../../../services/axiosJWTInstance';
 
 import notificationContext from '../../Store/notification-context';
 import LoadingSpinner from '../../../utils/LoadingSpinner';
@@ -14,6 +15,7 @@ import './Profile.css'
 const Profile = () =>{
 
     const {addSuccess, addError} = useContext(notificationContext);
+    // useAxiosJWTInterceptors();
 
     // callback(validValues) in useForm (user is validValues)
     const onUpdateUser = async(user) =>{
@@ -22,7 +24,8 @@ const Profile = () =>{
             const headers = {
                 'authorization' : "Bearer " + userAccessToken
             };
-            const res = await axios.put(`http://localhost:8800/api/users/updateuser/${userID}`, user, {headers});            
+
+            await axios.put(`http://localhost:8800/api/users/updateuser/${userID}`, user, {headers});            
             let updatedKeys = '';   
             let length = Object.keys(user).length;
             // //get all keys of updated props
@@ -37,7 +40,7 @@ const Profile = () =>{
                         updatedKeys+= key;
                         //if is the last key there ins't + for next key
                 })
-                    //setReFetch val
+                //setReFetch val
                 addSuccess('You updated: ' + updatedKeys)
                 setReFetch(prevState => !prevState);
             }
@@ -54,12 +57,9 @@ const Profile = () =>{
             else
                 console.log("An error occurred : " + err);
         }
-        // //http://localhost:8800/api/users/updateuser/635ba836ff04dc580230a964
-        // console.log("OBJECT:" + JSON.stringify(user));
     }
 
     //updateUser as callback which will be call after submit validation
-    // const {values, errors, shows, handleChanges, handleSubmit, onClickShowHandler} = useForm(updateUser);
     const initialInputObject = {
         username:"", 
         email:"", 
@@ -85,26 +85,19 @@ const Profile = () =>{
 
     //Fetch all data from current user and show it
     useEffect(()=>{
-        //use Async function inside useEffect
         const fetchData = async ()=>{
-            //proxy is included -> http://localhost:8800/api/ is proxy
-            //http://localhost:8800/api/products/
-            //const res = await axios.get('http://localhost:8800/api/products/');  
+            //proxy is included -> http://localhost:8800/api/ is proxy  
             try{
                 const headers = {
                     'authorization' : "Bearer " + userAccessToken
                 };
-                //This route use verifyUser(token verification) that we need to send user token through header
-                const response = await axios.get(`users/${userID}`, {headers});  
+                //This route use verifyUser(token verification) that we need to send user token through header                
+                const response = await axiosJWT.get(`users/${userID}`, {headers}); 
                 //in verifyToken we access to token wiht header.authorization then take token with spilt
-
-                console.log("DATATATA:" + response.data._id);
                 const res = response.data;
                 const password_length = User.password_length;
                 setUserInfo(state=> ({...state, username:res.username, email:res.email, address:res.address, phone_number:res.phone_number, password_length }))
                 setFetchLoading(false);
-                console.log("FETCH LOADING: " + fetchLoading);
-                console.log("DATA: " +JSON.stringify(res));
             }catch(err){
                 console.log(err);
             }
@@ -123,7 +116,6 @@ const Profile = () =>{
     return(
         <div className = "profile_container">
                 {/* THIS COULD RENDER profileContext Component and Another Component For Loading Animation  */}
-                
             {!fetchLoading ? 
                     <>    
                         <h2 className='profile_title'>Client Profile</h2>

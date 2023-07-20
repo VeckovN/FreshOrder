@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { axiosJWT } from '../../../services/axiosJWTInstance.js';
 import {useState, useEffect, useContext} from 'react';
 import {Link} from 'react-router-dom';
 
@@ -24,7 +25,7 @@ const Orders = () =>{
     useEffect(()=>{
         const fetchAllUserOrders = async()=>{
             try{
-                const res = await axios.get(`http://localhost:8800/api/orders/userOrders/${userInfo._id}`,{
+                const res = await axiosJWT.get(`http://localhost:8800/api/orders/userOrders/${userInfo._id}`,{
                     headers:{ "authorization":"Bearer " + user.accessToken}
                 })
                 const data = res.data;
@@ -45,7 +46,7 @@ const Orders = () =>{
     
         //delete order by ID
         try{
-            const res = await axios.delete(`http://localhost:8800/api/orders/${orderID}/${user._id}`, {
+            const res = await axiosJWT.delete(`http://localhost:8800/api/orders/${orderID}/${user._id}`, {
                 headers:{ "authorization":"Bearer " + user.accessToken}
             })
             const dataResponse = res.data;
