@@ -1,5 +1,5 @@
 import { useRef, useContext, useEffect } from 'react'
-import axios from 'axios'
+import axios from 'axios' 
 
 import './Login.css'
 import useForm from '../../utils/Hooks/useForm.js'
@@ -34,19 +34,7 @@ const Login = (props) =>{
             //Loading before we fetch user from DB
             dispatchAction({type:"LOGIN_START"})
             try{
-                //WITHOUT credentials:true and hedears cookies won't be saved in browser
-                //send HTTP post Request to localhost:8800/api/auth/login
-                const res = await axios.post('http://localhost:8800/api/auth/login', {email: values.email, password:values.password }, 
-                {   
-                    withCredentials: true,
-                    headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'}
-                })
-                //With setted proxy
-                //const res = await axios.post('/login', {email: enteredEmail, password:enteredPassword })
-
-                //FIX THIS-> this setTimeout ins't used properly 
-                // https://felixgerschau.com/react-hooks-settimeout/
-
+                const res = await  axios.post('http://localhost:8800/api/auth/login', {email: values.email, password:values.password })
                 //Moved this to useEffect 
                 //set timer(to show animation little bit longer) before we change loading to false
                 timerRef.current = setTimeout(()=>{
@@ -57,10 +45,18 @@ const Login = (props) =>{
                 }, 1000);
             }
             catch(err){
-                dispatchAction({type:"LOGIN_FAILURE", payload:err.response.data})
+                alert("er" + err);
+                if(err.response){
+                    addError(err.response.data.message);
+                    dispatchAction({type:"LOGIN_FAILURE", payload:err.response.data})
+                }
+                else{
+                    dispatchAction({type:"LOGIN_FAILURE", payload:err})
+                    addError("Error");
+                }
                 values.email = '';
                 values.password ='';
-                addError(err.response.data.message);
+                // addError(err.response.data.message);
             }
         }
     }
@@ -75,7 +71,6 @@ const Login = (props) =>{
     //         this.submitForm();
     //     }
     // }
-
 
     //With useREf
     useEffect( () =>{
