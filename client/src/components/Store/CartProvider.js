@@ -1,5 +1,5 @@
 import {useState, useReducer, useEffect, useContext} from 'react'
-import axios from 'axios';
+import { axiosJWT } from '../../services/axiosJWTInstance';
 import CartContext from "./cart-context";
 
 
@@ -171,22 +171,18 @@ const ReducerCart = (state,action) =>{
                     products:products
                 }
                 console.log("OREDRRR:" + Order);
-                
-                // try{
-                //     await axios.post('http://localhost:8800/api/orders/', Order);
-                //     console.log("SUCCESSFULLY ORDER CREATED");
-                // }catch(err){
-                //     console.log(err);
-                // )         
-
-                axios.post('http://localhost:8800/api/orders', Order)
+            
+                const User = localStorage.getItem('user');
+                const accessToken = User.accessToken;
+                const headers = {
+                    'authorization' : "Bearer " + accessToken
+                };
+                axiosJWT.post('http://localhost:8800/api/orders', Order, {headers})
                 .then((res)=>{
-                    
                     console.log(res);
                 })
                 .catch((err)=>{
                     console.log(err);
-                    
                 })
 
             } 
