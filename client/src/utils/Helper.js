@@ -25,4 +25,11 @@ const otherFunc = () =>{
 
 }
 
-export {convertDate, otherFunc}
+const configureHeader = (accessToken) =>{
+    const headers = {
+        'authorization' : "Bearer " + accessToken
+    };
+    return headers;
+}
+
+export {convertDate, otherFunc, configureHeader}
