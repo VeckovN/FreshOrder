@@ -20,17 +20,17 @@ const useAxiosJWTInterceptors = ()=>{
         const requestInterceptor = axiosJWT.interceptors.request.use( 
             async(config) =>{
                 const User = JSON.parse(localStorage.getItem('user'));
-                let currentDate = new Date();
+                const currentDate = new Date();
                 const decodedToken = jwtDecode(User.accessToken);
-                //alert("Curent time: " + currentDate.getTime()  + "   tokenTiem: " + decodedToken.exp*1000)
+                
                 if(currentDate.getTime() >= decodedToken.exp *1000){
                     dispatchAction({type:"LOGOUT"}); //this will change user state ande triger re-rendering
                     addError("You're session time expired!"); 
                 }
                 else{ //create new token and replace it with old one
                     const res = await axios.post('http://localhost:8800/api/auth/refresh', {token:User.accessToken });
-                    console.log("REFSRTESH TOKEN " + JSON.stringify(res.data));
                     const refresh_token = res.data.new_token;
+
                     //replace token in localStorage
                     User.accessToken = refresh_token
                     localStorage.setItem("user", JSON.stringify(User));
