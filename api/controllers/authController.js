@@ -64,7 +64,7 @@ export const login = async (req,res,next)=>{
             return next(createError(400, 'Email Addres or Password not correct'))
         
         //hash this information in token
-        const token = jwt.sign({id:user._id, isAdmin:user.isAdmin}, process.env.SECRET_KEY, {expiresIn:'10s'});
+        const token = jwt.sign({id:user._id, isAdmin:user.isAdmin}, process.env.SECRET_KEY, {expiresIn:'2m'});
         //then store send token to client which he put it in cokie
 
         //won't send password and isAdmin prop to client as response
