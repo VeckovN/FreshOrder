@@ -1,17 +1,16 @@
 import {useState, useEffect, useContext} from 'react'
 import useForm from '../../../../../../utils/Hooks/useForm';
-import axios from 'axios';
+import { axiosJWT } from '../../../../../../services/axiosJWTInstance';
 import notificationContext from '../../../../../Store/notification-context';
 
 //isChanged is handler which trach changing on this compoenent and
 //notify parent(Product) to reFetch new updated items
-const ProductItem = ({item, isChanged, onEditProduct}) =>{
+const ProductItem = ({item, isChanged, onEditProduct, headers}) =>{
     const productItemID = item._id;
     //state used for notify parrent(Product.js) component to reFetch showed items
     //to get new refresh(updated) items
-    // const [isChanged, setIsChanged] = useState();
-
     const {addSuccess, addError} = useContext(notificationContext);
+
     const [showEdit, setShowEdit] = useState(false);
     const initialInputObject = {
         product_name:'',
@@ -27,7 +26,6 @@ const ProductItem = ({item, isChanged, onEditProduct}) =>{
         setShowEdit(false)
     }
 
-
     //Instead of others form then all inputs must be filled here ins't that scenario
     //u could only filled (update) any input not all of them
     const onEditAccept = async()=>{
@@ -38,8 +36,7 @@ const ProductItem = ({item, isChanged, onEditProduct}) =>{
         //{product_name:'margarita" ,product_price:'13.99'} -> [ ['product_name' , 'margarita'],  ['product_price' , ' 13.99']]
         let newContext = Object.entries(values).filter(([key,value]) => value !='').reduce((obj, [key,value]) =>{
             //example there is name="margarita", price = '3.99' , but description='' won't be added
-
-            //format it becase BE expects {name, price, description } instead product_ as prefix
+            //format it because BE expects {name, price, description } instead product_ as prefix
             if(key == 'product_name')
                 key = 'name';
             else if(key == 'product_price')
@@ -51,8 +48,7 @@ const ProductItem = ({item, isChanged, onEditProduct}) =>{
             return obj
         }, {}); //{} as acc ->object 
 
-        const response = await axios.put(`http://localhost:8800/api/products/${productItemID}`, newContext)
-        const updaterdProduct = response.data;
+        await axiosJWT.put(`http://localhost:8800/api/products/${productItemID}`, newContext, {headers})
         addSuccess("You successfully updated product")
         //and update on frontend
         resetAllValues();
@@ -62,13 +58,11 @@ const ProductItem = ({item, isChanged, onEditProduct}) =>{
 
     const {values, errors, handleChanges, resetAllValues, RemoveValueFromObject, handleEditProductSubmit} = useForm(initialInputObject, onEditAccept);
 
-
     const onSoftDeleteProduct = async() =>{
         //change to true
-        if(!item.isDeleted){
-            //soft delete it
+        if(!item.isDeleted){ //soft Delete
             try{
-                const result = await axios.put(`http://localhost:8800/api/products/softDelete/${item._id}`)
+                const result = await axiosJWT.put(`http://localhost:8800/api/products/softDelete/${item._id}`, {headers})
                 const resultData = result.data;
                 addSuccess(resultData); //notify
                 //this will re-render compoennt( parrent function that reFetch selected category products)
@@ -81,7 +75,7 @@ const ProductItem = ({item, isChanged, onEditProduct}) =>{
         }
         else{
             try{
-                const result = await axios.put(`http://localhost:8800/api/products/softAdd/${item._id}`)
+                const result = await axiosJWT.put(`http://localhost:8800/api/products/softAdd/${item._id}`, {headers})
                 const resultData = result.data;
                 addSuccess(resultData);
                 //Trigger reFetching on Product compoennt
@@ -97,7 +91,7 @@ const ProductItem = ({item, isChanged, onEditProduct}) =>{
     const onDeleteProduct = async() =>{
         alert("delete It");
         try{
-            const result = await axios.delete(`http://localhost:8800/api/products/${item._id}`)
+            const result = await axiosJWT.delete(`http://localhost:8800/api/products/${item._id}`, {headers})
             const resultData = result.data;
             addSuccess(resultData);
             isChanged();
@@ -108,11 +102,9 @@ const ProductItem = ({item, isChanged, onEditProduct}) =>{
         }
     }
 
-
     return(
         <tr className={item.isDeleted && 'isDeleted ' }>
             <td className='table_td_product'>
-                {/* <div className="td_product_title">{!name ? item.name : name}</div> */}
                 <div className="td_product_title">{item.name}</div>
                 {showEdit && <input
                         type='text'

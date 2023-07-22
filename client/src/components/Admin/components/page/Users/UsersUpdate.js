@@ -1,13 +1,17 @@
 import {useState, useContext, useRef, useEffect} from 'react';
 import { useLocation , useNavigate} from 'react-router-dom';
+import { axiosJWT } from '../../../../../services/axiosJWTInstance';
 import useForm from '../../../../../utils/Hooks/useForm';
-import axios from 'axios';
+import authContext from '../../../../Store/auth-context';
+import { configureHeader } from '../../../../../utils/Helper';
 
 
 import notificationContext from '../../../../Store/notification-context';
 
 const UsersUpdate = () =>{
     const navigate = useNavigate();
+    const {addSuccess, addError} = useContext(notificationContext);
+    const {user} = useContext(authContext);
 
     const [data, setData] = useState();
     const [loading, setLoading] = useState(false);
@@ -21,9 +25,6 @@ const UsersUpdate = () =>{
         address:"", 
         phone_number:"" 
     }
-
-    
-
     const {values, errors, handleChanges, resetAllValues} = useForm(initialInputObject);
 
     const onUserUpdate = async() =>{
@@ -41,14 +42,13 @@ const UsersUpdate = () =>{
 
         if(Object.keys(updateObject).length != 0){
             try{
-                const result = await axios.put(`http://localhost:8800/api/users/updateuser/${userInfo._id}`, updateObject)
+                const headers = configureHeader(user.accessToken)
+                const result = await axiosJWT.put(`http://localhost:8800/api/users/updateuser/${userInfo._id}`, updateObject, {headers})
                 const responseData = result.data;
                 setData(responseData)
                 addSuccess("User successfully updated");
                 updateObject = {};
                 resetAllValues(); //Values state reseted
-
-
             }
             catch(err){
                 console.log("Error: " + err);
@@ -56,12 +56,10 @@ const UsersUpdate = () =>{
                     addError(err.response.data.message);
                 else
                     addError("You can't update right now")
-
             }
         }
         else
             addError("Not eneterd values");
-        
     }
 
     //we wanna reRender(show new State) after user update (fetch again new data)
@@ -71,12 +69,10 @@ const UsersUpdate = () =>{
         setLoading(true);
     },[]);
 
-    const {addSuccess, addError} = useContext(notificationContext);
-
-
     const deleteUserHandler = async() =>{
         try{
-            const res = await axios.delete(`http://localhost:8800/api/users/${data._id}`);
+            const headers = configureHeader(user.accessToken)
+            const res = await axiosJWT.delete(`http://localhost:8800/api/users/${data._id}`, {headers});
             const resMessage = res.data;
             addSuccess(resMessage);
             navigate('/users');
@@ -88,7 +84,6 @@ const UsersUpdate = () =>{
     }
 
     return(
-
         <div className="usersUpdate_container">
             <div className='users_input_container'>
                 {loading ?

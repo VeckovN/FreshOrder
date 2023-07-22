@@ -1,9 +1,9 @@
 import {useState, useRef, useContext} from 'react'
-
-import axios from 'axios';
-
+import { axiosJWT } from '../../../../../services/axiosJWTInstance.js';
+import { configureHeader } from '../../../../../utils/Helper.js';
 import Modal from '../../../../UI/Modal/Modal.js'
 import notificationContext from '../../../../Store/notification-context.js';
+import authContext from '../../../../Store/auth-context.js';
 
 import './AdmiDelivery.css'
 
@@ -11,13 +11,11 @@ const AdminDeliveryModal = ({deliveryObj, onClose}) =>{
 
     const deliveryTimeRef = useRef('');
     const {addSuccess, addError} = useContext(notificationContext);
+    const {user} = useContext(authContext);
 
     const onClickComfirm = async() =>{
         const deliveryTime = deliveryTimeRef.current.value;
         const userEmail = deliveryObj.userEmail;
-        // console.log("DELIVERY INFO : \n" + JSON.stringify(deliveryObj) )        
-        //in Body
-        // const {userEmail, deliveryTime} = req.body
 
         if(deliveryTime){
             if(deliveryTime <= 300) //max 300 mins
@@ -27,7 +25,8 @@ const AdminDeliveryModal = ({deliveryObj, onClose}) =>{
                     deliveryTime
                 }
                 try{
-                    await axios.put(`http://localhost:8800/api/orders/complete/${deliveryObj.orderID}`, deliveryBodyObject);
+                    const headers = configureHeader(user.accessToken)
+                    await axiosJWT.put(`http://localhost:8800/api/orders/complete/${deliveryObj.orderID}`, deliveryBodyObject, {headers});
                     addSuccess(`You comfirm order`);
 
                     const timer = setTimeout( ()=>{
@@ -37,11 +36,6 @@ const AdminDeliveryModal = ({deliveryObj, onClose}) =>{
                     return() =>{
                         clearTimeout(timer);
                     }
-                    
-                        // //refesh page after order comfirmation
-                        // // onClose();
-                        // //addSuccess(`You comfirm order: ${userEmail}  with delivery time:  ${deliveryTime} minutes`);
-                        // addSuccess(`You comfirm order`);
                 }
                 catch(err){
                     console.log("ERROR: " + err);
@@ -54,9 +48,7 @@ const AdminDeliveryModal = ({deliveryObj, onClose}) =>{
         else{
             addError("Delivery time not set");
         }
-
     }
-
 
     const deliveryHeaderContext =
             'FreshOrder';

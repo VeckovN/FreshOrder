@@ -1,13 +1,15 @@
 import {useState, useContext, useEffect} from 'react'
 import {Link} from 'react-router-dom';
-
-import axios from 'axios';
-
+import { axiosJWT } from '../../../../../services/axiosJWTInstance';
+import authContext from '../../../../Store/auth-context';
+import { configureHeader } from '../../../../../utils/Helper';
 import AddProduct from './AddProduct/AddProduct';
 import ProductItem from './ProductItem/ProductItem.js';
 import './Products.css'
 
 const Products = () =>{
+    const {user} = useContext(authContext);
+    const headers = configureHeader(user.accessToken);
 
     const categoryOptions = ['Pizza', 'Pasta', 'Burger' ,'Salad','Drinks', 'Desert']
 
@@ -17,7 +19,8 @@ const Products = () =>{
 
     const fetchProductsByCategory = async(category) =>{
         try{
-            const res = await axios.get(`http://localhost:8800/api/products/category/${category}`);
+            const headers2 = configureHeader(user.accessToken);
+            const res = await axiosJWT.get(`http://localhost:8800/api/products/category/${category}`, {headers2});
             const products = res.data;
             products.forEach(element => {
                 console.log(element);
@@ -36,12 +39,8 @@ const Products = () =>{
 
     //Triggered in ProductItem compoennt(on Edit,SDel or Del action to reFetch users)
     const onChangeProduct = () =>{
-        // //re Fetch the showned items
+        // //re Fetch showned items
         fetchProductsByCategory(category)
-    }
-
-    const onAddProductHandler = () =>{
-        
     }
 
     return (
@@ -77,7 +76,7 @@ const Products = () =>{
                                         <tbody>
                                             {categoryItems && categoryItems.map(item =>{
                                                 return(
-                                                    <ProductItem item={item} isChanged={onChangeProduct} ></ProductItem>
+                                                    <ProductItem item={item} isChanged={onChangeProduct} headers={headers} ></ProductItem>
                                                 )
                                             })}
                                         </tbody>

@@ -26,7 +26,6 @@ const UsersModal = (props) =>{
     }
 
     //MODAL FOR UPDATING
-
     const usersHeaderContext =
             'FreshOrder';
 
@@ -80,16 +79,11 @@ const UsersModal = (props) =>{
                 />
             </div>
 
-
             <div className='users_commit_container'>
                 {/* <button onClick={commitHandler} disabled={!checkForCommit()} className='commitButton'>Commit</button> */}
                 <button onClick={commitHandler} className='commitButton'>Commit</button>
             </div>
         </div>
-            //props.children
-        // cartItems.length > 0      
-        //     ? ItemsList
-        //     : <div className='no_items'>No Items in cart</div> 
     
     const usersFooterContext = 
             <>
@@ -102,7 +96,6 @@ const UsersModal = (props) =>{
             BodyContext = {usersBodyContext}
             FooterContext = {usersFooterContext}
             onCloseModal={props.onClose}  //from App.js for closing modal
-            // onCloseSignClick={}
             >
         </Modal>
     )

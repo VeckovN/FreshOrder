@@ -1,9 +1,10 @@
-import {useState, useEffect, useRef, useCallback} from 'react'
+import {useState, useEffect, useRef, useCallback, useContext} from 'react'
+import { axiosJWT } from '../../../../../services/axiosJWTInstance';
 import Pagination from '../../../../../utils/Pagination/Pagination';
 import LoadingSpinner from '../../../../../utils/LoadingSpinner';
 import AdminOrderList from './AdminOrderList';
-import {convertDate} from '../../../../../utils/Helper.js'
-import axios from 'axios';
+import AuthContext from '../../../../Store/auth-context';
+import { configureHeader } from '../../../../../utils/Helper.js';
 
 import '../../../../Page/Orders/Orders.css'
 import './AdminOrders.css'
@@ -19,6 +20,8 @@ const AdminOrders = (props)=>{
     const [currentPage, setCurrentPage] = useState('1');
     const [sort, setSort] = useState({});
 
+    const {user} = useContext(AuthContext);
+    const headers = configureHeader(user.accessToken);
     const firstRender = useRef(true);
     
     useEffect(()=>{
@@ -55,10 +58,9 @@ const AdminOrders = (props)=>{
     //OnEvery paggination page click
     const getDataPerPage = async (pageNumber)=>{
         try{
-            console.log('GET DATA PER PAGE');
             //on initial it's true
             setIsLoading(true)
-            const res = await axios.get(`http://localhost:8800/api/orders?page=${pageNumber}&limit=${itemsPerPage}&sort=${sort.status}`)
+            const res = await axiosJWT.get(`http://localhost:8800/api/orders?page=${pageNumber}&limit=${itemsPerPage}&sort=${sort.status}`, {headers})
             const data = res.data;
 
             const timer = setTimeout(()=>{
@@ -81,10 +83,9 @@ const AdminOrders = (props)=>{
         }
     }
 
-
     const getTotalOrders = async (sort) =>{
         try{
-            const res = await axios.get(`http://localhost:8800/api/orders/count?sort=${sort.status}`);
+            const res = await axiosJWT.get(`http://localhost:8800/api/orders/count?sort=${sort.status}`, {headers});
             const data = res.data;
             setTotalOrders(data.count);
             console.log("ORDERS NUMB: " + data.count);

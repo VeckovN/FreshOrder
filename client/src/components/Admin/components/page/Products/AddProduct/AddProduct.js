@@ -1,13 +1,14 @@
 import {useState, useEffect, useContext} from 'react';
-import axios from 'axios';
+import { axiosJWT } from '../../../../../../services/axiosJWTInstance';
 
 import notificationContext from '../../../../../Store/notification-context';
+import authContext from '../../../../../Store/auth-context';
 import useForm from '../../../../../../utils/Hooks/useForm';
 import AddProductForm from './AddProductForm';
+import { configureHeader } from '../../../../../../utils/Helper';
 
 
 const AddProduct = () =>{
-
     const initialInputObject = {
         product_name:'',
         product_price:'',
@@ -17,20 +18,21 @@ const AddProduct = () =>{
     }
     const categoryOptions = ['Pizza', 'Pasta', 'Drinks', 'Desert', 'Salat']
     const {addSuccess, addError} = useContext(notificationContext);
+    const {user} = useContext(authContext)
+    const headers = configureHeader(user.accessToken);
 
     const onSubmitAddProduct = async(event) =>{
         try{
             //upload image(call api request for it) image uplaod and product create are seperated calls
             const formData = new FormData();
-            // formData.append('image', image);
             formData.append('image', values.image);
 
             //generatedName as request --- res.status(200).json(file.filename);
-            const result = await axios.post('http://localhost:8800/api/products/create', formData);
+            const result = await axiosJWT.post('http://localhost:8800/api/products/create', formData, {headers});
             const imageName = result.data;
+
             addSuccess("You successfuly uploaded " + result.data);
 
-            console.log("UPLOAD RESULT :" + result.data);
             //useImgURL - image Name to create product 
             const otherData ={
                 name:values.product_name,
@@ -39,15 +41,13 @@ const AddProduct = () =>{
                 img_path:imageName,
                 description:values.product_description,
             }
-            console.log("DATAAAAAAAA: " + JSON.stringify(otherData))
-            await axios.post('http://localhost:8800/api/products', otherData);
+            await axiosJWT.post('http://localhost:8800/api/products', otherData, {headers});
 
             addSuccess("You successfully added product")
             resetAllValues();
             RemoveValueFromObject('image')
         }
         catch(err){
-            console.log("UPLOAD ERROR : " + err);
             addError("UPLOAD ERROR")
         }
     }
@@ -58,9 +58,6 @@ const AddProduct = () =>{
         // event.preventDefault();
         values['image']=null;
     }
-
-    console.log("IMG: " + JSON.stringify(values.image))
-    console.log("DATA: " + values.product_name + " C: " + values.category + " Price " + values.product_price + " Disc: " + values.product_description)
 
     return(
         <AddProductForm
