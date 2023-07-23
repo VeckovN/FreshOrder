@@ -1,7 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Yatra+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Handlee&display=swap');
-
-.header{
+header{
     position:fixed;
     top:0;
     width:100%;
@@ -15,6 +12,9 @@
     flex-direction: row;
     box-shadow: 0 2px 10px rgba(0,0,0, 0.2);
     z-index: 20;
+
+    justify-content: space-between;
+   
 }
 
 .logo{
@@ -34,29 +34,58 @@
     color:#dddddd;
 }
 
+/* .headerLinks{
+
+    display: flex;
+    flex-direction: column;
+} */
+
 .links{
-    /* flex:3; */
-    flex:5;
-    width: 100%; /* //this fixed probelm with justify-content:center in .links(@medail 620px) - that context is out of the low-resolutin(280px) container*/
     display:flex;
-    justify-content: center; 
-    /* flex-wrap: wrap; */
-    align-items: center;
-    margin:3rem;
+    flex-direction: row;
     list-style-type:none;
     font-family: 'Handlee', cursive;
     font-size: 1.1rem;
     font-weight: 600;
+
+    align-items: center;
+    /* margin:1rem; */
 }
-.links .logout{
-    position:absolute;
-    right:.5rem;
+
+
+.links li, a{
+    text-decoration: none;
+    color: white;
+    padding:.5rem; 
+    cursor: pointer;
+}
+
+.links li:hover{
+    color:rgb(177, 142, 102);
+}
+
+
+/* .link{
+    text-decoration: none;
+    color: white;
+    padding:1.5rem; 
+    cursor: pointer;
+} */
+
+.link.index{
+    color:rebeccapurple
+}
+
+.link.logout{
     color:rgb(245, 76, 76);
-    font-weight: 550;
-    cursor:pointer;
 }
-.logout:hover{
-    color:white;
+
+.links.nav{
+    
+}
+
+.cartIcon{
+   margin: 0 1.2rem 0 1.3rem;
 }
 
 .menuSelect{
@@ -64,99 +93,8 @@
 }
 
 
+@media screen and (max-width: 650px){
 
-.cartIcon{
-    flex:1;
-    display: flex;
-    justify-content: flex-end;
-    margin-right: 2.5rem;
-    height: 80%;
-    margin-top:.5rem;
-}
-
-.link{
-    text-decoration: none;
-    color: white;
-    padding:1.5rem; 
-    cursor: pointer;
-    
-}
-.link:hover{
-    color:rgb(177, 142, 102);
-}
-
-
-.authList{
-    display: flex;
-    cursor:pointer;
-    list-style-type:none;
-    color:white;
-    font-family: 'Handlee', cursive;
-    font-size: 1.1rem;
-    font-weight: 600;
-}
-.authList li{
-    margin:0rem .5rem;
-    
-}
-.authList li:hover{
-    color:rgb(177, 142, 102);
-}
-
-
-
-.authLink{
-    text-decoration: none;
-    color:white;
-}
-
-.authLinkLogout{
-    color:rgb(245, 76, 76);
-    
-}
-
-
-
-@media screen and (max-width:850px) {
-    /* .authList{
-        flex-direction: column;
-    } */
-    .links{
-        margin:0rem;
-    }
-    .link{
-        padding:1rem;
-    }
-    
-}
-
-@media screen and (max-width:740px){
-    .links{
-        /* flex:3; */
-        margin:0rem;
-        font-size: 1rem;
-        flex:3;
-    }
-    .authLink{
-        font-size:1rem;
-    }
-    .logo{
-        margin:0 0 0 1.5rem;
-        /* flex:1; */
-    }
-    
-    .logo a{
-        font-size: 1.1rem;
-    }
-
-
-}
-
-
-@media screen and (max-width:650px) {
-    /* .home-container{
-        margin:-2rem 0 0 0 ;
-    } */
     .header{
         position:relative;
         top:0;
@@ -164,30 +102,28 @@
         display: flex;
         flex-direction:column;
     }
-    .links,
-    .authList
-    {
-        /* visibility: hidden; */
-        display:none;
+
+    .logo{
+        margin:0rem;
+    }
+
+    .links{
+        display: none;
     }
 
     .header.nav{
         position:absolute;
-        /* width: 100%; */
-        /* height: 100%;  */
+        width: 100%; 
+        height: 100%;  
         background-color: rgb(161, 161, 160);
         opacity: 1;
         display: flex;
         flex-direction: column; 
     }
 
-
-    /* Nav bar */
     .links.nav{
-        position:relative;
-        background-color: rgb(80, 80, 76);
-        width: 60%;
-        min-width: 200px;
+        position:absolute;
+        top:4rem;
         margin:2rem 0rem 0rem 0rem;
         /* visibility: visible; */
         display:flex;
@@ -195,123 +131,33 @@
         justify-content: space-around;
         /* flex:2; */
         text-align: center;
-
-        border-radius: 20px 20px 10px 10px;
     }
     .links.nav li{
         padding:1rem 0rem;
     }
 
-    .authList.nav{
-        position: relative;
-        background-color: rgb(80, 80, 76);
-        width: 60%;
-        min-width: 200px;
-        top:-.5rem;
-        padding:.5rem 0rem;
-        display:flex;
-        flex-direction: column;
-        align-items: center;
 
-        border-radius: 0px 0px 20px 20px;
-       
-    }
-
-    .authList.nav li{
-        padding:1rem 0rem;
-    }
-
-    .authLink.nav {
-        /* visibility: visible; */
-        display:unset;
-    }
-
-    .links.nav .logout{
-        /* background-color: #251814; */
-        position:relative;
-        right:1px
-    }
-
-    .logo{
-        flex:0.5;
-        padding-top:1rem;
-        align-items: center;
-        margin:0;
-    }
-    
-    
     .menuSelect{
         display:unset;
         position:absolute;
-        top:3rem;
+        top:2rem;
         cursor: pointer;
         font-weight: 500;
         z-index: 100;
+        
     }
     .menuSelect:hover{
         color:#dddddd
     }
-    
-    /* .links{
-        flex:6;
-        width: 100%;
-        align-items: center;
-        margin:.1rem;
-        list-style-type:none;
-
-        display: none;
-    } */
-
 
     .cartIcon{
         position:fixed;
         top:0;
-        right:.3rem;
+        right:3rem;
         /* display: flex;
         justify-content: flex-end; */
         margin-right: 0rem;
         height: 80%;
         margin-top:0rem;
     }
-
-    .logout{
-        position:absolute;
-        right:0rem;
-    }
-
-
-    
 }
-
-
-@media screen and (max-width:330px) {
-    .links{
-        font-size:.85rem;
-    }
-}
-
-
-
-@media screen and (max-width:300px) {
-
-    .header{
-        width: 100%;
-    }
-    .links{
-        width: 90%;
-    }
-    .links > .link{
-        display: flex;
-        flex:1;
-        
-        
-    }
-
-}
-
-
-
-
-
-
-

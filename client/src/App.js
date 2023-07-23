@@ -8,10 +8,7 @@ import {initialState} from './components/UI/Modal/ModalUseReducer.js'
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 
-import './components/Layout/Header.css'
-
-
-import Header from './components/Layout/Header'
+import Header from './components/Layout/Header.js'
 import Footer from './components/Layout/Footer'
 
 import Cart from './components/Cart/Cart.js';
@@ -50,35 +47,9 @@ function App() {
 
   //calling here ensure that interceptors will be configured before any request
   useAxiosJWTInterceptors();
-  
-
-  //Axios instances(axiosJWT used for checking on JWT token expiration)
-  //default axios istance is used for unLoged users(they don't have JWT token)
-  // axios.interceptors.request.use(async (config) =>{
-  //     let currentDate = new Date();
-
-  //     console.log("CCCCCCCCCCCAAAAAAAAAAAAAWWWWWWWWWWWWWWWWWW");
-
-  //     if(ctxAuth.user){
-  //         const decodedToken = jwt_decode(ctxAuth.user.addSuccess);
-  //         if(currentDate.getTime() > decodedToken.exp *1000){
-  //           dispatchAction({type:"LOGOUT"});
-  //           nav('/');
-  //         }
-  //         // else{
-  //         //    //refresh Token
-  //         // }
-  //       }
-  //     return config;
-  //   },
-  //   (error) =>{
-  //     return Promise.reject(error);
-  //   }
-  // )
 
 
-  //this show modal (example Login) will couse re-rendering child components of App.js(header for example)
-  
+  //this show modal (example Login) will couse re-rendering child components of App.js(header for example)  
   const showCart = () => dispatch({type:"SHOW_CART"});
   const closeCart = () => dispatch({type:"CLOSE_CART"});
   const showRegister = () => dispatch({type:"SHOW_REGISTER"});
@@ -113,11 +84,16 @@ function App() {
         {/* Show list of notification not only one notification */}
         {(success || error) && 
           <Notification />}
-        <Header 
+        {/* <Header 
           onShowCartModal={showCart}
           onShowRegisterModal={showRegister}
           onShowLoginModal={showLogin}
-        />
+        /> */}
+        <Header
+          onShowCartModal={showCart}
+          onShowRegisterModal={showRegister}
+          onShowLoginModal={showLogin}
+        /> 
 
         {/*  THIS INS'T OPTIMIZED, ON EVERY user CHange 
         ROUTES WILL BE RECREATED AND ALL CHILDREN COMPONENT WILL BE ALSO RERENDERED*/}
