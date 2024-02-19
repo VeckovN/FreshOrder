@@ -91,7 +91,7 @@
 .users_inputs{
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
 }
 
 .users_commit_container{
