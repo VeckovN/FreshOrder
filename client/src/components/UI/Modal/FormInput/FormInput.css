@@ -1,0 +1,33 @@
+.form-input-controll{
+    /* dont set margin on compoenent- leave it to a consumer */
+    /* margin: 1em 0em; */
+    font-family: 'Handlee', cursive;
+}
+.form-input-controll:first-child{
+    color:white;
+}
+
+.form-input-field{
+}
+
+.form-input-field input{
+    height: 2.5em;
+    width: 100%;
+    padding:.5em;
+    
+    border:none;
+    border-radius: 8px;
+
+    font-family: 'Handlee', cursive;
+    /* font-size: .9em; */
+}
+.form-input-field input::placeholder{
+    color:black;
+}
+.form-input-field:nth-child(2){
+    color:red;
+}
+
+.form-input-field .error-input{
+    border:1px solid red;
+}
