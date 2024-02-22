@@ -18,8 +18,7 @@ const Login = (props) =>{
     }
     const {values, errors, handleChanges, setEmptyFieldError } = useForm(initialInputObject)
     //another way to DispatchAction without defined function in auhtContext like in cartContext
-    const {user,loading,error,dispatchAction, loggin} = useContext(authContext);
-
+    const {loading,dispatchAction, loggin} = useContext(authContext);
     const {addSuccess, addError} = useContext(notificationContext);
 
     const submitForm = async (event)=>{
@@ -45,10 +44,11 @@ const Login = (props) =>{
                 }, 1000);
             }
             catch(err){
-                alert("er" + err);
                 if(err.response){
-                    addError(err.response.data.message);
-                    dispatchAction({type:"LOGIN_FAILURE", payload:err.response.data})
+                    timerRef.current = setTimeout(()=>{
+                        addError(err.response.data.message);
+                        dispatchAction({type:"LOGIN_FAILURE", payload:err.response.data})
+                    }, 200);
                 }
                 else{
                     dispatchAction({type:"LOGIN_FAILURE", payload:err})
@@ -56,21 +56,10 @@ const Login = (props) =>{
                 }
                 values.email = '';
                 values.password ='';
-                // addError(err.response.data.message);
             }
         }
     }
 
-    // const handleEnterKey = (event) =>{
-
-    //     alert("KEYDOWN: " + event.key);
-    //     if(event.key === "Enter")
-    //     {
-    //         alert("ENTERR");
-    //         event.preventDefault();
-    //         this.submitForm();
-    //     }
-    // }
 
     //With useREf
     useEffect( () =>{
@@ -82,7 +71,6 @@ const Login = (props) =>{
     //When is modal closed set error,loading and user to initiated value(false,null,null)
     const onCloseLoginModal =()=>{
         dispatchAction({type:"RESET"});
-        //after that login form wont show error message when is modal closed
         props.onClose();
     }
 
@@ -90,17 +78,15 @@ const Login = (props) =>{
         <LoginForm 
             loading={loading} 
             values={values} 
-            // submitForm={submitForm} 
+            submitForm={submitForm} 
             handleChanges={handleChanges} 
             errors={errors}
         />
-
     return (
         <LoginModal 
+            loading={loading}
             onCloseLogin={onCloseLoginModal}
             logBodyContext={logBodyContext}
-            error={error}
-            submitForm={submitForm}
         />
     )
 }

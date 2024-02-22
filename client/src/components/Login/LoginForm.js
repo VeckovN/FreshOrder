@@ -1,43 +1,53 @@
-const LoginForm = ({loading, values, handleChanges, errors }) =>{
+import FormInput from "../UI/Modal/FormInput/FormInput"
+
+const LoginForm = ({loading, values, handleChanges, errors, submitForm }) =>{
 
     return(
-        <div className='loginForm'>
+        <form className='loginForm'>
             {loading &&
             <div className='loadingBackground'>
                 <div className='loader'></div>
             </div>
             }
 
-            <div className='loginControl-input'>
-                <label className='log_label'>Email Address</label>
-                <div className='login_input_field'>
-                    <input
-                        type='text'
+            <div className='welcome-text'>
+                <div>The First Step to order your food is to login</div>
+                <div id="login-text"> Login to FreshOrder </div>
+            </div>
+
+            <div className="input-login-conainer">
+                <div className='input-login'>
+                    <FormInput 
                         name='email'
-                        onChange={handleChanges}
-                        value={values.email || ''}
-                        placeholder='example@gmail.com'
-                        className={errors.email && 'error'}
+                        type='text'
+                        values={values}
+                        errors={errors}
+                        handleChanges={handleChanges}
+                        // placeholder='example@gmail.com'
+                        placeholder='Enter email address'
                     />
-                    {errors.email && <label>{errors.email}</label>}
+                </div>
+
+                <div className='input-login'>
+                    <FormInput 
+                        name='password'
+                        type='password'
+                        values={values}
+                        errors={errors}
+                        handleChanges={handleChanges}
+                        placeholder='Enter password'
+                    />
+                </div>
+
+                <div className='login-button-container'>
+                    <button onClick={submitForm}>Login in</button>
                 </div>
             </div>
 
-            <div className='loginControl-input'>
-                <label className='log_label'>Password</label>
-                <div className='login_input_field'>
-                    <input
-                        type='password'
-                        name='password'
-                        onChange={handleChanges}
-                        value={values.password || ''}
-                        placeholder='Enter password'
-                        className={errors.password && 'error'}
-                    />
-                    {errors.password && <label>{errors.password}</label>}
-                </div>
+            <div id="create-acc-div">
+                <div id="text-acc">New Here? <span>Create an account</span></div> 
             </div>
-        </div>
+        </form>
     )
 }
 

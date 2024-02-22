@@ -1,51 +1,46 @@
-@import url('https://fonts.googleapis.com/css2?family=Tillana:wght@400;500;600;700;800&display=swap');
-
 /* THIS PASSED AS PROPERTY TO MODAL COMPONENT */
 .loginModal{
-    /* background-color: red; */
     width: 30%;
     min-width: 450px;
     max-width: 600px;
+
+    overflow: hidden;
+    /* z-index: 30; */
+
 }
 
-
 .loginForm{
-    display:flex;
-    flex-direction:column;
-    justify-content: space-evenly;
-    padding:1rem 0rem;
     height: 50%;
-    
+    width: 75%;
+    padding:1rem 0rem;
+
+    /* background-color: blueviolet; */
+
+    font-family: 'Handlee', cursive;
+    /* overflow: hidden; */
 }
 
 /* LOADING  */
 .loadingBackground{
-    position:absolute;
-    background-color: rgba(14, 10, 8, 0.61);
-    /* width: 100vw;
-    height: 100vw; */
-    width: 100%;
-    height: 100%;
-    top:-1;
-    
+    opacity: 1;
+    z-index: 40;
 }
 
 .loader{
     position:absolute;
-    left: 45%; 
+    left:45%;
     top:40%;
     /* transform: translate(-50%, -50%); */
-    transform:translate(-50%, -40%);
 
     border:10px solid rgb(0, 0, 0);
     border-top: 10px solid #dee1e4;
     border-radius: 50%; 
     width:70px;
-    height:70px ;
+    height:70px;
     animation: spin 1s  infinite;
 
-    z-index: 1000;
-
+    opacity: 1;
+    z-index: 40;
 }
 
 @keyframes spin{
@@ -57,147 +52,58 @@
     }
 }
 
-
-.loginControl-input{
-    display: flex;
-    flex-direction: row;
-    padding: 1rem 3rem;
-    height: 4rem;
-
-}
-/* .loginControl-input label{
-    flex:1;
+.welcome-text{
     color:white;
-    font-family: 'Tillana', cursive;
-    font-weight: 800;
-    font-size:1rem;
-    letter-spacing: .05rem;
-} */
-.log_label{
-    /* flex:1; */
-    flex:1;
-    font-family: 'Tillana', cursive;
-    font-weight: 800;
-    font-size:1rem;
-    letter-spacing: .05rem;
+    padding:.5em 0em .5em 0em;
 }
 
-.login_input_field{
-    flex:1;
+.welcome-text div:first-child{
+    padding-bottom: 1em;
+    /* color:red; */
+    text-align: center;
+}
+
+.input-login-conainer{
+    width: 100%;
+
+}
+.input-login{
+    padding:.2em 0em;
+}
+
+.login-button-container{
+    margin:.8em 0;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
 }
 
-.login_input_field input{
-     /* flex:1;
+.login-button-container button{
+    width: 50%;
+    height: 2.3em;
 
-     border:none;
-     background-color: transparent;
-     border-bottom: 2px solid rgba(0, 0, 0, 0.466);
-     outline: none;
-     color:white; */
-}
-
-.loginControl-input label{
-    /* flex:1; */
-    flex:1;
-    color:rgb(0,0,0);
-    font-weight: 500;
-}
-.loginControl-input input{
-    /* flex:1; */
-    flex:1;
-    
-    font-family: 'Tillana', cursive;
-    font-size: .9rem;
-    font-weight: 500;
     border:none;
-    background-color: transparent;
-    border-bottom: 2px solid rgb(0, 0, 0);
-    outline: none;
-    color:rgb(0,0,0);
-}
+    border-radius: 11px;
 
-
-.login_input_field input:focus{
-    border-bottom: 2px solid rgba(0, 0, 0, 0.800);
-}
-
-.login_input_field input::placeholder{
-    color:rgb(0,0,0);
-    opacity: 0.6;
-    font-style: italic;
-    font-family: 'Tillana', cursive;
-}
-
-.login_input_field .error{
-    border-bottom: 2px solid rgba(216, 20, 20, 0.842);
-}
-
-/* When input has enterd value then it will be black(regular-no error) */
-/* .login_input_field .error:not(:placeholder-shown){
-    border-bottom: 2px solid rgba(0, 0, 0, 0.800);
-} */
-
-
-.loginError{
-    margin:.3rem 1rem;
-    color:white;
-}
-.loginError span{
-    color:rgb(202, 22, 22);
-    font-size:.9rem;
+    font-family: 'Handlee', cursive;
     font-weight: 600;
-    
-}
-
-.login_input_field label{
-    font-size: .9rem;
-    font-weight: 600;
-    letter-spacing: .05rem;
-    font-family: 'Shadows Into Light', cursive;
-    color:rgb(236, 0, 0)
-    
-}
-
-.loginForm-actions{
-    flex-direction: flex-end;
-}
-
-
-.loginForm_submit{
-    display:flex;
-    justify-content: flex-end;
-    margin:.1rem .5rem .1rem 0;
-}
-
-.loginForm_submit button{   
+    color:black;
 
     cursor: pointer;
-    /* height: 1.7rem; */
-    border:2px solid black;
-    border-radius: .5rem;
-
-    font-family: 'Averia Sans Libre', cursive;
-    font-size: 1rem;
-    font-weight: 500;
-
-    height: 2rem;
-    width: 5.5rem;
-
-    
+}
+.login-button-container button:hover{
+    background-color: rgb(214, 214, 214);
 }
 
-.loginForm_submit button:hover{
+#create-acc-div{
+    margin:2em 0 1.5em 0;
     color:white;
-    background-color:rgb(124, 124, 124);
-    
+}
+#text-acc a {
+    color:rgb(199, 199, 199);
 }
 
 
-
-
-
+/* TODO: change class Names to new names */
 @media only screen and (max-width:461px){
     .loginModal{
         /* background-color: red; */
