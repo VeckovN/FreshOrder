@@ -1,21 +1,14 @@
-import React,{useState, useContext, useEffect, useRef} from 'react'
+import React,{useState, useContext, useEffect} from 'react'
 import axios from 'axios';
-
 import MealItem from './Item/MeaItem';
+import categoryContext from '../Store/category-context';
 
 import './AvailableMeal.css'
-
-import Card from '../UI/Card'
-
-import categoryContext from '../Store/category-context';
 
 //!!!HIGH ORDER COMPONENT(Refactore THIS )
 //https://www.robinwieruch.de/react-higher-order-components/
 
 const AvailableMeals = props =>{
-    console.log("AVAILABLEMEALS");
-
-    // const [filteredMeals, setFilteredMeals] = useState('');
     const [filteredProducts, setFilteredProducts] = useState(null);
     //this triggered a re-rendering
     const ctxCategory = useContext(categoryContext);
@@ -35,7 +28,6 @@ const AvailableMeals = props =>{
                     notSoftDeleted = products.filter(el => {
                         return  el.isDeleted === false
                     })
-                    console.log("NOT SOFT DELETE: " + JSON.stringify(notSoftDeleted));
                     // setFilteredProducts(products);
                     setFilteredProducts(notSoftDeleted);
                 }catch(err){
@@ -50,19 +42,6 @@ const AvailableMeals = props =>{
 
     },[categorySelected])
 
-    // const filtered = Meals.filter(meal => meal.category === categorySelected);    
-
-    // const MealList = filtered.map(meal =>(
-    //     <MealItem
-    //         key={meal.id}
-    //         id={meal.id}
-    //         name={meal.name}
-    //         category={meal.category}
-    //         description={meal.description}
-    //         price={meal.price}
-    //         img_name={meal.img_name}
-    //     />
-    // ))
     let MealList;
     {filteredProducts ? 
         MealList = filteredProducts.map(meal =>(
@@ -79,10 +58,9 @@ const AvailableMeals = props =>{
         : MealList=[];
     }
 
-    // return <p>Meals: {Meals[1].id}</p>
-    return <div className='available_meal_container' id="menu" ref={props.sliderRef}> 
+    return <div className='available-meal-container' id="menu" ref={props.sliderRef}> 
         {categorySelected && <h1 id="Meals"><span>{categorySelected}</span> Menu </h1>} 
-        <div className='meal_list' id='meal_list'>
+        <div className='meal-list' id='meal-list'>
             {MealList} 
         </div>
     </div>
