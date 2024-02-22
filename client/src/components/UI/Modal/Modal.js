@@ -17,7 +17,8 @@ const ModalViewOverlay = props =>{
                 <button className='close_sign' onClick={props.onCloseMV}>X</button>
             </div>
             
-            <div className='modal-body'>    
+            {/* <div className='modal-body'>     */}
+            <div className={`modal-body ${props.loading ? 'loading-modal-body' : ''}`}>    
                 {/* {props.children} */}
                 {props.BodyContext}
             </div>
@@ -51,6 +52,7 @@ const Modal = props =>{
                 //this is from cart return (Modal props)
                 HeaderContext={props.HeaderContext}
                 BodyContext={props.BodyContext}
+                loading={props.loading}
             />,
             portalElement)}
         </Fragment>
