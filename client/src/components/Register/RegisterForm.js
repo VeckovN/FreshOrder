@@ -1,109 +1,80 @@
+import FormInput from '../UI/Modal/FormInput/FormInput';
 import './Register.css'
 
 const RegisterForm = ({submitForm, values, errors, handleChanges,}) =>{
 
     return (
         <div className='regForm'>
-            <div className='registerControl-input'>
-                <label className='reg_label'>Username</label>
-                <div className='register_input_field'>
-                    <input
-                        type='text'
+            <div className="title-text">Create an account</div>
+
+            <div className='input-register-container'>
+                <div className='input-register'>
+                    <FormInput
                         name='username'
-                        onChange={handleChanges}
-                        value={values.username || ''}
-                        placeholder='Enter name'
-                        className={errors.username && 'error'}
-                    />
-                    {errors.username && <label>{errors.username}</label>}
-                </div>
-            </div>
-
-
-            <div className='registerControl-input'>
-                <label className='reg_label'>Email Address</label>
-                <div className='register_input_field'>
-                    <input
                         type='text'
+                        values={values}
+                        errors={errors}
+                        handleChanges={handleChanges}
+                        placeholder='Enter username'
+                    />
+                </div>  
+                <div className='input-register'>
+                    <FormInput
                         name='email'
-                        onChange={handleChanges}
-                        value={values.email || ''}
-                        placeholder="example@gmail.com"
-                        className={errors.email && 'error'}
-                    />
-                    {errors.email &&<label>{errors.email}</label>}
-                </div>
-                
-            </div>
-
-            <div className='registerControl-input'>
-                <label className='reg_label'>Password</label>
-                <div className='register_input_field'>
-                    <input
-                        type='password'
-                        name='password'
-                        onChange={handleChanges}
-                        value={values.password || ''}
-                        placeholder='Enter password'
-                        className={errors.password && 'error'}
-                    />
-                    {errors.password &&<label>{errors.password}</label>}
-                </div>
-                
-            </div>
-
-            <div className='registerControl-input'>
-                <label className='reg_label'>Repeat Password</label>
-                <div className='register_input_field'>
-                    <input
-                        type='password'
-                        name='repeat_password'
-                        onChange={handleChanges}
-                        value={values.repeat_password || ''}
-                        placeholder='Repeat password'
-                        className={errors.repeat_password && 'error'}
-                    />
-                    {errors.repeat_password && <label>{errors.repeat_password}</label>}
-                </div>
-                
-            </div>
-
-            <div className='registerControl-input'>
-                <label className='reg_label'>Address</label>
-                <div className='register_input_field'>
-                    <input
                         type='text'
+                        values={values}
+                        errors={errors}
+                        handleChanges={handleChanges}
+                        placeholder='Enter email address'
+                    />
+                </div>  
+                <div className='input-register'>
+                    <FormInput
+                        name='password'
+                        type='password'
+                        values={values}
+                        errors={errors}
+                        handleChanges={handleChanges}
+                        placeholder='Enter password'
+                    />
+                </div>  
+                <div className='input-register'>
+                    <FormInput
+                        name='repeat_password'
+                        type='password'
+                        values={values}
+                        errors={errors}
+                        handleChanges={handleChanges}
+                        placeholder='Repeat the password'
+                    />
+                </div>  
+                <div className='input-register'>
+                    <FormInput
                         name='address'
-                        onChange={handleChanges}
-                        value={values.address || ''}
-                        placeholder="Enter your address"
-                        className={errors.address && 'error'}
+                        type='text'
+                        values={values}
+                        errors={errors}
+                        handleChanges={handleChanges}
+                        placeholder='Enter address'
                     />
-                    {errors.address && <label>{errors.address}</label>}
-                </div>
-            </div>
+                </div>  
 
-            <div className='registerControl-input'>
-                <label className='reg_label'>Phone Number</label>
-                <div className='register_input_field'>
-                    <input
-                        type='number'
+                <div className='input-register'>
+                    <FormInput
                         name='phone_number'
-                        onChange={handleChanges}
-                        value={values.phone_number || ''}
-                        min='9'
+                        type='number'
+                        values={values}
+                        errors={errors}
+                        handleChanges={handleChanges}
                         placeholder='Enter digit values'
-                        className={errors.phone_number && 'error'}
                     />
-                    {errors.phone_number && <label>{errors.phone_number}</label>}
+                </div>  
+
+                <div className='register-button-container'>
+                    <button onClick={submitForm}>Submit</button>
                 </div>
-                
             </div>
 
-            {/* moved in Modal Footer */}
-            {/* <div className = 'registerForm-actions'>
-                <button>Submit</button>
-            </div> */}
         </div>
     )
 }

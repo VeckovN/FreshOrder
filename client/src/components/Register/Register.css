@@ -1,9 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Tillana:wght@400;500;600;700;800&display=swap');
-
 .registerModal{
     width:50%;
     min-width: 500px;
     max-width: 650px;
+
+    min-height: 550px;
+
+     overflow: hidden;
+    /* overflow: hidden; */
 }
 
 /* .form-actions{
@@ -12,10 +15,49 @@
 } */
 
 .regForm{
-    display: flex;
-    flex-direction: column;
-    margin:2rem 0rem;
+    margin:1.3rem 0rem;
     height: 50%;
+    width: 70%;
+    
+}
+
+.title-text{
+    margin-bottom:.5em;
+    text-align: center;
+    
+    color:white;
+    font-family: 'Handlee', cursive;
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+
+.input-register-container{
+    width: 100%;
+}
+
+.input-register{
+    padding:.1em 0em .5em 0em;
+}
+
+.register-button-container{
+    margin:.8em 0;
+    display: flex;
+    justify-content: center;
+}
+
+.register-button-container button{
+    width: 50%;
+    height: 2.3em;
+
+    border:none;
+    border-radius: 11px;
+
+    font-family: 'Handlee', cursive;
+    font-weight: 600;
+    color:black;
+
+    cursor: pointer;
 }
 
 .registerControl-input{
@@ -25,109 +67,6 @@
     height: 3.2rem; 
     
 }
-
-
-.reg_label{
-    /* flex:1; */
-    flex:1;
-    color:rgb(0,0,0);
-    font-family: 'Tillana', cursive;
-    font-weight: 600;
-    font-size:1rem;
-    letter-spacing: .05rem;
-}
-
-
-.register_input_field {
-    flex:1;
-    display: flex;
-    flex-direction: column;
-} 
-
-.register_input_field input{
-    /* flex:1; */
-    flex:1;
-
-    border:none;
-    background-color: transparent;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.466);
-    outline: none;
-    color:white;
-
-    font-family: 'Tillana', cursive;
-    font-size: .9rem;
-    font-weight: 500;
-    border:none;
-    background-color: transparent;
-    border-bottom: 2px solid rgb(0, 0, 0);
-    outline: none;
-    color:rgb(0,0,0);
-   
-}
-
-.register_input_field input:focus{
-    border-bottom: 2px solid rgba(0, 0, 0, 0.800);
-}
-
-.register_input_field input::placeholder{
-    color:rgb(0,0,0);
-    opacity: 0.6;
-    font-style: italic;
-    font-size: .8rem;
-}
-
-.register_input_field .error{
-    border-bottom: 2px solid rgba(216, 20, 20, 0.842);
-}
-.register_input_field .error:focus{
-    border-bottom: 2px solid rgba(206, 7, 7, 0.993);
-}
-
-.register_input_field label{
-    font-size: .9rem;
-    font-weight: 600;
-    letter-spacing: .05rem;
-    font-family: 'Shadows Into Light', cursive;
-    color:rgb(236, 0, 0)
-}
-
-.registerError{
-    margin-left: 1rem;
-    color:white;
-}
-.registerError span{
-    color:rgb(207, 34, 34);
-    font-size:.9rem;
-    
-}
-
-
-.registerForm_submit{
-    display:flex;
-    justify-content: flex-end;
-    margin:.1rem .5rem .1rem 0;
-}
-.registerForm_submit button{
-
-    cursor: pointer;
-    /* height: 1.7rem; */
-    border:2px solid black;
-    border-radius: .5rem;
-
-    font-family: 'Averia Sans Libre', cursive;
-    font-size: 1rem;
-    font-weight: 500;
-
-    height: 2rem;
-    width: 5.5rem;
-}
-
-.registerForm_submit button:hover{
-    color:white;
-    background-color:rgb(124, 124, 124);
-    
-}
-
 
 
 

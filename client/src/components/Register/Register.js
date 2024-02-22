@@ -20,13 +20,15 @@ const Register = (props) =>{
         address:'', 
         phone_number:''
     }
-
+    
     const {addSuccess, addError} = useContext(notificationContext);
-    const[error, setError] = useState('');
 
+    const[loading, setLoading] = useState(false);
+    
     //this will be only called in useForm handleRegSubmit(as callback) if input validation passes
     const submitReg = async(event) =>{
         try{
+            // setLoading(true);
             const regInfo={
                 username:values.username,
                 email:values.email,
@@ -34,26 +36,25 @@ const Register = (props) =>{
                 address:values.address,
                 phone_number: values.phone_number
             }
-
-            const res = await axios.post('http://localhost:8800/api/auth/register', regInfo)    
-            const resData = res.data;
-
+            
+            await axios.post('http://localhost:8800/api/auth/register', regInfo)    
             props.showLogin();
             addSuccess("Successfuly registered")
-            
+
+            // setLoading(false);
         }
         catch(err){
             console.log(err);
             addError(err.response.data.message)
         }
     }
-
+    
     const {values, errors, handleChanges, setEmptyFieldError, handleRegSubmit} = useForm(initialInputObject, submitReg);
-
+    
     const regBodyContext =
-        <RegisterForm 
-            // submitForm={submitForm}
-            // submitForm={handleRegSubmit} //with submitReg callback in useForm
+    <RegisterForm 
+        // loading={loading}
+            submitForm={handleRegSubmit}
             values={values}
             errors={errors}
             handleChanges={handleChanges}
@@ -61,12 +62,10 @@ const Register = (props) =>{
 
     return (
         <RegisterModal 
+            // loading={loading}
             onCloseRegister={props.onClose}
             regBodyContext={regBodyContext}
-            error={error}
-            submitForm={handleRegSubmit} //with submitReg callback in useForm
-        />
-            
+        />       
     )
 }
 
