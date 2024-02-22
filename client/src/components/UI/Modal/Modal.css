@@ -13,9 +13,6 @@
 
 .modal{
     position:fixed;
-    background-color: rgb(87,66,64);
-    border-radius: 1rem;
-
     width:70vw;
     max-width: 800px;
     max-height: 90%;
@@ -26,45 +23,38 @@
     float:left;
     left: 50%;
     transform: translate(-50%, -52%);
-
-    z-index: 20;
     margin-bottom: 1rem;
+
+    border-radius: 1rem;
+    
+    background-color: rgb(19, 19, 19);
+    z-index: 20;
 }
 
 .modal-conatiner{
     position: relative;
     width: 100%;
     height: 100%;
-
-    /* display: flex;
-    flex-direction:column;
-    justify-content: space-evenly; */  
 }
 
 .modal-header{
     display: flex;
     justify-content: space-between;
-    /* background-color:bisque; */
     padding: 0.5rem 0;
-    /* border-radius: 1rem 1rem 0rem 0rem; */
+    background-color:#0a0a0a;
 }
-.modal-header , .modal-footer{
-    /* background-color:#381800; */
-    background-color:#0a0803;
+
+.modal-header >*{
+    color:white;
+    font-family: 'Handlee', cursive;
 }
 
 .modal-header:first-child{
-    font-family: 'Handlee', cursive;
-    letter-spacing: 0.05rem;
-    font-weight: 700;
     font-size: 1.1rem;
     padding-left: 1rem;
-    color:white;
 }
 
-
 .modal-header button{ /* second div of modal-header */
-    color:white;
     font-size:.9rem;
     font-weight: bold;
     margin-right:.7rem;
@@ -76,27 +66,14 @@
 }
 
 .modal-header button:hover{
-    color:white;
-    color:rgb(179, 40, 40);
-    font-size:.95rem;
+    /* color:rgb(179, 40, 40); */
+    color:rgb(168, 114, 114);
+    /* font-size:.95rem; */
 }
 
 .modal-body{
-    background-color: #dddddd;
-    /* background-image: url('../../../public/BackgroundCenter.jpg'); */
-    padding:0.2rem 0;
-
+    /* padding:0.2rem 0; */
 }
-
-.modal-footer{
-    /* border-radius:0rem 0rem 1rem 1rem; */
-    width: 100%;
-    /* background-color: aliceblue; */
-    position:static;
-    bottom:0;
-    padding: 0.2rem 0;
-}
-
 
 
 @media screen and (max-width:740px) {

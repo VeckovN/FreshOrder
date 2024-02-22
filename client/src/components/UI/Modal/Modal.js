@@ -21,10 +21,6 @@ const ModalViewOverlay = props =>{
                 {/* {props.children} */}
                 {props.BodyContext}
             </div>
-
-            <div className='modal-footer'>
-                {props.FooterContext}
-            </div>
         </div>    
     </div>
 }
@@ -55,7 +51,6 @@ const Modal = props =>{
                 //this is from cart return (Modal props)
                 HeaderContext={props.HeaderContext}
                 BodyContext={props.BodyContext}
-                FooterContext={props.FooterContext}
             />,
             portalElement)}
         </Fragment>
