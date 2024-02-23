@@ -4,15 +4,8 @@
     max-width: 650px;
 
     min-height: 550px;
-
-     overflow: hidden;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
-
-/* .form-actions{
-    height:1rem;
-    width: 2rem;
-} */
 
 .regForm{
     margin:1.3rem 0rem;
@@ -65,37 +58,44 @@
     padding:.7rem 3rem;
     /* with set height InputForm height ins't changing on showing error  */
     height: 3.2rem; 
-    
 }
 
 
-
-@media only screen and (max-width:461px){
+@media only screen and (max-width:520px){
     .registerModal{
-        width:40%;
+        width:90%;
         min-width: 400px;
-        max-width: 420px;
-        /* max-width: 400px;    */
     }
-
-
-    .registerControl-input{
-        display: flex;
-        padding:.7rem 2rem;
-        /* with set height InputForm height ins't changing on showing error  */
-        height: 3.2rem; 
-        
-    }
-
-    .reg_label{
-        font-size:.9rem;
-        letter-spacing: .04rem;
-    }
-
-
-
 }
 
-@media only screen and (max-width:360px){
-    
+@media only screen and (max-width:412px){
+    .registerModal{
+        width:90%;
+        min-width: 300px;
+    }
+
+    .regForm{
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width:312px){
+    .registerModal{
+        width:95%;
+        min-width: 250px;
+    }
+
+    .regForm{
+        width: 90%;
+        font-size: .9rem;
+    }
+
+    .input-register-container .form-input-controll{
+        font-size: .9em;
+    }
+
+    .input-register-container .form-input-field input{
+        font-size:.7rem;
+    }
+
 }
