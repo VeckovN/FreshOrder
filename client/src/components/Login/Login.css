@@ -3,7 +3,7 @@
     width: 30%;
     min-width: 450px;
     max-width: 600px;
-
+    min-height: 380px;
     overflow: hidden;
 }
 

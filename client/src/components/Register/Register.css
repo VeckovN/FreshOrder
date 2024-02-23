@@ -2,8 +2,7 @@
     width:50%;
     min-width: 500px;
     max-width: 650px;
-
-    min-height: 550px;
+    min-height: 560px;
     overflow: hidden;
 }
 
@@ -58,6 +57,7 @@
     padding:.7rem 3rem;
     /* with set height InputForm height ins't changing on showing error  */
     height: 3.2rem; 
+    
 }
 
 
@@ -83,6 +83,8 @@
     .registerModal{
         width:95%;
         min-width: 250px;
+        /* max-width: 420px; */
+        /* max-width: 400px;    */
     }
 
     .regForm{
