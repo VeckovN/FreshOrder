@@ -70,6 +70,8 @@ function App() {
   return (
       <CartProvider>
 
+        {/* Should this ShowDeliveryTime Modal be showned in file when is deliveryTimeInfo send(In HomeAssistant app all modals are not rendered in App.js
+          but in another(where belongs -> HouseworkerCardModal is rendered in HousweorkerCardContext)  ) */}
         {state.showModalCart && 
           <Cart onClose={closeCart}/>}
         {state.showModalRegister && 
