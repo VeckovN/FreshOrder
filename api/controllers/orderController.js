@@ -1,4 +1,3 @@
-import mongoose from 'mongoose';
 import Order from '../models/Order.js'
 import User from '../models/User.js';
 import {createError} from '../utility/error.js'
@@ -8,14 +7,12 @@ import {transporter} from '../utility/email.js';
 import dotenv from 'dotenv'
 dotenv.config();
 
-Order.collection.getIndexes({full: true}).then(indexes => {
-    console.log("indexes:", indexes);
-    // ...
-}).catch(console.error);
-
+//check index 
+// Order.collection.getIndexes({full: true}).then(indexes => {
+//     console.log("indexes:", indexes);
+// }).catch(console.error);
 
 //Nested populate in a document --- https://dev.to/paras594/how-to-use-populate-in-mongoose-node-js-mo0
-
 
 export const createOrder = async (req,res,next) =>{
 
@@ -40,8 +37,6 @@ export const createOrder = async (req,res,next) =>{
         const user = await User.findById({_id:id});
         if(!user)
             return next(createError(404, 'User not found!!!'));
-
-        console.log("ORDER DATA: " + JSON.stringify(req.body) );
 
         const newOrder = new Order(req.body);
         const saveOrder = await newOrder.save();
@@ -68,13 +63,13 @@ export const createOrder = async (req,res,next) =>{
 export const completeOrder = async(req,res,next)=>{
 
     try{
-        //orderID
         const id = req.params.id;
         const updatedOrder = await Order.findByIdAndUpdate(id, {isCompleted:true}, {new:true})
         const {userEmail, deliveryTime} = req.body
 
+
+        //SENDING EMAIL
         const textContext = "OrderApp, Expect an order for" + deliveryTime + 'min';
-        //EMAIL
         //Obj for sending email {email, text} = sendObj;
         //const sendObj = {email:userEmail, text: textContext};
         //sendEmail(sendObj);
@@ -87,7 +82,6 @@ export const completeOrder = async(req,res,next)=>{
             text:"Order app, expect an order for " + deliveryTime +'minutes'
         } 
     
-        
         // transporter.sendMail(message, (err,info)=>{
         //     if(err){
         //         console.log(err);
@@ -207,31 +201,27 @@ export const getOrders = async(req,res,next)=>{
         sortObj ={isCompleted:1, ...sortObj}
         findOption={isCompleted:false}
     }
-
-    // console.log("SORTTTT: " + JSON.stringify(sortObj));
-
     
     //startIndex for selected Page
     const startIndex = (page - 1) * limit;
 
     //PAGINATION
-        // const orders = await Order.find().populate('products.product'); 
-        await Order.find(findOption).populate('products.product user')
-        .skip(startIndex)
-        .limit(limit)
-        .sort(sortObj)
-        .exec((err,doc)=>{
-            if(err) {res.status(500).send(err); return;}
-            res.status(200).json(doc);
-            
-        })
+    // const orders = await Order.find().populate('products.product'); 
+    await Order.find(findOption).populate('products.product user')
+    .skip(startIndex)
+    .limit(limit)
+    .sort(sortObj)
+    .exec((err,doc)=>{
+        if(err) {res.status(500).send(err); return;}
+        res.status(200).json(doc);
+        
+    })
         
 
 }
 
 export const getOrdersCount = (req,res) =>{
     //If There is a sort option(Completed or notCompleted)
-    
     const sortStatus = req.query.sort;
 
     let sortOption = {}
@@ -244,7 +234,6 @@ export const getOrdersCount = (req,res) =>{
     Order.count(sortOption, function(err, result){
         if(err){
             res.status(400).send(err);
-            console.log("ERRR: " + err)
         }
         else
             res.json({count:result})  
@@ -254,7 +243,6 @@ export const getOrdersCount = (req,res) =>{
 export const getAllUserOrders = async(req,res,next)=>{
     try{
         const id = req.params.userID;
-
         // const allUserOrders = await User.find({_id:id}, 'orders');
         const allUserOrders = await User.
             find({_id:id}, 'orders')
@@ -276,15 +264,10 @@ export const getAllUserOrders = async(req,res,next)=>{
 }
 
 export const deleteOrder = async(req,res,next)=>{
-
-    //our client ID
     const clientId = req.params.idClient;
     const orderId = req.params.idOrder;
 
-    console.log("OrderID: " + orderId + "ClientID: " + clientId);
-
     try{
-
         //Casscade deleting Without Mongoose (Pre) Middleware
         //Only One use can contains same order
         await User.updateOne({_id:clientId},{ //{}-notByID-any User that contains orders:orderID
