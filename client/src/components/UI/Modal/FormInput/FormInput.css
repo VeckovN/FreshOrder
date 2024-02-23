@@ -23,6 +23,7 @@
 }
 .form-input-field input::placeholder{
     color:black;
+    font-size: 1em;
 }
 .form-input-field:nth-child(2){
     color:red;
