@@ -1,8 +1,6 @@
-import {useState} from 'react'
-import { convertDate } from '../../../../../utils/Helper';
+import { convertDate } from '../../../utils/Helper';
 
 const AdminOrderList = ({orders, onComfirmOrder}) =>{
-
     return (
         <>
             <li className ='table_header'>

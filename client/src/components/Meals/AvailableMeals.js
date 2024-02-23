@@ -1,7 +1,7 @@
 import React,{useState, useContext, useEffect} from 'react'
 import axios from 'axios';
 import MealItem from './Item/MeaItem';
-import categoryContext from '../Store/category-context';
+import categoryContext from '../../store/category-context';
 
 import './AvailableMeal.css'
 

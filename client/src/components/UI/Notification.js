@@ -1,11 +1,11 @@
 import {useContext, useEffect} from 'react'
 
-import './Notification.css';
-import notificationContext from '../Store/notification-context.js' 
+import notificationContext from '../../store/notification-context.js' 
 
 import { MdOutlineError } from "react-icons/md";
 import { MdThumbUp } from "react-icons/md";
 
+import './Notification.css';
 
 
 const Notification = () =>{

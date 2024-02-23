@@ -1,14 +1,9 @@
 import {useContext, useEffect, useState} from 'react'
-import {Link} from 'react-scroll';
-
-import './CategoryItem.css';
 // import {Link} from 'react-scroll';
 //We should use useContext because we need to use this information(clicked Category) for 
 //showing items with this category
-import categoryContext from '../../Store/category-context';
-
-
-
+import categoryContext from '../../../store/category-context';
+import './CategoryItem.css';
 
 const CategoryItem = props =>{
 

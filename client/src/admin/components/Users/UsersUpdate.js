@@ -1,12 +1,10 @@
-import {useState, useContext, useRef, useEffect} from 'react';
+import {useState, useContext, useEffect} from 'react';
 import { useLocation , useNavigate} from 'react-router-dom';
-import { axiosJWT } from '../../../../../services/axiosJWTInstance';
-import useForm from '../../../../../utils/Hooks/useForm';
-import authContext from '../../../../Store/auth-context';
-import { configureHeader } from '../../../../../utils/Helper';
-
-
-import notificationContext from '../../../../Store/notification-context';
+import { axiosJWT } from '../../../services/axiosJWTInstance';
+import useForm from '../../../hooks/useForm';
+import authContext from '../../../store/auth-context';
+import notificationContext from '../../../store/notification-context';
+import { configureHeader } from '../../../utils/Helper';
 
 const UsersUpdate = () =>{
     const navigate = useNavigate();

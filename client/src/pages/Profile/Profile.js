@@ -1,14 +1,11 @@
 import {useState, useEffect, useContext} from 'react';
 import axios from 'axios' //used for Non Authenticated users
-import {axiosJWT, useAxiosJWTInterceptors} from '../../../services/axiosJWTInstance';
+import {axiosJWT, useAxiosJWTInterceptors} from '../../services/axiosJWTInstance';
 
-import notificationContext from '../../Store/notification-context';
-import LoadingSpinner from '../../../utils/LoadingSpinner';
-
-import useForm from '../../../utils/Hooks/useForm';
+import useForm from '../../hooks/useForm';
+import notificationContext from '../../store/notification-context';
+import LoadingSpinner from '../../utils/LoadingSpinner';
 import ProfileContext from './ProfileContext';
-import Card from '../../UI/Card'
-
 
 import './Profile.css'
 

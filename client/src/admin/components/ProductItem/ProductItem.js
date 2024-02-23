@@ -1,7 +1,7 @@
-import {useState, useEffect, useContext} from 'react'
-import useForm from '../../../../../../utils/Hooks/useForm';
-import { axiosJWT } from '../../../../../../services/axiosJWTInstance';
-import notificationContext from '../../../../../Store/notification-context';
+import {useState, useContext} from 'react'
+import useForm from '../../../hooks/useForm';
+import { axiosJWT } from '../../../services/axiosJWTInstance';
+import notificationContext from '../../../store/notification-context';
 
 //isChanged is handler which trach changing on this compoenent and
 //notify parent(Product) to reFetch new updated items

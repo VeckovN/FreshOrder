@@ -1,10 +1,9 @@
-import {useState, useContext, useEffect} from 'react'
-import {Link} from 'react-router-dom';
-import { axiosJWT } from '../../../../../services/axiosJWTInstance';
-import authContext from '../../../../Store/auth-context';
-import { configureHeader } from '../../../../../utils/Helper';
-import AddProduct from './AddProduct/AddProduct';
-import ProductItem from './ProductItem/ProductItem.js';
+import {useState, useContext} from 'react'
+import { axiosJWT } from '../../../services/axiosJWTInstance';
+import authContext from '../../../store/auth-context';
+import { configureHeader } from '../../../utils/Helper';
+import AddProduct from '../../components/AddProduct/AddProduct.js';
+import ProductItem from '../../components/ProductItem/ProductItem.js';
 import './Products.css'
 
 const Products = () =>{

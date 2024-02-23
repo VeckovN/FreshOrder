@@ -6,8 +6,8 @@ import {Link, useNavigate, useLocation} from 'react-router-dom'
 import './Header.css'
 import HeaderCartButton from './HeaderCartButton';
 
-import authContext from '../Store/auth-context'
-import notificationContext from '../Store/notification-context.js'
+import authContext from '../../store/auth-context'
+import notificationContext from '../../store/notification-context.js'
 
 //React.memo won't work when is modal clicked because Header props are showModal state
 const Header2 = props => {

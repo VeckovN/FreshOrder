@@ -1,13 +1,9 @@
-import { convertDate } from "../../../utils/Helper";
-
-
+import { convertDate } from "../../utils/Helper";
 const OrdersTable = (props)=>{
-
     return(
         
         <ul className='table'>
             <li className ='table-header' >
-                {/* <div className='colone col-1'>OR ID</div> */}
                 <div className='colone col-1'>Product</div>
                 <div className='colone col-2'>Amount</div>
                 <div className='colone col-3'>TotalPrice</div>

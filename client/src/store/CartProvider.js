@@ -1,5 +1,5 @@
 import {useState, useReducer, useEffect, useContext} from 'react'
-import { axiosJWT } from '../../services/axiosJWTInstance';
+import { axiosJWT } from '../services/axiosJWTInstance';
 import CartContext from "./cart-context";
 
 

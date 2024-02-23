@@ -12,28 +12,29 @@ import Header from './components/Layout/Header.js'
 import Footer from './components/Layout/Footer'
 
 import Cart from './components/Cart/Cart.js';
-import CartProvider from './components/Store/CartProvider';
+import CartProvider from './store/CartProvider.js';
 
 import ProtectedRoute from './utils/ProtectedRoute.js';
 
-import Home from './components/Page/Home'
+// import Home from './components/Page/Home'
+import Home from './pages/Home.js';
+import NotFound from './pages/NotFound.js';
+import Profile from './pages/Profile/Profile.js';
+import Orders from './pages/Orders/Orders.js';
 import Register from './components/Register/Register.js';
 import Login from './components/Login/Login.js';
-import NotFound from './components/Page/NotFound.js';
-import Profile from './components/Page/Profile/Profile.js';
-import Orders from './components/Page/Orders/Orders.js';
 
-import Notification from './components/UI/Notification.js'
-import notificationContext from './components/Store/notification-context.js'
-import authContext from './components/Store/auth-context';
+import Notification from './components/UI/Notification.js';
+import notificationContext from './store/notification-context';
+import authContext from './store/auth-context';
 
-import AdminHome from './components/Admin/components/page/AdminHome';
-import Users from './components/Admin/components/page/Users/Users.js'
-import AdminModalUsersUpdate  from './components/Admin/components/page/Users/UsersModal.js';
-import AdminDeliveryModal  from './components/Admin/components/page/Orders/AdminDeliveryModal.js'
-import Products from './components/Admin/components/page/Products/Products.js'
-import AddProducts from './components/Admin/components/page/Products/AddProduct/AddProduct.js';
-import UsersUpdate from './components/Admin/components/page/Users/UsersUpdate.js'
+import AdminHome from './admin/page/AdminHome';
+import Users from './admin/page/Users/Users.js';
+import AdminModalUsersUpdate  from './admin/components/Users/UsersModal.js';
+import AdminDeliveryModal  from './admin/page/Orders/AdminDeliveryModal.js'
+import Products from './admin/page/Products/Products.js'
+import AddProducts from './admin/components/AddProduct/AddProduct.js';
+import UsersUpdate from './admin/components/Users/UsersUpdate.js';
 
 import {useAxiosJWTInterceptors} from './services/axiosJWTInstance.js';
 

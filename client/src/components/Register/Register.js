@@ -1,14 +1,11 @@
 import {useState, useContext} from 'react'
-import Modal from "../UI/Modal/Modal.js"
 import RegisterForm from './RegisterForm.js';
 import RegisterModal from './RegisterModal.js';
 
 import axios from 'axios';
-import useForm from '../../utils/Hooks/useForm.js';
+import useForm from '../../hooks/useForm.js';
 
-import notificationContext from '../Store/notification-context'
-
-// import './Register.css'
+import notificationContext from '../../store/notification-context'
 
 const Register = (props) =>{
 

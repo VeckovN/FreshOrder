@@ -1,24 +1,20 @@
-import react, {useState, useContext} from 'react'
-
 import CategoryItem  from './CategoryItem'
 
-import './CategoryItem.css'
 import pizzaCategoryImg from '../../../assets/category/PizzaCategoryE.jpg';
 import pastaCategoryImg from '../../../assets/category/PastaCategoryE.jpg';
 import burgersCategoryImg from '../../../assets/category/BurgersCategory.jpg';
 import drinksCategoryImg from '../../../assets/category/DrinksCategoryE.jpg';
 import desertCategoryImg from '../../../assets/category/DesertCategory.jpg'
 import saladCategoryImg from '../../../assets/category/SaladCategory.jpg'
+import './CategoryItem.css'
 
-import categoryContext from '../../Store/category-context'
-
+// import categoryContext from '../../../store/category-context'
 
 const CategoryMeals = props =>{ 
 
     return <div className='categoryMain' id="category">
         <h2>Select Category</h2>
         <div className='categoryItems'>
-            {/* Fetch all category from DB and render CategoryItem for Every category */}
             <CategoryItem itemName='Pizza' image={pizzaCategoryImg} sliderRef={props.sliderRef}/>
             <CategoryItem itemName='Pasta' image={pastaCategoryImg} sliderRef={props.sliderRef}/>
             <CategoryItem itemName='Burger' image={burgersCategoryImg} sliderRef={props.sliderRef}/>

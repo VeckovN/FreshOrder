@@ -1,11 +1,11 @@
-import {useState, useEffect, useContext} from 'react';
-import { axiosJWT } from '../../../../../../services/axiosJWTInstance';
+import {useContext} from 'react';
+import { axiosJWT } from '../../../services/axiosJWTInstance';
 
-import notificationContext from '../../../../../Store/notification-context';
-import authContext from '../../../../../Store/auth-context';
-import useForm from '../../../../../../utils/Hooks/useForm';
+import notificationContext from '../../../store/notification-context';
+import authContext from '../../../store/auth-context';
+import useForm from '../../../hooks/useForm';
 import AddProductForm from './AddProductForm';
-import { configureHeader } from '../../../../../../utils/Helper';
+import { configureHeader } from '../../../utils/Helper';
 
 
 const AddProduct = () =>{

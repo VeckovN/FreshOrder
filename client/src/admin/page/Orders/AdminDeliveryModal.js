@@ -1,9 +1,9 @@
-import {useState, useRef, useContext} from 'react'
-import { axiosJWT } from '../../../../../services/axiosJWTInstance.js';
-import { configureHeader } from '../../../../../utils/Helper.js';
-import Modal from '../../../../UI/Modal/Modal.js'
-import notificationContext from '../../../../Store/notification-context.js';
-import authContext from '../../../../Store/auth-context.js';
+import {useRef, useContext} from 'react'
+import { axiosJWT } from '../../../services/axiosJWTInstance.js';
+import { configureHeader } from '../../../utils/Helper.js';
+import Modal from '../../../components/UI/Modal/Modal.js'
+import notificationContext from '../../../store/notification-context.js';
+import authContext from '../../../store/auth-context.js';
 
 import './AdmiDelivery.css'
 

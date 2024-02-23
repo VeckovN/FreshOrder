@@ -4,8 +4,8 @@ import axios from "axios";
 import jwtDecode from "jwt-decode";
 import { useEffect, useContext} from 'react';
 
-import NotificationContext from '../components/Store/notification-context';
-import AuthContext from '../components/Store/auth-context';
+import NotificationContext from '../store/notification-context';
+import AuthContext from '../store/auth-context';
 
 //instance where the token is used
 const axiosJWT = axios.create();

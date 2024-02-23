@@ -1,12 +1,12 @@
-import {useState, useEffect, useRef, useCallback, useContext} from 'react'
-import { axiosJWT } from '../../../../../services/axiosJWTInstance';
-import Pagination from '../../../../../utils/Pagination/Pagination';
-import LoadingSpinner from '../../../../../utils/LoadingSpinner';
+import {useState, useEffect, useRef, useContext} from 'react'
+import { axiosJWT } from '../../../services/axiosJWTInstance';
+import Pagination from '../../../utils/Pagination/Pagination';
+import LoadingSpinner from '../../../utils/LoadingSpinner';
+import AuthContext from '../../../store/auth-context';
+import { configureHeader } from '../../../utils/Helper.js';
 import AdminOrderList from './AdminOrderList';
-import AuthContext from '../../../../Store/auth-context';
-import { configureHeader } from '../../../../../utils/Helper.js';
 
-import '../../../../Page/Orders/Orders.css'
+import '../../../pages/Orders/Orders.css';
 import './AdminOrders.css'
 
 //https://medium.com/swlh/prevent-useeffects-callback-firing-during-initial-render-the-armchair-critic-f71bc0e03536

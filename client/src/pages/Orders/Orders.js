@@ -1,14 +1,12 @@
-import axios from 'axios';
-import { axiosJWT } from '../../../services/axiosJWTInstance.js';
 import {useState, useEffect, useContext} from 'react';
-import {Link} from 'react-router-dom';
+import { axiosJWT } from '../../services/axiosJWTInstance.js';
 
 import OrdersTable from './OrdersTable.js';
 
-import notificationContext from '../../Store/notification-context.js'
-import authContext from '../../Store/auth-context.js'
-
-
+// import notificationContext from '../../Store/notification-context.js'
+// import authContext from '../../Store/auth-context.js'
+import notificationContext from '../../store/notification-context.js';
+import authContext from '../../store/auth-context.js';
 import './Orders.css'
 
 const Orders = () =>{
@@ -65,7 +63,6 @@ const Orders = () =>{
     }
 
     return (
-        
         <div className='container-table'>
             <h2>{userInfo.username} Orders</h2>
             {orders.length >0
@@ -76,8 +73,6 @@ const Orders = () =>{
             }
         </div>
     )
-        
-    
 }
 
 export default Orders;

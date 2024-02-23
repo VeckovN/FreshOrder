@@ -1,13 +1,10 @@
-import react, {useState, useContext, useEffect} from 'react';
-
+import {useState, useContext, useEffect} from 'react';
+import cartContext from '../../store/cart-context';
 import './HeaderCartButton.css'
-
-import cartContext from '../Store/cart-context';
 
 const HeaderCartButton = props =>{
 
     const ctxCart = useContext(cartContext);
-
     const [buttonBlink, setButtonBlink] = useState(false);
 
     //On Every click on add items in cart button, this cartIcon should blink and 

@@ -1,7 +1,6 @@
 //useForm hook used for classic form validation
-
 import { useState, useContext } from "react";
-import notificationContext from "../../components/Store/notification-context";
+import notificationContext from "../store/notification-context";
 
 
 const useForm = (inputObj, callback) =>{

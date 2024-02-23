@@ -1,11 +1,11 @@
 import React, {useRef} from 'react';
 
-import Card from '../UI/Card'
+import Card from '../components/UI/Card';
 import Welcome from './Welcome'
 import AboutUs from './AboutUs'
-import CategoryMeals from '../Meals/Category/CategoryMeals';
-import AvailableMeals from '../Meals/AvailableMeals'
-import CategoryProvider from '../Store/CategoryProvider';
+import CategoryMeals from '../components/Meals/Category/CategoryMeals';
+import AvailableMeals from '../components/Meals/AvailableMeals'
+import CategoryProvider from '../store/CartProvider';
 
 import './Home.css'
 

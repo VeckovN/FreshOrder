@@ -1,9 +1,9 @@
 import {useState, useEffect, useContext} from 'react';
-import { axiosJWT } from '../../../../../services/axiosJWTInstance.js';
-import {convertDate, configureHeader} from '../../../../../utils/Helper.js'
+import { axiosJWT } from '../../../services/axiosJWTInstance.js';
+import {convertDate, configureHeader} from '../../../utils/Helper.js'
 import {Link} from 'react-router-dom';
-import Pagination from '../../../../../utils/Pagination/Pagination';
-import AuthContext from '../../../../Store/auth-context';
+import Pagination from '../../../utils/Pagination/Pagination';
+import AuthContext from '../../../store/auth-context';
 import './Users.css'
 
 const Users = (props) =>{

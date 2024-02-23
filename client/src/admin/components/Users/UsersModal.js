@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import Modal from '../../../../UI/Modal/Modal.js'
+import Modal from '../../../components/UI/Modal/Modal.js';
 
 const UsersModal = (props) =>{
 

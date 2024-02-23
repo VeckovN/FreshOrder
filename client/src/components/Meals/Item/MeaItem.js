@@ -1,12 +1,10 @@
-import react, { useContext } from 'react'
-import cartContext from '../../Store/cart-context'
-import authContext from '../../Store/auth-context'
+import { useContext } from 'react'
+import cartContext from '../../../store/cart-context'
+import authContext from '../../../store/auth-context'
+import notificationContext from '../../../store/notification-context.js'
+import MealItemInputForm from './MealItemInputForm'
 
 import './MealItem.css'
-
-import MealItemInputForm from './MealItemInputForm'
-import notificationContext from '../../Store/notification-context.js'
-
 
 //import picture
 const MealItem = props =>{

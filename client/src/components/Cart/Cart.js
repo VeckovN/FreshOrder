@@ -1,8 +1,8 @@
 import {useContext} from 'react'
-import cartContext from '../Store/cart-context';
 import CartItem from './CartItem';
-import authContext from '../Store/auth-context';
-import notificationContext from '../Store/notification-context.js'
+import cartContext from '../../store/cart-context';
+import authContext from '../../store/auth-context';
+import notificationContext from '../../store/notification-context.js'
 
 import CartModal from './CartModal';
 import './Cart.css'

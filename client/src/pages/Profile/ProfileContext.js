@@ -1,8 +1,6 @@
 
 const ProfileContext = ({userInfo,values, errors, shows, commitHandler, handleChanges, checkForCommit, onClickShowHandler}) =>{
-
-    return (
-        
+    return (    
         <div className='input_container'>
             <div className='input_field'>
                 {/* <div  onClick={() => onClickShowHandler("username")}>Username: <span> {userInfo.username} </span></div>         */}

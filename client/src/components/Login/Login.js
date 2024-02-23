@@ -1,13 +1,13 @@
 import { useRef, useContext, useEffect } from 'react'
 import axios from 'axios' 
 
-import './Login.css'
-import useForm from '../../utils/Hooks/useForm.js'
+import useForm from '../../hooks/useForm.js';
+import authContext from '../../store/auth-context'
+import notificationContext from '../../store/notification-context.js'
 
-import authContext from '../Store/auth-context'
-import notificationContext from '../Store/notification-context.js'
 import LoginForm from './LoginForm';
 import LoginModal from './LoginModal.js'
+import './Login.css' 
 
 const Login = (props) =>{
 
