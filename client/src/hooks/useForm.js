@@ -129,6 +129,131 @@ const useForm = (inputObj, callback) =>{
         })
     }
 
+    const validateField = (keyName, value ) =>{
+        console.log("KEYNAME: " + typeof(keyName) + ", VALUE: " + value )
+        if(value != ''){
+            switch(keyName){
+                case 'username':
+                    if(value.length <=4)
+                        setErrorWithMessage("username","Username atleast have 5 latters")
+                    else if(!value.match(/^[a-zA-Z][a-zA-Z0-9\-]+$/)){
+                        setErrorWithMessage("username","No sign or number on start")
+                    }
+                    else{
+                        //Delete Errors from object (errors may exist in object and it must be deleted)
+                        RemoveErrorFromObject("username");
+                    }
+                    break;
+                case 'email':
+                    if(!value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)){
+                        setErrorWithMessage("email","Enter a valid email address")
+                    }
+                    else{
+                        RemoveErrorFromObject("email");
+                    }
+                    break;
+
+                case 'phone_number':
+                        if(!value.match(/^\d{9,10}$/)){
+                        setErrorWithMessage("phone_number", "Between 9 and 10 digits")
+                    }
+                    else{
+                        RemoveErrorFromObject("phone_number");
+                    }
+                    break;
+
+                case 'address':
+                    if(!value.match(/[A-Za-z0-9'\.\-\s\,]/)){
+                        setErrorWithMessage("address", "Incorrect Address")
+                    }
+                    else{
+                        RemoveErrorFromObject("address");
+                    }
+                    break;
+
+                case 'password':
+                    if(!value.match(/[A-Za-z0-9]/)){
+                        setErrorWithMessage("password", "Incorect Password")
+                    }
+                    else if(!value.match(/^(?=.{1,15}$)[A-Za-z0-9]+$/)){
+                        setErrorWithMessage("password", "Long password")
+                    }
+                    else{
+                        RemoveErrorFromObject("password");
+                    }
+                    break;
+
+                case 'repeat_password':
+                    if(!value.match(/[A-Za-z0-9]/)){
+                        setErrorWithMessage("repeat_password", "Incorect repeat password")
+                    }
+                    else if(!value.match(/^(?=.{1,15}$)[A-Za-z0-9]+$/)){
+                        setErrorWithMessage("repeat_password", "Long password")
+                    }
+                    else{
+                        RemoveErrorFromObject("repeat_password");
+                    }
+                    break;
+
+                case 'image':
+                    if (!value && !value.length > 0){
+                        setErrorWithMessage('image', "Image error ")
+                    }
+                    else{
+                        RemoveErrorFromObject('image')
+                    }
+                    break;
+
+                //other cases instead of just login and register forms  :D
+                case 'product_name':
+                    if(!value.match(/^[A-Z]/))
+                        setErrorWithMessage('product_name', 'Must start with capital letter')
+                    else if(!value.match(/[A-Za-z]+$/))
+                        setErrorWithMessage('product_name', "Only latters alowed")
+                    else{
+                        RemoveErrorFromObject('product_name');
+                    }
+                    break;
+
+                case 'product_description':
+                    if(!value.match(/^(?=.{0,70}$)/)){
+                        setErrorWithMessage('product_description', "Only 70 characters alowed")
+                    }   
+                    else{
+                        RemoveErrorFromObject('product_description')
+                    } 
+                    break;
+                
+                case 'product_price':
+                    if(!value.match(/[0-9]/)){
+                        setErrorWithMessage('product_price', "Only digits availabed")
+                    }
+                    else{
+                        RemoveErrorFromObject('product_price');
+                    }
+                    break;
+
+                //remove error after selecting empty category
+                case 'category':
+                    if(value){
+                        RemoveErrorFromObject('category');
+                    }
+
+                default:
+                    break;
+            }
+        }
+        else{
+            // setErrorWithMessage(keyName, "Enter value"); //this is bug
+            RemoveErrorFromObject(keyName); //remove the error when the last letter is deleted from the input
+            //no letters no errors
+        }
+    }
+
+
+    
+    //------------Submit Handlers
+
     //registration Submit 
     const handleRegSubmit = (event) =>{
         event.preventDefault(); //no page reload
@@ -262,126 +387,6 @@ const useForm = (inputObj, callback) =>{
         }   
     }
 
-    const validateField = (keyName, value ) =>{
-        console.log("KEYNAME: " + typeof(keyName) + ", VALUE: " + value )
-        if(value != ''){
-            switch(keyName){
-                case 'username':
-                    if(value.length <=4)
-                        setErrorWithMessage("username","Username atleast have 5 latters")
-                    else if(!value.match(/^[a-zA-Z][a-zA-Z0-9\-]+$/)){
-                        setErrorWithMessage("username","No sign or number on start")
-                    }
-                    else{
-                        //Delete Errors from object (errors may exist in object and it must be deleted)
-                        RemoveErrorFromObject("username");
-                    }
-                    break;
-                case 'email':
-                    if(!value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)){
-                        setErrorWithMessage("email","Enter a valid email address")
-                    }
-                    else{
-                        RemoveErrorFromObject("email");
-                    }
-                    break;
-
-                case 'phone_number':
-                        if(!value.match(/^\d{9,10}$/)){
-                        setErrorWithMessage("phone_number", "Between 9 and 10 digits")
-                    }
-                    else{
-                        RemoveErrorFromObject("phone_number");
-                    }
-                    break;
-
-                case 'address':
-                    if(!value.match(/[A-Za-z0-9'\.\-\s\,]/)){
-                        setErrorWithMessage("address", "Incorrect Address")
-                    }
-                    else{
-                        RemoveErrorFromObject("address");
-                    }
-                    break;
-
-                case 'password':
-                    if(!value.match(/[A-Za-z0-9]/)){
-                        setErrorWithMessage("password", "Incorect Password")
-                    }
-                    else if(!value.match(/^(?=.{1,15}$)[A-Za-z0-9]+$/)){
-                        setErrorWithMessage("password", "Long password")
-                    }
-                    else{
-                        RemoveErrorFromObject("password");
-                    }
-                    break;
-
-                case 'repeat_password':
-                    if(!value.match(/[A-Za-z0-9]/)){
-                        setErrorWithMessage("repeat_password", "Incorect repeat password")
-                    }
-                    else if(!value.match(/^(?=.{1,15}$)[A-Za-z0-9]+$/)){
-                        setErrorWithMessage("repeat_password", "Long password")
-                    }
-                    else{
-                        RemoveErrorFromObject("repeat_password");
-                    }
-                    break;
-
-                case 'image':
-                    if (!value && !value.length > 0){
-                        setErrorWithMessage('image', "Image error ")
-                    }
-                    else{
-                        RemoveErrorFromObject('image')
-                    }
-                    break;
-
-                //other cases instead of just login and register forms  :D
-                case 'product_name':
-                    if(!value.match(/^[A-Z]/))
-                        setErrorWithMessage('product_name', 'Must start with capital letter')
-                    else if(!value.match(/[A-Za-z]+$/))
-                        setErrorWithMessage('product_name', "Only latters alowed")
-                    else{
-                        RemoveErrorFromObject('product_name');
-                    }
-                    break;
-
-                case 'product_description':
-                    if(!value.match(/^(?=.{0,70}$)/)){
-                        setErrorWithMessage('product_description', "Only 70 characters alowed")
-                    }   
-                    else{
-                        RemoveErrorFromObject('product_description')
-                    } 
-                    break;
-                
-                case 'product_price':
-                    if(!value.match(/[0-9]/)){
-                        setErrorWithMessage('product_price', "Only digits availabed")
-                    }
-                    else{
-                        RemoveErrorFromObject('product_price');
-                    }
-                    break;
-
-                //remove error after selecting empty category
-                case 'category':
-                    if(value){
-                        RemoveErrorFromObject('category');
-                    }
-
-                default:
-                    break;
-            }
-        }
-        else{
-            // setErrorWithMessage(keyName, "Enter value"); //this is bug
-            RemoveErrorFromObject(keyName); //remove the error when the last letter is deleted from the input
-            //no letters no errors
-        }
-    }
 
     return {
         values,
