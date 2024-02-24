@@ -1,4 +1,9 @@
-.profile_container{
+.profile-container{ 
+    /* bug with fixed added height - on input adding form height can
+    be bigger then 70vh and this container will be showened over footer   */
+    /* height: 70vh;*/
+    min-height: 70vh;
+    width:100%;
 
     display: flex;
     flex-direction: column;
@@ -6,233 +11,166 @@
     /* this made problem (on label click input is added below it
     and move the input from up a little bit  */
     /* justify-content: center; */
-
-    margin-top:5rem;
+    margin-top:7rem;
     margin-bottom: 6rem;
 
-    /* bug with fixed added height - on input adding form height can
-    be bigger then 70vh and this container will be showened over footer   */
-    /* height: 70vh;*/
-    min-height: 70vh;
-    width:100%;
-
+    font-family: 'Handlee', cursive;
 }
 
-.profile_title{
-    margin-bottom: .2rem;
-    font-family: 'Pacifico', cursive;
-    font-size: 2rem;
+.profile-title{
+    /* margin-bottom: .2rem; */
+    /* font-family: 'Pacifico', cursive; */
+    /* font-family: 'Handlee', cursive; */
+    font-weight: 600;
+    font-size: 1.2em;
+    /* font-size: 2rem; */
 }
 
-.input_container{
+.input-profile-container{
+    height: 50%;
+    width: 70%;
+    max-width: 550px;
+    margin:1.3rem 0rem;
+    padding:3rem 3rem 2.5rem 3rem;
 
-    padding:2rem 3rem;
-    display:flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    max-width: 1000px;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.842);
-    border-radius: 10px;
-
-    width:40%;
-    max-width: 500px;
-    min-width: 400px;
-
-    position: relative;
-    top:2rem;
-
-    
-}
-
-
-/* .input_field{
     display: flex;
-} */
-.input_field{
-    display:flex;
     flex-direction: column;
-    padding:.5rem 0rem;
+    justify-content: center;
+
+    background-color: rgba(17, 17, 17, 0.918);
+    border-radius: 10px;
 }
 
 
-.input_field input{
-    margin-top:0.2rem;
-    margin-left:0.5rem;
-    /* box-sizing: border-box; */
-    
-    border:none;
-    background-color: transparent;
-    /* border-bottom: 2px solid rgba(0, 0, 0, 0.781); */
-    border-bottom: 2px solid rgba(255, 255, 255, 0.781);
-    width: 12rem;
-    color:white;
-    font-size: 14px;
-    outline: none;
-    
-}
-.input_field input::placeholder{
-    color:white;
-}
-
-.input_field input:hover::placeholder{
-    color:white;
-}
-
-
-
-.input_container div{
-    margin:0.5rem 0.5rem;
+.input-field{
+    margin:1.5rem 0rem;
     cursor: pointer;
     color:white;
+    /* font-family: 'Handlee', cursive; */
 }
 
-/* .input_container div:hover {
-    font-weight: 600;
-} */
-.input_field div{
-    color:rgb(241, 238, 238);
-    font-weight: 600;
-}
-.input_field span{
-    color:rgb(192, 179, 179);
-    font-weight: 400;
+.password-form{
+    width: 100%;
 }
 
-.input_field:hover{
-    font-weight: 600;
-}
-
-
-.errorInput{
-    border-bottom: 2px solid rgb(190, 48, 48);
-    color:red;
-}
-
-.errorInputLabel{
-    margin-left:0.4rem;
-    color:rgb(190, 48, 48);
-    font-weight: 500;
-    font-size:14px;
-}
-
-.password_form{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.password_input{
+.password-input-container{
     display:flex;
     flex-direction: column;
 }
 
-
-
-.commit_container{
+.password-input-container input{
+    width: 100%;
     
+    font-family: 'Handlee', cursive;
+    font-size: 14px;
+    color:white;
+    padding:.6em .3em .1em .3em;
+    border:none;
+    background-color: transparent;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.781);
+    outline: none;
+}
+
+.password-input-container input::placeholder{
+    color:white;
+}
+
+.commit-container{
+    display: flex;
+    justify-content: center;
 }
 
 .commitButton{
     width: 8rem;
     height: 2rem;
-    
+
+    width: 45%;
+    height: 2.3em;
+
+    border:none;
+    border-radius: 8px;
+
+    font-family: 'Handlee', cursive;
+    font-weight: 500;
+    font-size: 1em;
+    color:white;
+
+    background-color: rgb(0, 0, 0);
+    cursor: pointer;
 }
 
-.editButton{
-    width: 8rem;
-    height: 2rem;
-}
-
-
-.user_info{
-    background-color:rgb(255, 249, 237);
-    position: relative;
-    height: 2rem;
-    width: max-content;
-    padding:0rem 2rem;
-    border-radius: 5px;
-
-    font-size:1.1rem;
-}
-
-.user_info:hover span{
-   color:rgb(172, 170, 62);
-
-}
-
-
-.user_info span{
+.commitButton:hover{
+    background-color: rgb(167, 167, 167);
+    background-color: #b9ddfff1;;
     color:black;
     font-weight: 600;
-    font-size:1rem;
-    font-family: 'Averia Sans Libre', cursive;
 }
 
-/* .user_info span:hover{
-    color:rgb(148, 147, 67);
-    font-weight: 600;
-} */
-
-.user_info .input_label{
-    position: absolute;
-    color:rgb(73, 110, 211);
-    color:rgb(248, 244, 187);
-    top:-1.9rem;
-    left:-1.2rem;
-    font-size:1rem;
-    font-family: 'Averia Sans Libre', cursive;
-    letter-spacing: .05rem;
+.commitButton:disabled{
+    background-color: rgba(0, 0, 0, 0.288);
+    color:rgba(255, 255, 255, 0.315);
+    cursor:unset;
 }
 
 
+@media screen and (max-width:650px){
+    .profile-container{
+        margin-top:2rem;
+    }
+    .input-profile-container{
+        width: 90%;
+    }
+}
 
 @media screen and (max-width:450px){
 
-    .profile_container{
-        margin-top:7rem;
+    .profile-container{
+        /* margin-top:7rem; */
     }
 
-    .input_container{
-        min-width: 350px;
-        padding:2rem 1rem;
+    .input-profile-container{
+        /* min-width: 350px;
+        padding:2rem 1rem; */
         
     }
 
-    .profile_title{
-        margin-bottom: .1rem;
+    .profile-title{
+        /* margin-bottom: .1rem;
         font-family: 'Pacifico', cursive;
-        font-size: 1.5rem;
+        font-size: 1.5rem; */
     }
 }
 
 
 @media screen and (max-width:350px){
-    .profile_container{
-        margin-top:7rem;
+    .profile-container{
+        /* margin-top:7rem; */
     }
 
-    .input_container{
+    .input-profile-container{
+        padding:3rem 1.2rem 2rem 1.2rem;
+    }
 
-        padding:1rem 1rem;
+    .input-field{
+        margin:1.2rem 0rem;
+    }
+
+    .input-container{
+
+        /* padding:1rem 1rem;
 
         min-width: 300px;
         font-size:.8rem;
-        
+         */
     }
 
-    .profile_title{
-        margin-bottom: .1rem;
-        font-family: 'Pacifico', cursive;
-        font-size: 1.5rem;
-    }
-
-    .input_field input{
-        font-size: .7rem;;
+    .profile-title{
+        /* margin-bottom: .1rem;
+        font-size: 1.5rem; */
     }
 
     .errorInputLabel{
-        font-size: .7rem;
+        /* font-size: .7rem; */
     }
 
 }

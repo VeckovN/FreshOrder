@@ -1,81 +1,66 @@
+import ProfileInput from "../../components/UI/ProfileInput";
 
 const ProfileContext = ({userInfo,values, errors, shows, commitHandler, handleChanges, checkForCommit, onClickShowHandler}) =>{
     return (    
-        <div className='input_container'>
-            <div className='input_field'>
-                {/* <div  onClick={() => onClickShowHandler("username")}>Username: <span> {userInfo.username} </span></div>         */}
-                <div className='user_info' onClick={() => onClickShowHandler("username")}> <span>{userInfo.username}</span> 
-                    <div className='input_label'>Username</div>
-                </div>        
-                {shows.username && 
-                    <input 
-                        className={errors.username && 'errorInput'} 
-                        onChange={handleChanges}  
-                        type='text' 
-                        placeholder='New username'
-                        name='username'
-                    />}
-                {errors.username && <label className='errorInputLabel'>{errors.username}</label>}
+        <div className='input-profile-container'>
+            <div className='input-field'>
+                <ProfileInput
+                    name='username'
+                    type='text'
+                    placeholder='Enter new username'
+                    userInfo={userInfo}
+                    shows={shows}
+                    errors={errors}
+                    onClickShowHandler={() => onClickShowHandler("username")}
+                    handleChanges={handleChanges}
+                />
+            </div>
+            <div className='input-field'>
+                <ProfileInput
+                    name='email'
+                    type='text'
+                    placeholder='Enter new email'
+                    userInfo={userInfo}
+                    shows={shows}
+                    errors={errors}
+                    onClickShowHandler={() => onClickShowHandler("email")}
+                    handleChanges={handleChanges}
+                />
             </div>
 
-            <div className='input_field'>
-                {/* <div  onClick={() => onClickShowHandler("email")} >Email: <span>{userInfo.email}</span></div> */}
-                <div className='user_info' onClick={() => onClickShowHandler("email")}> <span>{userInfo.email}</span> 
-                    <div className='input_label'>Email</div>
-                </div> 
-                {shows.email && 
-                    <input 
-                        className={errors.email && 'errorInput'} 
-                        onChange={handleChanges} 
-                        type='text' 
-                        placeholder='New email' 
-                        name='email'
-                    />
-                }
-                {errors.email && <label className='errorInputLabel'>{errors.email}</label>}
+            <div className='input-field'>
+                <ProfileInput
+                    name='phone_number'
+                    type='number'
+                    placeholder='Enter new phone number'
+                    userInfo={userInfo}
+                    shows={shows}
+                    errors={errors}
+                    onClickShowHandler={() => onClickShowHandler("phone_number")}
+                    handleChanges={handleChanges}
+                />
             </div>
 
-            <div className='input_field'>
-                {/* <div  onClick={()=>onClickShowHandler("phone_number")}>PhoneNumber: <span>{userInfo.phone_number}</span></div> */}
-                <div className='user_info' onClick={() => onClickShowHandler("phone_number")}> <span>{userInfo.phone_number}</span> 
-                    <div className='input_label'>Phone Number</div>
-                </div>
-                {shows.phone_number && 
-                    <input 
-                        className={errors.phone_number && 'errorInput'} 
-                        onChange={handleChanges} 
-                        type='number' 
-                        placeholder='New Phone_number' 
-                        name='phone_number'/>
-                }
-                {errors.phone_number && <label className='errorInputLabel'>{errors.phone_number}</label>}
+            <div className='input-field'>
+                <ProfileInput
+                    name='address'
+                    type='text'
+                    placeholder='Enter new address'
+                    userInfo={userInfo}
+                    shows={shows}
+                    errors={errors}
+                    onClickShowHandler={() => onClickShowHandler("address")}
+                    handleChanges={handleChanges}
+                />
             </div>
 
-            <div className='input_field'>
-                {/* <div onClick={() => onClickShowHandler("address")}>Address: <span>{userInfo.address}</span></div> */}
-                <div className='user_info' onClick={() => onClickShowHandler("address")}> <span>{userInfo.address}</span> 
-                    <div className='input_label'>Address</div>
-                </div>
-                {shows.address && 
-                    <input 
-                        className={errors.address && 'errorInput'} 
-                        onChange={handleChanges}  
-                        type='text' 
-                        placeholder='New Address' 
-                        name='address'
-                    />
-                }
-                {errors.address && <label className='errorInputLabel'>{errors.address}</label>}
-            </div>
-
-            <div className='input_field'>
-                {/* <div onClick ={()=> onClickShowHandler("password")}>Password</div> */}
-                <div className='user_info' onClick={() => onClickShowHandler("password")}> <span>{'*'.repeat(userInfo.password_length)}</span>
-                    <div className='input_label'>Password</div>
+            <div className='input-field'>
+                <div className='user-info' onClick={() => onClickShowHandler("password")}> <span>{'*'.repeat(userInfo.password_length)}</span>
+                    <div className='input-label'>Password</div>
                 </div>
                 {shows.password && 
-                    <div className="password_form">  
-                        <div className='password_input'>
+                    <div className="password-form">  
+                        <div className='password-input-container'>
                             <input 
                                 onChange={handleChanges} 
                                 type='password' 
@@ -84,7 +69,7 @@ const ProfileContext = ({userInfo,values, errors, shows, commitHandler, handleCh
                             /> 
                             {errors.password && <label className='errorInputLabel'>{errors.password}</label>}
                         </div>
-                        <div className='password_input'>
+                        <div className='password-input-container'>
                             <input
                                 onChange={handleChanges} 
                                 type='password' 
@@ -97,7 +82,7 @@ const ProfileContext = ({userInfo,values, errors, shows, commitHandler, handleCh
                 }
             </div>
 
-            <div className='commit_container'>
+            <div className='commit-container'>
                 <button onClick={commitHandler}  disabled={!checkForCommit()} className='commitButton'>Commit</button>
             </div>
 

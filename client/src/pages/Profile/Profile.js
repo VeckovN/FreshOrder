@@ -104,32 +104,30 @@ const Profile = () =>{
     }, [reFetch]); //fetch on every commit , When is user updated (setInfo state) we change this state reFetch
     
     const checkForCommit = ()=>{
-        if(shows.username && values.username!=undefined || shows.email && values.email!=undefined || shows.phone_number && values.phone_number!=undefined || shows.address && values.address!=undefined || shows.password && values.password!=undefined)
+        if(shows.username && values.username!=undefined || shows.email && values.email!=undefined || shows.phone_number && values.phone_number!=undefined || shows.address && values.address!=undefined || shows.password && values.password!=undefined && errors)
             return true;
         else
             return false;
     }
 
     return(
-        <div className = "profile_container">
+        <div className = "profile-container">
                 {/* THIS COULD RENDER profileContext Component and Another Component For Loading Animation  */}
-            {!fetchLoading ? 
-                    <>    
-                        <h2 className='profile_title'>Client Profile</h2>
-                        {/* {profileContext}  */}
-                        <ProfileContext
-                            userInfo={userInfo} //user Data info
-                            values={values} //inputFrom values
-                            errors={errors}
-                            shows={shows}
-                            // commitHandler={commitHandler}
-                            commitHandler = {handleUserEditSubmit}
-                            handleChanges={handleChanges}
-                            checkForCommit={checkForCommit}
-                            onClickShowHandler={handleShowClickHandler}
-                        />
-                    </>
-                : <div><LoadingSpinner/></div>}   
+            {!fetchLoading 
+            ? <>   
+                <div className='profile-title'>My Profile</div>
+                <ProfileContext
+                    userInfo={userInfo} //user Data info
+                    values={values} //inputFrom values
+                    errors={errors}
+                    shows={shows}
+                    commitHandler = {handleUserEditSubmit}
+                    handleChanges={handleChanges}
+                    checkForCommit={checkForCommit}
+                    onClickShowHandler={handleShowClickHandler}
+                />
+            </>
+            : <div><LoadingSpinner/></div>}   
         </div>
     )
 
