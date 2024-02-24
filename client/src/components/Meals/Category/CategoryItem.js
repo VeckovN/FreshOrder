@@ -2,7 +2,7 @@ import {useContext, useEffect, useState} from 'react'
 // import {Link} from 'react-scroll';
 //We should use useContext because we need to use this information(clicked Category) for 
 //showing items with this category
-import categoryContext from '../../../store/category-context';
+import categoryContext from '../../../store/category-context.js';
 import './CategoryItem.css';
 
 const CategoryItem = props =>{
@@ -10,7 +10,6 @@ const CategoryItem = props =>{
     const [selected, setSelected] = useState(false);
     const ctxCategory = useContext(categoryContext);
     const category = ctxCategory.category;
-    //any category selected
 
     //when is category changed, all non selected Category set on false
     //This allows only one category to be selected
@@ -19,7 +18,6 @@ const CategoryItem = props =>{
         {
             // disable_click = true;
             setSelected(false);
-            console.log("USE EFFECT");
         }
     }, [category]); 
 
@@ -52,15 +50,12 @@ const CategoryItem = props =>{
         selectedCategoryItem = '';
         buttonType = 'Select'
     }
-       
 
     return(     
         <div className={'item ' + selectedCategoryItem}>
             <img src={props.image} alt={`${props.itemName} Category Menu`}></img> 
             <div className='content'>
                 <p className='title'>{props.itemName}</p>      
-                {/* {selected ? <p>Info Showned</p> : <p>Info Unshowned </p>} */}
-                {/* <button onClick={clickedCardHandler} className=''>{selected ? 'Deselect' : 'Select'} */}
                 <button onClick={clickedCardHandler} className={buttonType}>{buttonType}
                 </button>    
             </div>

@@ -1,10 +1,9 @@
 import React,{useState, useContext, useEffect} from 'react'
 import axios from 'axios';
 import MealItem from './Item/MeaItem';
-import categoryContext from '../../store/category-context';
+import categoryContext from '../../store/category-context.js';
 
 import './AvailableMeal.css'
-
 //!!!HIGH ORDER COMPONENT(Refactore THIS )
 //https://www.robinwieruch.de/react-higher-order-components/
 
@@ -13,7 +12,6 @@ const AvailableMeals = props =>{
     //this triggered a re-rendering
     const ctxCategory = useContext(categoryContext);
     const categorySelected = ctxCategory.category;
-    console.log("CATEGORY:" + categorySelected);
 
     useEffect(()=>{
         const fetchData = async()=>{
