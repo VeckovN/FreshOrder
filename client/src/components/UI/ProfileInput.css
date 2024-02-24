@@ -1,0 +1,74 @@
+.profile-input-control{
+    font-family: 'Handlee', cursive;
+}
+
+.user-info{
+    position: relative;
+    height: 2rem;
+    width: 100%;
+
+    text-align: center;
+
+    font-size:1.2rem;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.selected{
+    background-color: #b9ddfff1;
+}
+
+.user-info:hover span{
+   color:black;
+}
+.user-info span{
+    color:rgb(88, 88, 88);
+    font-weight: 600;
+    font-size:1rem;
+}
+.user-info .input-label{
+    position: absolute;
+    color:white;
+
+    top:-1.3rem;
+    font-size:1rem;
+    font-weight: 500;
+
+    letter-spacing: .05rem;
+}
+
+
+
+.profile-input-control input{
+    width: 100%;
+    
+    font-family: 'Handlee', cursive;
+    font-size: 14px;
+    color:white;
+    padding:.6em .3em .1em .3em;
+
+
+    border:none;
+    background-color: transparent;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.781);
+    outline: none;
+}
+.profile-input-control input::placeholder{
+    color:white;
+}
+
+.profile-input-control input:hover::placeholder{
+    color:rgb(236, 236, 236);
+}
+
+.errorInput{
+    border-bottom: 2px solid rgb(190, 48, 48);
+    color:red;
+}
+
+.errorInputLabel{
+    margin-left:0.2rem;
+    color:rgb(190, 48, 48);
+    font-weight: 500;
+    font-size:14px;
+}
