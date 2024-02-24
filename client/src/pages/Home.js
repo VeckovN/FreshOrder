@@ -5,7 +5,7 @@ import Welcome from './Welcome'
 import AboutUs from './AboutUs'
 import CategoryMeals from '../components/Meals/Category/CategoryMeals';
 import AvailableMeals from '../components/Meals/AvailableMeals'
-import CategoryProvider from '../store/CartProvider';
+import CategoryProvider from '../store/CategoryProvider';
 
 import './Home.css'
 
