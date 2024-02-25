@@ -1,0 +1,130 @@
+.users-update-container{
+    margin:auto 0rem auto 0rem;
+
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+#user-update-tittle{
+    margin-bottom: .4em;
+    font-size:1.4em;
+    font-weight: 600;
+    font-family: 'Handlee', cursive;
+    
+}
+
+.users-input-container{
+    padding:2rem 3rem;
+    width: 60%;
+    min-width: 450px;
+    max-width:500px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    background-color: rgb(39, 38, 39);
+    border-radius: 1rem;
+
+    /* for Delete button wiht position:absolute */
+    position: relative;
+}
+
+.users-inputs{
+    width: 90%;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.users-commit-container{
+    width: 100%;
+    margin:1rem 0rem;
+    display: flex;
+    justify-content: center;
+}
+.users-commit-container button{
+    width: 8rem;
+    height: 2rem;
+
+    width: 45%;
+    height: 2.3em;
+
+    border:none;
+    border-radius: 8px;
+
+    font-family: 'Handlee', cursive;
+    font-weight: 500;
+    font-size: 1em;
+    color:white;
+
+    background-color: rgb(0, 0, 0);
+    cursor: pointer;
+}
+
+.users-commit-container button:hover{
+    background-color: #b9ddfff1;;
+    color:black;
+    font-weight: 600;
+}
+
+.users-commit-container button:disabled{
+    background-color: rgba(0, 0, 0, 0.288);
+    color:rgba(255, 255, 255, 0.315);
+    cursor:unset;
+}
+
+.users-commit-container button:disabled:hover{
+    font-weight: 500;
+}
+
+
+.users-delete-container{
+    position:absolute;
+    bottom: .5rem;
+    right:.5rem;
+}
+
+
+
+.deleteButton{
+    background-color: rgb(179, 80, 80);
+    color:white;
+    font-weight: 600;
+    width: 8rem;
+    height: 2.2rem;
+    margin:1rem 0 0 0;
+    float: right;
+    border-radius: .4rem;
+
+    cursor: pointer;
+}
+
+.deleteButton:hover{
+    background-color: rgb(170, 54, 54);
+    color:rgb(0, 0, 0);
+    font-weight: 700;
+}
+
+
+@media screen and (max-width:650px){
+    .users-input-container{
+        padding:2rem 3rem;
+    }
+}
+
+@media screen and (max-width:300px){
+    .users_input_container{
+        min-width: 260px;
+        
+    }
+
+    .users_commit_container button{
+        width:6rem;
+    }
+
+}
