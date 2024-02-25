@@ -48,8 +48,10 @@ const Products = () =>{
                 <h1 className='product_title'>Products</h1>
                 <button className='addProduct_button' onClick={() => {setShowAddProduct(!showAddProduct)}}>Add Product</button>
                 
-                {/* on addProduct click button */}
-                {showAddProduct && <AddProduct/>}
+                {showAddProduct && 
+                <div className='add-product-part'>
+                     <AddProduct/>
+                </div>}
                 
                 <div className='products_category'>
                     {categoryOptions.map(el =>{
