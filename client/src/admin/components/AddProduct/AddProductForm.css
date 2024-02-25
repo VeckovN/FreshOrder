@@ -1,0 +1,233 @@
+.add-product-container{
+    width: 45rem;
+    width: 70%;
+    min-width:600px;
+    max-width: 700px;
+    margin:1rem 0rem;
+    padding:1rem 2rem 3rem 2rem;
+
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    border-radius: .8rem;
+
+    font-family: 'Handlee', cursive;
+    /* background-color: rgb(97, 97, 97); */
+    background-color: rgba(8, 8, 8, 0.918);
+}
+
+.add-product-container form {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    position: relative;
+}
+
+
+.add-product-input-fields{
+    padding:.5rem .5rem;
+    width: 100%;
+}
+
+
+.add-product-input{
+    margin:.5em 0em 1em 0em;
+    display: flex;
+    flex-direction: column;    
+    /* font-family: 'Tillana', cursive; */
+}
+
+.add-product-input label{
+    color:white;
+    font-size: 1.3rem;
+    letter-spacing: .06rem;
+    font-weight: 500;
+    /* font-family: 'Tillana', cursive; */
+}
+
+.add-product-input input{
+    /* width: 80%; */
+    width: 100%;
+    border:none;
+    background-color: transparent;
+    border-bottom: 1px solid rgb(255, 255, 255);
+
+    font-family: 'Handlee', cursive;
+    color:rgb(219, 219, 219);
+    padding-left: .1em;
+    outline: none;
+}
+
+.add-product-input input::placeholder{
+    color:rgb(194, 191, 191);
+    font-weight: 600;
+    /* font-family: 'Tillana', cursive; */
+    font-size: .7rem;
+}
+
+.add-product-input select {
+    /* font-family: 'Tillana', cursive; */
+    font-family: 'Handlee', cursive;
+    font-size:.8rem;
+    height: 2em;
+    font-weight: 600;
+}
+
+.product-description-box{
+    resize:none;
+    font-family: 'Handlee', cursive;
+    font-weight: 600;
+    padding: 0 .2em;
+}
+.product-description-box::placeholder{
+    padding:.2em 0;
+}
+
+.error-product{
+    font-size:.8em;
+    font-weight: 800;
+    letter-spacing: .07rem;
+    margin-left: .2em;
+
+    color:rgb(255, 86, 86)
+}
+
+.add-product-images{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding:.5em 1em .5em 2em;
+    width: 100%;
+}
+
+.image-choose-input{
+    padding-bottom: .2em;
+}
+
+.image-choose-input[type=file]::file-selector-button{
+    background-color: rgb(237, 239, 241);
+    border: none;
+    border-radius: 3px;
+    font-family: 'Handlee', cursive;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.image-choose-input[type=file]::file-selector-button:hover{
+    background-color: rgb(160, 160, 160);
+    color:white;
+    font-weight: 500;
+}
+
+.image-place{
+    margin:.2rem 0rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.image-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.image-container img{
+    width: 90%;
+    max-width: 250px;
+    max-height: 300px;
+}
+
+.remove-image-button{
+    width: 60%;
+    height: 1.5rem;
+    margin-top:.3rem;
+
+    font-family: 'Handlee', cursive;
+    font-weight: 600;
+    /* font-size: .9em; */
+    background-color: rgb(237, 239, 241);
+    border: none;
+    cursor: pointer;
+    border-radius: .2rem;
+}
+
+.remove-image-button:hover{
+    background-color: rgb(160, 160, 160);
+    color:white;
+    font-weight: 500;
+}
+
+.button-container{
+    position:absolute;
+    bottom: -2rem;
+}
+.button-container button{
+    width: 10rem;
+    height: 2.2rem;
+    border-radius: .3rem;
+    border:none;
+
+    font-family: 'Handlee', cursive;
+    font-size: .9rem;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+.button-container button:hover{
+    background-color: rgb(160, 160, 160);
+    color:white;
+    font-weight: 500;
+        
+}
+
+
+@media screen and (max-width:650px){
+
+    .add-product-container{
+        width: 95%;
+        min-width:300px;
+        /* max-width: 550px; */
+    }
+
+    .add-product-container form {
+        display:flex;
+        flex-direction: column;
+    }   
+
+    .add-product-images{
+        padding:0rem 0rem .5rem 0rem;
+    }
+
+    .image-container button{
+        margin-top:.5rem;
+    }
+    
+    .image-container img{
+        max-width: 400px;
+        max-height: 550px;
+    }
+
+    .button-container{
+        position:absolute;
+        bottom: -2rem;
+        left:50%;
+    }
+}
+
+
+@media screen and (max-width:400px){
+    .add-product-container{
+        min-width:300px;
+        max-width: 350px;
+    }
+
+    .image-container button{
+        margin:.5rem 0;
+        width: 8rem;
+    }
+    
+}
