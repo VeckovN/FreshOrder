@@ -59,85 +59,6 @@
 
 
 
-/* -------------- USERS UPDATE ------------ */
-
-.usersUpdate_container{
-    margin:auto 0rem auto 0rem;
-    display:flex;
-    justify-content: center;
-    padding:1rem 2rem;
-    
-}
-
-.users_input_container{
-    background-color: rgb(39, 38, 39);
-    padding:2rem 3rem;
-    width: 50%;
-
-    border-radius: 1rem;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    max-width:500px;
-    min-width: 300px;
-
-    /* for Delete button wiht position:absolute */
-    position: relative;
-}
-
-.users_inputs{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-
-.users_commit_container{
-    width: 100%;
-    /* position: relative; */
-    margin:1rem 0rem;
-    display: flex;
-    justify-content: center;
-    flex-direction:row;    
-
-    /* justify-content: space-around; */
-}
-.users_buttons_container button{
-    /* position: relative; */
-    /* left:50%; */
-}
-
-/* position:relative is seted in .users_input_container */
-.users_delete_container{
-    position:absolute;
-    bottom: .5rem;
-    right:.5rem;
-}
-
-.deleteButton{
-    background-color: rgb(179, 80, 80);
-    color:white;
-    font-weight: 600;
-    width: 8rem;
-    height: 2.2rem;
-    margin:1rem 0 0 0;
-    float: right;
-    border-radius: .4rem;
-
-    cursor: pointer;
-}
-
-.deleteButton:hover{
-    background-color: rgb(170, 54, 54);
-    color:rgb(0, 0, 0);
-    font-weight: 700;
-}
-
-.users_input_field{
-    margin:.1rem 0;
-}
 
 @media screen and (max-width:840px){
 
@@ -262,15 +183,8 @@
 }
 
 @media screen and (max-width:300px){
-    .users_input_container{
-        min-width: 260px;
-        
-    }
     .users_input_field , .users_input_field input{
         font-size: .8rem;
     }
 
-    .users_commit_container button{
-        width:6rem;
-    }
 }

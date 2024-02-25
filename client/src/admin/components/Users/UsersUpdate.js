@@ -6,6 +6,10 @@ import authContext from '../../../store/auth-context';
 import notificationContext from '../../../store/notification-context';
 import { configureHeader } from '../../../utils/Helper';
 
+import ProfileInput from '../../../components/UI/ProfileInput';
+import './UsersUpdate.css';
+
+
 const UsersUpdate = () =>{
     const navigate = useNavigate();
     const {addSuccess, addError} = useContext(notificationContext);
@@ -13,7 +17,9 @@ const UsersUpdate = () =>{
 
     const [data, setData] = useState();
     const [loading, setLoading] = useState(false);
-
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    
+ 
     const location = useLocation();
     const userInfo = location.state;
 
@@ -23,7 +29,7 @@ const UsersUpdate = () =>{
         address:"", 
         phone_number:"" 
     }
-    const {values, errors, handleChanges, resetAllValues} = useForm(initialInputObject);
+    // const {values, errors, handleChanges, resetAllValues} = useForm(initialInputObject);
 
     const onUserUpdate = async() =>{
         let updateObject = {};
@@ -60,6 +66,8 @@ const UsersUpdate = () =>{
             addError("Not eneterd values");
     }
 
+    const {values, errors, shows, handleChanges, handleShowClickHandler, handleUserEditSubmit} = useForm(initialInputObject, onUserUpdate);
+
     //we wanna reRender(show new State) after user update (fetch again new data)
     useEffect(()=>{
         console.log("HHHHHH");
@@ -81,83 +89,93 @@ const UsersUpdate = () =>{
         }
     }
 
+    const checkForCommit = ()=>{
+        if(shows.username && values.username!=undefined || shows.email && values.email!=undefined || shows.phone_number && values.phone_number!=undefined || shows.address && values.address!=undefined || shows.password && values.password!=undefined && errors)
+            return true;
+        else
+            return false;
+    }
+
     return(
-        <div className="usersUpdate_container">
-            <div className='users_input_container'>
-                {loading ?
-                <div className='users_inputs'>
-                    <div className='input_field users_input_field'>
-                        {/* <div>Username: <span>{userInfo.username}</span></div> */}
-                        <div>Username: <span>{data.username}</span></div>
-                        {/* <div>{user._id}</div> */}
-                        <input
-                            className='input_field'
-                            type='text'
+        <div className="users-update-container">
+
+            {showDeleteModal &&
+                <div className='delete-user-modal'>
+                    
+                </div>
+            }
+
+            {loading ?
+            <>
+            <div id="user-update-tittle"> Admin edit profile</div>
+            <div className='users-input-container'>
+                <div className='users-inputs'>
+                    <div className='input-field users-input-field'>
+                        <ProfileInput
                             name='username'
+                            type='text'
                             placeholder='Enter new username'
-                            onChange={handleChanges}
-                            value={values.username}
+                            userInfo={data}
+                            errors={errors}
+                            shows={shows}
+                            onClickShowHandler={() => handleShowClickHandler("username")}
+                            handleChanges={handleChanges}
                         />
-                        {errors.username && <label className='errorInputLabel'>{errors.username}</label>}
                     </div>
 
-                    <div className='input_field users_input_field'>
-                    {/* <div>Email:<span> {userInfo.email}</span> </div> */}
-                    <div>Email:<span>{data.email}</span> </div>
-                        <input
-                            className='input_field'
-                            type='text'
+                    <div className='input-field users-input-field'>
+                        <ProfileInput
                             name='email'
-                            placeholder='Enter new email'
-                            onChange={handleChanges}
-                            value={values.email}
-                            
-                        />
-                        {errors.email && <label className='errorInputLabel'>{errors.email}</label>}
-                    </div>
-
-                    <div className='input_field users_input_field'>
-                    {/* <div>Address:<span>{userInfo.address}</span> </div> */}
-                    <div>Address:<span>{data.address}</span> </div>
-                        <input
-                            className='input_field'
                             type='text'
+                            placeholder='Enter new email'
+                            userInfo={data}
+                            errors={errors}
+                            shows={shows}
+                            onClickShowHandler={() => handleShowClickHandler("email")}
+                            handleChanges={handleChanges}
+                        />
+                    </div>
+
+                    <div className='input-field users-input-field'>
+                        <ProfileInput
                             name='address'
-                            placeholder='Enter new Address'
-                            onChange={handleChanges}
-                            value={values.address}
+                            type='text'
+                            placeholder='Enter new address'
+                            userInfo={data}
+                            errors={errors}
+                            shows={shows}
+                            onClickShowHandler={() => handleShowClickHandler("address")}
+                            handleChanges={handleChanges}
                         />
-                        {errors.address && <label className='errorInputLabel'>{errors.address}</label>}
                     </div>
 
-                    <div className='input_field users_input_field'>
-                    {/* <div>Phone number:<span>{userInfo.phone_number}</span> </div> */}
-                    <div>Phone number:<span>{data.phone_number}</span> </div>                           
-                        <input
-                            className='input_field'
-                            type='number'
+                    <div className='input-field users-input-field'>
+                        <ProfileInput
                             name='phone_number'
+                            type='text'
                             placeholder='Enter new phone number'
-                            onChange={handleChanges}
-                            value={values.phone_number}
-                        />
-                        {errors.phone_number && <label className='errorInputLabel'>{errors.phone_number}</label>}
+                            userInfo={data}
+                            errors={errors}
+                            shows={shows}
+                            onClickShowHandler={() => handleShowClickHandler("phone_number")}
+                            handleChanges={handleChanges}
+                        />   
+                    </div>
+                    <div className='users-commit-container'>
+                        <button onClick={handleUserEditSubmit}  disabled={!checkForCommit()}>Commit</button>
                     </div>
 
-
-                    <div className='users_commit_container'>
-                        {/* <button onClick={commitHandler} disabled={!checkForCommit()} className='commitButton'>Commit</button> */}
-                        <button onClick={onUserUpdate} className='commitButton'>Commit</button>
-    
-                    </div>
-                    <div className='users_delete_container'>
-                        <button onClick={deleteUserHandler} className='deleteButton'>Delete User</button>
+                    {/* <div className='users-delete-container' onClick={showDeleteModal(true)}> */}
+                    <div className='users-delete-container'>
+                    <button onClick={() => setShowDeleteModal(true)} className='deleteButton'>Delete User</button>
+                        {/* <button onClick={deleteUserHandler} className='deleteButton'>Delete User</button> */}
                     </div>
                 </div>
-                :    
-                <div>LOADING</div>
-                }
             </div>
+            </>
+            :    
+            <div>LOADING</div>
+            }
         </div>
     )
 }
