@@ -158,12 +158,11 @@ const UsersUpdate = () =>{
                         <button onClick={handleUserEditSubmit}  disabled={!checkForCommit()}>Commit</button>
                     </div>
 
-                    {/* <div className='users-delete-container' onClick={showDeleteModal(true)}> */}
                     <div className='users-delete-container'>
 
                         {showDeleteCommit ?
                         <div className='user-delete-commit-part'>
-                            <div id="delete-text">Do you want to delete the User?</div>
+                            <div id="delete-text">Do you really want to delete the User?</div>
                             <div className='user-delete-buttons'>
                                 <button onClick={deleteUserHandler}>Yes</button>
                                 <button onClick={() => setShowDeleteCommit(false)}>No</button>

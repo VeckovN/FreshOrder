@@ -43,16 +43,12 @@
 
 .users-commit-container{
     width: 100%;
-    margin:1rem 0rem;
     display: flex;
     justify-content: center;
 }
 .users-commit-container button{
-    width: 8rem;
-    height: 2rem;
-
-    width: 45%;
-    height: 2.3em;
+    width: 50%;
+    height: 2.2em;
 
     border:none;
     border-radius: 8px;
@@ -89,35 +85,27 @@
     align-items: flex-end;
 
     font-family: 'Handlee', cursive;
-    /* background-color: red; */
-
-    /* position:absolute;
-    bottom: .5rem;
-    right:.5rem; */
 }
 
 .user-delete-commit-part{
+    width: 100%;
+    margin-top: .6em;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
 }
 
 #delete-text{
     color:white;
     margin-bottom: .5em;
-    /* text-align: center; */
 }
 
 .user-delete-commit-part .user-delete-buttons{
     width: 100%;
     display: flex;
     justify-content: center;
-
 }
-
-
 
 .user-delete-buttons button{
     width: 27%;
@@ -126,10 +114,10 @@
 
     border-radius: .4rem;
     border:none;
-    background-color: rgb(179, 80, 80);
     background-color: #963535;
     
     font-family: 'Handlee', cursive;
+
     color:white;
     
     cursor: pointer;
@@ -141,8 +129,6 @@
     font-weight: 600;
 }
 
-
-
 .deleteButton{
     width: 8rem;
     height: 2.2rem;
@@ -151,8 +137,10 @@
     border-radius: .4rem;
     border:none;
     background-color: #963535;
+
     font-family: 'Handlee', cursive;
     font-weight: 500;
+    font-size: .9rem;
     color:white;
     /* float: right; */
 
