@@ -37,6 +37,7 @@
     flex-direction: column;
     justify-content: center;
 
+    font-size: .9rem;
     background-color: rgba(17, 17, 17, 0.918);
     border-radius: 10px;
 }
@@ -149,6 +150,7 @@
 
     .input-profile-container{
         padding:3rem 1.2rem 2rem 1.2rem;
+        font-size: .8rem;
     }
 
     .input-field{
