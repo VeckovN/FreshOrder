@@ -17,7 +17,7 @@ const UsersUpdate = () =>{
 
     const [data, setData] = useState();
     const [loading, setLoading] = useState(false);
-    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [showDeleteCommit, setShowDeleteCommit] = useState(false);
     
  
     const location = useLocation();
@@ -98,13 +98,6 @@ const UsersUpdate = () =>{
 
     return(
         <div className="users-update-container">
-
-            {showDeleteModal &&
-                <div className='delete-user-modal'>
-                    
-                </div>
-            }
-
             {loading ?
             <>
             <div id="user-update-tittle"> Admin edit profile</div>
@@ -167,9 +160,20 @@ const UsersUpdate = () =>{
 
                     {/* <div className='users-delete-container' onClick={showDeleteModal(true)}> */}
                     <div className='users-delete-container'>
-                    <button onClick={() => setShowDeleteModal(true)} className='deleteButton'>Delete User</button>
-                        {/* <button onClick={deleteUserHandler} className='deleteButton'>Delete User</button> */}
-                    </div>
+
+                        {showDeleteCommit ?
+                        <div className='user-delete-commit-part'>
+                            <div id="delete-text">Do you want to delete the User?</div>
+                            <div className='user-delete-buttons'>
+                                <button onClick={deleteUserHandler}>Yes</button>
+                                <button onClick={() => setShowDeleteCommit(false)}>No</button>
+                            </div>
+                        </div>
+                        
+                        :             
+                        <button onClick={() => setShowDeleteCommit(true)} className='deleteButton'>Delete User</button>
+                        }
+                        </div>
                 </div>
             </div>
             </>

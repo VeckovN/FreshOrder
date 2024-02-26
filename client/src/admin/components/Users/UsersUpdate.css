@@ -84,30 +84,85 @@
 
 
 .users-delete-container{
-    position:absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    font-family: 'Handlee', cursive;
+    /* background-color: red; */
+
+    /* position:absolute;
     bottom: .5rem;
-    right:.5rem;
+    right:.5rem; */
+}
+
+.user-delete-commit-part{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+#delete-text{
+    color:white;
+    margin-bottom: .5em;
+    /* text-align: center; */
+}
+
+.user-delete-commit-part .user-delete-buttons{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+
+
+
+.user-delete-buttons button{
+    width: 27%;
+    height: 2.2em;
+    margin:0 1em;
+
+    border-radius: .4rem;
+    border:none;
+    background-color: rgb(179, 80, 80);
+    background-color: #963535;
+    
+    font-family: 'Handlee', cursive;
+    color:white;
+    
+    cursor: pointer;
+}
+
+.user-delete-buttons button:hover{    
+    background-color: rgb(179, 80, 80);
+    color:rgb(0, 0, 0);
+    font-weight: 600;
 }
 
 
 
 .deleteButton{
-    background-color: rgb(179, 80, 80);
-    color:white;
-    font-weight: 600;
     width: 8rem;
     height: 2.2rem;
-    margin:1rem 0 0 0;
-    float: right;
+    margin:1rem -2em 0 0;
+
     border-radius: .4rem;
+    border:none;
+    background-color: #963535;
+    font-family: 'Handlee', cursive;
+    font-weight: 500;
+    color:white;
+    /* float: right; */
 
     cursor: pointer;
 }
 
 .deleteButton:hover{
-    background-color: rgb(170, 54, 54);
+    background-color: rgb(179, 80, 80);
     color:rgb(0, 0, 0);
-    font-weight: 700;
+    font-weight: 600;
 }
 
 
