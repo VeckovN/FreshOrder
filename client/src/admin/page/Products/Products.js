@@ -1,20 +1,23 @@
-import {useState, useContext} from 'react'
+import {useState, useEffect, useContext} from 'react'
 import { axiosJWT } from '../../../services/axiosJWTInstance';
 import authContext from '../../../store/auth-context';
 import { configureHeader } from '../../../utils/Helper';
 import AddProduct from '../../components/AddProduct/AddProduct.js';
-import ProductItem from '../../components/ProductItem/ProductItem.js';
+import ProductItem from '../../components/Products/ProductItem.js';
 import './Products.css'
+import ProductTable from '../../components/Products/ProductTable.js';
 
 const Products = () =>{
     const {user} = useContext(authContext);
     const headers = configureHeader(user.accessToken);
 
     const categoryOptions = ['Pizza', 'Pasta', 'Burger' ,'Salad','Drinks', 'Desert']
-
-    const [category, setCategory] = useState('');
+    const [category, setCategory] = useState(categoryOptions[0]);
     const [categoryItems, setCategoryItems] = useState('');
-    const [showAddProduct, setShowAddProduct] = useState(false);
+
+    useEffect( ()=>{
+        fetchProductsByCategory(categoryOptions[0]);
+    },[]);
 
     const fetchProductsByCategory = async(category) =>{
         try{
@@ -31,9 +34,13 @@ const Products = () =>{
         }
     }
 
-    const onShowCategoryItems = (category) =>{
-        setCategory(category);
-        fetchProductsByCategory(category);
+    const onShowCategoryItems = (selectedCategory) =>{
+        if(category == selectedCategory)
+            setCategory('');
+        else{
+            setCategory(selectedCategory);
+            fetchProductsByCategory(selectedCategory);
+        }
     }
 
     //Triggered in ProductItem compoennt(on Edit,SDel or Del action to reFetch users)
@@ -43,55 +50,62 @@ const Products = () =>{
     }
 
     return (
-        <main className='mainAdmin'>
-            <div className='products_container'>
-                <h1 className='product_title'>Products</h1>
-                <button className='addProduct_button' onClick={() => {setShowAddProduct(!showAddProduct)}}>Add Product</button>
-                
-                {showAddProduct && 
-                <div className='add-product-part'>
-                     <AddProduct/>
-                </div>}
-                
-                <div className='products_category'>
+        <div className='products-container'>
+            <div className='add-product-part'>
+                <h1 className='product-title'>Add Product</h1> 
+                    <AddProduct/>
+            </div>
+
+            <div className='products-category-part'>
+                <h1 className='product-title'>Edit Producs</h1>
+                <div className='products-category'>
                     {categoryOptions.map(el =>{
                         return (
-                        <div className='category'>
-                            <div className='category_select'>
-                                <h1>{el}</h1>
-                                <button className='category_show_button' onClick={() => {onShowCategoryItems(el)}}>Show {el}</button>
-                            </div>
-                            
-                            {category== el 
-                                && 
-                                <table className='category_table'>
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Price</th>
-                                                <th>Description</th>
-                                                <th>IsDeleted</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {categoryItems && categoryItems.map(item =>{
-                                                return(
-                                                    <ProductItem item={item} isChanged={onChangeProduct} headers={headers} ></ProductItem>
-                                                )
-                                            })}
-                                        </tbody>
-                                    </table> 
-                                }
-                            </div>
+                        <div className={`category ${category===el ? 'active-category' : ''}`}>
+                            <div className='category-select'>
+                                <div>{el}</div>
+                                <button className='category-button' onClick={() => {onShowCategoryItems(el)}}>{category === el ? 'Selected' : 'Select'}</button>
+                            </div> 
+                        </div>
                         )
-
                     })}
                 </div>
-                
+                {category && 
+                <ProductTable
+                    categoryItems={categoryItems}
+                    headers={headers}
+                    onChangeProduct={onChangeProduct}
+                />
+                }
+                {/* {category 
+                && 
+
+                <div className='product-table-container'>
+                    <table className='category-table'>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Description</th>
+                                <th>IsDeleted</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {categoryItems && categoryItems.map(item =>{
+                                return(
+                                    <ProductItem item={item} isChanged={onChangeProduct} headers={headers} ></ProductItem>
+                                )
+                            })}
+                        </tbody>
+                    </table> 
+                </div>
+                } */}
+                {/* <div className='product-table=container'>
+                </div> */}
             </div>
-         
-        </main>
+            
+        </div>
     )
 }
 

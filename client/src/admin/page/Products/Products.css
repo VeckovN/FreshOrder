@@ -1,76 +1,82 @@
-
-.products_container{
-    width: 100%;
-    margin:2rem 0rem 5rem 0rem;
-
+.products-container{
+    position: relative;
+    width:80%;
+    /* Also made problem - root(parrent) is set to 100%*/
+    height: 100%;
+    /* background-color:white;   */
+    max-width:1200px;
+   
+    /* SET MARGIN-bottom(third) TO AUTO FIIXED SPACE BETWEEN ORDERS AND FOOTER -> FOOTER IS SET ON BOOTOM  :D  */
+    margin:10rem auto auto auto;
+    
     display: flex;
     flex-direction: column;
     justify-content:  center;
     align-items: center;
+
+    font-family: 'Handlee', cursive;
 }
 
-.product_title{
+.product-title{
     text-align: center;
 }
 
-
 .add-product-part{
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100vw;
+    flex-direction: column;
 }
 
-.products_category{
-    width: 90%;
-    margin:3rem 0rem;
+.products-category-part{
+    width: 100%;
+    margin:3em 0em;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-
+    /* background-color: red; */
 }
 
-.category_table{
-    width: 100%;
-}
+.products-category{
+    width: 50%;
+    margin:.5rem 0 1rem 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    align-self: center;
 
-.category_table th{
-    background-color: rgb(7, 7, 7);
-    color:white;
-    padding:.5rem 1rem;
-    margin:2rem 0rem;   
-}
-
-.category_table tr{
-    background-color: rgb(194, 194, 194);
-    text-align: center;
-}
-
-.category_table .isDeleted {
-    background-color: rgba(51, 51, 51, 0.979);
-    text-align: center;
-}
-
-.category_table td{
-    padding: .5rem .5rem;
+    /* background-color: red; */
 }
 
 .category{
     margin:1rem 0rem;
 }
 
-.category_select{
+.active-category button{
+    background-color: aliceblue;
+    color:black;
+    font-weight: 600;
+    /* font-family: 'Handlee', cursive; */
+}
+
+.category-select{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
    
     align-items: center;
 }
 
-.category_select h1{
+.category-select div:first-child{
     margin:0 1rem;
+    font-family: 'Handlee', cursive;
+    font-size: 2em;
+    font-weight: 600;
 }
 
-.category_show_button{
+.category-button{
     width: 6rem;
     height: 2rem;
 
@@ -80,16 +86,18 @@
     color:white;
 
     font-weight: 500;
+    font-family: 'Handlee', cursive;
 }
 
-.category_show_button:hover{
+.category-button:hover{
     cursor: pointer;
-    background-color: rgb(99, 94, 94);
+    background-color: rgb(73, 73, 73);
     color:black;
+    color:white;
 }
 
 
-.addProduct_button{
+.add-product-button{
     margin:.5rem 0rem 0rem 0rem;
     width: 11rem;
     height: 2.5rem;
@@ -103,248 +111,36 @@
     font-weight: 600;
 }
 
-.addProduct_button:hover{
+.add-product-button:hover{
     cursor: pointer;
     background-color: rgb(54, 54, 54);
     color:black;
 }
 
 
-/* product action buttons */
-.table_td_actions{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-.editProduct_button{
-    margin:0rem .3rem;
-    width: 3rem;
-    height: 1.5rem;
-    /* border:none; */
-    border:1px solid black;
-    background-color: rgb(207, 205, 90);
-    border-radius: .3rem;
-    cursor: pointer;
-
-    font-weight: 600;
-}
-.editProduct_button:hover{
-    background-color: rgb(0, 0, 0);
-    color:white;
-}
-
-
-.softDeleteProduct_button{
-    margin:0rem .3rem;
-    width: 3rem;
-    height: 1.5rem;
-    border:1px solid black;
-    background-color: rgb(207, 143, 90);
-    border-radius: .3rem;
-    cursor: pointer;
-
-    font-weight: 600;
-}
-.softDeleteProduct_button:hover{
-    background-color: rgb(0, 0, 0);
-    color:white;
-}
-
-.deleteProduct_button{
-    margin:0rem .3rem;
-    width: 3rem;
-    height: 1.5rem;
-    border:1px solid black;
-    background-color: rgb(204, 104, 91);
-    border-radius: .3rem;
-    cursor: pointer;
-
-    font-weight: 600;
-}
-.deleteProduct_button:hover{
-    background-color: rgb(0, 0, 0);
-    color:white;
-}   
-
-/* edit buttons */
-.showEditProduct_buttonContainer{
-    display: flex;
-    flex-direction: column;
-    /* width: 40%; */
-
-    background-color: rgb(207, 205, 90);
-    /* border:1px solid black; */
-    border-radius: .5rem;
-    padding: 1rem 1rem;
-
-    position: relative;
-}
-.showEditProduct_buttonContainer label{
-    position: absolute;
-    top:-.4rem;
-    left:1.8rem;
-    font-size: .8rem;
-    font-weight: 800;
-}
-
-.showEditProduct_buttonContainer button{
-    margin:.1rem 0rem
-}
-
-.editCancelProduct_button{
-    margin:0rem .3rem;
-    width: 3.5rem;
-    height: 1.5rem;
-    border:1px solid black;
-    background-color: rgb(216, 74, 56);
-    border-radius: .3rem;
-    cursor: pointer;
-
-    font-weight: 600;
-}
-.editCancelProduct_button:hover{
-    background-color: rgb(0, 0, 0);
-    color:white;
-}
-
-.editAcceptProduct_button{
-    margin:0rem .3rem;
-    width: 3.5rem;
-    height: 1.5rem;
-    border:1px solid black;
-    background-color: rgb(84, 189, 80);
-    border-radius: .3rem;
-    cursor: pointer;
-
-    font-weight: 600;
-}
-.editAcceptProduct_button:hover{
-    background-color: rgb(0, 0, 0);
-    color:white;
-}
-
-
 
 /* ---------- Update Product in ProductItem  -------*/
-.table_td_product{
-
-}
-
-.td_product_input_name{
-    margin:.1rem 0;
-    border:none;
-    background-color: transparent;
-    border-bottom: 2px solid rgb(32, 30, 30);
-    outline: none;
-    color:black
-}
-
-.td_product_input_price{
-    width: 7rem;
-    margin:.1rem 0;
-    border:none;
-    background-color: transparent;
-    border-bottom: 2px solid rgb(32, 30, 30);
-    outline: none;
-    color:black
-}
-.td_product_input_price::placeholder{
-    text-align: center;
-    font-weight: 500;
-}
-
-.td_product_textarea_description{
-    /* margin:.1rem 0;
-    border:none;
-    background-color: transparent;
-    border-bottom: 2px solid rgb(32, 30, 30);
-    outline: none;
-    color:rgb(202, 183, 183); */
-}
 
 
 @media screen and (max-width:1255px){
-    .table_td_actions{
-        flex-wrap:wrap
-    }
 }
 
 @media screen and (max-width:1000px){
-    .products_category{
-        width: 95%;
-        
+    .products-container{
+        width:100%;
     }
 }
 
 @media screen and (max-width:650px){
-
-    /* .category_table{
-        width: 100%;
-    } */
-
-    .category_table th{ 
-        font-size:.8rem;
-        padding:.4rem .3rem;
-
-    }
-    
-    .category_table tr{
-        
-    }
-    
-    .category_table td{
-        padding: 0rem 0rem;
-        font-size:.7rem;
-        margin:0rem 0;
-    }
-
-    .table_td_actions{
-        flex-direction: row;
-        justify-items: center;
-        flex-wrap: nowrap;
-    }
-
-
-    .editProduct_button,
-    .softDeleteProduct_button,
-    .deleteProduct_button{
-        margin:auto .1rem;
-        width: 2rem;
-        height: 1.2rem;
-        font-size:.6rem;
-    }
 }
 
 @media screen and (max-width:500px){
  
-    /* description */
-    .category_table tr .table_td_product:nth-child(3){
-        font-size:.5rem;
-    }
 }
 
 
 @media screen and (max-width:400px){
 
-    .category_table td{
-        padding: 0rem 0rem;
-        font-size:.5rem;
-        margin:0rem 0;
-    }
-
-    .category_table th{ 
-        font-size:.8rem;
-        padding:.2rem .10rem;
-
-    }
-
-    .table_td_actions{
-        flex-direction: row;
-        justify-items: center;
-        flex-wrap: wrap;
-    }
 }
 
 
