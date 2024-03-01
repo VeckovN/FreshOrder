@@ -15,7 +15,7 @@ const LoginForm = ({loading, values, handleChanges, errors, submitForm }) =>{
                 <div id="login-text"> Login to FreshOrder </div>
             </div>
 
-            <div className="input-login-conainer">
+            <div className="input-login-container">
                 <div className='input-login'>
                     <FormInput 
                         name='email'

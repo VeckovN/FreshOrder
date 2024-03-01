@@ -15,7 +15,6 @@
     font-family: 'Handlee', cursive;
 }
 
-/* LOADING  */
 .loadingBackground{
     opacity: 1;
     z-index: 40;
@@ -57,7 +56,7 @@
     text-align: center;
 }
 
-.input-login-conainer{
+.input-login-container{
     width: 100%;
 
 }
