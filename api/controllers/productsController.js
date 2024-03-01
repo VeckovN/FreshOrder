@@ -18,13 +18,11 @@ export const createProduct = async (req,res) =>{
 }
 
 export const updateProduct  = async (req,res,next)=>{
-    //id from url
     try{
         const id = req.params.id; //from url
         const newContext = req.body; //from html-req body
         const updatedProduct = await Product.findByIdAndUpdate(id, newContext, {new:true});
-        //without {new:true} prop - this findByIdAndUpdate returns prev(notUpdated) Product
-        
+        //without {new:true} prop - this findByIdAndUpdate returns prev(notUpdated) Product   
         res.status(200).json(updatedProduct);
     }
     catch(err){
@@ -43,31 +41,16 @@ export const deleteProduct = async (req,res,next)=>{
 }
 
 export const softDeleteProduct = async(req,res,next)=>{
-    try{
+    try{    
         const id = req.params.id;
-        const updatedProduct = await Product.findByIdAndUpdate(id, {isDeleted:true}, {new:true});
-        
+        const updatedProduct = await Product.findOneAndUpdate({_id: id},[{$set:{isDeleted:{$eq:[false,"$isDeleted"]}}}]);
         res.status(200).send("Product: "+ updatedProduct.name + " is soft deleted");
-    //res.status(200).json(updatedProduct);
     }
     catch(err){
+        console.log("ERR ", err);
         next(err);
-    }  
-}
-
-export const softAddProduct = async(req,res,next)=>{
-    try{
-        const id = req.params.id;
-        const updatedProduct = await Product.findByIdAndUpdate(id, {isDeleted:false}, {new:true});
-        
-        res.status(200).send("Product: "+ updatedProduct.name + " is soft added(returned)");
-        //res.status(200).json(updatedProduct);
-    }   
-    catch(err){
-        next(err);
-    }  
-}
-
+    }
+} 
 
 export const getProduct = async (req,res,next)=>{
     try{
@@ -86,16 +69,12 @@ export const getProducts = async (req,res,next)=>{
     }
     catch(err){
         next(err); 
-        // calling next error handling middleware insted
-        // res.status(500).json(err);
     }
 }
 
 export const getProductsByCategory = async (req, res, next)=>{
     try{
         const category = req.params.name;
-        // const prodcuts  
-        // res.send("Category: " + category);
         const products = await Product.find({category:category});
         res.send(products);
         
