@@ -99,7 +99,7 @@
 }
 
 .action-button:hover{
-    background-color: #353535;
+    background-color: #6b6b6b;
     color:white;
 }
 
@@ -157,9 +157,7 @@
         flex-wrap: nowrap;
     }
 
-    .edit-product-button,
-    .soft-delete-button,
-    .delete-product-button{
+    .edit-product-button{
         margin:auto .1rem;
         width: 2rem;
         height: 1.2rem;

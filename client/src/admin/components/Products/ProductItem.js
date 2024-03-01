@@ -6,14 +6,13 @@ import notificationContext from '../../../store/notification-context';
 
 //isChanged is handler which trach changing on this compoenent and
 //notify parent(Product) to reFetch new updated items
-const ProductItem = ({item, isChanged, onEditProduct, headers}) =>{
+const ProductItem = ({item, isChanged, onEditProduct, headers, onDeleteModal}) =>{
     const productItemID = item._id;
     //state used for notify parrent(Product.js) component to reFetch showed items
     //to get new refresh(updated) items
     const {addSuccess, addError} = useContext(notificationContext);
 
     const [showEdit, setShowEdit] = useState(false);
-    const [showDeleteDialog, setShowDeleteDialog] = useState(false);
     const initialInputObject = {
         product_name:'',
         product_price:'',
@@ -31,9 +30,6 @@ const ProductItem = ({item, isChanged, onEditProduct, headers}) =>{
     //Instead of others form then all inputs must be filled here ins't that scenario
     //u could only filled (update) any input not all of them
     const onEditAccept = async()=>{
-        console.log("FFFFF: " + JSON.stringify(values))
-        console.log("EEEEEEEEE: " + JSON.stringify(errors))
-
         //filter work only on list and this function Object.entries transform object in array as ['key', 'value']
         //{product_name:'margarita" ,product_price:'13.99'} -> [ ['product_name' , 'margarita'],  ['product_price' , ' 13.99']]
         let newContext = Object.entries(values).filter(([key,value]) => value !='').reduce((obj, [key,value]) =>{
@@ -60,49 +56,10 @@ const ProductItem = ({item, isChanged, onEditProduct, headers}) =>{
 
     const {values, errors, handleChanges, resetAllValues, RemoveValueFromObject, handleEditProductSubmit} = useForm(initialInputObject, onEditAccept);
 
-    const onSoftDeleteProduct = async() =>{
-        //change to true
-        if(!item.isDeleted){ //soft Delete
-            try{
-                const result = await axiosJWT.put(`http://localhost:8800/api/products/softDelete/${item._id}`, {headers})
-                const resultData = result.data;
-                addSuccess(resultData); //notify
-                //this will re-render compoennt( parrent function that reFetch selected category products)
-                isChanged(true);
-            }
-            catch(err){
-                console.log('ERR: ' + err);
-                addError("You can't solf delete the product");
-            }
-        }
-        else{
-            try{
-                const result = await axiosJWT.put(`http://localhost:8800/api/products/softAdd/${item._id}`, {headers})
-                const resultData = result.data;
-                addSuccess(resultData);
-                //Trigger reFetching on Product compoennt
-                isChanged();
-            }
-            catch(err){
-                console.log('ERR: ' + err);
-                addError("You can't recover the product");
-            }
-        }
+    const showDeleteModal = () =>{
+        const obj ={ productID: productItemID, show:true}
+        onDeleteModal(obj);
     }
-
-    const onDeleteProduct = async() =>{
-        try{
-            const result = await axiosJWT.delete(`http://localhost:8800/api/products/${item._id}`, {headers})
-            const resultData = result.data;
-            addSuccess(resultData);
-            isChanged();
-        }
-        catch(err){
-            console.log("Delete Product Error: " + err);
-            addError("You can't delete the product right now");
-        }
-    }
-
     return(
         <tr className={item.isDeleted && 'isDeleted ' }>
             <td className='table-td-product'>
@@ -152,13 +109,10 @@ const ProductItem = ({item, isChanged, onEditProduct, headers}) =>{
                     :
                     <div className='show-edit-product-buttons'>
                         <button className='action-button active-action-edit-button' onClick={onEditCancel}>Cancel</button>
-                        {/* <button className='edit-accept-button' onClick={onEditAccept}>Accept</button> */}
                         <button className='action-button active-action-edit-button' onClick={handleEditProductSubmit}>Accept</button>
                     </div>
                 }
-                <button className='action-button ' onClick={()=>{setShowDeleteDialog(true)}}>Delete</button>
-                {/* <button className='soft-delete-button' onClick={onSoftDeleteProduct}>Soft</button>
-                <button className='delete-product-button' onClick={onDeleteProduct}>Del</button> */}
+                <button className={`action-button `} onClick={showDeleteModal}>Delete</button>
             </td>
         </tr>
     )

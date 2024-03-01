@@ -3,9 +3,9 @@ import { axiosJWT } from '../../../services/axiosJWTInstance';
 import authContext from '../../../store/auth-context';
 import { configureHeader } from '../../../utils/Helper';
 import AddProduct from '../../components/AddProduct/AddProduct.js';
-import ProductItem from '../../components/Products/ProductItem.js';
 import './Products.css'
 import ProductTable from '../../components/Products/ProductTable.js';
+import ProductDelete from '../../components/Products/ProductDelete.js';
 
 const Products = () =>{
     const {user} = useContext(authContext);
@@ -14,6 +14,10 @@ const Products = () =>{
     const categoryOptions = ['Pizza', 'Pasta', 'Burger' ,'Salad','Drinks', 'Desert']
     const [category, setCategory] = useState(categoryOptions[0]);
     const [categoryItems, setCategoryItems] = useState('');
+
+    //{productID, showned:false|true}
+    const [deleteModal, setDeleteModal] = useState({}); 
+
 
     useEffect( ()=>{
         fetchProductsByCategory(categoryOptions[0]);
@@ -41,12 +45,19 @@ const Products = () =>{
             setCategory(selectedCategory);
             fetchProductsByCategory(selectedCategory);
         }
+        //unshown the DelteModal on category select
+        setDeleteModal({show:false})
     }
 
     //Triggered in ProductItem compoennt(on Edit,SDel or Del action to reFetch users)
     const onChangeProduct = () =>{
         // //re Fetch showned items
         fetchProductsByCategory(category)
+    }
+
+    const onDeleteModal = (deleteModalObj) =>{
+        alert("DELTET" + JSON.stringify(deleteModalObj));
+        setDeleteModal(deleteModalObj);
     }
 
     return (
@@ -70,39 +81,22 @@ const Products = () =>{
                         )
                     })}
                 </div>
+
+                {deleteModal.show &&
+                <ProductDelete 
+                    productID={deleteModal.productID}
+                    isChanged={onChangeProduct}
+                    headers={headers}
+                />}
+
                 {category && 
                 <ProductTable
                     categoryItems={categoryItems}
                     headers={headers}
                     onChangeProduct={onChangeProduct}
+                    onDeleteModal={onDeleteModal}
                 />
                 }
-                {/* {category 
-                && 
-
-                <div className='product-table-container'>
-                    <table className='category-table'>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Price</th>
-                                <th>Description</th>
-                                <th>IsDeleted</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {categoryItems && categoryItems.map(item =>{
-                                return(
-                                    <ProductItem item={item} isChanged={onChangeProduct} headers={headers} ></ProductItem>
-                                )
-                            })}
-                        </tbody>
-                    </table> 
-                </div>
-                } */}
-                {/* <div className='product-table=container'>
-                </div> */}
             </div>
             
         </div>
