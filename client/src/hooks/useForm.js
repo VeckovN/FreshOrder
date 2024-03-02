@@ -11,10 +11,6 @@ const useForm = (inputObj, callback) =>{
 
     const {addSuccess, addError} = useContext(notificationContext);
 
-    console.log("\n VALUES : " + JSON.stringify(values));
-    console.log("\n ERRORS " + JSON.stringify(errors));
-    console.log("\n SHOWS " + JSON.stringify(shows));
-
     const setErrorWithMessage = (keyName, message) =>{
         setErrors({
             ...errors,
@@ -26,15 +22,9 @@ const useForm = (inputObj, callback) =>{
         Object.keys(values).forEach(key =>{
             values[key] = ''
         })
-
-        console.log("EMPY VALUES : " + JSON.stringify(values) )
     }
 
     const setEmptyFieldError =() =>{
-        console.log("VAU: " + JSON.stringify(values));
-        console.log("USERNMALE: " + values.username)
-
-        //THIS WILL ONLY UPDATE LAST STATE ( etc. phone_number)
         Object.keys(values).forEach(key =>{
             //image has null as default value
             if(values[key]=="" || values[key] == null){ //on intial all non entered inputs have '' as value
@@ -76,8 +66,6 @@ const useForm = (inputObj, callback) =>{
     const RemoveShowsFromObject = (keyname)=>{
         let{[keyname]: anyValue, ...res} = shows
         setShows(res);
-
-        console.log("REMOVE SHOWS !!!!!!!!!!! " + keyname);
     }
 
     const handleShowClickHandler = (keyname) =>{
@@ -101,9 +89,7 @@ const useForm = (inputObj, callback) =>{
 
         //differnet way to handle image(file) from input
         if(key == 'image'){
-            console.log("Key: " + key + " Values : " + e.target.files.length)
             if (e.target.files && e.target.files.length > 0){
-                alert('Image')
                 setValues({
                     ...values,
                     [key]:e.target.files[0]
@@ -129,7 +115,6 @@ const useForm = (inputObj, callback) =>{
     }
 
     const validateField = (keyName, value ) =>{
-        console.log("KEYNAME: " + typeof(keyName) + ", VALUE: " + value )
         if(value != ''){
             switch(keyName){
                 case 'username':
@@ -243,21 +228,17 @@ const useForm = (inputObj, callback) =>{
             }
         }
         else{
-            // setErrorWithMessage(keyName, "Enter value"); //this is bug
             RemoveErrorFromObject(keyName); //remove the error when the last letter is deleted from the input
-            //no letters no errors
         }
     }
 
 
     
-    //------------Submit Handlers
-
-    //registration Submit 
+    //------------Submit Handlers--------------//
+ 
     const handleRegSubmit = (event) =>{
         event.preventDefault(); //no page reload
-        console.log("username: " + values.username + " email : " + values.email +  " password: " + values.password + " address: " + values.address + " phone_number: " + values.phone_number)
-        
+
         if((values.username=='' || values.username == undefined) || (values.email=='' || values.email == undefined) || (values.password=='' || values.password == undefined) || (values.repeat_password=='' || values.repeat_password == undefined) || (values.address=='' || values.address == undefined) || (values.phone_number=='' || values.phone_number == undefined) ){
             setEmptyFieldError();
             addError("Empty Fields")
@@ -271,9 +252,8 @@ const useForm = (inputObj, callback) =>{
                 setPasswordFieldError();
                 return
             }
-
-            //call callback func passed in useForm as second paramater
-            callback(); //execute it when on valid inputs
+            
+            callback(); 
         }
         else{
             addError("Incorrect input")
@@ -285,16 +265,10 @@ const useForm = (inputObj, callback) =>{
 
         if(values.product_name =='' && values.category =='' && values.product_price =='' && values.product_description =='' && !values.image){
             addError("Inputs can not be empty!!!");
-            // setAllErrors();
             setEmptyFieldError();
             return
         }
-   
-        if(values.product_name =='' || values.category =='' || values.product_price =='' || values.product_description ==''){
-            addError("Inputs can not be empty!!!");
-            setEmptyFieldError();
-            return
-        }
+
         if(!values.image){ 
             addError("Choose a image")
             // setImageError(true);
@@ -302,12 +276,37 @@ const useForm = (inputObj, callback) =>{
             return
         }
 
+        if(Object.keys(errors).length == 1){
+            if(errors.category){
+                addError("Category " + errors.category)
+                return;
+            }
+
+            if(errors.product_name){
+                addError("Name " + errors.product_name)
+                return;
+            }
+            else if(errors.product_price){
+                addError("Price " + errors.product_price)
+                return;
+            }
+            else if(errors.product_description){
+                addError(errors.product_description)
+                return;
+            }
+        }
+        else if(Object.keys(errors).length > 1){
+            addError("Invalid inputs");
+            return;
+        }
+        
         //all passed
         callback();
+    
     }
 
     //difference between productSubmit and this edit is that Edit inputs don't have be all filled out
-    //(exmaple you can fill ony one input not all of them) //just do validation 
+    //(exmaple you can fill ony one input not all of them)
     const handleEditProductSubmit = (event) =>{
         //check all empty input fields
         if(values.product_name =='' && values.product_price =='' && values.product_description ==''){
@@ -339,20 +338,16 @@ const useForm = (inputObj, callback) =>{
             //Entered values without errors
             let validValues = {};
             const updatedObject = {...shows}
-            console.log("UPDATED OBJECT :" + JSON.stringify(updatedObject))
             
             Object.keys(shows).forEach(key =>{
                 //this won't take repeat_password because it is showing only on password click (there isn't show for repeat_password)
-                console.log("VALUES KEY NOW: " +values[key])
                 if(!errors[key] && values[key] !="" && values[key] !=undefined)
                 {   
-                    //handler password with repeat password 
                     if(key == 'password'){
                         if(values['password'] !== values['repeat_password']){
                             //can't set error on both in the different time(becase one will trigger re-rendering and another will be overrided)
                             // setErrorWithMessage("password", "Passwords aren't same")
                             // setErrorWithMessage('repeat_password', "Passwords aren't same")
-                        
                             //FIXED:set bot errors at the same time
                             setErrors((prev)=>{
                                 return({
@@ -369,15 +364,12 @@ const useForm = (inputObj, callback) =>{
                         }
                     }
                     else{ 
-                         // validValues.key = values[key] ; //result is key:'novakveckov' key value isn't read
-                        validValues[key] = values[key]; //this solved email:'novakveckov@gmail.com'
-                        //delete valid keys from shows(unshowned successfully updated)
+                        validValues[key] = values[key];
                         delete updatedObject[key];
                     }           
                 }
             })
 
-            //set new Shows(show only not deleted key-s)
             setShows(updatedObject);
             callback(validValues); 
         }   
