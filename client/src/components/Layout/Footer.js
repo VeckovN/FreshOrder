@@ -11,7 +11,7 @@ const Footer = props =>{
             <li className='footer_link'><ScrollLink activeClass='active' to='aboutUs' offset={-70} spy={true} smooth={true}>AboutUs</ScrollLink></li>       
         </ul>
         <div className='copyright'> 
-            © 2022 Copyright: Veckov
+            © 2023 Copyright: Veckov
         </div>
         <div className='social_icons'>
             <a href='#' ><img alt='Facebook Link' src={require('../../../src/assets/Icons/FacebookIcon.png')}></img></a>

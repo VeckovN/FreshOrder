@@ -32,6 +32,9 @@
 .footer_link{
     padding:.1rem 0;
 }
+.footer_link >*{
+    color:white;
+}
 
 .copyright{
     font-size:1.1rem;
