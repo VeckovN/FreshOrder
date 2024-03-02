@@ -7,7 +7,7 @@
     max-width:1200px;
    
     /* SET MARGIN-bottom(third) TO AUTO FIIXED SPACE BETWEEN ORDERS AND FOOTER -> FOOTER IS SET ON BOOTOM  :D  */
-    margin:10rem auto auto auto;
+    margin:8rem auto auto auto;
     
     display: flex;
     flex-direction: column;
@@ -36,19 +36,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    /* background-color: red; */
 }
 
 .products-category{
-    width: 50%;
     margin:.5rem 0 1rem 0;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-content: center;
     align-self: center;
-
-    /* background-color: red; */
 }
 
 .category{
@@ -59,7 +54,6 @@
     background-color: aliceblue;
     color:black;
     font-weight: 600;
-    /* font-family: 'Handlee', cursive; */
 }
 
 .category-select{
@@ -135,7 +129,18 @@
 }
 
 @media screen and (max-width:500px){
- 
+    .products-category-part{
+        width: 100%;
+    }
+    .products-category{
+        width: 30%;
+        margin:.1rem 0 .2rem 0;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .category-select div:first-child{
+        font-size: 1.6em;
+    }
 }
 
 

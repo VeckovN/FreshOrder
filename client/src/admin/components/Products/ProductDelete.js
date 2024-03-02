@@ -10,10 +10,9 @@ const ProductDelete = ({productID, isChanged, headers}) =>{
 
     const onSoftDeleteProduct = async() =>{
         try{
-            console.log("DD");
             const result = await axiosJWT.put(`http://localhost:8800/api/products/softDelete/${productID}`, {headers})
             const resultData = result.data;
-            addSuccess(resultData); //notify
+            addSuccess(resultData);
             //this will re-render compoennt( parrent function that reFetch selected category products)
             isChanged(true);
         }
@@ -54,7 +53,7 @@ const ProductDelete = ({productID, isChanged, headers}) =>{
             <div className='product-confirm-del-container'>
                 <label> Are you really want to delete Product?</label>
                 <div className='product-confirm-del-buttons'> 
-                    <button onClick={()=>{console.log("Sa")}}> Yes </button>
+                    <button onClick={onDeleteProduct}> Yes </button>
                     <button onClick={()=>setConfirmDelete(false)}> No </button>
                 </div>
             </div>
