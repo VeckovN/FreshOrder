@@ -8,7 +8,7 @@ import AddProductForm from './AddProductForm';
 import { configureHeader } from '../../../utils/Helper';
 
 
-const AddProduct = () =>{
+const AddProduct = ({isChanged}) =>{
     const initialInputObject = {
         product_name:'',
         product_price:'',
@@ -26,12 +26,9 @@ const AddProduct = () =>{
             //upload image(call api request for it) image uplaod and product create are seperated calls
             const formData = new FormData();
             formData.append('image', values.image);
-
-            //generatedName as request --- res.status(200).json(file.filename);
+;
             const result = await axiosJWT.post('http://localhost:8800/api/products/create', formData, {headers});
             const imageName = result.data;
-
-            addSuccess("You successfuly uploaded " + result.data);
 
             //useImgURL - image Name to create product 
             const otherData ={
@@ -45,7 +42,9 @@ const AddProduct = () =>{
 
             addSuccess("You successfully added product")
             resetAllValues();
-            RemoveValueFromObject('image')
+            RemoveValueFromObject('image');
+            //refetch or just add product to Table
+            isChanged();
         }
         catch(err){
             addError("UPLOAD ERROR")

@@ -18,7 +18,6 @@ const Products = () =>{
     //{productID, showned:false|true}
     const [deleteModal, setDeleteModal] = useState({}); 
 
-
     useEffect( ()=>{
         fetchProductsByCategory(categoryOptions[0]);
     },[]);
@@ -56,7 +55,6 @@ const Products = () =>{
     }
 
     const onDeleteModal = (deleteModalObj) =>{
-        alert("DELTET" + JSON.stringify(deleteModalObj));
         setDeleteModal(deleteModalObj);
     }
 
@@ -64,7 +62,9 @@ const Products = () =>{
         <div className='products-container'>
             <div className='add-product-part'>
                 <h1 className='product-title'>Add Product</h1> 
-                    <AddProduct/>
+                    <AddProduct
+                        isChanged={onChangeProduct}
+                    />
             </div>
 
             <div className='products-category-part'>
