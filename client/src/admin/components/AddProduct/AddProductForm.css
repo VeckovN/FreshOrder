@@ -24,18 +24,15 @@
     position: relative;
 }
 
-
 .add-product-input-fields{
-    padding:.5rem .5rem;
+    padding:.5rem .5rem 2rem .5rem;
     width: 100%;
 }
 
-
 .add-product-input{
-    margin:.5em 0em 1em 0em;
+    margin:.5em .2em 1em 0em;
     display: flex;
     flex-direction: column;    
-    /* font-family: 'Tillana', cursive; */
 }
 
 .add-product-input label{
@@ -43,11 +40,9 @@
     font-size: 1.3rem;
     letter-spacing: .06rem;
     font-weight: 500;
-    /* font-family: 'Tillana', cursive; */
 }
 
 .add-product-input input{
-    /* width: 80%; */
     width: 100%;
     border:none;
     background-color: transparent;
@@ -62,12 +57,10 @@
 .add-product-input input::placeholder{
     color:rgb(194, 191, 191);
     font-weight: 600;
-    /* font-family: 'Tillana', cursive; */
     font-size: .7rem;
 }
 
 .add-product-input select {
-    /* font-family: 'Tillana', cursive; */
     font-family: 'Handlee', cursive;
     font-size:.8rem;
     height: 2em;
@@ -91,15 +84,6 @@
     margin-left: .2em;
 
     color:rgb(255, 86, 86)
-}
-
-.add-product-images{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    padding:.5em 1em .5em 2em;
-    width: 100%;
 }
 
 .image-choose-input{
@@ -136,7 +120,7 @@
 }
 
 .image-container img{
-    width: 90%;
+    width: 50%;
     max-width: 250px;
     max-height: 300px;
 }
@@ -198,17 +182,15 @@
         flex-direction: column;
     }   
 
-    .add-product-images{
-        padding:0rem 0rem .5rem 0rem;
-    }
 
     .image-container button{
         margin-top:.5rem;
     }
     
     .image-container img{
-        max-width: 400px;
-        max-height: 550px;
+        width: 60%;
+        /* max-width: 250px;
+        max-height: 250px; */
     }
 
     .button-container{

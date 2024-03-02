@@ -4,12 +4,11 @@ const AddProductForm = ({values, errors, categoryOptions, removeSelectedImage, h
 
     return (
         <div className='add-product-container'>
-            <form className='add-product-form' onSubmit={handleProductSubmit}>  
+            <form onSubmit={handleProductSubmit}>  
 
                 <div className='add-product-input-fields'>
                     <div className='add-product-input'>
                         <label>Category</label>
-                        {/* <select name='category' value={category} defaultValue={''} onChange={onChangeCategorySelect}> */}
                         <select name='category' value={values.category} defaultValue={''} onChange={handleChanges}>
                             <option value=''  disabled> Select Category </option>
                             {categoryOptions.map(category =>{
@@ -17,18 +16,6 @@ const AddProductForm = ({values, errors, categoryOptions, removeSelectedImage, h
                             })}
                         </select>
                         {errors.category && <p className='error-product'>Select a category</p>}
-                    </div>
-
-                    <div className='add-product-input'>
-                        <label>Name</label>
-                        <input
-                            type='text'
-                            name='product_name'
-                            onChange={handleChanges}
-                            value={values.product_name}
-                            placeholder='Enter product name'
-                        />
-                        {errors.product_name && <p className='error-product'>{errors.product_name}</p>}
                     </div>
 
                     <div className='add-product-input'>
@@ -58,7 +45,18 @@ const AddProductForm = ({values, errors, categoryOptions, removeSelectedImage, h
                     </div>
                 </div>
 
-                <div className='add-product-images'>
+                <div className='add-product-input-fields'>
+                    <div className='add-product-input'>
+                        <label>Name</label>
+                        <input
+                            type='text'
+                            name='product_name'
+                            onChange={handleChanges}
+                            value={values.product_name}
+                            placeholder='Enter product name'
+                        />
+                        {errors.product_name && <p className='error-product'>{errors.product_name}</p>}
+                    </div>
                     <div className='add-product-input'>
                         <label>Image</label>
                         {errors.image && <p className='error-product'>Import a image</p>}
