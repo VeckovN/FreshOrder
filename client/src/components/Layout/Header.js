@@ -8,12 +8,14 @@ import HeaderCartButton from './HeaderCartButton';
 
 import authContext from '../../store/auth-context'
 import notificationContext from '../../store/notification-context.js'
+import modalContext from '../../store/modal-context.js';
 
 //React.memo won't work when is modal clicked because Header props are showModal state
 const Header2 = props => {
     const [showNavbar, setShowNavbar] = useState(false);
     const {user, dispatchAction} = useContext(authContext);
     const {addSuccess} = useContext(notificationContext)
+    const {showLogin, showRegister} = useContext(modalContext);
     const nav = useNavigate();
     const location = useLocation();
 
@@ -33,13 +35,13 @@ const Header2 = props => {
     }
 
     const handleRegisterModal = () =>{
-        props.onShowRegisterModal()
+        showRegister();
         if(showNavbar)
             setShowNavbar(false)
     }
 
     const handleLoginModal = () =>{
-        props.onShowLoginModal()
+        showLogin();     
         if(showNavbar)
             setShowNavbar(false);
     }
@@ -86,7 +88,6 @@ const Header2 = props => {
                     </>
                     }
             
-
                     {!user &&
                     <>
                         <li className='link' onClick={handleRegisterModal}> Register</li>
@@ -99,7 +100,7 @@ const Header2 = props => {
 
             {!isAdmin && 
             <div className='cartIcon'>
-                <HeaderCartButton  onClickShow={props.onShowCartModal}/>
+                <HeaderCartButton />
             </div> 
             }
 

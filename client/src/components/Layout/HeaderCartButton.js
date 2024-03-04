@@ -3,7 +3,7 @@ import cartContext from '../../store/cart-context';
 import modalContext from '../../store/modal-context';
 import './HeaderCartButton.css'
 
-const HeaderCartButton = props =>{
+const HeaderCartButton = () =>{
 
     const ctxCart = useContext(cartContext);
     const ctxModal = useContext(modalContext);

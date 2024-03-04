@@ -1,4 +1,4 @@
-import {useState, useContext} from 'react'
+import {useContext} from 'react'
 import RegisterForm from './RegisterForm.js';
 import RegisterModal from './RegisterModal.js';
 
@@ -6,8 +6,9 @@ import axios from 'axios';
 import useForm from '../../hooks/useForm.js';
 
 import notificationContext from '../../store/notification-context'
+import modalContext from '../../store/modal-context.js';
 
-const Register = (props) =>{
+const Register = () =>{
 
     const initialInputObject = {
         username:'', 
@@ -19,13 +20,11 @@ const Register = (props) =>{
     }
     
     const {addSuccess, addError} = useContext(notificationContext);
-
-    const[loading, setLoading] = useState(false);
+    const {showLogin, closeModal} = useContext(modalContext);
     
     //this will be only called in useForm handleRegSubmit(as callback) if input validation passes
     const submitReg = async(event) =>{
         try{
-            // setLoading(true);
             const regInfo={
                 username:values.username,
                 email:values.email,
@@ -35,10 +34,8 @@ const Register = (props) =>{
             }
             
             await axios.post('http://localhost:8800/api/auth/register', regInfo)    
-            props.showLogin();
+            showLogin();
             addSuccess("Successfuly registered")
-
-            // setLoading(false);
         }
         catch(err){
             console.log(err);
@@ -50,7 +47,6 @@ const Register = (props) =>{
     
     const regBodyContext =
     <RegisterForm 
-        // loading={loading}
             submitForm={handleRegSubmit}
             values={values}
             errors={errors}
@@ -59,8 +55,7 @@ const Register = (props) =>{
 
     return (
         <RegisterModal 
-            // loading={loading}
-            onCloseRegister={props.onClose}
+            onCloseRegister={closeModal}
             regBodyContext={regBodyContext}
         />       
     )
