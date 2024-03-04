@@ -2,14 +2,16 @@ import {useContext} from 'react'
 import CartItem from './CartItem';
 import cartContext from '../../store/cart-context';
 import authContext from '../../store/auth-context';
+import modalContext from '../../store/modal-context.js'
 import notificationContext from '../../store/notification-context.js'
 
 import CartModal from './CartModal';
 import './Cart.css'
 
-const Cart = props =>{
+const Cart = () =>{
     const {user} = useContext(authContext);
     const ctxCart = useContext(cartContext);
+    const ctxModal = useContext(modalContext);
 
     const cartItems = ctxCart.items;
     const totalAmount = ctxCart.amountTotal;
@@ -62,8 +64,7 @@ const Cart = props =>{
             itemsList={ItemsList}
             totalAmount={convertedTotalAmount}
             orderCartItems={orderCartItems}
-            onClose={props.onClose}
-            onCloseSignClick={props.onCloseCart}
+            onClose={ctxModal.closeModal}
         />
         
     )

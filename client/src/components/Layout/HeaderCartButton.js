@@ -1,10 +1,12 @@
 import {useState, useContext, useEffect} from 'react';
 import cartContext from '../../store/cart-context';
+import modalContext from '../../store/modal-context';
 import './HeaderCartButton.css'
 
 const HeaderCartButton = props =>{
 
     const ctxCart = useContext(cartContext);
+    const ctxModal = useContext(modalContext);
     const [buttonBlink, setButtonBlink] = useState(false);
 
     //On Every click on add items in cart button, this cartIcon should blink and 
@@ -17,9 +19,7 @@ const HeaderCartButton = props =>{
     for(let i=0 ; i<items.length; i++)
         totalAmountOfItems += items[i].amount;
     
-
     useEffect( ()=>{
-
         //we won't blink efect on first render 
         if(items.length !== 0)
             setButtonBlink(true);
@@ -43,10 +43,8 @@ const HeaderCartButton = props =>{
    
     //different css style when is item added in cart(blink icon)
     //set class to button on every 
-    return <button className={cartBlink} onClick={props.onClickShow}>
-        {/* <div className='cartIconContainer'> */}
+    return <button className={cartBlink} onClick={()=> ctxModal.showCart()}>
         <img src='/shopping-cart-1.png' alt='image'></img>
-        {/* </div> */}
         <div className='badge'>{totalAmountOfItems}</div>
     </button>
 }

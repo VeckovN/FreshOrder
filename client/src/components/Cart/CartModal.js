@@ -1,6 +1,6 @@
 import Modal from '../UI/Modal/Modal';
 
-const CartModal = ({itemsList,cartItems,totalAmount,orderCartItems, onClose, onCloseSignClick }) =>{
+const CartModal = ({itemsList,cartItems,totalAmount,orderCartItems, onClose}) =>{
 
     const cartHeaderContext =
             'FreshOrder';
@@ -28,8 +28,7 @@ const CartModal = ({itemsList,cartItems,totalAmount,orderCartItems, onClose, onC
             HeaderContext = {cartHeaderContext}
             BodyContext = {cartBodyContext}
             onCloseModal={onClose} 
-            onCloseSignClick={onCloseSignClick}>
-        </Modal>
+        />
     )
 
 }
