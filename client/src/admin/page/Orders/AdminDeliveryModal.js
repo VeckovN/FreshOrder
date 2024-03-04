@@ -38,7 +38,6 @@ const AdminDeliveryModal = ({deliveryObj, onClose}) =>{
                     }
                 }
                 catch(err){
-                    console.log("ERROR: " + err);
                     addError("You can't set delivery time")
                 }
             }
@@ -65,17 +64,12 @@ const AdminDeliveryModal = ({deliveryObj, onClose}) =>{
                     <button className='' onClick={onClickComfirm}>Comfirm</button>
                 </div>
             </div>
-        
-    const deliveryFooterContext = 
-            <> 
-            </>
 
     return (
         <Modal
             ModalContainerStyle='DeliveryModal'
             HeaderContext = {deliveryHeaderContext}
             BodyContext = {deliveryBodyContext}
-            FooterContext = {deliveryFooterContext}
             onCloseModal={onClose}
         />
     )

@@ -3,10 +3,11 @@
 .DeliveryModal{
     top:40%;
     width: 30%;
-    max-width: 500px;
     min-width: 400px;
+    max-width: 500px;
 }
 .delivery_container{
+    width: 100%;
     display:flex;
     flex-direction: column;
     justify-content: center;
@@ -16,12 +17,16 @@
 }
 
 .delivery_container h3{
-    color:rgba(0, 0, 0, 0.87);
     margin:1rem 0 0 0;
+    font-size: 1.2em;
+    font-weight: 500;
+    font-family: 'Handlee', cursive;
+    color:white;
 }
 
 .delivery_input_fields{
-    margin:0rem 0rem 1rem 0rem;
+    margin:0rem 0rem 1.1rem 0rem;
+    width: 90%;
     display:flex;
     flex-direction: column;
     align-items: center;
@@ -30,10 +35,12 @@
 
 
 .delivery_input_fields input{
-    margin:1rem 0;
     height:1.9rem;
-
+    width: 60%;
+    margin:1rem 0;
     padding: 0rem 1rem;
+
+    font-family: 'Handlee', cursive;
     border-radius: 5px;
     text-align: center;
 }
@@ -45,10 +52,11 @@
 }
 
 .delivery_input_fields button{
-    width: 45%;
+    width: 30%;
     height:1.8rem;
+    
     font-weight: 600;
-
+    font-family: 'Handlee', cursive;
     cursor: pointer;
     border-radius: 5px;
     border:1px solid black;
@@ -56,5 +64,4 @@
 
 .delivery_input_fields button:hover{
     background-color:rgba(233, 241, 229, 0.87);
-    width: 46%;
 }
