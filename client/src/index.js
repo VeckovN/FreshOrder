@@ -6,14 +6,16 @@ import App from './App';
 import { BrowserRouter} from 'react-router-dom'
 import AuthProvider from './store/AuthProvider';
 import NotificationProvider from './store/NotificationProvider';
-
+import ModalProvider from './store/ModalProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <NotificationProvider>
       <AuthProvider>
-          <App /> 
+        <ModalProvider>
+          <App/> 
+        </ModalProvider>
       </AuthProvider>
     </NotificationProvider>
   </BrowserRouter>
