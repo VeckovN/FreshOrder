@@ -2,7 +2,7 @@ import { convertDate } from '../../../utils/Helper';
 
 const AdminOrderList = ({orders, onComfirmOrder}) =>{
     return (
-        <>
+        <ul>
             <li className ='table_header'>
                 {/* <div className='colone col-1'>OR ID</div> */}
                 <div className='colone col-1'>Username</div>
@@ -46,7 +46,7 @@ const AdminOrderList = ({orders, onComfirmOrder}) =>{
                                 <div className ='colone col-7'><div className='dateLabel'>{convertDate(order.createdAt).day} {convertDate(order.createdAt).hour}</div></div>
                         </li>
                 })}
-            </>
+            </ul>
 
     )
 }
