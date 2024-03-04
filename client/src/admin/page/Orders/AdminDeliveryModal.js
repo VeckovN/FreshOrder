@@ -4,18 +4,24 @@ import { configureHeader } from '../../../utils/Helper.js';
 import Modal from '../../../components/UI/Modal/Modal.js'
 import notificationContext from '../../../store/notification-context.js';
 import authContext from '../../../store/auth-context.js';
+import modalContext from '../../../store/modal-context.js';
 
 import './AdmiDelivery.css'
 
-const AdminDeliveryModal = ({deliveryObj, onClose}) =>{
+const AdminDeliveryModal = () =>{
 
     const deliveryTimeRef = useRef('');
     const {addSuccess, addError} = useContext(notificationContext);
     const {user} = useContext(authContext);
+    const {deliveryTimeInfo , closeModal} = useContext(modalContext);
+
 
     const onClickComfirm = async() =>{
+        console.log("DELIVERY TIME " , deliveryTimeInfo);
+
         const deliveryTime = deliveryTimeRef.current.value;
-        const userEmail = deliveryObj.userEmail;
+        // const userEmail = deliveryObj.userEmail;
+        const userEmail = deliveryTimeInfo.userEmail;
 
         if(deliveryTime){
             if(deliveryTime <= 300) //max 300 mins
@@ -26,7 +32,8 @@ const AdminDeliveryModal = ({deliveryObj, onClose}) =>{
                 }
                 try{
                     const headers = configureHeader(user.accessToken)
-                    await axiosJWT.put(`http://localhost:8800/api/orders/complete/${deliveryObj.orderID}`, deliveryBodyObject, {headers});
+                    // await axiosJWT.put(`http://localhost:8800/api/orders/complete/${deliveryObj.orderID}`, deliveryBodyObject, {headers});
+                    await axiosJWT.put(`http://localhost:8800/api/orders/complete/${deliveryTimeInfo.orderID}`, deliveryBodyObject, {headers});
                     addSuccess(`You comfirm order`);
 
                     const timer = setTimeout( ()=>{
@@ -61,7 +68,7 @@ const AdminDeliveryModal = ({deliveryObj, onClose}) =>{
                         placeholder='Enter delivert time in minutes'
                         ref={deliveryTimeRef}
                     />
-                    <button className='' onClick={onClickComfirm}>Comfirm</button>
+                    <button className='' onClick={onClickComfirm}>Confirm</button>
                 </div>
             </div>
 
@@ -70,7 +77,7 @@ const AdminDeliveryModal = ({deliveryObj, onClose}) =>{
             ModalContainerStyle='DeliveryModal'
             HeaderContext = {deliveryHeaderContext}
             BodyContext = {deliveryBodyContext}
-            onCloseModal={onClose}
+            onCloseModal={closeModal}
         />
     )
 }

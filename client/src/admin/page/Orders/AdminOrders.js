@@ -3,6 +3,7 @@ import { axiosJWT } from '../../../services/axiosJWTInstance';
 import Pagination from '../../../utils/Pagination/Pagination';
 import LoadingSpinner from '../../../utils/LoadingSpinner';
 import AuthContext from '../../../store/auth-context';
+import modalContext from '../../../store/modal-context.js';
 import { configureHeader } from '../../../utils/Helper.js';
 import AdminOrderList from './AdminOrderList';
 
@@ -11,7 +12,7 @@ import './AdminOrders.css'
 
 //https://medium.com/swlh/prevent-useeffects-callback-firing-during-initial-render-the-armchair-critic-f71bc0e03536
 
-const AdminOrders = (props)=>{
+const AdminOrders = ()=>{
 
     const [isloading, setIsLoading] = useState(false);
     const [orders, setOrders] = useState([]);
@@ -21,6 +22,7 @@ const AdminOrders = (props)=>{
     const [sort, setSort] = useState({});
 
     const {user} = useContext(AuthContext);
+    const {showAdminOrderDelivery} = useContext(modalContext);
     const headers = configureHeader(user.accessToken);
     const firstRender = useRef(true);
     
@@ -100,18 +102,17 @@ const AdminOrders = (props)=>{
             orderID:orderID,
             userEmail:userEmail,      
         }
-        //pass value to MODAL(which is called in APP.js)
-        props.onEnterOrderDeliveryTime(deliveryInfo);
+        showAdminOrderDelivery(deliveryInfo);
     }
 
     const loadingTheme = isloading ? 'table_context_loading' : ''
     return(
         <div className="table_container">
             <h1> User Orders </h1>
-            <ul className='table_order'>
+            <div className='table_order'>
                 {isloading && <LoadingSpinner/>}
-                <li className='table_filter'>
-                    <div className='table_perPage_select'>
+                <div className='table_filter'>
+                    <div className='table_filter_option'>
                         <label>Items per Page</label>
                         <div className='table_perPage_buttons'>
                             <button className={itemsPerPage=='5' && 'selected'} onClick={() => {setItemsPerPage('5')}}>5</button>
@@ -120,7 +121,7 @@ const AdminOrders = (props)=>{
                         </div>
                     </div>
 
-                    <div className='table_sort_select'>
+                    <div className='table_filter_option'>
                         <label>Status sort {sort.status && `: ${sort.status}`}</label>
                         <div className='table_sort_buttons'>
                             {sort.status !='notCompleted' 
@@ -140,14 +141,14 @@ const AdminOrders = (props)=>{
                         </div>
                         
                     </div>
-                </li>
-                <li className={`table_context ${loadingTheme}`}>
+                </div>
+                <div className={`table_context ${loadingTheme}`}>
                     <AdminOrderList
                         orders={orders}
                         onComfirmOrder={onComfirmOrder}
                     />
-                </li>
-            </ul> 
+                </div>
+            </div> 
             {!isloading 
                 && <Pagination 
                         itemsPerPage={itemsPerPage} 

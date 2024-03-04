@@ -1,17 +1,10 @@
-import {useState} from 'react'
-// import Users from './Users/Users.js'
 import AdminOrders  from './Orders/AdminOrders.js'
-
 import './AdminHome.css'
 
-
-const AdminHome = (props) =>{
+const AdminHome = () =>{
     return(
-
         <main className='mainAdmin'>
-            {/* this handler show modal (userModal) adminUserModalUpdate */}
-            {/* onEnterOrderDeliveryTime(orderID) from AdminOrders */}
-            <AdminOrders onEnterOrderDeliveryTime={props.onOrderDeliveryTime}/>
+            <AdminOrders />
         </main>
     )
 }
