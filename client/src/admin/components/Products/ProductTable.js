@@ -2,7 +2,7 @@
 import ProductItem from "./ProductItem";
 import '../../page/Products/ProductTable.css';
 
-const ProductTable = ({categoryItems, onChangeProduct, headers, onDeleteModal}) =>{
+const ProductTable = ({categoryItems, onChangeProduct, headers}) =>{
 
     return(
         <div className='product-table-container'>
@@ -19,7 +19,7 @@ const ProductTable = ({categoryItems, onChangeProduct, headers, onDeleteModal}) 
                 <tbody>
                     {categoryItems && categoryItems.map(item =>{
                         return(
-                            <ProductItem item={item} isChanged={onChangeProduct} headers={headers} onDeleteModal={onDeleteModal} ></ProductItem>
+                            <ProductItem item={item} isChanged={onChangeProduct} headers={headers}></ProductItem>
                         )
                     })}
                 </tbody>

@@ -2,15 +2,17 @@ import {useState, useContext} from 'react'
 import useForm from '../../../hooks/useForm';
 import { axiosJWT } from '../../../services/axiosJWTInstance';
 import notificationContext from '../../../store/notification-context';
+import modalContext from '../../../store/modal-context';
 
 
 //isChanged is handler which trach changing on this compoenent and
 //notify parent(Product) to reFetch new updated items
-const ProductItem = ({item, isChanged, onEditProduct, headers, onDeleteModal}) =>{
+const ProductItem = ({item, isChanged, headers}) =>{
     const productItemID = item._id;
     //state used for notify parrent(Product.js) component to reFetch showed items
     //to get new refresh(updated) items
     const {addSuccess, addError} = useContext(notificationContext);
+    const {showAdminProductDelete} = useContext(modalContext);
 
     const [showEdit, setShowEdit] = useState(false);
     const initialInputObject = {
@@ -57,8 +59,12 @@ const ProductItem = ({item, isChanged, onEditProduct, headers, onDeleteModal}) =
     const {values, errors, handleChanges, resetAllValues, RemoveValueFromObject, handleEditProductSubmit} = useForm(initialInputObject, onEditAccept);
 
     const showDeleteModal = () =>{
-        const obj ={ productID: productItemID, show:true}
-        onDeleteModal(obj);
+        const productObj = { 
+            productID: productItemID,
+            headers:headers,
+        }
+        showAdminProductDelete(productObj);  
+        console.log("ADMING PRODUCT DELETE ", productObj);
     }
     return(
         <tr className={item.isDeleted && 'isDeleted ' }>

@@ -1,12 +1,19 @@
 import { useState, useContext} from 'react';
 import notificationContext from '../../../store/notification-context';
 import { axiosJWT } from '../../../services/axiosJWTInstance.js';
+import modalContext from '../../../store/modal-context.js';
+import Modal from '../../../components/UI/Modal/Modal.js';
 
 import './ProductDelete.css';
-const ProductDelete = ({productID, isChanged, headers}) =>{
+const ProductDelete = () =>{
 
     const {addSuccess, addError} = useContext(notificationContext);
+    const {closeModal, productDeleteInfo} = useContext(modalContext);
     const [confirmDelete, setConfirmDelete] = useState(false);
+
+    const productID = productDeleteInfo.productID;
+    const headers = productDeleteInfo.headers;
+
 
     const onSoftDeleteProduct = async() =>{
         try{
@@ -14,7 +21,8 @@ const ProductDelete = ({productID, isChanged, headers}) =>{
             const resultData = result.data;
             addSuccess(resultData);
             //this will re-render compoennt( parrent function that reFetch selected category products)
-            isChanged(true);
+            // isChanged(true);
+            closeModal();
         }
         catch(err){
             console.log('ERR: ' + err);
@@ -27,7 +35,8 @@ const ProductDelete = ({productID, isChanged, headers}) =>{
             const result = await axiosJWT.delete(`http://localhost:8800/api/products/${productID}`, {headers})
             const resultData = result.data;
             addSuccess(resultData);
-            isChanged();
+            // isChanged();
+            closeModal();
         }
         catch(err){
             console.log("Delete Product Error: " + err);
@@ -35,7 +44,10 @@ const ProductDelete = ({productID, isChanged, headers}) =>{
         }
     }
 
-    return (
+    const ProductDeleteHeaderContext =
+            'Product Delete';
+
+    const ProductDeleteBodyContext =
         <div className='product-del-container'>
             <div className='product-del-title'>You have two options for deleting Product</div>
 
@@ -59,35 +71,15 @@ const ProductDelete = ({productID, isChanged, headers}) =>{
             </div>
             }
         </div>
-    )
-
-
-    // const ProductDeleteHeaderContext =
-    //         'Product Delete';
-
-    // const ProductDeleteBodyContext =
-    //     <div className='product-del-container'>
-    //         <div className='product-del-title'>You have two options for deleting Product</div>
-
-    //         <div className='product-del-option'>
-    //             <div className='product-del-option-title'>The Product Won't be displayed on the Client Home</div>
-    //             <button className='product-del-option-btn'>Soft Delete</button>
-    //         </div>
-
-    //         <div className='product-del-option'>
-    //             <div className='product-del-option-title'>The Product will be permanently deleted</div>
-    //             <button className='product-del-option-btn'>Permanent Delete</button>
-    //         </div>
-    //     </div>
         
-    // return (
-    //     <Modal
-    //         ModalContainerStyle='productDelete'
-    //         HeaderContext = {ProductDeleteHeaderContext}
-    //         BodyContext = {ProductDeleteBodyContext}
-    //         onCloseModal={onClose}
-    //     />
-    // )
+    return (
+        <Modal
+            ModalContainerStyle='productDelete'
+            HeaderContext = {ProductDeleteHeaderContext}
+            BodyContext = {ProductDeleteBodyContext}
+            onCloseModal= {closeModal}
+        />
+    )
 }
 
 export default ProductDelete;

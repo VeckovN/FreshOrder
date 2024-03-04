@@ -5,7 +5,6 @@ import { configureHeader } from '../../../utils/Helper';
 import AddProduct from '../../components/AddProduct/AddProduct.js';
 import './Products.css'
 import ProductTable from '../../components/Products/ProductTable.js';
-import ProductDelete from '../../components/Products/ProductDelete.js';
 
 const Products = () =>{
     const {user} = useContext(authContext);
@@ -14,9 +13,6 @@ const Products = () =>{
     const categoryOptions = ['Pizza', 'Pasta', 'Burger' ,'Salad','Drinks', 'Desert']
     const [category, setCategory] = useState(categoryOptions[0]);
     const [categoryItems, setCategoryItems] = useState('');
-
-    //{productID, showned:false|true}
-    const [deleteModal, setDeleteModal] = useState({}); 
 
     useEffect( ()=>{
         fetchProductsByCategory(categoryOptions[0]);
@@ -45,17 +41,14 @@ const Products = () =>{
             fetchProductsByCategory(selectedCategory);
         }
         //unshown the DelteModal on category select
-        setDeleteModal({show:false})
+        // setDeleteModal({show:false})
+        
     }
 
     //Triggered in ProductItem compoennt(on Edit,SDel or Del action to reFetch users)
     const onChangeProduct = () =>{
         // //re Fetch showned items
         fetchProductsByCategory(category)
-    }
-
-    const onDeleteModal = (deleteModalObj) =>{
-        setDeleteModal(deleteModalObj);
     }
 
     return (
@@ -82,19 +75,11 @@ const Products = () =>{
                     })}
                 </div>
 
-                {deleteModal.show &&
-                <ProductDelete 
-                    productID={deleteModal.productID}
-                    isChanged={onChangeProduct}
-                    headers={headers}
-                />}
-
                 {category && 
                 <ProductTable
                     categoryItems={categoryItems}
                     headers={headers}
                     onChangeProduct={onChangeProduct}
-                    onDeleteModal={onDeleteModal}
                 />
                 }
             </div>
