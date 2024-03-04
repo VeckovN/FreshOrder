@@ -64,7 +64,7 @@ const Orders = () =>{
 
     return (
         <div className='container-table'>
-            <h2>{userInfo.username} Orders</h2>
+            <h2>{userInfo.username}'s Orders</h2>
             {orders.length >0
                 ? 
                 <OrdersTable orders={orders} onCancel={onCancelOrderHandler}/> 
