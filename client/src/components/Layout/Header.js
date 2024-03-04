@@ -1,17 +1,18 @@
-import React, {Fragment, useRef,useState, useContext} from 'react'
+import React, {useState, useContext} from 'react'
 // import {Link as ScrollLink} from 'react-scroll';
 import {Link as ScrollLink} from 'react-scroll';
 import {Link, useNavigate, useLocation} from 'react-router-dom'
 
-import './Header.css'
 import HeaderCartButton from './HeaderCartButton';
 
 import authContext from '../../store/auth-context'
 import notificationContext from '../../store/notification-context.js'
 import modalContext from '../../store/modal-context.js';
 
+import './Header.css'
+
 //React.memo won't work when is modal clicked because Header props are showModal state
-const Header2 = props => {
+const Header = () => {
     const [showNavbar, setShowNavbar] = useState(false);
     const {user, dispatchAction} = useContext(authContext);
     const {addSuccess} = useContext(notificationContext)
@@ -108,5 +109,5 @@ const Header2 = props => {
     )
 }
 
-export default Header2;
+export default Header;
 
