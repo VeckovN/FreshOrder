@@ -1,4 +1,4 @@
-import { useReducer} from "react";
+import { useReducer, useState} from "react";
 
 import ModalContext from "./modal-context";
 
@@ -6,7 +6,8 @@ const InitialModalState ={
     showModal: false,
     typeModal: '',
     deliveryTimeInfo: null,
-    productDeleteInfo: null
+    productDeleteInfo: null,
+    userInfo:null
 }
 
 const ReducerModal = (state, action) =>{
@@ -19,7 +20,7 @@ const ReducerModal = (state, action) =>{
         case "SHOW_LOGIN":
             return {showModal:true, typeModal:"Login"}
         case "SHOW_ADMIN_USER_UPDATE":
-            return {showModal:true, typeModal:"AdminUpdate"}
+            return {showModal:true, typeModal:"AdminUpdate", userInfo: action.payload}
         // case "SHOW_ADMIN_ORDER_DELIVERY":
         //     return {showModal:true, typeModal:"AdminOrderDelivery"}
         case "SHOW_ADMIN_ORDER_DELIVERY":
@@ -49,8 +50,8 @@ const ModalProvider = props =>{
     const showLogin = () =>{
         dispatchAction({type:"SHOW_LOGIN"});
     }
-    const showAdminUpdate = () =>{
-        dispatchAction({type:"SHOW_ADMIN_USER_UPDATE"});
+    const showAdminUpdate = (data) =>{
+        dispatchAction({type:"SHOW_ADMIN_USER_UPDATE", payload:data});
     }
     const showAdminOrderDelivery = (data) =>{
         dispatchAction({type:"SHOW_ADMIN_ORDER_DELIVERY", payload:data});
@@ -66,6 +67,7 @@ const ModalProvider = props =>{
         typeModal: userState.typeModal,
         deliveryTimeInfo: userState.deliveryTimeInfo,
         productDeleteInfo: userState.productDeleteInfo,
+        userInfo: userState.userInfo,
         dispatchAction,
         closeModal:closeModal,
         showCart:showCart,
