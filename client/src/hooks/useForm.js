@@ -338,11 +338,38 @@ const useForm = (inputObj, callback) =>{
             //Entered values without errors
             let validValues = {};
             const updatedObject = {...shows}
+
+            if(Object.keys(errors).length == 1){
+                if(errors.username){
+                    addError("Username " + errors.username);
+                    return;
+                }
+    
+                if(errors.email){
+                    addError("Email " + errors.email);
+                    return;
+                }
+                else if(errors.address){
+                    addError("Address " + errors.address);
+                    return;
+                }
+                else if(errors.phone_number){
+                    addError("Phone number" + errors.phone_number);
+                    return;
+                }
+            }
+            else if(Object.keys(errors).length > 1){
+                addError("Invalid inputs");
+                return;
+            }
             
             Object.keys(shows).forEach(key =>{
                 //this won't take repeat_password because it is showing only on password click (there isn't show for repeat_password)
+                console.log("Errorsss  ", errors);
+
                 if(!errors[key] && values[key] !="" && values[key] !=undefined)
                 {   
+                    console.log("ERRORS KEY" , errors[key]);
                     if(key == 'password'){
                         if(values['password'] !== values['repeat_password']){
                             //can't set error on both in the different time(becase one will trigger re-rendering and another will be overrided)
@@ -377,7 +404,6 @@ const useForm = (inputObj, callback) =>{
             addError("Inputs are empty");
         }   
     }
-
 
     return {
         values,
