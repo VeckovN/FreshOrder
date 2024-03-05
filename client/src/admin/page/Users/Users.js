@@ -3,12 +3,14 @@ import { axiosJWT } from '../../../services/axiosJWTInstance.js';
 import {convertDate, configureHeader} from '../../../utils/Helper.js'
 import {Link} from 'react-router-dom';
 import Pagination from '../../../utils/Pagination/Pagination';
-import AuthContext from '../../../store/auth-context';
+import authContext from '../../../store/auth-context';
+import modalContext from '../../../store/modal-context.js';
 import './Users.css'
 
 const Users = (props) =>{
 
-    const {user} = useContext(AuthContext);
+    const {user} = useContext(authContext);
+    const {showAdminUpdate} = useContext(modalContext);
     const headers = configureHeader(user.accessToken)
     const [edit, setEdit] = useState(false);
     const [data, setData] = useState([]);
@@ -101,7 +103,8 @@ const Users = (props) =>{
                                 <div>{convertDate(item.createdAt).hour}</div>
                             </td>
                             <td >
-                                <Link className='users_edit_link' to='update' state={item}>Edit</Link>
+                                <button className='users_edit_button' onClick={() => showAdminUpdate(item)}>Edit</button>
+
                             </td>
                             
                         </tr>

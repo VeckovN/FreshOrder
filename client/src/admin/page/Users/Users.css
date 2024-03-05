@@ -38,20 +38,20 @@
 
 }
 
-.users_edit_link{
+.users_edit_button{
     padding:.3rem .8rem; 
     background-color: aliceblue;
     cursor: pointer;
 
-    text-decoration: none;
+    border:none;
+    border-radius: .4rem;
     font-weight: 600;
     color: black;
 
-    border-radius: .4rem;
 }
 
 
-.users_edit_link:hover{
+.users_edit_button:hover{
     background-color: rgb(54, 54, 54);
     color:white;
 }
@@ -145,7 +145,7 @@
         height: 1.5rem; 
     }
 
-    .users_edit_link{
+    .users_edit_button{
         padding:.2rem .5rem; 
         background-color: aliceblue;
         cursor: pointer;
