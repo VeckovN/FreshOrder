@@ -16,7 +16,7 @@ const CartModal = ({itemsList,cartItems,totalAmount,orderCartItems, onClose}) =>
                             TotalAmont: <span>{totalAmount}</span>
                         </div>
                         <div className='order'>
-                            <button onClick={orderCartItems} id='Order'>Order</button>
+                            <button onClick={orderCartItems}>Order</button>
                         </div>
                     </div>
                 </div>
