@@ -1,8 +1,12 @@
-.product-del-container{
+.productDelete{
+    top:50%;
     width: 50%;
-    min-width:450px;
-    max-width: 700px;
-    margin:1rem 0rem;
+    min-width: 500px;
+    max-width: 550px;
+}
+
+.product-del-container{
+    width: 100%;
     padding:1rem 0 1.5em 0;
 
     display:flex;
@@ -14,12 +18,13 @@
 
     font-family: 'Handlee', cursive;
     color:white;
-    background-color: rgba(8, 8, 8, 0.918);
+
 }
 
 .product-del-title{
     padding:.5em 0 1em 0;
     font-size: 1.2em;
+    text-align: center;
 }
 
 .product-del-option{
@@ -34,6 +39,7 @@
 
 .product-del-option label{
     margin-bottom: .2rem;
+    text-align: center;
 }
 
 .product-del-option-btn{
@@ -93,14 +99,12 @@
 }
 
 @media screen and (max-width:500px){
+    .productDelete{
+        width: 95%;
+        min-width: 300px;
+    }
     .product-del-container{
-        width: 90%;
-        min-width:300px;
-        max-width: 500px;
-        margin:1rem 0rem;
-        padding:1rem 0 1.5em 0;
-
-        font-size: .9rem;
+        font-size: .9em;
     }
 
     .product-del-option-btn{
@@ -108,8 +112,11 @@
     }
 }
 
-@media screen and (max-width:350px){
+@media screen and (max-width:300px){
+    .productDelete{
+        min-width: 220px;
+    }
     .product-del-container{
-        font-size: .8rem;
+        font-size: .75em;
     }
 }
