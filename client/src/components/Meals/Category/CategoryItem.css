@@ -1,20 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Varela+Round&display=swap');
-
 @import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
 /* ------------------CATEGORY ITEM --------------- */
 .item{
     height: 13rem;
-    
     background-color: beige;
     margin:1rem .2rem;
-    /* padding:0.5rem 1rem; */
 
     display:flex;
     flex-direction: column;
     justify-content: space-between;
 
-    /* //Because children(img will be as background, and 
-    //content will be over the img(in aboslute position) ) */
     position: relative;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 1) 0px 10px 36px 0px;
@@ -28,12 +23,10 @@
 }
 .item:hover .title{
     letter-spacing: .7rem;
-    /* animation: title_letter_spacing 1s ease-in; */
     transition: letter-spacing .8s;
 }
 
 .title{
-    /* contra effect on hover */
     transition: letter-spacing .4s;
 
     text-align: center;
@@ -65,6 +58,7 @@
     font-size:2rem;
     color:black;
 }
+
 
 .content{
     position: absolute;
@@ -105,6 +99,12 @@
     border-bottom: 0;
 }
 
+.selected-content button{
+    color:black;
+    border-color: black;
+    font-weight: 800;
+} 
+
 /* LINK BUTTON TEST */
 .LinkCategory{
     position:absolute;
@@ -140,10 +140,6 @@
 }
 
 
-/* ------------------ */
-
-
-
 .content p{
     text-align: center;
 }   
@@ -175,16 +171,7 @@
     grid-auto-flow:column */
 }
 
-/* @media screen and (max-width: 931px){
-    display: grid;
-} */
-
 @media screen and (max-width:400px){
-
-    /* .content{
-        width: 80%;
-        height: 80%;
-    } */
 
     .item{
         height: 12rem;

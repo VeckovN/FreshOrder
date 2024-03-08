@@ -1,7 +1,4 @@
 import {useContext, useEffect, useState} from 'react'
-// import {Link} from 'react-scroll';
-//We should use useContext because we need to use this information(clicked Category) for 
-//showing items with this category
 import categoryContext from '../../../store/category-context.js';
 import './CategoryItem.css';
 
@@ -16,7 +13,6 @@ const CategoryItem = props =>{
     useEffect(() => {
         if(category !== props.itemName && category !=='')
         {
-            // disable_click = true;
             setSelected(false);
         }
     }, [category]); 
@@ -26,7 +22,6 @@ const CategoryItem = props =>{
             console.log('You select: ' + props.itemName);      
             ctxCategory.setCategory(props.itemName);
             setSelected(true);
-            //ON category CLICK SET THE sliderRef 
             props.sliderRef?.current.scrollIntoView({behavior: 'smooth'})
             //THIS REF IS USED on DIV in AvailabelMeals with ref={sliderRef}
         }   
@@ -38,7 +33,6 @@ const CategoryItem = props =>{
         }
     }
 
-    //let selectedCategoryItem = selected ? 'unselected' : '';
     let selectedCategoryItem;
     let buttonType;
 
@@ -54,7 +48,7 @@ const CategoryItem = props =>{
     return(     
         <div className={'item ' + selectedCategoryItem}>
             <img src={props.image} alt={`${props.itemName} Category Menu`}></img> 
-            <div className='content'>
+            <div className={`content ${selected ? 'selected-content' : ''}`}>
                 <p className='title'>{props.itemName}</p>      
                 <button onClick={clickedCardHandler} className={buttonType}>{buttonType}
                 </button>    
