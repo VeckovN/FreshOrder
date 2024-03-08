@@ -212,12 +212,13 @@
     }
     .mealInfo h3{
         font-size: 1.3rem;
+        margin-top: -.1em;
     }
     .mealInfo .price{
         font-size: 1.3rem;
     }
     .description{
-        font-size:1.1rem;
+        font-size:1rem;
     }
 
     .mealCard:hover h3{
@@ -227,11 +228,12 @@
     .mealCard:hover .price{
         font-size:1.4rem;
     }
+
 }
 
 @media screen and (max-width:330px){
     .mealCard{
-        width: 17rem;
+        width: 16rem;
         height: 12rem;
     }
     .mealInfo h3{
@@ -241,6 +243,35 @@
         font-size: 1.3rem;
     }
 
+    .mealButtonForm form{
+        font-size: .5em;
+        margin:-1.4em 0em;
+    }
+    .mealButtonForm form input{
+        width: 2rem;
+        height: 1.5rem;
+        
+        font-size:.9rem;
+    
+    }
+    .mealButtonForm form label{
+        font-size:.9rem;
+    
+        visibility:hidden;
+    }
+    
+    .mealButtonForm form button{
+        height: 1.7rem;
+        width: 5rem;
+    
+    }
+}
+
+@media screen and (max-width:300px){
+    .mealCard{
+        width: 16rem;
+        height: 12rem;
+    }
 }
 
 /* @media screen and (max-width:370px){

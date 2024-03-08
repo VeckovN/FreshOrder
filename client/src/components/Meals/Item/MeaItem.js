@@ -6,16 +6,11 @@ import MealItemInputForm from './MealItemInputForm'
 
 import './MealItem.css'
 
-//import picture
 const MealItem = props =>{
-
-    //import picture
-
     const ctxCart = useContext(cartContext);
     const ctxAuth = useContext(authContext);
     const {addSuccess} = useContext(notificationContext)
 
-    //if user authenticated and if is he admin
     const isAdmin = ctxAuth.user ? ctxAuth.user.isAdmin : false 
 
     //here is MailItem info, this is reason why we here addItem into cart
@@ -36,12 +31,6 @@ const MealItem = props =>{
         ctxCart.addItemToCart(mealObj);
         addSuccess(`You added ${mealObj.name} to the Cart`);
     }
-
-    let imgSource ='';
-
-    // RRR if(props.img_path !== ''){
-    //     imgSource= require('../../../assets/Items/' + props.img_path +'.jpg');
-    // }
 
     return <div className='mealCard'>
         <img src={`products/${props.img_path}`} alt='mealItems'></img>     
