@@ -32,11 +32,6 @@ header{
     color: white;
 }
 
-/* .headerLinks{
-
-    display: flex;
-    flex-direction: column;
-} */
 
 .links{
     display:flex;
@@ -58,8 +53,8 @@ header{
     cursor: pointer;
 }
 
-.links li:hover{
-    color: white;
+.links *:hover{
+    color:white;
 }
 
 
@@ -70,6 +65,7 @@ header{
     cursor: pointer;
 } */
 
+
 .link.index{
     color:rebeccapurple
 }
@@ -77,6 +73,7 @@ header{
 .link.logout{
     color:rgb(245, 76, 76);
 }
+
 
 .links.nav{
     
