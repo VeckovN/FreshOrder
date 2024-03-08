@@ -3,6 +3,7 @@
     flex-direction: column;
     margin:0rem 0rem 7rem 0rem;
     align-items: center;
+    /* height: 100%; */
 }
 
 .users_container h1{
@@ -41,12 +42,13 @@
 .users_edit_button{
     padding:.3rem .8rem; 
     background-color: aliceblue;
-    cursor: pointer;
-
+    
     border:none;
-    border-radius: .4rem;
+    border-radius: 3px;
     font-weight: 600;
+    font-size: 1em;
     color: black;
+    cursor: pointer;
 
 }
 
@@ -100,11 +102,17 @@
 }
 
 @media screen and (max-width:650px){
+
     .users_container{
-        margin-bottom: 10rem;
+        margin:3rem 0rem 10rem 0rem;
     }
+    
+    /* .users_container{
+        margin-bottom: 10rem;
+    } */
     .users_container h1{
         font-size:1.5rem;
+        margin:1rem 0rem .5rem 0rem;
     }
 
     .users_table{
