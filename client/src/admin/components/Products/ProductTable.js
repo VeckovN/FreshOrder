@@ -1,6 +1,6 @@
 
 import ProductItem from "./ProductItem";
-import '../../page/Products/ProductTable.css';
+import './ProductTable.css';
 
 const ProductTable = ({categoryItems, onChangeProduct, headers}) =>{
 
