@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap');
-
 .notification-container{
     z-index: 100;
 
@@ -28,19 +26,19 @@
     font-size:2rem;
 }
 .notification-icon.errorIcon{
-    color:red;
+    color:rgb(172, 32, 32);
 }
 .notification-icon.successIcon{
-    color:green;
+    color:rgb(22, 122, 22);
     left:-.6rem;
 }
 
 
 .notification-context{
-    /* font-family: 'Fredoka One', cursive; */
-    font-family: 'Kalam', cursive;
+    font-family: 'Handlee', cursive;
     padding:.1rem;
     font-size:1rem;
+    letter-spacing: .02rem;
     font-weight: 600;
 }
 
