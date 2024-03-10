@@ -1,7 +1,7 @@
 //REACT FOLDER STRUCTURE-----------
 //https://www.xenonstack.com/insights/reactjs-project-structure
 
-import {useContext, useReducer} from 'react';
+import {useContext} from 'react';
 import {Route, Routes} from 'react-router-dom';
 
 import Header from './components/Layout/Header.js'
@@ -11,6 +11,7 @@ import Cart from './components/Cart/Cart.js';
 import CartProvider from './store/CartProvider.js';
 
 import ProtectedRoute from './utils/ProtectedRoute.js';
+import ScrollToTop from './utils/ScrollToTop.js';
 
 // import Home from './components/Page/Home'
 import Home from './pages/Home.js';
@@ -46,6 +47,7 @@ function App() {
   const isAdmin = ctxAuth.user ? ctxAuth.user.isAdmin : false;
   return (
     <CartProvider>
+      <ScrollToTop/>
 
       {/* CReATE COMPOENNT FOR CONDITIONAL REDNDERING */}
       {/* <ConditionalModals /> */}
