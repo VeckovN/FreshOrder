@@ -1,17 +1,17 @@
 .footer-container{
-    background-color: #232321;
-    padding:2rem 0rem;
-    position:relative;
-    bottom:0;
     width:100%;
-    /* background-color: #C58877; */
-    z-index: 20;
-
+    position:relative;
+    padding:2rem 0rem;
+    bottom:0;
+    
     display: flex;
     justify-content: space-around;
     align-items: center;
+
     color:white;
+    background-color: #232321;
     
+    z-index: 19;
 }
 
 /* .footer-content{
@@ -38,7 +38,6 @@
 
 .copyright{
     font-size:1.1rem;
-    /* TO BE CONTINUED */
 }
 
 .social_icons{
@@ -61,7 +60,4 @@
         flex-direction: column;
         /* justify-content: space-between; */
     }
-
 }
-
-
