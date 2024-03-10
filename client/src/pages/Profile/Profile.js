@@ -1,6 +1,6 @@
 import {useState, useEffect, useContext} from 'react';
 import axios from 'axios' //used for Non Authenticated users
-import {axiosJWT, useAxiosJWTInterceptors} from '../../services/axiosJWTInstance';
+import {axiosJWT} from '../../services/axiosJWTInstance';
 
 import useForm from '../../hooks/useForm';
 import notificationContext from '../../store/notification-context';
@@ -12,12 +12,9 @@ import './Profile.css'
 const Profile = () =>{
 
     const {addSuccess, addError} = useContext(notificationContext);
-    // useAxiosJWTInterceptors();
-
     // callback(validValues) in useForm (user is validValues)
     const onUpdateUser = async(user) =>{
         try{
-            console.log("USSEERRR: " + JSON.stringify(user));
             const headers = {
                 'authorization' : "Bearer " + userAccessToken
             };
@@ -26,18 +23,14 @@ const Profile = () =>{
             let updatedKeys = '';   
             let length = Object.keys(user).length;
             // //get all keys of updated props
-            console.log("USERSsssss: " + JSON.stringify(user));
             if(length > 0)
             {
                 Object.keys(user).forEach((key, index)=>{
-                    console.log("!!!!!!! : " + key);
                     if(index != length-1)
                         updatedKeys+= key + ", "
                     else
                         updatedKeys+= key;
-                        //if is the last key there ins't + for next key
                 })
-                //setReFetch val
                 addSuccess('You updated: ' + updatedKeys)
                 setReFetch(prevState => !prevState);
             }
@@ -63,15 +56,11 @@ const Profile = () =>{
         address:"", 
         phone_number:"" 
     }
+    const [userInfo, setUserInfo] = useState({
+        ...initialInputObject
+    })
     
     const [fetchLoading, setFetchLoading] = useState(true);
-    //User(props) profile info
-    const [userInfo, setUserInfo] = useState({
-        username:"", 
-        email:"", 
-        address:"", 
-        phone_number:""
-    })
     const [reFetch, setReFetch] = useState(true);
 
     const User = JSON.parse(localStorage.getItem('user'));
@@ -112,10 +101,9 @@ const Profile = () =>{
 
     return(
         <div className = "profile-container">
-                {/* THIS COULD RENDER profileContext Component and Another Component For Loading Animation  */}
-            {!fetchLoading 
-            ? <>   
-                <div className='profile-title'>My Profile</div>
+            <div className='profile-title'>My Profile</div>
+                {!fetchLoading 
+                ?    
                 <ProfileContext
                     userInfo={userInfo} //user Data info
                     values={values} //inputFrom values
@@ -126,8 +114,7 @@ const Profile = () =>{
                     checkForCommit={checkForCommit}
                     onClickShowHandler={handleShowClickHandler}
                 />
-            </>
-            : <div><LoadingSpinner/></div>}   
+                : <LoadingSpinner/>}   
         </div>
     )
 
