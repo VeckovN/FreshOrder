@@ -1,13 +1,14 @@
 .users_container{
     display: flex;
     flex-direction: column;
-    margin:0rem 0rem 7rem 0rem;
+    margin:0rem 0rem 8rem 0rem;
     align-items: center;
     /* height: 100%; */
 }
 
 .users_container h1{
- margin:1rem 0rem 2rem 0rem;
+    margin:1rem 0rem 1rem 0rem;
+    font-family: 'Handlee', cursive;
 }
 
 .users_table{
@@ -104,7 +105,7 @@
 @media screen and (max-width:650px){
 
     .users_container{
-        margin:3rem 0rem 10rem 0rem;
+        margin:4rem 0rem 10rem 0rem;
     }
     
     /* .users_container{

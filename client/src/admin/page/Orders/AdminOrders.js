@@ -108,7 +108,7 @@ const AdminOrders = ()=>{
     const loadingTheme = isloading ? 'table_context_loading' : ''
     return(
         <div className="table_container">
-            <h1> User Orders </h1>
+            <h2> User Orders </h2>
             <div className='table_order'>
                 {isloading && <LoadingSpinner/>}
                 <div className='table_filter'>

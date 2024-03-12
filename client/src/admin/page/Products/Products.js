@@ -54,7 +54,7 @@ const Products = () =>{
     return (
         <div className='products-container'>
             <div className='add-product-part'>
-                <h1 className='product-title'>Add Product</h1> 
+                <h1 className='product-title'>Add new product</h1> 
                     <AddProduct
                         isChanged={onChangeProduct}
                     />
