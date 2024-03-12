@@ -95,6 +95,14 @@
     color:rgb(199, 199, 199);
 }
 
+#text-acc span{
+    text-decoration: underline;
+    cursor: pointer;
+}
+#text-acc span:hover{
+    color:rgb(192, 192, 192)
+}
+
 @media only screen and (max-width:461px){
     .loginModal{
         width: 90%;

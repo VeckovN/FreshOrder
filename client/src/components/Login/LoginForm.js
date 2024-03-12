@@ -1,6 +1,6 @@
 import FormInput from "../UI/Modal/FormInput/FormInput"
 
-const LoginForm = ({loading, values, handleChanges, errors, submitForm }) =>{
+const LoginForm = ({loading, values, handleChanges, errors, submitForm, showRegister }) =>{
 
     return(
         <form className='loginForm'>
@@ -45,7 +45,7 @@ const LoginForm = ({loading, values, handleChanges, errors, submitForm }) =>{
             </div>
 
             <div id="create-acc-div">
-                <div id="text-acc">New Here? <span>Create an account</span></div> 
+                <div id="text-acc">New Here? <span onClick={showRegister}>Create an account</span></div> 
             </div>
         </form>
     )

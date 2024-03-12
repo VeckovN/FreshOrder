@@ -21,7 +21,7 @@ const Login = () =>{
     //another way to DispatchAction without defined function in auhtContext like in cartContext
     const {loading,dispatchAction, loggin} = useContext(authContext);
     const {addSuccess, addError} = useContext(notificationContext);
-    const {closeModal} = useContext(modalContext);
+    const {closeModal, showRegister} = useContext(modalContext);
 
     const submitForm = async (event)=>{
         event.preventDefault();
@@ -85,6 +85,7 @@ const Login = () =>{
             submitForm={submitForm} 
             handleChanges={handleChanges} 
             errors={errors}
+            showRegister={showRegister}
         />
     return (
         <LoginModal 
