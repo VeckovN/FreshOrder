@@ -1,7 +1,7 @@
 .mainAdmin{
+    position: relative;
     /* background:url('../public/BackgroundCenter.jpg'); */
-  
-     /* SET MARGIN-bottom(third) TO AUTO FIIXED SPACE BETWEEN ORDERS AND FOOTER -> FOOTER IS SET ON BOOTOM  :D  */
+    /* SET MARGIN-bottom(third) TO AUTO FIIXED SPACE BETWEEN ORDERS AND FOOTER -> FOOTER IS SET ON BOOTOM  :D  */
     margin:7rem auto auto auto;
     
     width:80%;
@@ -10,9 +10,7 @@
     /* background-color:white;   */
     max-width:1200px;
     
-    position: relative;
-    
-  
+    font-family: "Poppins", sans-serif;
 }
 
 
