@@ -41,13 +41,14 @@
 }
 
 .users_edit_button{
-    padding:.3rem .8rem; 
+    padding:.2em .7em; 
     background-color: aliceblue;
     
     border:none;
     border-radius: 3px;
     font-weight: 600;
-    font-size: 1em;
+    font-size: .9em;
+    font-family: "Poppins", sans-serif;
     color: black;
     cursor: pointer;
 
