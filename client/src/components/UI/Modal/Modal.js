@@ -1,4 +1,4 @@
-import react, {Fragment} from 'react';
+import {Fragment, useEffect} from 'react';
 
 import './Modal.css'
 
@@ -8,7 +8,7 @@ import ReactDom from 'react-dom';
 
 const ModalViewOverlay = props =>{ 
     // const modalStyle = 'modal ' +  props.ModalContainer;
-    const modalStyle = props.ModalContainer=== undefined ? `modal` : `modal ${props.ModalContainer}`;
+    const modalStyle = props.ModalContainer=== undefined ? `modal` : `modal ${props.ModalContainer} `;
     // return <div className='modal' >
     return <div className={modalStyle}>
         <div className='modal-conatiner'>
@@ -40,6 +40,14 @@ const portalElement = document.getElementById('modal-portal');
 const Modal = props =>{
 
     //a portal is used to show the modal on a particular element on page
+    useEffect(() => {
+        document.body.style.overflow = 'hidden';
+    
+        // Cleanup function to remove the class when the component is unmounted or the modal is closed
+        return () => {
+          document.body.style.overflow = 'visible';
+        };
+      }, []);
 
     return(
         <Fragment>
