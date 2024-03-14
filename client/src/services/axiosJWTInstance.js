@@ -13,8 +13,9 @@ const axiosJWT = axios.create();
 //this function must be called somewhere before the first request(which need token time check) sent
 //maybe in App.js or on every Component which use this axiosJWT instance
 const useAxiosJWTInterceptors = ()=>{
-    const {user, dispatchAction} = useContext(AuthContext);
+    const {dispatchAction} = useContext(AuthContext);
     const {addError} = useContext(NotificationContext);
+    const navigate = useNavigate();
 
     useEffect(() =>{
         const requestInterceptor = axiosJWT.interceptors.request.use( 
@@ -26,6 +27,7 @@ const useAxiosJWTInterceptors = ()=>{
                 if(currentDate.getTime() >= decodedToken.exp *1000){
                     dispatchAction({type:"LOGOUT"}); //this will change user state ande triger re-rendering
                     addError("You're session time expired!"); 
+                    navigate('/');
                 }
                 else{ //create new token and replace it with old one
                     const res = await axios.post('http://localhost:8800/api/auth/refresh', {token:User.accessToken });
