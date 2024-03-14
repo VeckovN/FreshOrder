@@ -16,14 +16,15 @@
     width:70vw;
     max-width: 800px;
     max-height: 90%;
+    margin-bottom: 1rem;
+    
     overflow: auto;
-
     /* center modal */
     top:50%;
     float:left;
     left: 50%;
     transform: translate(-50%, -50%);
-    margin-bottom: 1rem;
+    animation: fadeIn 0.2s ease-in;
 
     border-radius: 1rem;
     
@@ -91,3 +92,15 @@
     }
 
 }
+
+
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+      /* transform: translateX(-50%); */
+      transform: translate(-50%, -100%)
+    }
+    100% {
+      opacity: 1;
+    }
+  }
