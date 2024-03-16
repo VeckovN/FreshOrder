@@ -150,6 +150,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    animation: fadeIn .4s ease-in;
 }
 .categoryMain h2{
     text-align:center;
@@ -247,5 +249,16 @@
         border-top:  0;
         border-bottom: 0;
 
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        transform: translate(-50%, -50%);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(0%);
+        opacity: 1;
     }
 }
