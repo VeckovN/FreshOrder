@@ -1,10 +1,9 @@
 import { convertDate } from '../../../utils/Helper';
 
-const AdminOrderList = ({orders, onComfirmOrder}) =>{
+const AdminOrderList = ({orders, onConfirmOrder}) =>{
     return (
-        <ul>
+        <ul className='table-ul'>
             <li className ='table_header'>
-                {/* <div className='colone col-1'>OR ID</div> */}
                 <div className='colone col-1'>Username</div>
                 <div className='colone col-2'>Email</div>
                 <div className='colone col-3'>Product</div>
@@ -14,11 +13,10 @@ const AdminOrderList = ({orders, onComfirmOrder}) =>{
                 <div className='colone col-7'>Created</div>
             </li>
             {orders.map(order =>{
-                console.log("ORDE:"+ order);
                     let totalPrice =0;
                     const completed = order.isCompleted ? 'table-row completed' : 'table-row'
                     return <li className={completed}  key={order._id}>
-                                {!order.isCompleted && <button className="comfirm_button" onClick={() =>{onComfirmOrder(order._id, order.user.email);}}>Comfirm</button>}
+                                {!order.isCompleted && <button className="confirm_button" onClick={() =>{onConfirmOrder(order._id, order.user.email);}}>Confirm</button>}
                                 
                                 <div className='colone col-1'>
                                     {/* {order._id} */}
@@ -29,14 +27,11 @@ const AdminOrderList = ({orders, onComfirmOrder}) =>{
                                 </div>
                                 <div className ='colone col-3'>
                                     {order.products.map(prod =>{
-                                    //when is product deleted , in order it will be targeted as 'Deleted'
                                     return <p>{prod.product!=null ? prod.product.name : 'Deleted Product'}</p>
                                     })}
                                 </div>
                                 <div className ='colone col-4'>  
                                         {order.products.map(prod =>{
-                                            //prod.product.price could be null -(when is product deleted)
-                                            //?. return undentified when is price null 
                                             totalPrice+=prod.amount * prod.product?.price;
                                             return <p>{prod.amount}</p>
                                         })}

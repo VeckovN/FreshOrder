@@ -71,7 +71,7 @@ const AdminOrders = ()=>{
                 setCurrentPage(pageNumber);
                 //prevent to Only useEffect[] run on intial
                 firstRender.current = false;
-            }, 500);
+            }, 300);
 
             //remove timer after timeout (ofc this function will be run in useEffect)
             return() =>{
@@ -80,7 +80,6 @@ const AdminOrders = ()=>{
         }
         catch(err){
             console.log(err);
-            //stop Loding Spinner on error
             setIsLoading(false);
         }
     }
@@ -97,7 +96,7 @@ const AdminOrders = ()=>{
         }
     }
 
-    const onComfirmOrder = (orderID,userEmail)=>{
+    const onConfirmOrder = (orderID,userEmail)=>{
         const deliveryInfo = {
             orderID:orderID,
             userEmail:userEmail,      
@@ -145,11 +144,11 @@ const AdminOrders = ()=>{
                 <div className={`table_context ${loadingTheme}`}>
                     <AdminOrderList
                         orders={orders}
-                        onComfirmOrder={onComfirmOrder}
+                        onConfirmOrder={onConfirmOrder}
                     />
                 </div>
             </div> 
-            {!isloading 
+            {!firstRender.current
                 && <Pagination 
                         itemsPerPage={itemsPerPage} 
                         totalItems={totalOrders} 
