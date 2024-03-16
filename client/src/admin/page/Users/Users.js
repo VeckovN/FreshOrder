@@ -12,7 +12,6 @@ const Users = (props) =>{
     const {user} = useContext(authContext);
     const {showAdminUpdate} = useContext(modalContext);
     const headers = configureHeader(user.accessToken)
-    const [edit, setEdit] = useState(false);
     const [data, setData] = useState([]);
 
     const [totalData, setTotalData] = useState('');
@@ -21,32 +20,10 @@ const Users = (props) =>{
     //we can't choose one of three options (5, 10, 15 ) items per page
     const [itemsPerPage, setItemsPerPage] = useState('10');
 
-    const [updatedData, setUpdatedData] = useState({
-        username:'',
-        email:'',
-        address:'',
-        phone_number:''
-    })
-
-    const {username} = updatedData;
-
     useEffect(()=>{
-        //getData();
         getDataPerPage();
         getTotalData();
     },[])
-
-    //On Initial (pageNumber by default is 1, and limit is 5)
-    const getData = async ()=>{
-        try{
-            const res = await axiosJWT.get('http://localhost:8800/api/users', {headers})
-            const users = res.data;
-            setData(users);
-        }
-        catch(err){
-            console.log(err);
-        }
-    }
 
     //initial (onMountCompoennt) pageNumber is ofc 1 this will be called in Pagination 
     const getDataPerPage = async(pageNumber) =>{
@@ -64,16 +41,7 @@ const Users = (props) =>{
     const getTotalData = async() =>{
         const response = await axiosJWT.get('http://localhost:8800/api/users/count', {headers});
         const result = response.data;
-        // setTotalData(result);
-        console.log("COUNT : " + result.count);
         setTotalData(result.count);
-    }
-
-    const onEditHandler = () =>{
-        setEdit(true);
-        //call that for triggering USerModal Show State
-        props.onEditUserUpdateHandler();
-        //show modal with update User info
     }
 
     return(
@@ -118,6 +86,7 @@ const Users = (props) =>{
                     itemsPerPage={itemsPerPage} 
                     totalItems={totalData} 
                     onPageNumberSelect={getDataPerPage} 
+                    currentPage={currentPage ? currentPage : '1'}
                 />
 
             </div>

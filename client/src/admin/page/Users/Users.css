@@ -15,6 +15,7 @@
     /* border-spacing:0; 
     border-collapse:collapse; */
     margin:1rem 0rem;
+    /* animation: fadeIn 0.2s ease-in;  */
 }
 
 .users_table th{
@@ -22,12 +23,14 @@
     color:white;
     padding:1rem 1rem;
     margin:1rem 0rem;
+    /* animation: fadeIn 0.2s ease-in;  */
 }
 
 .users_table tr{
     background-color: rgb(194, 194, 194);
     text-align: center;
-    
+
+    animation: fadeIn 0.2s ease-in; 
 }
 .users_table td{
     background-color: rgb(194, 194, 194);
@@ -39,6 +42,16 @@
     margin:1rem;
 
 }
+
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
 
 .users_edit_button{
     padding:.2em .7em; 
