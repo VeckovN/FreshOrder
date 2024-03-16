@@ -1,13 +1,10 @@
 .spinner_container{
     position:absolute;
-    /* background-color: rebeccapurple; */
-    /* width:10rem;
-    height: 10rem; */
     top:40vh;
     left:50%;
     transform:translate(-50%, -50%);
 
-    z-index: 100;
+    z-index: 10;
 }
 
 .spinner_ellipsis{
