@@ -5,7 +5,6 @@
 
 .pagination_numbers{
     display: flex;
-
 }
 
 .page_number{
@@ -13,7 +12,10 @@
     height: 1.8rem;
     margin:0 .2rem;
 
-    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    border:none;
+    border-radius: 3px;
+    cursor: pointer;
 }
 
 .current{
