@@ -18,7 +18,7 @@
     max-height: 90%;
     margin-bottom: 1rem;
     
-    overflow: auto;
+    overflow-y: auto;
     /* center modal */
     top:50%;
     float:left;
@@ -83,6 +83,28 @@
     opacity: .2;
 
     z-index: 10;
+}
+
+.cartModal::-webkit-scrollbar{
+    width: 10px;
+    height: 10px;
+}
+
+.modal::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    background-color: #dadada;
+    border: 1px solid #8d8d8d73;
+    cursor: pointer;
+}
+
+.modal::-webkit-scrollbar-thumb:hover{
+    background: rgb(235, 235, 235)
+}
+
+.modal::-webkit-scrollbar-thumb:active{
+    /* background: linear-gradient(to left, #474f52, #414344); */
+    background-color: #979c9e;
+    
 }
 
 
