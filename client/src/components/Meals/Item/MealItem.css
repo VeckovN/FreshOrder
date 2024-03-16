@@ -1,20 +1,31 @@
 .mealCard{
+    width: 22rem;
+    height: 17rem;
     padding:10px 10px;
     display:flex;
     flex-direction: column;
     justify-content: space-between;
     background-color: aliceblue;
 
-    width: 22rem;
-    height: 17rem;
 
     margin:.8rem .2rem;
     position: relative;
 
     border-radius:.6rem;
     box-shadow: 6px 5px 15px 10px rgba(0,0,0,0.9), inset 4px 4px 15px 0 rgba(0,0,0,0.9);
+
+    animation: fadeIn .5s ease-in;
 }
 
+
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 .mealCard:hover img{
     opacity: .3;
     transform: scale();
