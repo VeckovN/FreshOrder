@@ -53,21 +53,15 @@
 .cart-info > *{
     margin:.2rem 0;
     font-family: 'Averia Sans Libre', cursive;
-    /* font-family: 'Handlee', sans-serif; */
     font-weight: 500;
     font-size: 1.1rem;
-    color:rgb(0, 0, 0);
     color:white;
 }
 
 .cart-info span {
     font-weight: 500;
     font-size: 1.2rem;
-    font-family: 'Pacifico', cursive;
-    /* font-family: 'Handlee', sans-serif; */
-    font-family: 'Averia Sans Libre', cursive;
     font-family: 'Handlee', sans-serif;
-    color:rgb(0, 0, 0);
     color:white;
 }
 
