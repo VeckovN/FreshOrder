@@ -180,6 +180,10 @@
         flex-direction: column;
     }   
 
+    .add-product-input-fields{
+        padding-bottom: .0em;
+    }
+
     .image-container button{
         margin-top:.5rem;
     }
