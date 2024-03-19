@@ -63,15 +63,15 @@ const Header = () => {
 
     return (
         <header className={`header ${showNavbar ?`nav` : ''}` }>
-             <div className='logo'>
-                <h3><Link  className='logoLink' to='/'>FreshOrder</Link></h3>
-            </div>
 
             <div className='menuSelect' onClick={handleShowNavbar}>
-                MENU
+                Menu
             </div>
-
-            {/* <div className='headerLinks'> */}
+            {!showNavbar &&
+            <div className='logo'>
+                <h3><Link  className='logoLink' to='/'>FreshOrder</Link></h3>
+            </div>
+            }
                 <ul className={`links ${showNavbar ? 'nav' : ''} `} >
                     {isAdmin ?
                     <>
@@ -109,9 +109,8 @@ const Header = () => {
                     }
 
                 </ul>
-            {/* </div> */}
 
-            {!isAdmin && 
+            {!isAdmin && !showNavbar &&
             <div className='cartIcon'>
                 <HeaderCartButton />
             </div> 

@@ -22,7 +22,8 @@ header{
 }
 
 .logo a{
-    font-family: 'Yatra One', cursive;
+    /* font-family: 'Yatra One', cursive; */
+    font-family: "Handlee" , sans-serif;
     font-weight: 600;
     font-size: 1.2rem;
     letter-spacing: 0.03rem;
@@ -88,6 +89,7 @@ header{
 
     .logo{
         margin:0rem;
+        display: none;
     }
 
     .links{
@@ -110,7 +112,6 @@ header{
         position:absolute;
         top:4rem;
         margin:2rem 0rem 0rem 0rem;
-        /* visibility: visible; */
         display:flex;
         flex-direction: column;
         justify-content: space-around;
@@ -127,21 +128,20 @@ header{
         display:unset;
         position:absolute;
         top:2rem;
+        font-family: 'Handlee', cursive;
+        font-weight: 600;
+        color:black;
         cursor: pointer;
-        font-weight: 500;
         z-index: 100;
-        
     }
     .menuSelect:hover{
-        color:#dddddd
+        color:#868686
     }
 
     .cartIcon{
         position:fixed;
         top:0;
         right:3rem;
-        /* display: flex;
-        justify-content: flex-end; */
         margin-right: 0rem;
         height: 80%;
         margin-top:0rem;
