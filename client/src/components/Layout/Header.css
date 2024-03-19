@@ -101,7 +101,9 @@ header{
         background-color: rgb(161, 161, 160);
         opacity: 1;
         display: flex;
-        flex-direction: column;     
+        flex-direction: column;    
+
+        animation: leftDisplay .2s ease-in;
     }
 
     .links.nav{
@@ -114,6 +116,7 @@ header{
         justify-content: space-around;
         /* flex:2; */
         text-align: center;
+
     }
     .links.nav li{
         padding:1rem 0rem;
@@ -142,5 +145,14 @@ header{
         margin-right: 0rem;
         height: 80%;
         margin-top:0rem;
+    }
+}
+
+@keyframes leftDisplay {
+    0% {
+        transform: translateX(-30%);
+    }
+    100% {
+        transform: translateX(0%);
     }
 }
