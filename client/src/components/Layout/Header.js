@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 // import {Link as ScrollLink} from 'react-scroll';
 import {Link as ScrollLink} from 'react-scroll';
 import {Link, useNavigate, useLocation} from 'react-router-dom'
@@ -19,6 +19,18 @@ const Header = () => {
     const {showLogin, showRegister} = useContext(modalContext);
     const nav = useNavigate();
     const location = useLocation();
+
+
+    //disable body scrolling when the nav bar is showned
+    const handleOverflow = () =>{
+        document.body.style.overflow = showNavbar ? 'hidden' : 'visible';
+    }
+    useEffect( ()=>{
+        handleOverflow();
+        return () =>{
+            document.body.style.overflow = 'visible';
+        }
+    },[showNavbar])
 
     //TEST THIS
     const logoutHandler =()=>{
@@ -72,9 +84,9 @@ const Header = () => {
                         {/* show only on / index page */}
                         {location.pathname == '/' && 
                         <>
-                            <li className='link'><ScrollLink to='welcome' spy={true} offset={-70} smooth={true}>Welcome</ScrollLink></li>                
-                            <li className='link'><ScrollLink activeClass='active' to='category' spy={true} offset={-70} smooth={true}>Menu</ScrollLink></li>
-                            <li className='link'><ScrollLink activeClass='active' to='aboutUs' offset={-70} spy={true} smooth={true}>AboutUs</ScrollLink></li>     
+                            <li className='link'><ScrollLink onClick={closeShowNavbar} to='welcome' spy={true} offset={-70} smooth={true}>Welcome</ScrollLink></li>                
+                            <li className='link'><ScrollLink onClick={closeShowNavbar} activeClass='active' to='category' spy={true} offset={-70} smooth={true}>Menu</ScrollLink></li>
+                            <li className='link'><ScrollLink onClick={closeShowNavbar} activeClass='active' to='aboutUs' offset={-70} spy={true} smooth={true}>AboutUs</ScrollLink></li>     
                         </>
                         }
 
