@@ -105,24 +105,39 @@ header{
         display: flex;
         flex-direction: column;    
 
-        animation: leftDisplay .2s ease-in;
+        animation: leftDisplay .1s ease-in;
     }
 
     .links.nav{
         position:absolute;
-        top:4rem;
-        margin:2rem 0rem 0rem 0rem;
         display:flex;
         flex-direction: column;
         justify-content: space-around;
-        /* flex:2; */
         text-align: center;
 
+        width: 100%;
+        top:4rem;
+        margin:2rem 0rem 0rem 0rem;
     }
     .links.nav li{
+        width: 100%;
         padding:1rem 0rem;
+        animation: border .8s ease-in;
     }
 
+    .links.nav li:hover{
+        animation: borderAnimation .2s ease-in;
+        border-bottom: 2px solid black;
+    }
+
+    @keyframes borderAnimation {
+        0%{
+            border-bottom: 1px solid transparent
+        }
+        100%{
+            border-bottom: 1px solid black;
+        }
+    }
 
     .menuSelect{
         display:unset;
