@@ -263,46 +263,13 @@ const useForm = (inputObj, callback) =>{
     const handleProductSubmit = (event) =>{
         event.preventDefault();
 
-        if(values.product_name =='' && values.category =='' && values.product_price =='' && values.product_description =='' && !values.image){
-            addError("Inputs can not be empty!!!");
+        if(values.product_name =='' || values.category =='' || values.product_price =='' || values.product_description =='' || !values.image){
             setEmptyFieldError();
+            addError("Inputs can not be empty!!!");
             return
-        }
-
-        if(!values.image){ 
-            addError("Choose a image")
-            // setImageError(true);
-            setErrorWithMessage('image',`The image isn't selected`)
-            return
-        }
-
-        if(Object.keys(errors).length == 1){
-            if(errors.category){
-                addError("Category " + errors.category)
-                return;
-            }
-
-            if(errors.product_name){
-                addError("Name " + errors.product_name)
-                return;
-            }
-            else if(errors.product_price){
-                addError("Price " + errors.product_price)
-                return;
-            }
-            else if(errors.product_description){
-                addError(errors.product_description)
-                return;
-            }
-        }
-        else if(Object.keys(errors).length > 1){
-            addError("Invalid inputs");
-            return;
         }
         
-        //all passed
         callback();
-    
     }
 
     //difference between productSubmit and this edit is that Edit inputs don't have be all filled out
