@@ -4,11 +4,11 @@ const OrdersTable = (props)=>{
         
         <ul className='table'>
             <li className ='table-header' >
-                <div className='colone col-1'>Product</div>
-                <div className='colone col-2'>Amount</div>
-                <div className='colone col-3'>TotalPrice</div>
-                <div className='colone col-4'>Status</div>
-                <div className ='colone col-5'>Created</div>
+                <div className='colone'>Product</div>
+                <div className='colone'>Amount</div>
+                <div className='colone'>TotalPrice</div>
+                <div className='colone'>Status</div>
+                <div className ='colone'>Created</div>
             </li>
             {props.orders.map(order =>{
                 console.log("ORDE:"+ order._id);
@@ -21,12 +21,12 @@ const OrdersTable = (props)=>{
                                 {!order.isCompleted && <button onClick={ () =>{props.onCancel(order._id);}} className='cancel_order'>CANCEL</button>}
                                 {/* <FontAwesomeIcon icon="fa-solid fa-trash" /> */}
                                 
-                                <div className ='colone col-1'>
+                                <div className ='colone'>
                                     {order.products.map(prod =>{
                                     return <p className='prod_item'>{prod.product!=null ? prod.product.name : 'Deleted Product'}</p>
                                     })}
                                 </div>
-                                <div className ='colone col-2'>  
+                                <div className ='colone'>  
                                         {order.products.map(prod =>{
                                             totalPrice+=prod.amount * prod.product?.price;
                                             return <p className='prod_item'>{prod.amount}</p>
@@ -36,9 +36,9 @@ const OrdersTable = (props)=>{
                                         <p>{prod.product.amount}</p>
                                     })} */}
                                 </div>
-                                <div className ='colone col-3'>{totalPrice.toFixed(2)}€</div>
-                                <div className ='colone col-4'>{order.isCompleted ? <p>Completed</p> : <p>Pending</p>}</div>
-                                <div className ='colone col-5'><div className='dateLabel'>{convertDate(order.createdAt).day} {convertDate(order.createdAt).hour}</div></div>
+                                <div className ='colone'>{totalPrice.toFixed(2)}€</div>
+                                <div className ='colone'>{order.isCompleted ? <p>Completed</p> : <p>Pending</p>}</div>
+                                <div className ='colone'><div className='dateLabel'>{convertDate(order.createdAt).day} {convertDate(order.createdAt).hour}</div></div>
                         </li>
             })}
         </ul> 
