@@ -85,7 +85,7 @@
     color:black
 }
 
-.colone{
+.column{
     display: flex;
     flex-direction: column;
     /* justify-content: space-between; */
@@ -93,26 +93,32 @@
 
 }
 
+
 .col-1{
-    /* flex-basis: 30%; */
+    flex-basis: 20%;
     align-items: start;
 }
 .col-2{
-    /* flex-basis: 20%; */
+    flex-basis: 30%;
 }
 .col-3{
-    /* flex-basis: 25%; */
+    flex-basis: 30%;
 }
 .col-4{
-    /* flex-basis: 25%; */
+    flex-basis: 25%;
 }
 .col-5{
-    /* flex-basis: 20%; */
+    flex-basis: 20%;
+}
+.col-6{
+    flex-basis: 20%;
+}
+.col-7{
+    flex-basis: 20%;
 }
 
 .col-1-item{
     flex-basis: 30%;
-
 }
 
 .dateLabel{
@@ -146,6 +152,8 @@
 @media only screen and (max-width:1100px){
     .container-table{
         font-size:13px;
+        /* font-size: .9em; */
+        /* width: 70%; */
         width: 90%;
 
         min-width: 700px;
@@ -159,11 +167,25 @@
 
     .container-table{
         margin-top:5rem;
+        /* padding:0px 20px; */
+
+        /* height:100%; */
+        /* width: 80%; */
     }
 
     .container-table h2{
         margin-top:3rem;
         font-size:1.5rem;
+    }
+
+    .table-row-complited,
+    .table-row{
+        /* font-size:.7rem; */
+    } 
+    
+    .table li{
+        /* padding: 10px 10px;
+        margin: .2rem; */
     }
 
     .cancel_order{
@@ -208,7 +230,7 @@
         font-size:1.2rem;
     }
     
-    /* .colone{
+    /* .column{
         font-size:.4rem;
     } */
     .table-header{
@@ -240,11 +262,11 @@
 
 @media screen and (max-width:340px){
 
-    .container-table h2{
-        margin-top:.7em;
-        font-size:.9em;
-    }
-    .colone{
+    /* .container-table h2{
+        margin-top:.6em;
+        font-size:1em;
+    } */
+    .column{
         font-size: .7em;
     }
 }
