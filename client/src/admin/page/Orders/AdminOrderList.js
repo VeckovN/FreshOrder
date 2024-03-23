@@ -8,7 +8,7 @@ const AdminOrderList = ({orders, onConfirmOrder}) =>{
                 <div className='colone col-2'>Email</div>
                 <div className='colone col-3'>Product</div>
                 <div className='colone col-4'>Amount</div>
-                <div className='colone col-5'>TotalPrice</div>
+                <div className='colone col-5'>Total</div>
                 <div className='colone col-6'>Status</div>
                 <div className='colone col-7'>Created</div>
             </li>
