@@ -45,8 +45,9 @@
 .table-header{
     /* padding: 20px 30px; */
     padding: 1.2em 1.5em;
+    background-color: rgb(27, 27, 27);
     box-shadow: 0px 0px 9px 9px rgba(255,255,255, 0.2);
-    background-color: rgb(133, 134, 129);
+    color:white;
 
     text-transform: uppercase;
     letter-spacing: .8px;
@@ -62,18 +63,15 @@
     box-shadow: 0px 0px 9px 9px rgba(0,0,0, 0.2);
 
 }
-.table-row-complited{
-    padding: .5em 1.5em;
-    background-color: rgb(231, 224, 224);
-    box-shadow: 0px 0px 9px 9px rgba(0,0,0, 0.2);
+.row-complited{
+    background-color: rgb(223, 216, 216);
     opacity:.6;
-    color:black;
 }
 
 .cancel_order{
     top:-.6rem;
     right:-2.5rem;
-    padding:.2em;
+    padding:.3em;
     font-weight: 700;
     font-size:.9rem;
     position:absolute;
@@ -88,9 +86,8 @@
 .column{
     display: flex;
     flex-direction: column;
-    /* justify-content: space-between; */
+    justify-content: space-around;
     align-items: center;
-
 }
 
 
@@ -178,7 +175,7 @@
         font-size:1.5rem;
     }
 
-    .table-row-complited,
+    .row-complited,
     .table-row{
         /* font-size:.7rem; */
     } 
@@ -230,32 +227,25 @@
         font-size:1.2rem;
     }
     
-    /* .column{
-        font-size:.4rem;
-    } */
     .table-header{
-        font-size:.3rem;
-        letter-spacing: .2px;
+        padding: .8em .3em;
+        margin: .3rem;
     }
 
-    .table-row-complited,
-    .table-row{
-        font-size:.5rem;
-        
-    } 
+    .table-header .column{
+        font-size:.8em;
+    }
     
-    .table li{
-        padding: .5em .2em;
-        margin: .2rem;
+    .table-row{
+        padding: .1em .2em;
+        margin: .3rem;
         font-size: .8em;
     }
-
-    
     .cancel_order{
-        top:-.4rem;
+        top:-.5rem;
         right:-.5rem;
         font-weight: 700;
-        font-size:.5rem;
+        font-size:.6rem;
     }
 }
 
