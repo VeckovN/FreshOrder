@@ -121,7 +121,7 @@ const AdminOrders = ()=>{
                     </div>
 
                     <div className='table_filter_option'>
-                        <label>Status sort {sort.status && `: ${sort.status}`}</label>
+                        <label>Sort Status</label>
                         <div className='table_sort_buttons'>
                             {sort.status !='notCompleted' 
                                 ?
