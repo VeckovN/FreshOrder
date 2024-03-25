@@ -36,7 +36,7 @@ const AdminOrderList = ({orders, onConfirmOrder}) =>{
                                             return <p>{prod.amount}</p>
                                         })}
                                 </div>
-                                <div className ='colone col-5'>{totalPrice}</div>
+                                <div className ='colone col-5'>{totalPrice.toFixed(2)}</div>
                                 <div className ='colone col-6'>{order.isCompleted ? <p>Completed</p> : <p>Pending</p>}</div>
                                 <div className ='colone col-7'><div className='dateLabel'>{convertDate(order.createdAt).day} {convertDate(order.createdAt).hour}</div></div>
                         </li>
