@@ -34,20 +34,14 @@ const Products = () =>{
     }
 
     const onShowCategoryItems = (selectedCategory) =>{
-        if(category == selectedCategory)
-            setCategory('');
-        else{
+        if(category !== selectedCategory){
             setCategory(selectedCategory);
             fetchProductsByCategory(selectedCategory);
         }
-        //unshown the DelteModal on category select
-        // setDeleteModal({show:false})
-        
     }
 
-    //Triggered in ProductItem compoennt(on Edit,SDel or Del action to reFetch users)
     const onChangeProduct = () =>{
-        // //re Fetch showned items
+        //reFetch showned items
         fetchProductsByCategory(category)
     }
 
