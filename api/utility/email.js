@@ -19,8 +19,6 @@ dotenv.config();
 //     //     // from: process.env.EMAIL_USERNAME
 //     // })
 
-//     //After Update(2022-05-02)
-
 //     let transporter = nodemailer.createTransport({
 //         service:'gmail',
 //         auth:{

@@ -36,8 +36,6 @@ const ProductSchema = new mongoose.Schema({
         type:Schema.Types.ObjectId,
         ref:'Order'
     }
-
 })
-
 
 export default mongoose.model('Product', ProductSchema);

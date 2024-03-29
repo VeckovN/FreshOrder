@@ -28,8 +28,7 @@ const connection = async () =>{
     }
 }
 
-//CORS Configuration
-//allow only React App on :3000 port
+//CORS Configuration (react app allowed)
 const whitelist = ["http://localhost:3000"]
 const corsOptions = {
   origin: function (origin, callback) {
@@ -47,7 +46,6 @@ app.use(cors(corsOptions))
 //example =- app.use(express.json) -ok in your api request you can use json()
 //then another bellow them , and everyone else until the end
 
-
 // app.use()
 const storage = multer.diskStorage({
   destination: (req,file,cb)=>{
@@ -59,10 +57,8 @@ const storage = multer.diskStorage({
 })
 
 const upload = multer({storage:storage});
-//upload image
 app.post('/api/products/create', upload.single('image'), 
     (req,res)=>{
-      //controller
       const file = req.file;
       res.status(200).json(file.filename);
   }   
@@ -73,8 +69,6 @@ app.use("/api/users", userRoute);
 app.use("/api/products", productRoute);
 app.use("/api/orders", orderRoute);
 
-//error handler middlaware
-//using this insted res.status(500).json(err); in routes
 app.use((err,req,res,next)=>{
     const errStatus = err.status || 500; //if not exists set on 500
     const errMessage = err.message || "Something wrong";
@@ -86,8 +80,6 @@ app.use((err,req,res,next)=>{
     // return res.status(500).json("Hello error from handler")
 })
 
-// const port = 8000;
-// app.listen(port, ()=>{
 app.listen(process.env.PORT, ()=>{
     connection();
     console.log(`Backend Connected on port: ${process.env.PORT}`);

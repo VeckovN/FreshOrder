@@ -1,12 +1,9 @@
 import mongoose from 'mongoose'
 import Order from './Order.js'
-
 //indexes 
 //https://www.percona.com/blog/using-partial-and-sparse-indexes-in-mongodb/
 
-
 const { Schema } = mongoose;
-
 
 const UserSchema = new mongoose.Schema({
     username:{
@@ -47,13 +44,14 @@ const UserSchema = new mongoose.Schema({
     {timestamps: true}
 )
 
-//CASSCADE DELETE- DELETE ALL ORDERS WHICH USER CONTAINS
-//THIS WILL BE EXECUTED BEFORE WE DELETE USER
+//casscade delete - delete all orders that the user contains
+
+//this will be executed beofore the user is deleted
 UserSchema.pre('remove', async function(next){
     console.log("MIDDLEWARE ENTERED");
     const user = this; //this-> User.FindById(userID)-->in contorollers
     //HOW WE KNOW WHO IS 'this' user
-    //BEFORE WE CALL THIS MIDDLEWARE WE GOT User.findById(userID, (err, order)=>{
+    //before this middleware is called we got User.findById(userID, (err, order)=>{
     //using this User.findByID(err, THIS MIDDLEWARE) 
     await Order.deleteMany({
          _id:{
@@ -63,7 +61,4 @@ UserSchema.pre('remove', async function(next){
     next(); //go to next middleware (this not neccessary in this case but its preventive)
 })
 
-
-
 export default mongoose.model('User', UserSchema);
-
