@@ -15,14 +15,6 @@
     z-index: 19;
 }
 
-/* .footer-content{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    color:white;
-    
-} */
-
 .footer_links{
     display:flex;
     flex-direction: column;

@@ -209,13 +209,6 @@
     }
 }
 
-@media screen and (max-width:482px){
-    /* .mealCard{
-        width: 19rem;
-        height: 13rem;
-    } */
-}
-
 @media screen and (max-width:420px){
     .mealCard{
         width: 19rem;
@@ -284,17 +277,3 @@
         height: 12rem;
     }
 }
-
-/* @media screen and (max-width:370px){
-    .mealCard{
-        width: 14rem;
-        height: 10rem;
-    }
-}
-
-@media screen and (max-width:320px){
-    .mealCard{
-        width: 13rem;
-        height: 10rem;
-    }
-} */

@@ -37,8 +37,6 @@
     letter-spacing: .05rem;
 }
 
-
-
 .profile-input-control input{
     width: 100%;
     
@@ -46,7 +44,6 @@
     font-size: 14px;
     color:white;
     padding:.6em .3em .1em .3em;
-
 
     border:none;
     background-color: transparent;

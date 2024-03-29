@@ -10,9 +10,6 @@
     position: relative;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 1) 0px 10px 36px 0px;
-
-    /* cursor: pointer; */
-
 }
 .item:hover img {
     opacity: .9;
@@ -104,7 +101,6 @@
     font-weight: 800;
 } 
 
-/* LINK BUTTON TEST */
 .LinkCategory{
     position:absolute;
     bottom:.5rem;
@@ -138,12 +134,11 @@
     border-bottom: 0;
 }
 
-
 .content p{
     text-align: center;
 }   
 
-/* ------------------- CATEGORY MEALS ---------------*/
+
 .categoryMain{
     margin:1rem 0;
     display: flex;
@@ -189,12 +184,6 @@
 
 }
 
-
-@media screen and (max-width:901px){
-    /* .categoryItems > *{
-        
-    } */
-}
 
 @media screen and (max-width:340px){
     .item{

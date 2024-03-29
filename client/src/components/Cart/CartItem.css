@@ -29,10 +29,6 @@
     border-radius: 1rem;
     object-fit: cover;
     box-shadow:5px 5px 5px 5px rgb(0, 0, 0); 
-
-    /* background-color: red;
-    z-index: 100; */
-;
 }
 
 .cart-item:hover{
@@ -113,13 +109,6 @@
 }
 
 
-@media screen and (max-width:920px) {
-}
-
-@media screen and (max-width:870px) {
-
-}
-
 @media screen and (max-width:750px) {
     .cart-item{
         width:17rem;
@@ -143,12 +132,6 @@
     }
 }
 
-@media screen and (max-width:400px) {
-}
-
-@media screen and (max-width:380px) {
-
-}
 @media screen and (max-width:320px) {
     .cart-info > *{
         font-size: 1.1em;
