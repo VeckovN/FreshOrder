@@ -3,7 +3,6 @@
     width: 50%;
     min-width: 500px;
     max-width: 550px;
-
 }
 
 .users-input-container{
@@ -14,12 +13,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
-
-    /* for Delete button wiht position:absolute */
-    /* position: relative; */
-
-
 }
 
 .users-inputs{
@@ -69,7 +62,6 @@
     font-weight: 500;
 }
 
-
 .users-delete-container{
     display: flex;
     flex-direction: column;
@@ -108,7 +100,6 @@
     background-color: #963535;
     
     font-family: 'Handlee', cursive;
-
     color:white;
     
     cursor: pointer;
@@ -133,7 +124,6 @@
     font-weight: 500;
     font-size: .9rem;
     color:white;
-    /* float: right; */
 
     cursor: pointer;
 }
@@ -145,12 +135,6 @@
 }
 
 
-@media screen and (max-width:650px){
-    .users-input-container{
-       
-    }
-    
-}
 @media screen and (max-width:550px){
     .AdminUpdateModal{
         width: 90%;

@@ -13,7 +13,6 @@
     border-radius: .8rem;
 
     font-family: 'Handlee', cursive;
-    /* background-color: rgb(97, 97, 97); */
     background-color: rgba(8, 8, 8, 0.918);
 }
 
@@ -132,7 +131,6 @@
 
     font-family: 'Handlee', cursive;
     font-weight: 600;
-    /* font-size: .9em; */
     background-color: rgb(237, 239, 241);
     border: none;
     cursor: pointer;

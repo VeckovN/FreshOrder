@@ -1,34 +1,19 @@
 .mainAdmin{
-    position: relative;
-    /* background:url('../public/BackgroundCenter.jpg'); */
-    /* SET MARGIN-bottom(third) TO AUTO FIIXED SPACE BETWEEN ORDERS AND FOOTER -> FOOTER IS SET ON BOOTOM  :D  */
-    margin:7rem auto auto auto;
-    
     width:80%;
-    /* Also made problem - root(parrent) is set to 100%*/
     height: 100%;
-    /* background-color:white;   */
-    max-width:1200px;
-    
+    position: relative;
+    margin:7rem auto auto auto;
+
+    max-width:1200px;    
     font-family: "Poppins", sans-serif;
 }
 
-
-@media screen and (max-width:700px){
-
-}
 
 @media screen and (max-width:1150px){
     .mainAdmin{
         width:100%;
     }
 }
-
-/* @media screen and (max-width:1400px){
-    .mainAdmin{
-        width:100%;
-    }
-} */
 
 @media screen and (max-width:650px){
     .mainAdmin{
