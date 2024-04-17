@@ -1,14 +1,16 @@
 # FreshOrder
 
 ## Technology-stack
-FrontEnd: HTML5, CSS3, ReactJS < br/>
-BackEnd: NodeJs, Express < br/>
-Database: MongoDB(Mongoose) < br/>
+FrontEnd: HTML5, CSS3, ReactJS <br/>
+BackEnd: NodeJS, Express <br/>
+Database: MongoDB(Mongoose) <br/>
+Authorization: JWT
 
-##User Types: 
-Client < br/>
+## User Types: 
+Client <br/>
 Admin
- 
+
+## App Pages 
 ### Home Page
 ![1](https://github.com/VeckovN/FreshOrder/assets/56490716/76d711fd-9339-42c4-97de-1a983a091f9f)
 
