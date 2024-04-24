@@ -164,13 +164,6 @@
     justify-content: space-evenly;
     margin:1rem;
     gap:20px;
-
-    /* grid - 3 colums to 2 */
-
-    /* display:grid; */
-    /* grid-template-columns: 2fr 2fr 2fr; */
-    /* grid-gap:40px; */
-    /* grid-auto-flow:row; */
 }
 
 @media screen and (max-width:400px){
