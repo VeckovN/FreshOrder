@@ -12,50 +12,72 @@
 
 .users_table{
     margin:1rem 0rem;
+    border-spacing: 0 1em;
+    width: 90%;
 }
 
-.users_table th{
-    background-color: rgb(7, 7, 7);
+.users_table th{    
+    background-color: rgb(27, 27, 27);
+    letter-spacing: .5px;
+
     color:white;
     padding:1rem 1rem;
-    margin:1rem 0rem;
+    font-weight: 400;
+    text-transform: uppercase;
+
     /* animation: fadeIn 0.2s ease-in;  */
 }
 
-.users_table tr{
-    background-color: rgb(194, 194, 194);
+.users_table tbody tr{
     text-align: center;
-
     animation: fadeIn 0.2s ease-in; 
+    border-radius: 1rem;
+
+    border-radius: 1rem;
 }
+
 .users_table td{
-    background-color: rgb(194, 194, 194);
-    height: 3rem; 
+    background-color: rgb(243, 243, 243);
+    height: 4.5rem; 
 }
+
 .users_table tbody th{
     margin:1rem;
-
 }
 
 .users_edit_button{
-    padding:.2em .7em; 
-    background-color: aliceblue;
+    padding:.4em 1.4em; 
+    background-color:  rgb(27, 27, 27);
     
     border:none;
-    border-radius: 3px;
-    font-weight: 600;
+    border-radius: 4px;
+    font-weight: 500;
     font-size: .9em;
     font-family: "Poppins", sans-serif;
-    color: black;
+    color: aliceblue;
     cursor: pointer;
+}
 
+/* Set order radies top-left and bottom-left of the first table el */
+.users_table td:first-child,
+.users_table th:first-child {
+  border-radius: 6px 0 0 6px;
+}
+/* Set border-radius on the top-right and bottom-right of the last table el*/
+.users_table td:last-child,
+.users_table th:last-child {
+  border-radius: 0 6px 6px 0;
 }
 
 .users_edit_button:hover{
     background-color: rgb(54, 54, 54);
     color:white;
 }
-
+@media screen and (max-width:1150px){
+    .users_table{
+        width: 80%;
+    }
+}
 @media screen and (max-width:840px){
 
     .users_table{
@@ -70,7 +92,7 @@
         margin:1rem 0rem;
     }
     .users_table td{
-        height: 3rem; 
+        height: 4rem; 
         padding:0rem .2rem;
     }
     .users_table tbody th{
@@ -90,7 +112,7 @@
     }
 
     .users_table td{
-        height: 2rem; 
+        height: 3rem; 
     }
 }
 
@@ -110,10 +132,11 @@
     }
     .users_table th{
         padding:.6rem 1rem;
+        text-transform: unset;
     }
 
     .users_table td{
-        height: 2rem; 
+        height: 2.5rem; 
     }
     
     .page_number{
@@ -138,22 +161,9 @@
         padding:.6rem 1rem;
     }
     .users_table td{
-        background-color: rgb(194, 194, 194);
         height: 1.5rem; 
     }
 
-    .users_edit_button{
-        padding:.2rem .5rem; 
-        background-color: aliceblue;
-        cursor: pointer;
-    
-        text-decoration: none;
-        font-weight: 600;
-        color: black;
-    
-        border-radius: .4rem;
-    }
-    
 }
 
 @media screen and (max-width:420px){
@@ -166,7 +176,6 @@
         width: 100%;
     }
     .users_table td{
-        background-color: rgb(194, 194, 194);
         height: 1.4rem; 
     }
 
