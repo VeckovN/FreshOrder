@@ -22,9 +22,15 @@
     list-style: none;
     cursor: pointer;
 }
+
 .footer_link{
     padding:.1rem 0;
 }
+
+.footer_links.not-admin{
+    visibility: hidden;
+}
+
 .footer_link >*{
     color:white;
 }
