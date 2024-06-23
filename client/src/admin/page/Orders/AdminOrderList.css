@@ -1,0 +1,207 @@
+
+.orders_table{
+    margin-bottom:1rem;
+    border-spacing: 0 1.5em;
+    width: 100%;
+    /* min-width: 1000px; */
+}
+
+.orders_table th{    
+    background-color: rgb(27, 27, 27);
+    letter-spacing: .5px;
+
+    color:white;
+    padding:1rem 1rem;
+    font-weight: 400;
+    text-transform: uppercase;
+
+    /* animation: fadeIn 0.2s ease-in;  */
+}
+
+
+.orders_table tbody tr{
+    position:relative;
+    text-align: center;
+    animation: fadeIn 0.2s ease-in; 
+    border-radius: 1rem;
+}
+
+.orders_table td{
+    background-color: rgb(243, 243, 243);
+    height: 4.5rem; 
+}
+
+.orders_table tbody th{
+    margin:1rem;
+}
+
+/* Set order radies top-left and bottom-left of the first table el */
+.orders_table td:first-child,
+.orders_table th:first-child {
+  border-radius: 6px 0 0 6px;
+}
+/* Set border-radius on the top-right and bottom-right of the last table el*/
+.orders_table td:last-child,
+.orders_table th:last-child {
+  border-radius: 0 6px 6px 0;
+}
+
+.orders_table td:nth-child(2){
+    padding-right: .5em;
+}
+.orders_table td:nth-child(4){
+    padding:0em .3em;
+    white-space: nowrap;
+}
+
+.pending-tr td{
+    background-color: rgba(63, 63, 63, 0.8);
+}
+
+.confirm_button{
+    width: 4rem;
+    height: 2rem;
+
+    position:absolute;
+    top:-1.1rem;
+    right:-1rem;
+
+    border:none;
+    border-radius: 3px;
+    background-color: rgb(41, 40, 39);
+    font-family: "Poppins", sans-serif;
+    color:white;
+    cursor: pointer;
+}
+
+.confirm_button:hover{
+    background-color: rgb(20, 20, 20);
+    color:white;
+}
+
+
+@media screen and (max-width:1150px){
+    .orders_table{
+        width: 100%;
+        min-width: unset;
+    }
+
+    .confirm_button{
+        top:-1em;
+        right:-1em;
+    }
+}
+@media screen and (max-width:840px){
+
+    .orders_table{
+        margin:1rem 0rem;
+    }
+    
+    .orders_table th{
+        padding:1rem 1rem;
+        margin:1rem 0rem;
+    }
+    .orders_table td{
+        /* height: 4rem;  */
+        padding:0rem .2rem;
+    }
+    .orders_table tbody th{
+        margin:1rem;
+    }
+
+    .confirm_button{
+        width: 3.8rem;
+        height: 2rem;
+
+        font-size: .8rem;
+    }
+}
+
+@media screen and (max-width:720px) {
+    .users_input_field div{
+        display:flex;
+        flex-direction: column;
+    }
+
+    .orders_table{
+        margin:1rem 0rem;
+    }
+
+    .orders_table td{
+        /* height: 3rem;  */
+    }
+
+    .orders_table td:nth-child(4){
+        padding:0em .3em;
+        white-space: unset;
+    }
+}
+
+@media screen and (max-width:650px){
+
+    .orders_table{
+        font-size:.6rem;
+    }
+    .orders_table th{
+        padding:.6rem 1rem;
+        text-transform: unset;
+    }
+
+    .orders_table td{
+        height: 2.5rem; 
+    }
+
+    .confirm_button{
+        width: 3rem;
+        height: 1.3rem;
+        top:-.4rem;
+        right:-1rem;
+
+        font-size: .6rem;
+    }
+    
+}
+
+/* MOBILE VIEW */
+@media screen and (max-width:540px){
+
+    .orders_table{
+        font-size:.45rem;
+    }
+
+    .orders_table th{
+        padding:.6rem 1rem;
+    }
+    .orders_table td{
+        height: 1.5rem; 
+    }
+
+}
+
+@media screen and (max-width:420px){
+    .orders_table{
+        font-size:.5rem;
+    }
+
+    .orders_table th{
+        padding:.5rem .3rem;
+        width: 100%;
+    }
+    .orders_table td{
+        height: 1.4rem; 
+    }
+
+}
+
+@media screen and (max-width:300px){
+
+}
+
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
