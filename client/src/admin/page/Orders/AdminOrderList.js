@@ -37,7 +37,12 @@ const AdminOrderList = ({orders, onConfirmOrder}) =>{
                         <div>{convertDate(order.createdAt).day}</div>
                         <div>{convertDate(order.createdAt).hour}</div>
                     </td>
-                    {!order.isCompleted && <button className="confirm_button" onClick={() =>{onConfirmOrder(order._id, order.user.email);}}>Confirm</button>}
+                    
+                    {!order.isCompleted && 
+                    <td>
+                        <button className="confirm_button" onClick={() =>{onConfirmOrder(order._id, order.user.email);}}>Confirm</button>
+                    </td>
+                    }
                 </tr>
             })}
                 
