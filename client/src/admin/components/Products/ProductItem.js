@@ -108,7 +108,7 @@ const ProductItem = ({item, isChanged, headers}) =>{
                         <button className='action-button active-action-edit-button' onClick={handleEditProductSubmit}>Accept</button>
                     </div>
                 }
-                <button className={`action-button `} onClick={showDeleteModal}>Delete</button>
+                <button className={`action-button ${showEdit ? 'active-delete-button' : ''}`} onClick={showDeleteModal}>Delete</button>
             </td>
         </tr>
     )
