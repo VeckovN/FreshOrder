@@ -61,20 +61,17 @@ const Users = (props) =>{
                     </thead>
                     <tbody>
                     {data.map(item =>(
-                        <tr  key={item._id}>
-                            <td>{item.username}</td>
-                            <td>{item.email}</td>
-                            <td>{item.address}a</td>
-                            <td>{item.phone_number}</td>
-                            <td>
-                                <div>{convertDate(item.createdAt).day}</div>
-                                <div>{convertDate(item.createdAt).hour}</div>
+                        <tr key={item._id}>
+                            <td data-cell="Username:">{item.username}</td>
+                            <td data-cell="Email:">{item.email}</td>
+                            <td data-cell="Address:">{item.address}a</td>
+                            <td data-cell="PhoneNumber:">{item.phone_number}</td>
+                            <td data-cell="CreatedAt:">
+                                <div>{convertDate(item.createdAt).day} {convertDate(item.createdAt).hour}</div>
                             </td>
-                            <td >
+                            <td id='edit_btn-td'>
                                 <button className='users_edit_button' onClick={() => showAdminUpdate(item)}>Edit</button>
-
                             </td>
-                            
                         </tr>
                     ))
                     }

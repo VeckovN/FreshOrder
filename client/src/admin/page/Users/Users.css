@@ -13,7 +13,7 @@
 .users_table{
     margin:1rem 0rem;
     border-spacing: 0 1em;
-    width: 90%;
+    width: 100%;
 }
 
 .users_table th{    
@@ -48,7 +48,7 @@
 .users_edit_button{
     padding:.4em 1.4em; 
     background-color:  rgb(27, 27, 27);
-    
+
     border:none;
     border-radius: 4px;
     font-weight: 500;
@@ -154,21 +154,65 @@
     }
 
     .users_table{
-        font-size:.45rem;
+        font-size:1rem;
+        margin:1rem 0rem;
+        border-spacing: 0em 0em;
+        width: 90%;
     }
 
     .users_table th{
-        padding:.6rem 1rem;
+        display:none;
+        padding:1rem 1rem;
+
     }
     .users_table td{
-        height: 1.5rem; 
+        display: grid;
+        grid-template-columns: 20ch auto;
+        background-color: rgb(230, 230, 230);
+        text-align: start;
+        height: 1rem; 
+        padding:1em 1.3rem;
     }
 
+    .users_table td:first-child
+    {
+        border-radius: 6px 6px 0px 0px;
+        border-radius: unset;
+    }
+    .users_table td:first-child{
+        padding-top:2em;
+    }
+   
+    .users_table td:last-child {
+        border-radius: 0 6px 6px 0;
+        border-radius: unset;
+    }
+
+    .users_table td::before{
+        content: attr(data-cell);
+        margin-right: 1em;
+        font-weight: 600;
+    }
+    .users_table td:last-child::before{
+        content: none;
+    }
+
+    /* or with first/last-child */
+    /* .users_table  tbody tr:first-child td:first-child{ */
+    .users_table  tbody tr:first-of-type td:first-child{ 
+        border-radius: 6px 6px 0px 0px;
+    }
+    .users_table  tbody tr:last-of-type td:last-child{
+        border-radius: 0px 0px 6px 6px;
+    }
+    #edit_btn-td{
+        padding-bottom: 3em;
+    }
 }
 
 @media screen and (max-width:420px){
     .users_table{
-        font-size:.5rem;
+        font-size:.8rem;
     }
 
     .users_table th{
@@ -177,6 +221,8 @@
     }
     .users_table td{
         height: 1.4rem; 
+        grid-template-columns: 15ch auto;
+        gap:.5rem;
     }
 
     .page_number{
@@ -189,6 +235,9 @@
 @media screen and (max-width:300px){
     .users_input_field , .users_input_field input{
         font-size: .8rem;
+    }
+    .users_table{
+        font-size:.7rem;
     }
 }
 
