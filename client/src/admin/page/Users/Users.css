@@ -148,11 +148,6 @@
 }
 
 @media screen and (max-width:540px){
-
-    .users_container h1{
-        font-size:1.3rem;
-    }
-
     .users_table{
         font-size:1rem;
         margin:1rem 0rem;
