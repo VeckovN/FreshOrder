@@ -10,8 +10,6 @@ import AuthContext from '../store/auth-context';
 //instance where the token is used
 const axiosJWT = axios.create();
 
-//this function must be called somewhere before the first request(which need token time check) sent
-//maybe in App.js or on every Component which use this axiosJWT instance
 const useAxiosJWTInterceptors = ()=>{
     const {dispatchAction} = useContext(AuthContext);
     const {addError} = useContext(NotificationContext);
@@ -20,22 +18,24 @@ const useAxiosJWTInterceptors = ()=>{
     useEffect(() =>{
         const requestInterceptor = axiosJWT.interceptors.request.use( 
             async(config) =>{
-                const User = JSON.parse(localStorage.getItem('user'));
+                const user = JSON.parse(localStorage.getItem('user'));
                 const currentDate = new Date();
-                const decodedToken = jwtDecode(User.accessToken);
-                
+                const decodedToken = jwtDecode(user.accessToken);
+
+                //*1000 - convert to miliseconds, both need to be in the same units
                 if(currentDate.getTime() >= decodedToken.exp *1000){
-                    dispatchAction({type:"LOGOUT"}); //this will change user state ande triger re-rendering
+                    dispatchAction({type:"LOGOUT"}); 
                     addError("You're session time expired!"); 
                     navigate('/');
+                    return Promise.reject(new Error("Session Expired"));
                 }
                 else{ //create new token and replace it with old one
-                    const res = await axios.post('http://localhost:8800/api/auth/refresh', {token:User.accessToken });
+                    const res = await axios.post('http://localhost:8800/api/auth/refresh', {token:user.accessToken });
                     const refresh_token = res.data.new_token;
 
                     //replace token in localStorage
-                    User.accessToken = refresh_token
-                    localStorage.setItem("user", JSON.stringify(User));
+                    user.accessToken = refresh_token
+                    localStorage.setItem("user", JSON.stringify(user));
                     //set new Token in header for ror the incoming request
                     config.headers["authorization"] = "Bearer " + refresh_token;  //update header
                 }
@@ -52,6 +52,8 @@ const useAxiosJWTInterceptors = ()=>{
             axiosJWT.interceptors.request.eject(requestInterceptor);
         }
     }, [])
+
+
 }
 
 //axiosJWT is instance and every request on it will run defined interceptor()
