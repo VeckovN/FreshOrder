@@ -69,7 +69,7 @@ const Users = (props) =>{
                             <td data-cell="CreatedAt:">
                                 <div>{convertDate(item.createdAt).day} {convertDate(item.createdAt).hour}</div>
                             </td>
-                            <td id='edit_btn-td'>
+                            <td class='edit_btn_td'>
                                 <button className='users_edit_button' onClick={() => showAdminUpdate(item)}>Edit</button>
                             </td>
                         </tr>
