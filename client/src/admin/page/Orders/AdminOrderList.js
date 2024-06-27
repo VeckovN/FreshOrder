@@ -24,22 +24,22 @@ const AdminOrderList = ({orders, onConfirmOrder}) =>{
                 const pending = !order.isCompleted ? 'pending-tr' : ''
 
                 return <tr className={pending} key={order._id}>
-                    <td>{order.user ? order.user.username : "username"}</td>
-                    <td>{order.user ? order.user.email : "emailAdr@gmail.com"}</td>
-                    <td>{order.user ? order.user.address : "address"}</td>
-                    <td>{order.products.map(prod =>{
+                    <td data-cell="Username:">{order.user ? order.user.username : "username"}</td>
+                    <td data-cell="Email:">{order.user ? order.user.email : "emailAdr@gmail.com"}</td>
+                    <td data-cell="Address:">{order.user ? order.user.address : "address"}</td>
+                    <td id='products-td' data-cell="Products:">{order.products.map(prod =>{
                             return <p>{prod.product!=null ? `${prod.product.name}  x${prod.amount}` : 'Deleted Product'}</p>
                         })}</td>
 
-                    <td>{totalPrice.toFixed(2)}$</td>    
-                    <td id=''>{order.isCompleted ? <p>Done</p> : <p>Pending</p>}</td>     
-                    <td>
+                    <td data-cell="Total:">{totalPrice.toFixed(2)}$</td>    
+                    <td data-cell="Status">{order.isCompleted ? <p>Done</p> : <p>Pending</p>}</td>     
+                    <td data-cell="CreatedAt:">
                         <div>{convertDate(order.createdAt).day}</div>
                         <div>{convertDate(order.createdAt).hour}</div>
                     </td>
                     
                     {!order.isCompleted && 
-                    <td>
+                    <td className='button-td' data-cell="Button">
                         <button className="confirm_button" onClick={() =>{onConfirmOrder(order._id, order.user.email);}}>Confirm</button>
                     </td>
                     }
