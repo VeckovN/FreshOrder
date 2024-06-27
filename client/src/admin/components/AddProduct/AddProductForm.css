@@ -196,10 +196,37 @@
     }
 }
 
+@media screen and (max-width:540px){
+    .add-product-container{
+        width: 90%;
+        min-width:300px;
+    }
+    .add-product-input{
+        margin:.5em .2em 1em 0em;
+    }
+
+    .add-product-container form {
+        width: 100%;
+    }
+    
+    .add-product-input label{
+        font-size: 1.2rem;
+        font-weight: 500;
+    }
+    
+    .add-product-input input::placeholder{
+        font-size: .7rem;
+    }
+    
+    .add-product-input select {
+        font-size:.7rem;
+    }
+}
+
 
 @media screen and (max-width:400px){
     .add-product-container{
-        width: 95%;
+        width: 85%;
         min-width: 250px;
     }
 
