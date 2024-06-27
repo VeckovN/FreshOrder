@@ -5,17 +5,18 @@
 .category-table{
     width: 100%;
     font-weight: 500;
+    border-spacing: 0 .6em;
+    
 }
 
 .category-table th{
-    background-color: rgb(34, 34, 34);
-    
+    background-color: rgb(37, 37, 37);
     color:white;
-    padding:.5rem 1rem;
-    margin:2rem 0rem;   
+    padding:.8rem 1rem;
+    margin:2rem 0rem;  
 }
 
-.category-table tr{
+.category-table tr {
     background-color: rgb(243, 243, 243);
     text-align: center;
 }
