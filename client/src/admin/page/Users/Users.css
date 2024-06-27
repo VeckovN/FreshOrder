@@ -31,9 +31,6 @@
 .users_table tbody tr{
     text-align: center;
     animation: fadeIn 0.2s ease-in; 
-    border-radius: 1rem;
-
-    border-radius: 1rem;
 }
 
 .users_table td{
