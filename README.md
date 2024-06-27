@@ -47,14 +47,5 @@ Admin
 ![9](https://github.com/VeckovN/FreshOrder/assets/56490716/c6532549-2be8-441f-b570-838a1839187a)
 
 ### Admin - Products
-![10n](https://github.com/VeckovN/FreshOrder/assets/56490716/a2cc55f6-3379-4e58-9c46-5bf92b0d2c85)
-![11n](https://github.com/VeckovN/FreshOrder/assets/56490716/b5a1f615-769e-46cf-8e33-9e5ba7eca24f)
-
-
-
-
-
-
-
-
-
+![10](https://github.com/VeckovN/FreshOrder/assets/56490716/d5ef4e0f-ca71-4834-b436-a11158f148fa)
+![11](https://github.com/VeckovN/FreshOrder/assets/56490716/af54d14e-2d02-4eb4-8aec-7651945fb8e2)
