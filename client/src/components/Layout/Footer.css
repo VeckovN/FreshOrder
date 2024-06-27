@@ -25,6 +25,7 @@
 
 .footer_link{
     padding:.1rem 0;
+    font-size: 1em;
 }
 
 .footer_links.not-admin{
@@ -36,7 +37,7 @@
 }
 
 .copyright{
-    font-size:1.1rem;
+    font-size:1.1em;
 }
 
 .social_icons{
@@ -53,10 +54,44 @@
     height: 2rem;
 }
 
+@media screen and (max-width:650px) {
+    .social_icons img{
+        width:1.7rem;
+        height: 1.7rem;
+    }
+
+    .footer_link{
+        font-size: .8em;
+    }
+
+    .copyright{
+        font-size:.9rem;
+    }
+}
+
+
 @media screen and (max-width:470px) {
     .footer-container{
         display: flex;
         flex-direction: column;
-        /* justify-content: space-between; */
+        padding:1rem 0rem;
+    }
+
+    .footer_links{
+        order:0;
+        align-items: center;
+    }
+    .social_icons img{
+        width:1.4rem;
+        height: 1.4rem;
+        order:1;
+        justify-self: start;
+    }
+
+
+
+    .copyright{
+        font-size:.9rem;
+        order:2;
     }
 }

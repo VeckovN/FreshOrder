@@ -18,6 +18,7 @@ const Footer = ({isAdmin}) =>{
             <a href='#'><img alt='Instagram Link' src={require('../../../src/assets/Icons/InstagramIcon.png')}></img></a>
             <a href='#'><img alt='Twiter Link' src={require('../../../src/assets/Icons/TwiterIcon.png')}></img></a>
         </div>
+        
     </footer>
 }
 
