@@ -35,19 +35,20 @@ Admin
 ### Client Profile
 ![13](https://github.com/VeckovN/FreshOrder/assets/56490716/75b94b45-3f96-4d70-949d-07519a56a3aa)
 
+## Admin Part
 ### Admin Orders Page
-![7](https://github.com/VeckovN/FreshOrder/assets/56490716/56c4cf2f-93ae-4464-98f1-9bd17268ca87)
-![7b](https://github.com/VeckovN/FreshOrder/assets/56490716/e4fb8b5f-4453-4522-91b7-c98cd492e115)
+![7New](https://github.com/VeckovN/FreshOrder/assets/56490716/8e0feb5b-7153-4f5c-ae1c-c481a427a02f)
+![7b](https://github.com/VeckovN/FreshOrder/assets/56490716/46f437a2-0776-4a99-b0f9-ff0d9eadf34f)
 
 ### Admin - Users
-![8](https://github.com/VeckovN/FreshOrder/assets/56490716/6362e0a1-9563-4115-bf9d-eb480ad624fd)
+![8](https://github.com/VeckovN/FreshOrder/assets/56490716/85c0750d-e1da-4a84-885e-6a492ca5e86f)
 
 ### Admin - User Edit
-![9](https://github.com/VeckovN/FreshOrder/assets/56490716/0e2cee9d-8a6a-4c00-9914-f27179ab336d)
+![9](https://github.com/VeckovN/FreshOrder/assets/56490716/c6532549-2be8-441f-b570-838a1839187a)
 
 ### Admin - Products
-![10](https://github.com/VeckovN/FreshOrder/assets/56490716/51b5c7d9-19b3-4cff-a86a-178eb58b534a)
-![11](https://github.com/VeckovN/FreshOrder/assets/56490716/a37aa280-4fad-4eae-872d-4c4ee74f0e43)
+![10n](https://github.com/VeckovN/FreshOrder/assets/56490716/a2cc55f6-3379-4e58-9c46-5bf92b0d2c85)
+![11n](https://github.com/VeckovN/FreshOrder/assets/56490716/b5a1f615-769e-46cf-8e33-9e5ba7eca24f)
 
 
 
