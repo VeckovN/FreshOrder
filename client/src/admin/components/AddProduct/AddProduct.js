@@ -21,7 +21,7 @@ const AddProduct = ({isChanged}) =>{
     const {user} = useContext(authContext)
     const headers = configureHeader(user.accessToken);
 
-    const onSubmitAddProduct = async(event) =>{
+    const onSubmitAddProduct = async() =>{
         try{
             //upload image(call api request for it) image uplaod and product create are seperated calls
             const formData = new FormData();
@@ -43,7 +43,6 @@ const AddProduct = ({isChanged}) =>{
             addSuccess("You successfully added product")
             resetAllValues();
             RemoveValueFromObject('image');
-            //refetch or just add product to Table
             isChanged();
         }
         catch(err){
@@ -52,12 +51,8 @@ const AddProduct = ({isChanged}) =>{
     }
 
     const {values, errors, handleChanges, resetAllValues, RemoveValueFromObject, handleProductSubmit} = useForm(initialInputObject, onSubmitAddProduct);
-
-    const removeSelectedImage = (event) =>{
-        // event.preventDefault();
-        values['image']=null;
-    }
-
+    const removeSelectedImage = () => values['image']=null;
+    
     return(
         <AddProductForm
             values={values}

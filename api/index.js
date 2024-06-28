@@ -1,6 +1,6 @@
 import express from 'express'
 import dotenv from 'dotenv'
-import mongoose, { mongo } from 'mongoose'
+import mongoose from 'mongoose'
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import multer from 'multer';
@@ -15,16 +15,15 @@ dotenv.config();
 
 //middlewares - it's able to reach our request and response(req,res) before sending anything to user 
 app.use(express.json()); //to send Json from Client to express
-app.use(cookieParser()); //for cookies
-// app.use(express.static(__dirname + '/public'));
+app.use(cookieParser()); 
 
 const connection = async () =>{
     try{
-        const conn = await mongoose.connect(process.env.MONGO_URL);
-        console.log("Connsected to mongoDB"); 
+      await mongoose.connect(process.env.MONGO_URL);
+      console.log("Connsected to mongoDB"); 
     }
     catch(err){
-        throw err;
+      throw err;
     }
 }
 
@@ -46,10 +45,9 @@ app.use(cors(corsOptions))
 //example =- app.use(express.json) -ok in your api request you can use json()
 //then another bellow them , and everyone else until the end
 
-// app.use()
 const storage = multer.diskStorage({
   destination: (req,file,cb)=>{
-    cb(null, '../client/public/products') 
+    cb(null, '../client/src/assets/products');
   },
   filename:(req,file,cb)=>{
     cb(null, Date.now() + '_' + file.originalname)
@@ -77,7 +75,6 @@ app.use((err,req,res,next)=>{
         status:errStatus,
         stack:err.stack,
     })
-    // return res.status(500).json("Hello error from handler")
 })
 
 app.listen(process.env.PORT, ()=>{
