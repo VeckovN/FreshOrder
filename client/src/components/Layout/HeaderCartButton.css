@@ -32,14 +32,13 @@
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;
     color:white;
 
-    /* circle */
     border:2px solid red;
+    color:rgb(36, 36, 36);
     border-radius: 50%;
     text-align: center;
     padding:2px;
     width:25px;
-    height: 25px;
-    
+    height: 25px;    
 }
 
 
@@ -48,7 +47,6 @@
     .cartButton{
         position: absolute;
         top:1.5rem;
-    
     }
 
     .badge{
@@ -63,17 +61,13 @@
         position: absolute;
         top:2rem;
         right:0;
-    
     }
-
-    
 }
 
 /* AddtoCartItem animation */
 
 @keyframes AddItemToCart {
     
-    /* from */
     0% { 
         opacity:100%;
         width:2.4rem;
@@ -89,7 +83,6 @@
         width:2.6rem;
     }
 
-    /* to */
     100%{
         opacity:80%;
         width:2.4rem;
