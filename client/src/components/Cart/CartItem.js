@@ -3,7 +3,7 @@ import './CartItem.css';
 const CartItem = props =>{
     return(
         <div className='cart-item'>
-            <img src={`products/${props.img_path}`} alt={props.name}></img>
+            <img src={require(`../../assets/products/${props.img_path}`)} alt={props.name}></img>
             <div className='cart-info-container'>
                 <div className='cart-info'>
                     <div>Name: <span>{props.name}</span></div>
