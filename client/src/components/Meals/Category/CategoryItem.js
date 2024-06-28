@@ -3,7 +3,6 @@ import categoryContext from '../../../store/category-context.js';
 import './CategoryItem.css';
 
 const CategoryItem = props =>{
-
     const [selected, setSelected] = useState(false);
     const ctxCategory = useContext(categoryContext);
     const category = ctxCategory.category;
@@ -23,7 +22,7 @@ const CategoryItem = props =>{
             ctxCategory.setCategory(props.itemName);
             setSelected(true);
             props.sliderRef?.current.scrollIntoView({behavior: 'smooth'})
-            //THIS REF IS USED on DIV in AvailabelMeals with ref={sliderRef}
+            //this ref is used on DIV in AvailabelMeals with ref={sliderRef}
         }   
         else
         {

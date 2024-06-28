@@ -26,10 +26,9 @@ const AvailableMeals = props =>{
                     notSoftDeleted = products.filter(el => {
                         return  el.isDeleted === false
                     })
-                    // setFilteredProducts(products);
                     setFilteredProducts(notSoftDeleted);
                 }catch(err){
-                    console.log("ERROR: " + err);
+                    console.error("ERROR: " + err);
                 }
             }
             else{

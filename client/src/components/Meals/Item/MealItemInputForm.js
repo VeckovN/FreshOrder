@@ -1,18 +1,16 @@
 import {useRef} from 'react'
 
-const MealItemInputForm = props =>{
-    
+const MealItemInputForm = props =>{    
     const valueRef = useRef();
 
     const submitHandler = event =>{
-        event.preventDefault()
-    
+        event.preventDefault()    
         const inputValue = valueRef.current.value;
 
         if(inputValue.trim().length === 0 || inputValue <1 || inputValue >10 )
             return;
 
-        //return the value of the item to which it belongs(MealItem) 
+        //return the value of the item it belongs to(MealItem) 
         props.onAddInCart(inputValue);
     }
 
