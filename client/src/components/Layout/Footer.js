@@ -14,9 +14,9 @@ const Footer = ({isAdmin}) =>{
             © 2023 Copyright: Veckov
         </div>
         <div className='social_icons'>
-            <a href='#' ><img alt='Facebook Link' src={require('../../../src/assets/Icons/FacebookIcon.png')}></img></a>
-            <a href='#'><img alt='Instagram Link' src={require('../../../src/assets/Icons/InstagramIcon.png')}></img></a>
-            <a href='#'><img alt='Twiter Link' src={require('../../../src/assets/Icons/TwiterIcon.png')}></img></a>
+            <a href='#'><img alt='Facebook Link' src='/FacebookIcon.png' ></img></a>
+            <a href='#'><img alt='Instagram Link' src='/InstagramIcon.png'></img></a>
+            <a href='#'><img alt='Twiter Link' src='/TwiterIcon.png'></img></a>
         </div>
         
     </footer>
