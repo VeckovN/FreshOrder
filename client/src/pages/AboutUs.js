@@ -15,7 +15,7 @@ const AboutUs = () =>{
                 <div className='contactList'>     
                     <div className="contactItem">
                         <div className='contactName'>
-                            <img src={AddressIcon} className='contactImg'></img>
+                            <img src={AddressIcon} className='contactImg' alt='contactAddress'></img>
                             <p>Address:</p>
                         </div>
                         <p>City - Street</p>
@@ -23,7 +23,7 @@ const AboutUs = () =>{
 
                     <div className="contactItem">
                         <div className='contactName'>
-                            <img src={PhoneIcon} className='contactImg'></img>
+                            <img src={PhoneIcon} className='contactImg' alt='contactPhone'></img>
                             <p>Phone: </p>
                         </div>
                         <p>+381 60 121 5221</p>
@@ -32,7 +32,7 @@ const AboutUs = () =>{
 
                     <div className="contactItem">
                         <div className='contactName'>
-                            <img src={EmailIcon} className='contactImg'></img>
+                            <img src={EmailIcon} className='contactImg' alt='conactEmail'></img>
                             <p>Email:</p>
                         </div>
                         <p>freshorder@gmail.com</p>
