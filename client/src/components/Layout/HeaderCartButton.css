@@ -11,11 +11,11 @@
 
 .cartButton img{
     width: 2.4rem;
+    height: 100%;
 
 }
 .cartButton img:hover{
     width: 2.5rem;
-    /* opacity: 60%; */
 }
 
 .blink{

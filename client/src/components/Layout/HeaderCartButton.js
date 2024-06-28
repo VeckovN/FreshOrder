@@ -11,8 +11,6 @@ const HeaderCartButton = () =>{
 
     //On Every click on add items in cart button, this cartIcon should blink and 
     //change the amount of items in cart
-
-    //WE CAN REGISTRY ADDING ITEM TO CART THROUGH useContext 'items' change
     const items = ctxCart.items;
 
     let totalAmountOfItems = 0;
@@ -20,7 +18,7 @@ const HeaderCartButton = () =>{
         totalAmountOfItems += items[i].amount;
     
     useEffect( ()=>{
-        //we won't blink efect on first render 
+        //we won't blink effect on first render 
         if(items.length !== 0)
             setButtonBlink(true);
 
@@ -30,13 +28,12 @@ const HeaderCartButton = () =>{
             //this will avoke cssChange(cartBlink)
         }, 300);
 
-        //cleanup function(delete this funtion on the end)
-        //beacese evert rerendering create unique timer 
+        //cleanup function(delete this funtion on the end) beacese evert rerendering create unique timer
         return() =>{
             clearTimeout(timer);
         }
 
-    }, [items] ) //on every item change in cart
+    },[items])
 
 
     const cartBlink = `cartButton ${buttonBlink ? 'blink' : ''}`
