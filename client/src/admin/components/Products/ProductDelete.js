@@ -11,9 +11,7 @@ const ProductDelete = () =>{
     const {closeModal, productDeleteInfo} = useContext(modalContext);
     const [confirmDelete, setConfirmDelete] = useState(false);
 
-    const productID = productDeleteInfo.productID;
-    const headers = productDeleteInfo.headers;
-
+    const {productID, headers, isChanged} = productDeleteInfo;
 
     const onSoftDeleteProduct = async() =>{
         try{
@@ -21,7 +19,8 @@ const ProductDelete = () =>{
             const resultData = result.data;
             addSuccess(resultData);
             //this will re-render compoennt( parrent function that reFetch selected category products)
-            // isChanged(true);
+            
+            isChanged(); //func called that is defined in parrent compoennt(passed as arg)
             closeModal();
         }
         catch(err){
@@ -35,7 +34,7 @@ const ProductDelete = () =>{
             const result = await axiosJWT.delete(`http://localhost:8800/api/products/${productID}`, {headers})
             const resultData = result.data;
             addSuccess(resultData);
-            // isChanged();
+            isChanged(); 
             closeModal();
         }
         catch(err){

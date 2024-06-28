@@ -18,14 +18,10 @@ const ProductItem = ({item, isChanged, headers}) =>{
         product_description:'',
     }
 
-    const onEdit = ()=>{
-        setShowEdit(true)
-    }
-    const onEditCancel = ()=>{
-        setShowEdit(false)
-    }
+    const onEdit = ()=> setShowEdit(true);
+    const onEditCancel = ()=> setShowEdit(false);
 
-    //u could only fill (update) any input, not all of them.
+    //u could fill(update) any input, not all of them.
     const onEditAccept = async()=>{
         //{product_name:'margarita" ,product_price:'13.99'} -> [ ['product_name' , 'margarita'],  ['product_price' , ' 13.99']]
         let newContext = Object.entries(values).filter(([key,value]) => value !='').reduce((obj, [key,value]) =>{
@@ -44,7 +40,6 @@ const ProductItem = ({item, isChanged, headers}) =>{
 
         await axiosJWT.put(`http://localhost:8800/api/products/${productItemID}`, newContext, {headers})
         addSuccess("You successfully updated product")
-        //and update view
         resetAllValues();
         isChanged();
     }
@@ -55,6 +50,8 @@ const ProductItem = ({item, isChanged, headers}) =>{
         const productObj = { 
             productID: productItemID,
             headers:headers,
+            // function(reference) can also be passed as parameter of the useContext payload
+            isChanged:isChanged 
         }
         showAdminProductDelete(productObj);  
     }

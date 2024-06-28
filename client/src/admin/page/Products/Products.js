@@ -55,7 +55,7 @@ const Products = () =>{
             </div>
 
             <div className='products-category-part'>
-                <h1 className='product-title'>Edit Producs</h1>
+                <h1 className='product-title'>Products List</h1>
                 <div className='products-category'>
                     {categoryOptions.map(el =>{
                         return (
