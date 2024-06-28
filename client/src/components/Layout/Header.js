@@ -84,9 +84,9 @@ const Header = () => {
                         {/* show only on / index page */}
                         {location.pathname == '/' && 
                         <>
-                            <li className='link'><ScrollLink onClick={closeShowNavbar} to='welcome' spy={true} offset={-70} smooth={true}>Welcome</ScrollLink></li>                
-                            <li className='link'><ScrollLink onClick={closeShowNavbar} activeClass='active' to='category' spy={true} offset={-70} smooth={true}>Menu</ScrollLink></li>
-                            <li className='link'><ScrollLink onClick={closeShowNavbar} activeClass='active' to='aboutUs' offset={-70} spy={true} smooth={true}>AboutUs</ScrollLink></li>     
+                            <li className='link'><ScrollLink onClick={closeShowNavbar} href='#welcome' to='welcome' spy={true} offset={-100} smooth={true}>Welcome</ScrollLink></li>                
+                            <li className='link'><ScrollLink onClick={closeShowNavbar} href='#category' activeClass='active' to='category' spy={true} offset={-100} smooth={true}>Menu</ScrollLink></li>
+                            <li className='link'><ScrollLink onClick={closeShowNavbar} href='#aboutUs' activeClass='active' to='aboutUs' offset={-100} spy={true} smooth={true}>AboutUs</ScrollLink></li>     
                         </>
                         }
 
