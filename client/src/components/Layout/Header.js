@@ -93,8 +93,8 @@ const Header = () => {
                         {/* when user isn't admin but it't authenticated*/}
                         {user &&
                         <>
-                            <li><Link className='link' onClick={closeShowNavbar} to='/profile'>Profile</Link></li>
                             <li><Link className='link' onClick={closeShowNavbar} to='/orders'>Orders</Link></li>
+                            <li><Link className='link' onClick={closeShowNavbar} to='/profile'>Profile</Link></li>
                             <li className='link logout' onClick={logoutHandler}>Logout</li>
                         </>
                         }
