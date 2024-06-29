@@ -11,14 +11,11 @@ const CategoryItem = props =>{
     //This allows only one category to be selected
     useEffect(() => {
         if(category !== props.itemName && category !=='')
-        {
             setSelected(false);
-        }
     }, [category]); 
 
     const clickedCardHandler = () =>{
-        if(!selected){
-            console.log('You select: ' + props.itemName);      
+        if(!selected){   
             ctxCategory.setCategory(props.itemName);
             setSelected(true);
             props.sliderRef?.current.scrollIntoView({behavior: 'smooth'})
@@ -26,7 +23,6 @@ const CategoryItem = props =>{
         }   
         else
         {
-            console.log("You Unselect" );
             ctxCategory.setCategory('');  
             setSelected(false); 
         }
@@ -36,7 +32,7 @@ const CategoryItem = props =>{
     let buttonType;
 
     if(selected){
-        selectedCategoryItem = 'unselected'
+        selectedCategoryItem = 'selectedCategory'
         buttonType = "Deselect"
     }
     else{

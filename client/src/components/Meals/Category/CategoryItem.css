@@ -1,6 +1,6 @@
 .item{
     height: 13rem;
-    background-color: beige;
+    background-color: rgb(219, 219, 219);
     margin:1rem .2rem;
 
     display:flex;
@@ -10,6 +10,7 @@
     position: relative;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 1) 0px 10px 36px 0px;
+
 }
 .item:hover img {
     opacity: .9;
@@ -42,19 +43,18 @@
     object-fit: cover;
 }
  
-.unselected img{
+.selectedCategory img{
     opacity: .5;
 }
 
-.unselected:hover img{
+.selectedCategory:hover img{
     opacity: .4;
 }
 
-.unselected .content p{
-    font-size:2rem;
+.selectedCategory .content p{
+    font-size:1.8rem;
     color:black;
 }
-
 
 .content{
     position: absolute;
