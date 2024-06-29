@@ -39,8 +39,6 @@ const UsersUpdateModal = () =>{
         if(values.phone_number !='')
             updateObject.phone_number = values.phone_number;
 
-        console.log("Updated Object: " + JSON.stringify(updateObject));
-
         if(Object.keys(updateObject).length != 0){
             try{
                 const headers = configureHeader(user.accessToken)
@@ -52,7 +50,6 @@ const UsersUpdateModal = () =>{
                 // resetAllValues(); //Values state reseted
             }
             catch(err){
-                console.log("Error: " + err);
                 if(err.response.data)
                     addError(err.response.data.message);
                 else
@@ -81,7 +78,6 @@ const UsersUpdateModal = () =>{
             //show new list of users
         }
         catch(err){
-            console.log("Delete Error: " + err);
             addError("You can't delete user right now")
         }
     }

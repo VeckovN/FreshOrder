@@ -24,7 +24,6 @@ const ProductDelete = () =>{
             closeModal();
         }
         catch(err){
-            console.log('ERR: ' + err);
             addError("You can't solf delete the product");
         }
     }
@@ -38,7 +37,6 @@ const ProductDelete = () =>{
             closeModal();
         }
         catch(err){
-            console.log("Delete Product Error: " + err);
             addError("You can't delete the product right now");
         }
     }

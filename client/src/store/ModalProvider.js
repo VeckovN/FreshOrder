@@ -1,4 +1,4 @@
-import { useReducer, useState} from "react";
+import { useReducer} from "react";
 
 import ModalContext from "./modal-context";
 
@@ -57,7 +57,6 @@ const ModalProvider = props =>{
         dispatchAction({type:"SHOW_ADMIN_ORDER_DELIVERY", payload:data});
     }
     const showAdminProductDelete = (data) =>{
-        console.log("ADM(IIIIN NN PRPDOSOADOSAD DATAAA " , data);
         dispatchAction({type:"SHOW_ADMIN_PRODUCT_DELETE", payload:data});
     }
 

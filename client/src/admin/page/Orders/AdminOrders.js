@@ -31,7 +31,6 @@ const AdminOrders = ()=>{
         //after first Fetch in getdataPerPage this firstRender will become true
         getDataPerPage();
         getTotalOrders(sort); //for each request get TotalOrders wiht sort options
-        console.log("FIRST NOW");
     },[itemsPerPage, sort])
 
 
@@ -60,7 +59,6 @@ const AdminOrders = ()=>{
     //OnEvery paggination page click
     const getDataPerPage = async (pageNumber)=>{
         try{
-            //on initial it's true
             setIsLoading(true)
             const res = await axiosJWT.get(`http://localhost:8800/api/orders?page=${pageNumber}&limit=${itemsPerPage}&sort=${sort.status}`, {headers})
             const data = res.data;
@@ -73,7 +71,6 @@ const AdminOrders = ()=>{
                 firstRender.current = false;
             }, 300);
 
-            //remove timer after timeout (ofc this function will be run in useEffect)
             return() =>{
                 clearTimeout(timer);
             }
@@ -89,10 +86,9 @@ const AdminOrders = ()=>{
             const res = await axiosJWT.get(`http://localhost:8800/api/orders/count?sort=${sort.status}`, {headers});
             const data = res.data;
             setTotalOrders(data.count);
-            console.log("ORDERS NUMB: " + data.count);
         }   
         catch(err){
-            console.log(err);
+            console.error(err);
         }
     }
 
@@ -114,9 +110,9 @@ const AdminOrders = ()=>{
                     <div className='table_filter_option'>
                         <label>Items per Page</label>
                         <div className='table_perPage_buttons'>
-                            <button className={itemsPerPage=='5' && 'selected'} onClick={() => {setItemsPerPage('5')}}>5</button>
-                            <button className={itemsPerPage=='10' && 'selected'} onClick={() => {setItemsPerPage('10')}}>10</button>
-                            <button className={itemsPerPage=='15' && 'selected'} onClick={() => {setItemsPerPage('15')}}>15</button>
+                            <button className={itemsPerPage=='5' ? 'selected' : ''} onClick={() => {setItemsPerPage('5')}}>5</button>
+                            <button className={itemsPerPage=='10' ? 'selected' : ''} onClick={() => {setItemsPerPage('10')}}>10</button>
+                            <button className={itemsPerPage=='15' ? 'selected' : ''} onClick={() => {setItemsPerPage('15')}}>15</button>
                         </div>
                     </div>
 

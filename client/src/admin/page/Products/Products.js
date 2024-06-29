@@ -23,13 +23,10 @@ const Products = () =>{
             const headers2 = configureHeader(user.accessToken);
             const res = await axiosJWT.get(`http://localhost:8800/api/products/category/${category}`, {headers2});
             const products = res.data;
-            products.forEach(element => {
-                console.log(element);
-            });
             setCategoryItems(products);
         }
         catch(err){
-            console.log("Err: " + err);
+            console.error("Err: " + err);
         }
     }
 
@@ -40,10 +37,7 @@ const Products = () =>{
         }
     }
 
-    const onChangeProduct = () =>{
-        //reFetch showned items
-        fetchProductsByCategory(category)
-    }
+    const onChangeProduct = () => fetchProductsByCategory(category) //reFetch showned items
 
     return (
         <div className='products-container'>

@@ -15,16 +15,12 @@ const AdminDeliveryModal = () =>{
     const {user} = useContext(authContext);
     const {deliveryTimeInfo , closeModal} = useContext(modalContext);
 
-
     const onClickComfirm = async() =>{
-        console.log("DELIVERY TIME " , deliveryTimeInfo);
-
         const deliveryTime = deliveryTimeRef.current.value;
-        // const userEmail = deliveryObj.userEmail;
         const userEmail = deliveryTimeInfo.userEmail;
 
         if(deliveryTime){
-            if(deliveryTime <= 300) //max 300 mins
+            if(deliveryTime <= 300) //max 300 min
             {  
                 const deliveryBodyObject = {
                     userEmail,
@@ -32,7 +28,6 @@ const AdminDeliveryModal = () =>{
                 }
                 try{
                     const headers = configureHeader(user.accessToken)
-                    // await axiosJWT.put(`http://localhost:8800/api/orders/complete/${deliveryObj.orderID}`, deliveryBodyObject, {headers});
                     await axiosJWT.put(`http://localhost:8800/api/orders/complete/${deliveryTimeInfo.orderID}`, deliveryBodyObject, {headers});
                     addSuccess(`You comfirm order`);
 

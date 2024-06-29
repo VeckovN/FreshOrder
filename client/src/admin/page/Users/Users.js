@@ -1,13 +1,12 @@
 import {useState, useEffect, useContext} from 'react';
 import { axiosJWT } from '../../../services/axiosJWTInstance.js';
 import {convertDate, configureHeader} from '../../../utils/Helper.js'
-import {Link} from 'react-router-dom';
 import Pagination from '../../../utils/Pagination/Pagination';
 import authContext from '../../../store/auth-context';
 import modalContext from '../../../store/modal-context.js';
 import './Users.css'
 
-const Users = (props) =>{
+const Users = () =>{
 
     const {user} = useContext(authContext);
     const {showAdminUpdate} = useContext(modalContext);
@@ -34,7 +33,7 @@ const Users = (props) =>{
             setCurrentPage(pageNumber);
         }
         catch(err){
-            console.log(err);
+            console.error(err);
         }
     }
 
