@@ -1,42 +1,34 @@
-import {useState, useReducer, useEffect, useContext} from 'react'
-import { axiosJWT } from '../services/axiosJWTInstance';
+import {useReducer} from 'react'
+import {axiosJWT} from '../services/axiosJWTInstance';
 import CartContext from "./cart-context";
 
 
 const InitialCartState = {
     items:[],
-    //items:[],
     amountTotal: 0,
     // orderLoading:false
 }
 
 const ReducerCart = (state,action) =>{
-    //state.items is items array of our state
-    //action.item is the item passed through dispatchMethod in CartProvider
 
     if(action.type ==='AddItem'){
 
-        //if item exists we don't want to add his as new item
+        //if item exists we don't want to add it as the new one
         //we want to increase amount of this existing item
 
-        //1. find does this item exists in our Array of items
+        //find if this item exists in our Array of items
         const indexOfExistingItem = state.items.findIndex(item => item.id === action.item.id)
         const itemFound = state.items[indexOfExistingItem];
 
-        console.log("ITEM EX: " + indexOfExistingItem);
         let newItems;
 
         if(itemFound){
-            //const itemFound = state.items[indexOfExistingItem];
             const newItemForUpdate = {
                 ...itemFound,
                 amount: itemFound.amount + action.item.amount
             }
-
             newItems =[...state.items];
             newItems[indexOfExistingItem] = newItemForUpdate;
-
-            console.log("SAWW: " + newItems[indexOfExistingItem].name + " Item Amount:" + newItems[indexOfExistingItem].amount);
         }
         else{
             const newItemForUpdate = {
@@ -45,18 +37,11 @@ const ReducerCart = (state,action) =>{
                 }
             newItems=[...state.items, newItemForUpdate];
 
-                
             const lastIndex = newItems.length-1; 
-            console.log("ITEM NOT EXISTS: "+ newItems[lastIndex].amount + ' ////ITEM NAME: ' + newItems[lastIndex].name);
-        
         }
             
         const newAmount = state.amountTotal + action.item.amount * action.item.price; 
     
-        console.log("total Amount: " + newAmount);
-        //console.log("NAME: " +state.items[1].name);
-
-        // //RETURN NEW STATE ON THIS ACTION
         return{
             items: newItems,
             amountTotal: newAmount,
@@ -66,8 +51,7 @@ const ReducerCart = (state,action) =>{
 
     if(action.type === "DecreaseItem"){
 
-        //if is amount of item 1 next action wiil be removing
-        //this item from array
+        //if the item amount is 1 next action will remove item from the cart
         const indexOfExistingItem = state.items.findIndex(item => item.id === action.id)
         const itemFound = state.items[indexOfExistingItem];
 
@@ -79,14 +63,10 @@ const ReducerCart = (state,action) =>{
                 amount: itemFound.amount - 1
             }
 
-            // newItems = [...state.items];
             newItems[indexOfExistingItem] = newItem;
         }
         else{
-            //remove item from array
-            // newItems =[...state.items];
             newItems.splice(indexOfExistingItem, 1);
-            
         }
 
         //action.id
@@ -107,9 +87,7 @@ const ReducerCart = (state,action) =>{
         if(itemFound){
             const newItem ={...itemFound, amount: itemFound.amount + 1 }
             newItems = [...state.items];
-
-            newItems[indexOfExistingItem] = newItem;
-            
+            newItems[indexOfExistingItem] = newItem;   
         }
 
         const totalAmount = state.amountTotal + itemFound.price * 1
@@ -121,89 +99,48 @@ const ReducerCart = (state,action) =>{
     }
 
     if(action.type = "OrderItems"){
-        //CALL API FUNC
-        //take products from cart 
-
-        //structure of object for backend
-        //{
-        //     "userID": "635ba836ff04dc580230a964", ->type:mongoose.Types.ObjectId, ref="User"
-        //     "products":[
-        //         {
-        //             "product":"6359734b0abd5b6771c9845e", ->type:mongoose.Types.ObjectId, ref="Product"
-        //             "amount":2 -> Type:Number
-        //         },
-        //         {
-        //             "product":"63595879835e201be6fa15eb",
-        //             "amount":3
-        //         }
-        //     ]
-        // }
-
-
         //from auth -> logged user
         const userInfo = JSON.parse(localStorage.getItem('user'));
-        // const ID = userInfo._id;
-
-        console.log(userInfo);
-
-        // const id = '123123212';
-        //state.items.map(item => products.add({product:item.name, amount:item.amount}))
         
         if(userInfo){
             const ID = userInfo._id;
-                //foreach returns 'undefined' but .map returns array
             if(state.items.length>0)
             {
                 const products = state.items.map(item =>{
                     return {product:item.id, amount:item.amount}
                 })
-                //this also could be handle like this
-                //var products = [];
-                // state.items.forEach(item =>{
-                //     products.push({product:item.name, amount:item.amount})
-                // })
 
                 const Order = {
-                    //IN SCHEMA is user propr INSTEAD THIS userID
-                    // userID:ID, 
-                    user:ID,
-                    // products:products
+                    user:ID, //in schema user prop instaed of thisID
                     products:products
                 }
-                console.log("OREDRRR:" + Order);
             
                 const User = localStorage.getItem('user');
                 const accessToken = User.accessToken;
                 const headers = {
                     'authorization' : "Bearer " + accessToken
                 };
+                
                 axiosJWT.post('http://localhost:8800/api/orders', Order, {headers})
                 .then((res)=>{
-                    console.log(res);
                 })
                 .catch((err)=>{
-                    console.log(err);
+                    console.error(err);
                 })
-
             } 
             else{
-                //Notificaton context action called
-                // alert("No products in cart")
-                console.log("No Products in cart");
+                console.error("No Products in cart");
             }
         }
         else{
             alert("Login to order food!!!")
             
-            //return the current Items and amountTotal OF Cart
+            //return the current Items and Cart amountTotal 
             return {
                 items:state.items,
                 amountTotal:state.amountTotal
             }
-        }
-
-       
-        
+        }   
     }
 
     //return defaut State
@@ -216,7 +153,6 @@ const CartProvider = props =>{
     const [cartState, dispatchAction] =useReducer(ReducerCart, InitialCartState);
 
     const addItemToCartHandler = item =>{
-        //ALL LOGIC IS IN REDUCER FUNCTION WHICH WILL BE RECOGNIZED BY THIS ARGUMENT OF DISPATCHMETHOD
         dispatchAction({type:'AddItem', item:item})
     }
 
