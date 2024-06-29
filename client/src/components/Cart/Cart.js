@@ -21,13 +21,8 @@ const Cart = () =>{
 
     const {addSuccess, addError} = useContext(notificationContext);
 
-    const increseCartItemAmount = id =>{
-        ctxCart.increaseAmount(id);
-    } 
-
-    const decreaseCartItemAmount = id =>{
-        ctxCart.decreaseItemFromCart(id);
-    }
+    const increseCartItemAmount = id => ctxCart.increaseAmount(id);
+    const decreaseCartItemAmount = id =>  ctxCart.decreaseItemFromCart(id);
 
     const orderCartItems = () =>{
         if(user){
