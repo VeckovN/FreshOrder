@@ -12,30 +12,45 @@ const Notification = () =>{
 
     const {error, success, removeNotification} = useContext(notificationContext);
 
-    console.log("SUCCESS: " + success);
-    console.log("ERROR: " + error); 
-
-    let styleComponent; 
-    let styleIconComponent;
-    let notifyIcon;
-
-    if(error !=''){
-        styleComponent ='error'
-        styleIconComponent ='errorIcon'
-        notifyIcon = <MdOutlineError />
+    const getNotificationStyles =(error, success) =>{
+        if(error !=''){
+            return{
+                styleComponent:'error',
+                styleIconComponent:'errorIcon',
+                notifyIcon: <MdOutlineError />
+            }
+        }
+        else if(success != ''){
+            return{
+                styleComponent: 'success',
+                styleIconComponent:'successIcon',
+                notifyIcon: <MdThumbUp/>
+            }
+        }
+        return {};
     }
-    else if(success!=''){
-        styleComponent = 'success'
-        styleIconComponent ='successIcon'
-        notifyIcon = <MdThumbUp/>
-    }
-    
 
-    //after some second set Erro and succes to '' and that will
-    //trigger useCOntext in APP.js to unshowned compoennt
+    //const instead of let variables with conditions this way, easier to test and maintain
+    const {styleComponent, styleIconComponent, notifyIcon } = getNotificationStyles(error, success);
+
+    // let styleComponent; 
+    // let styleIconComponent;
+    // let notifyIcon;
+
+    // if(error !=''){
+    //     styleComponent ='error'
+    //     styleIconComponent ='errorIcon'
+    //     notifyIcon = <MdOutlineError />
+    // }
+    // else if(success!=''){
+    //     styleComponent = 'success'
+    //     styleIconComponent ='successIcon'
+    //     notifyIcon = <MdThumbUp/>
+    // }
+
+    //trigger useContext in APP.js to unshowned compoennt
     useEffect(()=>{
         const timer = setTimeout(()=>{
-            //after 3s remove error and succes notification
             removeNotification();
         },2200)
 
@@ -47,11 +62,7 @@ const Notification = () =>{
     return(
         
         <div className={`notification-container ${styleComponent}`}>
-            {/* <div className={`notification-title ${styleComponent}`}>
-                Success
-            </div> */}
             <div className={`notification-icon ${styleIconComponent}`}>{notifyIcon}</div>
-            {/* <div className='notification-icon'><MdOutlineError /></div> */}
             <div className ='notification-context'>
                 {success || error}
             </div>

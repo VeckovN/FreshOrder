@@ -2,7 +2,7 @@ import {useState} from 'react';
 
 const NotificationList = () =>{
 
-    const [notification, setNotifications] = [];
+    const [notification, setNotifications] = useState[''];
 
     const handleNotificationAdd = (notificationCompoenent) =>{
         setNotifications(prev =>{
