@@ -1,11 +1,8 @@
-//THIS AUTHPROVIDER IS IMPORTED IN index.js
 import {useReducer, useEffect} from 'react'
-
 import AuthContext from './auth-context'
 
 const InitialAuthState ={
-    //we take user From localStorage if exists he won't be null
-    //user:null, 
+    //take user from localStorage, user is null for not logged 
     user: JSON.parse(localStorage.getItem('user')), //from JSON convert to JS Object
     loading:false,
     error:null,
@@ -34,14 +31,12 @@ const ReducerAuth = (state,action)=>{
         return{
             user:null,
             loading:false,
-            //error taken from payload
+            error:action.payload
             //dispatchAction({type:"LOGIN_FAILURE", payload:err.res}) from login.js
-            error:action.payload,
         }
     }
 
     if(action.type == "LOGOUT"){
-        //remove user from LocalStore
         localStorage.removeItem('user');
         return{
             //set user to null, delete from cookie
@@ -59,31 +54,22 @@ const ReducerAuth = (state,action)=>{
             error:null,
         }
     }
-
-    //or return default state
-    // return InitialAuthState;
     return state;
-
 }
 
 const AuthProvider = props =>{
-
     const [userState, dispatchAction] = useReducer(ReducerAuth, InitialAuthState)
 
     //when we add a user(login), add it to LocalStorage(file created by website in our device)
     useEffect(()=>{//from JS convert to JSON
         localStorage.setItem('user',JSON.stringify(userState.user));
-        console.log("TES:" + userState.user);
     }, [userState.user])    
 
 
-    //dispatchAction({type:"LOGIN_SUCCESS", payload:res.data})
     const logginHandler = (data) =>{
         dispatchAction({type:"LOGIN_SUCCESS", payload:data})
     }
 
-    //This is available in other component wiht
-    //{loading, error, dispatchAction} = useContext(THIS CONTEXT)
     const authContext={
         user: userState.user,
         loading: userState.loading,
@@ -91,13 +77,8 @@ const AuthProvider = props =>{
         dispatchAction,
         loggin:logginHandler,
         //we can use only dispatchAction as dispatchAction({type:LOGIN_SUCCESS})
-        //in components instead defined function from here like a
-        //logginSuccess: loginSuccessAuthHandler
-        //And other functions
+        //in components instead defined function 
     }
-
-    //on every user change, set it in cookie
-
 
     return(
         <AuthContext.Provider value={authContext}>

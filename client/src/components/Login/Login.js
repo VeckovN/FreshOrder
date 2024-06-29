@@ -66,7 +66,6 @@ const Login = () =>{
         }
     },[])
 
-
     //When is modal closed set error,loading and user to initiated value(false,null,null)
     const onCloseLoginModal =()=>{
         dispatchAction({type:"RESET"});
