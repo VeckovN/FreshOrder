@@ -75,6 +75,7 @@ const Header = () => {
                 <ul className={`links ${showNavbar ? 'nav' : ''} `} >
                     {isAdmin ?
                     <>
+                        <li><Link className='link' onClick={closeShowNavbar} to='/'>Home</Link></li>
                         <li><Link className='link' onClick={closeShowNavbar} to='/products'>Products</Link></li>
                         <li><Link className='link' onClick={closeShowNavbar} to='/users'>Users</Link></li>
                         <li className='link logout' onClick={logoutHandler}>Logout</li>
@@ -93,6 +94,10 @@ const Header = () => {
                         {/* when user isn't admin but it't authenticated*/}
                         {user &&
                         <>
+                            {location.pathname != '/' && 
+                                <li><Link className='link' onClick={closeShowNavbar} to='/'>Home</Link></li>
+                            }
+                            {/* <li><Link className='link' onClick={closeShowNavbar} to='/'>Home</Link></li> */}
                             <li><Link className='link' onClick={closeShowNavbar} to='/orders'>Orders</Link></li>
                             <li><Link className='link' onClick={closeShowNavbar} to='/profile'>Profile</Link></li>
                             <li className='link logout' onClick={logoutHandler}>Logout</li>
