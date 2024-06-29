@@ -237,7 +237,7 @@ const useForm = (inputObj, callback) =>{
     //------------Submit Handlers--------------//
  
     const handleRegSubmit = (event) =>{
-        event.preventDefault(); //no page reload
+        event.preventDefault();
 
         if((values.username=='' || values.username == undefined) || (values.email=='' || values.email == undefined) || (values.password=='' || values.password == undefined) || (values.repeat_password=='' || values.repeat_password == undefined) || (values.address=='' || values.address == undefined) || (values.phone_number=='' || values.phone_number == undefined) ){
             setEmptyFieldError();
@@ -278,8 +278,6 @@ const useForm = (inputObj, callback) =>{
         //check all empty input fields
         if(values.product_name =='' && values.product_price =='' && values.product_description ==''){
             addError("Inputs can not be empty!!!");
-            // setAllErrors();
-            // setEmptyFieldError();
             return;
         }
         //Enter value error is appears after deleting invalid input values
@@ -332,11 +330,10 @@ const useForm = (inputObj, callback) =>{
             
             Object.keys(shows).forEach(key =>{
                 //this won't take repeat_password because it is showing only on password click (there isn't show for repeat_password)
-                console.log("Errorsss  ", errors);
 
                 if(!errors[key] && values[key] !="" && values[key] !=undefined)
                 {   
-                    console.log("ERRORS KEY" , errors[key]);
+
                     if(key == 'password'){
                         if(values['password'] !== values['repeat_password']){
                             //can't set error on both in the different time(becase one will trigger re-rendering and another will be overrided)
