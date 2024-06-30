@@ -57,7 +57,7 @@ const ProductItem = ({item, isChanged, headers}) =>{
         showAdminProductDelete(productObj);  
     }
     return(
-        <tr className={item.isDeleted && 'isDeleted ' }>
+        <tr className={item.isDeleted ? 'isDeleted ' : ' '}>
             <td className='table-td-product'>
                 <div className="td-product-title">{item.name}</div>
                 {showEdit && <input
