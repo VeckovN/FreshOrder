@@ -5,7 +5,7 @@ import notificationContext from '../../../store/notification-context';
 import modalContext from '../../../store/modal-context';
 
 //isChanged is handler that tracks changes to this compoenent and
-//notify parent(Product) to reFetch new updated items again
+//notify parent(Product) to reFetch new updated items
 const ProductItem = ({item, isChanged, headers}) =>{
     const productItemID = item._id;
     const {addSuccess} = useContext(notificationContext);
@@ -18,7 +18,6 @@ const ProductItem = ({item, isChanged, headers}) =>{
         product_description:'',
     }
 
-    // console.log("IREMM : " , item);
     const onEdit = ()=> setShowEdit(true);
     const onEditCancel = ()=> setShowEdit(false);
 
