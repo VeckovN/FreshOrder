@@ -113,11 +113,17 @@
     }
 }
 
+@media screen and (max-width:450px){
+    .input-profile-container{
+        padding:3rem 1.5rem 2rem 1.5rem;
+        font-size: .8rem;
+    }
+}
+
 
 @media screen and (max-width:350px){
 
     .input-profile-container{
-        padding:3rem 1.2rem 2rem 1.2rem;
         font-size: .8rem;
     }
 

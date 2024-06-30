@@ -2,10 +2,8 @@
     margin:5rem 0rem 2rem 0rem;
     position: relative;
 
-    /* SET MARGIN TO AUTO FIIXED SPACE BETWEEN ORDERS AND FOOTER -> FOOTER IS SET ON BOOTOM  :D  */
+    /* set margin to auto fixed space between orders and footer - > footer is set on bottom */
     margin:auto;
-    /* margin-left:auto;
-    margin-right: auto; */
     padding:0px 10px;
     height:100%;
     margin-top:5rem;
@@ -33,9 +31,7 @@
     display:flex;
     justify-content: space-between;
     margin: .5rem;
-
     font-size: 1.1em;
-
     border-radius: 4px;
 }
 
@@ -164,13 +160,6 @@
         font-size:1.5rem;
     }
 
-    .row-complited,
-    .table-row{
-    } 
-    
-    .table li{
-    }
-
     .cancel_order{
         top:-.3rem;
         right:-1.5rem;
@@ -236,9 +225,13 @@
 }
 
 
-@media screen and (max-width:340px){
-    .column{
-        font-size: .7em;
+@media screen and (max-width:420px){
+    .table li{
+        font-size: .7rem;
+    }
+
+    .table-row{
+        padding: .5em .2em;
     }
 }
 
