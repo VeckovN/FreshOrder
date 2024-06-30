@@ -18,6 +18,7 @@ const ProductItem = ({item, isChanged, headers}) =>{
         product_description:'',
     }
 
+    // console.log("IREMM : " , item);
     const onEdit = ()=> setShowEdit(true);
     const onEditCancel = ()=> setShowEdit(false);
 

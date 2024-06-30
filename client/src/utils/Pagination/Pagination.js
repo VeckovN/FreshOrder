@@ -22,7 +22,13 @@ const Pagination = ({itemsPerPage, totalItems, onPageNumberSelect, currentPage})
             <div className ='pagination_numbers'>
                 {pageNumbers.map(num => (        
                     // <button className='page_number' onClick={onClickPage} value={num} >{num}</button>
-                    <button className={num == currentPage ? 'page_number current' : 'page_number'} onClick={onClickPage} value={num} >{num}</button>
+                    <button 
+                        key={num}
+                        className={num == currentPage ? 'page_number current' : 'page_number'} 
+                        onClick={onClickPage} 
+                        value={num}>
+                        {num}
+                    </button>
                 ))}
             </div>            
         </div>

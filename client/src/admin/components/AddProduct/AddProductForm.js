@@ -12,7 +12,7 @@ const AddProductForm = ({values, errors, categoryOptions, removeSelectedImage, h
                         <select name='category' value={values.category} defaultValue={''} onChange={handleChanges}>
                             <option value=''  disabled> Select Category </option>
                             {categoryOptions.map(category =>{
-                                return <option values={category}>{category}</option>
+                                return <option values={category} key={`cat-${category}`}>{category}</option>
                             })}
                         </select>
                         {errors.category && <p className='error-product'>Select a category</p>}

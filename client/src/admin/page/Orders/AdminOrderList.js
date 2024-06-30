@@ -21,13 +21,12 @@ const AdminOrderList = ({orders, onConfirmOrder}) =>{
                     return total + (prod.amount * (prod.product?.price || 0));
                 }, 0);
                 const pending = !order.isCompleted ? 'pending-tr' : ''
-
                 return <tr className={pending} key={order._id}>
                     <td data-cell="Username:">{order.user ? order.user.username : "username"}</td>
                     <td data-cell="Email:">{order.user ? order.user.email : "emailAdr@gmail.com"}</td>
                     <td data-cell="Address:">{order.user ? order.user.address : "address"}</td>
                     <td id='products-td' data-cell="Products:">{order.products.map(prod =>{
-                            return <p>{prod.product!=null ? `${prod.product.name}  x${prod.amount}` : 'Deleted Product'}</p>
+                            return <p key={prod.product ? prod.product._id : prod._id}>{prod.product!=null ? `${prod.product.name}  x${prod.amount}` : 'Deleted Product'}</p>
                         })}</td>
 
                     <td data-cell="Total:">{totalPrice.toFixed(2)}$</td>    

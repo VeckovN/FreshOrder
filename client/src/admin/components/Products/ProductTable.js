@@ -19,7 +19,7 @@ const ProductTable = ({categoryItems, onChangeProduct, headers}) =>{
                 <tbody>
                     {categoryItems && categoryItems.map(item =>{
                         return(
-                            <ProductItem item={item} isChanged={onChangeProduct} headers={headers}></ProductItem>
+                            <ProductItem key={`item-${item._id}`} item={item} isChanged={onChangeProduct} headers={headers}></ProductItem>
                         )
                     })}
                 </tbody>

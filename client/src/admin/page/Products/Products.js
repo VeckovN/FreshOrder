@@ -53,7 +53,7 @@ const Products = () =>{
                 <div className='products-category'>
                     {categoryOptions.map(el =>{
                         return (
-                        <div className={`category ${category===el ? 'active-category' : ''}`}>
+                        <div key={el} className={`category ${category===el ? 'active-category' : ''}` }>
                             <div className='category-select'>
                                 <div>{el}</div>
                                 <button className='category-button' onClick={() => {onShowCategoryItems(el)}}>{category === el ? 'Selected' : 'Select'}</button>
