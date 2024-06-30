@@ -17,11 +17,21 @@ const ProductTable = ({categoryItems, onChangeProduct, headers}) =>{
                     </tr>
                 </thead>
                 <tbody>
-                    {categoryItems && categoryItems.map(item =>{
+                    {categoryItems ? categoryItems.map(item =>{
                         return(
-                            <ProductItem key={`item-${item._id}`} item={item} isChanged={onChangeProduct} headers={headers}></ProductItem>
+                            <ProductItem 
+                                key={`item-${item._id}`} 
+                                item={item} 
+                                isChanged={onChangeProduct} 
+                                headers={headers}
+                                />       
                         )
-                    })}
+                    })
+                    :
+                    <tr>
+                        <td>No items found</td>
+                    </tr>
+                }
                 </tbody>
             </table> 
         </div>
