@@ -9,7 +9,6 @@ import AdminOrderList from './AdminOrderList';
 
 import '../../../pages/Orders/Orders.css';
 import './AdminOrders.css'
-
 //https://medium.com/swlh/prevent-useeffects-callback-firing-during-initial-render-the-armchair-critic-f71bc0e03536
 
 const AdminOrders = ()=>{
@@ -33,29 +32,6 @@ const AdminOrders = ()=>{
         getTotalOrders(sort); //for each request get TotalOrders wiht sort options
     },[itemsPerPage, sort])
 
-
-    //On initial Redner (only once)
-    // useEffect(()=>{
-    //     getDataPerPage();
-    //     getTotalOrders(sort);
-    //     console.log("FIRSTTTTTTTTTTTTTT");
-    // },[])
-  
-    //But on running the app, you will realize that the text is shown even before the button is clicked(itemsPerpage and sort). 
-    //The reason? Well, useEffect’s callback function gets called not only when one of the dependencies 
-    //changes but also during the initial render.
-    //THIS WILL ALSO BE RUN ON INTIAL RENDER AS [] BUT ANOTHER TIME WILL BE
-    //RENDER ONLY ON itemsPerPage or sort state change
-    // useEffect(()=>{
-    //     //This will prevent to not render on INITIAL 
-    //     //after first Fetch in getdataPerPage this firstRender will become true
-    //     if(firstRender.current == false){ 
-    //         getDataPerPage();
-    //         getTotalOrders(sort); //for each request get TotalOrders wiht sort options
-    //         console.log("SECOOOOOOOND");
-    //     }
-    // },[itemsPerPage, sort])
-
     //OnEvery paggination page click
     const getDataPerPage = async (pageNumber)=>{
         try{
@@ -67,7 +43,6 @@ const AdminOrders = ()=>{
                 setIsLoading(false);
                 setOrders(data);
                 setCurrentPage(pageNumber);
-                //prevent to Only useEffect[] run on intial
                 firstRender.current = false;
             }, 300);
 
