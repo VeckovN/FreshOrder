@@ -1,6 +1,9 @@
 import './AddProductForm.css'
 
 const AddProductForm = ({values, errors, categoryOptions, removeSelectedImage, handleChanges, handleProductSubmit }) =>{
+    console.log("Vl: " , values);
+    console.log("Error: ", errors);
+    console.log("categoryOptions ", categoryOptions);
 
     return (
         <div className='add-product-container'>
@@ -9,7 +12,7 @@ const AddProductForm = ({values, errors, categoryOptions, removeSelectedImage, h
                 <div className='add-product-input-fields'>
                     <div className='add-product-input'>
                         <label>Category</label>
-                        <select name='category' value={values.category} defaultValue={''} onChange={handleChanges}>
+                        <select name='category' value={values.category}  onChange={handleChanges}>
                             <option value=''  disabled> Select Category </option>
                             {categoryOptions.map(category =>{
                                 return <option values={category} key={`cat-${category}`}>{category}</option>
