@@ -1,10 +1,6 @@
 import './AddProductForm.css'
 
 const AddProductForm = ({values, errors, categoryOptions, removeSelectedImage, handleChanges, handleProductSubmit }) =>{
-    console.log("Vl: " , values);
-    console.log("Error: ", errors);
-    console.log("categoryOptions ", categoryOptions);
-
     return (
         <div className='add-product-container'>
             <form onSubmit={handleProductSubmit}>  
