@@ -1,7 +1,6 @@
-import React, {useState, useContext, useEffect} from 'react'
-// import {Link as ScrollLink} from 'react-scroll';
+import React, {useState, useContext, useEffect} from 'react';
 import {Link as ScrollLink} from 'react-scroll';
-import {Link, useNavigate, useLocation} from 'react-router-dom'
+import {NavLink, useNavigate, useLocation, } from 'react-router-dom'
 
 import HeaderCartButton from './HeaderCartButton';
 
@@ -11,7 +10,6 @@ import modalContext from '../../store/modal-context.js';
 
 import './Header.css'
 
-//React.memo won't work when is modal clicked because Header props are showModal state
 const Header = () => {
     const [showNavbar, setShowNavbar] = useState(false);
     const {user, dispatchAction} = useContext(authContext);
@@ -32,10 +30,9 @@ const Header = () => {
         }
     },[showNavbar])
 
-    //TEST THIS
     const logoutHandler =()=>{
         dispatchAction({type:"LOGOUT"});
-        nav('/'); //nav to '/' route
+        nav('/');
         addSuccess('You have logged out')
         setShowNavbar(false); 
     }
@@ -69,15 +66,37 @@ const Header = () => {
             </div>
             {!showNavbar &&
             <div className='logo'>
-                <h3><Link  className='logoLink' to='/'>FreshOrder</Link></h3>
+                <h3><NavLink  className='logoLink' to='/'>FreshOrder</NavLink></h3>
             </div>
             }
                 <ul className={`links ${showNavbar ? 'nav' : ''} `} >
                     {isAdmin ?
                     <>
-                        <li><Link className='link' onClick={closeShowNavbar} to='/'>Orders</Link></li>
-                        <li><Link className='link' onClick={closeShowNavbar} to='/products'>Products</Link></li>
-                        <li><Link className='link' onClick={closeShowNavbar} to='/users'>Users</Link></li>
+                        <li>
+                            <NavLink 
+                                to='/' 
+                                onClick={closeShowNavbar} 
+                                className={({ isActive }) => { return isActive ? "activeLink" : "";}}
+                            >
+                            Orders
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink 
+                                to='/products'
+                                onClick={closeShowNavbar} 
+                                className={({ isActive }) => { return isActive ? "activeLink" : "";}}
+                            >Products
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink 
+                                to='/users'
+                                onClick={closeShowNavbar} 
+                                className={({ isActive }) => { return isActive ? "activeLink" : "";}}
+                            >Users
+                            </NavLink>
+                        </li>
                         <li className='link logout' onClick={logoutHandler}>Logout</li>
                     </>
                     :
@@ -85,9 +104,9 @@ const Header = () => {
                         {/* show only on / index page */}
                         {location.pathname == '/' && 
                         <>
-                            <li className='link'><ScrollLink onClick={closeShowNavbar} href='#welcome' to='welcome' spy={true} offset={-100} smooth={true}>Welcome</ScrollLink></li>                
-                            <li className='link'><ScrollLink onClick={closeShowNavbar} href='#category' activeClass='active' to='category' spy={true} offset={-100} smooth={true}>Menu</ScrollLink></li>
-                            <li className='link'><ScrollLink onClick={closeShowNavbar} href='#aboutUs' activeClass='active' to='aboutUs' offset={-100} spy={true} smooth={true}>AboutUs</ScrollLink></li>     
+                            <li><ScrollLink className='activeLink' onClick={closeShowNavbar} href='#welcome' to='welcome' spy={true} offset={-100} smooth={true}>Welcome</ScrollLink></li>                
+                            <li><ScrollLink className='activeLink' onClick={closeShowNavbar} href='#category' activeClass='active' to='category' spy={true} offset={-100} smooth={true}>Menu</ScrollLink></li>
+                            <li><ScrollLink  className='activeLink' onClick={closeShowNavbar} href='#aboutUs' activeClass='active' to='aboutUs' offset={-100} spy={true} smooth={true}>AboutUs</ScrollLink></li>     
                         </>
                         }
 
@@ -95,10 +114,17 @@ const Header = () => {
                         {user &&
                         <>
                             {location.pathname != '/' && 
-                                <li><Link className='link' onClick={closeShowNavbar} to='/'>Home</Link></li>
+                                <li><NavLink className='link' onClick={closeShowNavbar} to='/'>Home</NavLink></li>
                             }
-                            <li><Link className='link' onClick={closeShowNavbar} to='/orders'>Orders</Link></li>
-                            <li><Link className='link' onClick={closeShowNavbar} to='/profile'>Profile</Link></li>
+                            <li>
+                                <NavLink 
+                                    to='/orders'
+                                    onClick={closeShowNavbar} 
+                                    className={({ isActive }) => { return isActive ? "activeLink" : "";}}
+                                >Orders
+                                </NavLink>
+                            </li>
+                            <li><NavLink onClick={closeShowNavbar} to='/profile'>Profile</NavLink></li>
                             <li className='link logout' onClick={logoutHandler}>Logout</li>
                         </>
                         }
@@ -107,8 +133,8 @@ const Header = () => {
             
                     {!user &&
                     <>
-                        <li className='link' onClick={handleRegisterModal}> Register</li>
-                        <li className='link' onClick={handleLoginModal}>Login</li>
+                        <li className='active-list' onClick={handleRegisterModal}> Register</li>
+                        <li className='active-list' onClick={handleLoginModal}>Login</li>
                     </>
                     }
 
