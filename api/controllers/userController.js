@@ -1,25 +1,17 @@
 import User from '../models/User.js'
-import Order from '../models/Order.js'
 import { createError } from '../utility/error.js';
 import bcrypt from 'bcryptjs';
-
-//Register function exists 
-
 
 export const updateUser  = async (req,res,next)=>{
     //id from url
     try{
-        const id = req.params.id; //from url
-        const newContext = req.body; //from html-req body
+        const id = req.params.id;
+        const newContext = req.body;
 
         if(newContext.username){
             const user = await User.findOne({username: newContext.username})
-            if(user){
-                console.log("HSSSSSSS");
-                // return next(createError(404, 'Username exists'));
-                // res.status(404).send("Username exists");
+            if(user)
                 return next(createError(404, "Username exists"))
-            }
         }
 
         if(newContext.email){
@@ -34,7 +26,7 @@ export const updateUser  = async (req,res,next)=>{
 
                 if(newContext.password !== newContext.repeat_password)
                     return next(createError(404, `Passwords aren't same`))
-                // hash password
+
                 const salt = bcrypt.genSaltSync(10);
                 const hash = bcrypt.hashSync(newContext.password, salt);
                 newContext.password = hash;
@@ -45,8 +37,6 @@ export const updateUser  = async (req,res,next)=>{
         const updatedUser = await User.findByIdAndUpdate(id, newContext, {new:true});
         //without {new:true} prop - this findByIdAndUpdate returns prev(notUpdated) Product
         const {_id, isAdmin, password, orders, createdAt, updatedAt, ...others} = updatedUser._doc;
-
-        console.log("UPDATED " + JSON.stringify(updatedUser._doc))
 
         res.status(200).json(others);
     }
@@ -103,7 +93,7 @@ export const getUser = async (req,res,next)=>{
 
 export const getUsers = async (req,res,next)=>{
     try{
-        //if page doesn't exist then by default is 1
+        //if page doesn't exist then default is 1
         const page = req.query.page || 1;
         const limit = req.query.limit || 5;
 
@@ -120,7 +110,7 @@ export const getUsers = async (req,res,next)=>{
 
         const startIndex = (page - 1) * limit;
         //SKIP PROPS SHOULD BE startIndex
-        
+    
         await User.find({isAdmin:false})
         .skip(startIndex) //page 1 -> from 0 is going to index 5(not 5)(limit) , page 2 ->5
         .limit(limit)
@@ -128,24 +118,19 @@ export const getUsers = async (req,res,next)=>{
             if(err) {res.status(500).json(err); return;}
             res.status(200).json(doc);
         })
-        // res.status(200).json(users);
     }
     catch(err){
         next(err); // calling next error handling middleware
-        //instead 
-        // res.status(500).json(err);
+        //instead  res.status(500).json(err);
     }
 }
 
 export const getUserCount = (req,res) =>{
-   
     User.count({isAdmin:false}, function(err, result){
         if(err){
             res.status(400).send(err);
-            console.log("ERRR: " + err)
         }
         else
-            res.json({count:result})
-        
+            res.json({count:result})  
     })
 }

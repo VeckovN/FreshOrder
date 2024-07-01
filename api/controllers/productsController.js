@@ -5,7 +5,7 @@ export const createProduct = async (req,res) =>{
     const image = newProduct.image;
 
     try {
-        //save() is async and this is reason why we use await --- THIS ISN'T PROMISE 
+        //save() is async and this is a reason why is await used --- THIS ISN'T PROMISE 
         //https://mongoosejs.com/docs/promises.html
         const saveProduct = await newProduct.save();
         res.status(200).json(saveProduct);
@@ -47,7 +47,6 @@ export const softDeleteProduct = async(req,res,next)=>{
         res.status(200).send("Product: "+ updatedProduct.name + " is soft deleted");
     }
     catch(err){
-        console.log("ERR ", err);
         next(err);
     }
 } 

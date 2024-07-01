@@ -1,8 +1,5 @@
 import mongoose from 'mongoose'
 import Order from './Order.js'
-//indexes 
-//https://www.percona.com/blog/using-partial-and-sparse-indexes-in-mongodb/
-
 const { Schema } = mongoose;
 
 const UserSchema = new mongoose.Schema({
@@ -58,7 +55,7 @@ UserSchema.pre('remove', async function(next){
             $in:user.orders
          }})
     console.log("ORDERS DELETED WHICH USER CONTAINS");
-    next(); //go to next middleware (this not neccessary in this case but its preventive)
+    next(); //go to next middleware (this not neccessary in this case but it's preventive)
 })
 
 export default mongoose.model('User', UserSchema);

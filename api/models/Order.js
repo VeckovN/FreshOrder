@@ -1,9 +1,5 @@
 import mongoose from 'mongoose'
-// import User from './User.js';
-import { createError } from '../utility/error.js';
-
 const {Schema} = mongoose;
-
 
 const OrderSchema = new mongoose.Schema({
     user:{

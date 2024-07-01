@@ -1,7 +1,6 @@
 import Order from '../models/Order.js'
 import User from '../models/User.js';
 import {createError} from '../utility/error.js'
-// import {sendEmail} from '../utility/email.js';
 import {transporter} from '../utility/email.js';
 
 import dotenv from 'dotenv'
@@ -11,29 +10,12 @@ dotenv.config();
 // Order.collection.getIndexes({full: true}).then(indexes => {
 //     console.log("indexes:", indexes);
 // }).catch(console.error);
-
 //Nested populate in a document --- https://dev.to/paras594/how-to-use-populate-in-mongoose-node-js-mo0
 
 export const createOrder = async (req,res,next) =>{
-
-    const id = req.body.user; //test- id user
-    //EXPECTED JSON FROM FRONTEND
-    // {
-    //     "userID": "635ba836ff04dc580230a964", ->type:mongoose.Types.ObjectId, ref="User"
-    //     "products":[
-    //         {
-    //             "product":"6359734b0abd5b6771c9845e", ->type:mongoose.Types.ObjectId, ref="Product"
-    //             "amount":2 -> Type:Number
-    //         },
-    //         {
-    //             "product":"63595879835e201be6fa15eb",
-    //             "amount":3
-    //         }
-    //     ]
-    // }
+    const id = req.body.user;
     try{
-        //we got from req.body string value, user->ID has to be casted to ObjectId
-       
+        //we got string value from req.body, user->ID has to be casted to ObjectId
         const user = await User.findById({_id:id});
         if(!user)
             return next(createError(404, 'User not found!!!'));
@@ -41,17 +23,9 @@ export const createOrder = async (req,res,next) =>{
         const newOrder = new Order(req.body);
         const saveOrder = await newOrder.save();
         const orderID = saveOrder._id;
-        //user.orders[] is order ID =>ObjectId - ref="Order"
         
-        //const user = await User.updateOne({_id:id}, {$push: {orders:orderID}})
-        // const user = await User.findById({_id:id});
-        // if(!user)
-        //     return next(createError(404, 'User not found!!!'));
-        
-        //After the order is created, add OrderID to user orders 
         user.orders.push(orderID);
         const upatedUser = user.save();
-
         res.status(200).json(upatedUser);
     }
     catch(err){
@@ -59,20 +33,11 @@ export const createOrder = async (req,res,next) =>{
     }
 }
 
-
 export const completeOrder = async(req,res,next)=>{
-
     try{
         const id = req.params.id;
         const updatedOrder = await Order.findByIdAndUpdate(id, {isCompleted:true}, {new:true})
         const {userEmail, deliveryTime} = req.body
-
-
-        //SENDING EMAIL
-        const textContext = "OrderApp, Expect an order for" + deliveryTime + 'min';
-        //Obj for sending email {email, text} = sendObj;
-        //const sendObj = {email:userEmail, text: textContext};
-        //sendEmail(sendObj);
 
         //HTML can also be sent instead text
         const message = {
@@ -82,16 +47,13 @@ export const completeOrder = async(req,res,next)=>{
             text:"Order app, expect an order for " + deliveryTime +'minutes'
         } 
     
-        // transporter.sendMail(message, (err,info)=>{
-        //     if(err){
-        //         console.log(err);
-        //         //res.status(400).send("Emaill not send");
-        //     }
-        //     else{
-        //         console.log(info);
-        //         //res.status(200).send("Email send");
-        //     }
-        // })
+        transporter.sendMail(message, (err,info)=>{
+            if(err)
+                console.log(err);
+            else
+                console.log(info);
+            
+        })
         res.status(200).send("Order completed");
 
     }catch(err){
@@ -205,7 +167,7 @@ export const getOrders = async(req,res,next)=>{
     //startIndex for selected Page
     const startIndex = (page - 1) * limit;
 
-    //PAGINATION
+    //pagination
     // const orders = await Order.find().populate('products.product'); 
     await Order.find(findOption).populate('products.product user')
     .skip(startIndex)
@@ -242,11 +204,9 @@ export const getOrdersCount = (req,res) =>{
 
 export const getAllUserOrders = async(req,res,next)=>{
     try{
-        const id = req.params.userID;
-        // const allUserOrders = await User.find({_id:id}, 'orders');
-        const allUserOrders = await User.
-            find({_id:id}, 'orders')
-            // .populate('orders')
+        const id = req.params.userID;;
+        const allUserOrders = await User
+            .find({_id:id}, 'orders')
             .populate({
                 path:'orders', //populate orders
                 populate:{
@@ -269,7 +229,7 @@ export const deleteOrder = async(req,res,next)=>{
 
     try{
         //Casscade deleting Without Mongoose (Pre) Middleware
-        //Only One use can contains same order
+        //Only One use can contains the same order
         await User.updateOne({_id:clientId},{ //{}-notByID-any User that contains orders:orderID
             $pull: {
                 'orders':orderId
@@ -281,7 +241,6 @@ export const deleteOrder = async(req,res,next)=>{
 
         // //Casscade Delete With Middleware
         // await Order.findById(orderId, (err,order)=>{
-            
         //     if(err) return next(err); //this next is from deleteOrder call       
         //     console.log('FOUND ORDER WITH ID: ' + orderId);
         //     order.remove();//call premiddleware for Order Model

@@ -1,6 +1,3 @@
-//REACT FOLDER STRUCTURE-----------
-//https://www.xenonstack.com/insights/reactjs-project-structure
-
 import {useContext} from 'react';
 import {Route, Routes} from 'react-router-dom';
 
@@ -13,7 +10,6 @@ import CartProvider from './store/CartProvider.js';
 import ProtectedRoute from './utils/ProtectedRoute.js';
 import ScrollToTop from './utils/ScrollToTop.js';
 
-// import Home from './components/Page/Home'
 import Home from './pages/Home.js';
 import NotFound from './pages/NotFound.js';
 import Profile from './pages/Profile/Profile.js';
@@ -37,7 +33,7 @@ import ProductDelete from './admin/components/Products/ProductDelete.js';
 import {useAxiosJWTInterceptors} from './services/axiosJWTInstance.js';
 
 function App() {
-  const {error, success, addError, removeError, addSuccess, removeSuccess} = useContext(notificationContext);
+  const {error, success} = useContext(notificationContext);
   const ctxAuth = useContext(authContext);
   const ctxModal = useContext(modalContext);
 
@@ -49,8 +45,6 @@ function App() {
     <CartProvider>
       <ScrollToTop/>
 
-      {/* CReATE COMPOENNT FOR CONDITIONAL REDNDERING */}
-      {/* <ConditionalModals /> */}
       {ctxModal.showModal && (
         <>
           {ctxModal.typeModal === "Cart" && <Cart />}
@@ -68,16 +62,11 @@ function App() {
 
       <Header/> 
 
-      {/*  THIS INS'T OPTIMIZED, ON EVERY user CHange 
-      ROUTES WILL BE RECREATED AND ALL CHILDREN COMPONENT WILL BE ALSO RERENDERED*/}
-      
       <Routes>
         {!isAdmin && (
           <>
             {/* HOME PAGE(NotAdmin) */}
             <Route path="/" element={<Home/>}/>
-            {/* Only authenticated user has access , our created component
-            Prevent to unauthenicated user can access to route through url /profile */}        
             <Route 
               path='/profile' 
               element={//return Profile if is authenitcated, or return <Navigate to='/'
@@ -102,7 +91,8 @@ function App() {
       {/* This <Routes> will only exists when is user Admin, if isn't admin
       he will get NotFound Page when try to go on some routes */}
       {/* THis check we can do in ProtectedRoute and be sure there is loged user and admin user */}
-      {ctxAuth.user && ctxAuth.user.isAdmin && (
+      {/* {ctxAuth.user && ctxAuth.user.isAdmin && ( */}
+      {isAdmin && (
         <>
           <Route 
             path="/" 
@@ -116,7 +106,6 @@ function App() {
               index
               element ={
                 <ProtectedRoute isAdmin={true} navigate='/'>
-                  {/* <Admin/> */}
                   <Users/>
                 </ProtectedRoute>
               }
