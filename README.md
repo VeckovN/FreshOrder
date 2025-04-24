@@ -54,6 +54,70 @@ The application allows guests to browse and add food items to their cart, client
 
 ## Setup
 
+### 1. Clone the Repository
+
+``` bash
+   git clone https://github.com/yourusername/your-project.git
+   cd FreshOrder
+```
+
+### 2. Backend Setup (/api)
+
+* Navigate to the backend folder:
+
+``` bash
+    cd api
+```
+
+* Copy the environment file:
+``` bash
+    cp .env.example .env
+```
+
+*  Edit the .env file and fill in your credentials:
+``` bash
+    CLUSTER_PASSWORD=
+    MONGO_URI=your_mongodb_uri
+    SECRET_KEY= 'jwt-key'
+    EMAIL_USERNAME=
+    EMAIL_ACC_PASSWORD=
+    EMAIL_PASSWORD=
+```
+
+* Install backend dependencies:
+``` bash
+    npm install
+```
+
+* Start the backend server:
+``` bash
+    npm start
+```
+
+### 3.Frontend Setup (/client)
+
+* Open a new terminal and navigate to the frontend folder:
+``` bash
+    cd ../client
+```
+
+* Install frontend dependencies:
+``` bash
+    npm install
+```
+
+* Start the development server:
+``` bash
+    npm start
+```
+
+The React app will be running at: http://localhost:3000
+
+
+
+
+
+
 
 ## App Pages 
 ### Home Page
