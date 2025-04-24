@@ -1,14 +1,59 @@
 # FreshOrder
 
-## Technology-stack
-FrontEnd: HTML5, CSS3, ReactJS <br/>
-BackEnd: NodeJS, Express <br/>
-Database: MongoDB(Mongoose) <br/>
-Authorization: JWT
+## Table of Contents
+ * [Project Overview](#project-overview)
+ * [Technologies](#technologies)
+ * [Core Features](#core-features)
+ * [Setup](#setup)
+ * [App Pages](#app-pages)
 
-## User Types: 
-Client <br/>
-Admin
+## Project Overview
+Fresh Order is a full-stack web application designed to simplify the food ordering process by connecting clients with restaurant and enabling seamless product and order management.
+The application allows guests to browse and add food items to their cart, clients to place and track their orders, and administrators to manage products, orders, and users efficiently.
+
+## Technologies
+* Frontend: HTML5, CSS3, ReactJS 
+* Backend: NodeJS, Express
+* Databases: MongoDB (Mongoose)
+* Authorization: JWT
+
+## User Types 
+ - Guest
+ - Client
+ - Houseworker
+
+## Core Features
+1. Product Browsing
+   - Guests can browse for food products, which are categorized into pizza, pasta, burgers, salads, drinks, and desserts.
+   - Products can be added to the cart for future checkout.
+    User Authentication
+
+2. User Authentication
+   - Clients must log in or register to place an order.
+   - Secure user sessions by using JSON Web Tokens (JWT).
+
+3. Order Management for Clients
+   - View a history of all orders with full details of their statuses (Completed or Pending).
+   - Cancel orders if they are still in the pending state.
+   - E-mail Notifications: An e-mail confirmation is sent automatically to the client when an order is successful and regarding the delivery timing.
+
+4. Personalization for Clients
+   - The client can modify personal information: name, email, and address.
+  
+5. Product Management for Admins
+   - Admin can create, update, or delete products.
+   - Support for soft-deletion functionality: Products are hidden but not permanently deleted.
+
+6. Order Management for Admins
+   - Admin can view all orders with details of product names, quantity, price, and client information
+   - Confirm pending orders and allocate time for delivery.
+
+7. User Management for Admins
+   - Admins can view and edit user accounts.
+   
+
+## Setup
+
 
 ## App Pages 
 ### Home Page
