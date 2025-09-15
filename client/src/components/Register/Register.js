@@ -2,7 +2,7 @@ import {useContext} from 'react'
 import RegisterForm from './RegisterForm.js';
 import RegisterModal from './RegisterModal.js';
 
-import axios from 'axios';
+import { axiosBase } from '../../services/axiosJWTInstance.js';
 import useForm from '../../hooks/useForm.js';
 
 import notificationContext from '../../store/notification-context'
@@ -33,12 +33,12 @@ const Register = () =>{
                 phone_number: values.phone_number
             }
             
-            await axios.post('http://localhost:8800/api/auth/register', regInfo)    
+            await axiosBase.post('http://localhost:8800/api/auth/register', regInfo)    
             showLogin();
             addSuccess("Successfuly registered")
         }
         catch(err){
-            console.log(err);
+            console.error(err);
             addError(err.response.data.message)
         }
     }

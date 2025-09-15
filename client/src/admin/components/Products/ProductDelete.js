@@ -15,12 +15,10 @@ const ProductDelete = () =>{
 
     const onSoftDeleteProduct = async() =>{
         try{
-            const result = await axiosJWT.put(`http://localhost:8800/api/products/softDelete/${productID}`, {headers})
+            const result = await axiosJWT.put(`/api/products/softDelete/${productID}`, {headers})
             const resultData = result.data;
             addSuccess(resultData);
-            //this will re-render compoennt( parrent function that reFetch selected category products)
-            
-            isChanged(); //func called that is defined in parrent compoennt(passed as arg)
+            isChanged();
             closeModal();
         }
         catch(err){
@@ -30,7 +28,7 @@ const ProductDelete = () =>{
 
     const onDeleteProduct = async() =>{
         try{
-            const result = await axiosJWT.delete(`http://localhost:8800/api/products/${productID}`, {headers})
+            const result = await axiosJWT.delete(`/api/products/${productID}`, {headers})
             const resultData = result.data;
             addSuccess(resultData);
             isChanged(); 

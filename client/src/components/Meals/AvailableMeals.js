@@ -1,5 +1,6 @@
-import React,{useState, useContext, useEffect} from 'react'
+import {useState, useContext, useEffect} from 'react'
 import axios from 'axios';
+import { axiosBase } from '../../services/axiosJWTInstance.js';
 import MealItem from './Item/MeaItem';
 import categoryContext from '../../store/category-context.js';
 
@@ -19,7 +20,7 @@ const AvailableMeals = props =>{
             //but when u diselect category products will continue to exist
             if(categorySelected !=''){
                 try{
-                    const res = await axios.get(`http://localhost:8800/api/products/category/${categorySelected}`);
+                    const res = await axiosBase.get(`/api/products/category/${categorySelected}`);
                     const products = res.data;
 
                     let notSoftDeleted = [];

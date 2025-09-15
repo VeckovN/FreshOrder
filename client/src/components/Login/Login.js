@@ -1,5 +1,5 @@
 import { useRef, useContext, useEffect} from 'react'
-import axios from 'axios' 
+import { axiosBase } from '../../services/axiosJWTInstance.js';
 
 import useForm from '../../hooks/useForm.js';
 import authContext from '../../store/auth-context'
@@ -34,7 +34,7 @@ const Login = () =>{
         else{
             dispatchAction({type:"LOGIN_START"})
             try{
-                const res = await  axios.post('http://localhost:8800/api/auth/login', {email: values.email, password:values.password })
+                const res = await axiosBase.post('/api/auth/login', {email: values.email, password:values.password })
                 timerRef.current = setTimeout(()=>{
                     loggin(res.data);
                     closeModal();

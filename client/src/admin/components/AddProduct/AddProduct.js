@@ -26,8 +26,7 @@ const AddProduct = ({isChanged}) =>{
             //upload image(call api request for it) image uplaod and product create are seperated calls
             const formData = new FormData();
             formData.append('image', values.image);
-;
-            const result = await axiosJWT.post('http://localhost:8800/api/products/create', formData, {headers});
+            const result = await axiosJWT.post('/api/products/create', formData, {headers});
             const imageName = result.data;
 
             //useImgURL - image Name to create product 
@@ -38,7 +37,7 @@ const AddProduct = ({isChanged}) =>{
                 img_path:imageName,
                 description:values.product_description,
             }
-            await axiosJWT.post('http://localhost:8800/api/products', otherData, {headers});
+            await axiosJWT.post('/api/products', otherData, {headers});
 
             addSuccess("You successfully added product")
             resetAllValues();
