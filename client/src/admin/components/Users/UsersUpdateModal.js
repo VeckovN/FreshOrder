@@ -10,7 +10,6 @@ import Modal from '../../../components/UI/Modal/Modal';
 import ProfileInput from '../../../components/UI/ProfileInput';
 import './UsersUpdateModal.css';
 
-
 const UsersUpdateModal = () =>{
     const {addSuccess, addError} = useContext(notificationContext);
     const {user} = useContext(authContext);
@@ -26,7 +25,6 @@ const UsersUpdateModal = () =>{
         address:"", 
         phone_number:"" 
     }
-    // const {values, errors, handleChanges, resetAllValues} = useForm(initialInputObject);
 
     const onUserUpdate = async() =>{
         let updateObject = {};
@@ -42,12 +40,11 @@ const UsersUpdateModal = () =>{
         if(Object.keys(updateObject).length != 0){
             try{
                 const headers = configureHeader(user.accessToken)
-                const result = await axiosJWT.put(`http://localhost:8800/api/users/updateuser/${userInfo._id}`, updateObject, {headers})
+                const result = await axiosJWT.put(`/api/users/updateuser/${userInfo._id}`, updateObject, {headers})
                 const responseData = result.data;
                 setData(responseData)
                 addSuccess("User successfully updated");
                 updateObject = {};
-                // resetAllValues(); //Values state reseted
             }
             catch(err){
                 if(err.response.data)
@@ -71,7 +68,7 @@ const UsersUpdateModal = () =>{
     const deleteUserHandler = async() =>{
         try{
             const headers = configureHeader(user.accessToken)
-            const res = await axiosJWT.delete(`http://localhost:8800/api/users/${data._id}`, {headers});
+            const res = await axiosJWT.delete(`/api/users/${data._id}`, {headers});
             const resMessage = res.data;
             addSuccess(resMessage);
             closeModal();
@@ -88,7 +85,6 @@ const UsersUpdateModal = () =>{
         else
             return false;
     }
-
 
     const usersHeaderContext =
             'FreshOrder';

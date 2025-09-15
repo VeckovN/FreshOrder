@@ -21,7 +21,7 @@ const Products = () =>{
     const fetchProductsByCategory = async(category) =>{
         try{
             const headers2 = configureHeader(user.accessToken);
-            const res = await axiosJWT.get(`http://localhost:8800/api/products/category/${category}`, {headers2});
+            const res = await axiosJWT.get(`/api/products/category/${category}`, {headers2});
             const products = res.data;
             setCategoryItems(products);
         }

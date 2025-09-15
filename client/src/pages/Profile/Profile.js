@@ -1,5 +1,4 @@
 import {useState, useEffect, useContext} from 'react';
-import axios from 'axios' //used for Non Authenticated users
 import {axiosJWT} from '../../services/axiosJWTInstance';
 
 import useForm from '../../hooks/useForm';
@@ -10,16 +9,14 @@ import ProfileContext from './ProfileContext';
 import './Profile.css'
 
 const Profile = () =>{
-
     const {addSuccess, addError} = useContext(notificationContext);
-    // callback(validValues) in useForm (user is validValues)
     const onUpdateUser = async(user) =>{
         try{
             const headers = {
                 'authorization' : "Bearer " + userAccessToken
             };
 
-            await axios.put(`http://localhost:8800/api/users/updateuser/${userID}`, user, {headers});            
+            await axiosJWT.put(`/api/users/updateuser/${userID}`, user, {headers});            
             let updatedKeys = '';   
             let length = Object.keys(user).length;
             // //get all keys of updated props
@@ -41,11 +38,11 @@ const Profile = () =>{
             //if exist error send from NODEJS as new Error(error.message , error.status)
             if(err.response.data && err.response.data.message)
             {
-                console.log("ERROROR" + err.response.data.message);
+                console.error("Error" + err.response.data.message);
                 addError(err.response.data.message);
             }
             else
-                console.log("An error occurred : " + err);
+                console.error("An error occurred : " + err);
         }
     }
 
@@ -72,26 +69,24 @@ const Profile = () =>{
     //Fetch all data from current user and show it
     useEffect(()=>{
         const fetchData = async ()=>{
-            //proxy is included -> http://localhost:8800/api/ is proxy  
             try{
                 const headers = {
                     'authorization' : "Bearer " + userAccessToken
                 };
                 //This route use verifyUser(token verification) that we need to send user token through header                
-                const response = await axiosJWT.get(`users/${userID}`, {headers}); 
+                const response = await axiosJWT.get(`/api/users/${userID}`, {headers}); 
                 //in verifyToken we access to token wiht header.authorization then take token with spilt
                 const res = response.data;
                 const password_length = User.password_length;
                 setUserInfo(state=> ({...state, username:res.username, email:res.email, address:res.address, phone_number:res.phone_number, password_length }))
                 setFetchLoading(false);
             }catch(err){
-                console.log(err);
+                console.error(err);
             }
         }
     
         fetchData();
-    }, [reFetch]); //fetch on every commit , When is user updated (setInfo state) we change this state reFetch
-    
+    }, [reFetch]);
     const checkForCommit = ()=>{
         if(shows.username && values.username!=undefined || shows.email && values.email!=undefined || shows.phone_number && values.phone_number!=undefined || shows.address && values.address!=undefined || shows.password && values.password!=undefined && errors)
             return true;
@@ -105,8 +100,8 @@ const Profile = () =>{
                 {!fetchLoading 
                 ?    
                 <ProfileContext
-                    userInfo={userInfo} //user Data info
-                    values={values} //inputFrom values
+                    userInfo={userInfo} 
+                    values={values} 
                     errors={errors}
                     shows={shows}
                     commitHandler = {handleUserEditSubmit}

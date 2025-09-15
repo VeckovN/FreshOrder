@@ -36,7 +36,7 @@ const AdminOrders = ()=>{
     const getDataPerPage = async (pageNumber)=>{
         try{
             setIsLoading(true)
-            const res = await axiosJWT.get(`http://localhost:8800/api/orders?page=${pageNumber}&limit=${itemsPerPage}&sort=${sort.status}`, {headers})
+            const res = await axiosJWT.get(`/api/orders?page=${pageNumber}&limit=${itemsPerPage}&sort=${sort.status}`, {headers})
             const data = res.data;
 
             const timer = setTimeout(()=>{
@@ -51,14 +51,14 @@ const AdminOrders = ()=>{
             }
         }
         catch(err){
-            console.log(err);
+            console.error(err);
             setIsLoading(false);
         }
     }
 
     const getTotalOrders = async (sort) =>{
         try{
-            const res = await axiosJWT.get(`http://localhost:8800/api/orders/count?sort=${sort.status}`, {headers});
+            const res = await axiosJWT.get(`/api/orders/count?sort=${sort.status}`, {headers});
             const data = res.data;
             setTotalOrders(data.count);
         }   

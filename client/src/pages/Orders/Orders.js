@@ -8,7 +8,6 @@ import LoadingSpinner from '../../utils/LoadingSpinner.js';
 import './Orders.css'
 
 const Orders = () =>{
-
     const [orders, setOrders] = useState('');
     const [loading, setLoading] = useState(true);
 
@@ -20,7 +19,7 @@ const Orders = () =>{
     useEffect(()=>{
         const fetchAllUserOrders = async()=>{
             try{
-                const res = await axiosJWT.get(`http://localhost:8800/api/orders/userOrders/${userInfo._id}`,{
+                const res = await axiosJWT.get(`/api/orders/userOrders/${userInfo._id}`,{
                     headers:{ "authorization":"Bearer " + user.accessToken}
                 })
                 const data = res.data;
@@ -28,27 +27,23 @@ const Orders = () =>{
                 setOrders(orders);
                 setLoading(false);
             }catch(err){
-                console.log(err);
+                console.error(err);
             }
         }
         fetchAllUserOrders();
     },[])
 
     const onCancelOrderHandler = async(orderID)=>{
-        //orderID taken from OrdersTable children comp
         try{
-            const res = await axiosJWT.delete(`http://localhost:8800/api/orders/${orderID}/${user._id}`, {
+            const res = await axiosJWT.delete(`/api/orders/${orderID}/${user._id}`, {
                 headers:{ "authorization":"Bearer " + user.accessToken}
             })
             const dataResponse = res.data;
-            //trigger ony state to re-render order - more costs then delete this order from ordersLIST state
-
-            //delete orderID order from current orders state
             const newOrders = orders.filter(order => order._id != orderID);
             setOrders(newOrders);
             addSuccess(dataResponse);
         }catch(err){
-            console.log(err);
+            console.error(err);
             addError("You can't delete order");
         }
     }

@@ -28,7 +28,7 @@ const AdminDeliveryModal = () =>{
                 }
                 try{
                     const headers = configureHeader(user.accessToken)
-                    await axiosJWT.put(`http://localhost:8800/api/orders/complete/${deliveryTimeInfo.orderID}`, deliveryBodyObject, {headers});
+                    await axiosJWT.put(`/api/orders/complete/${deliveryTimeInfo.orderID}`, deliveryBodyObject, {headers});
                     addSuccess(`You comfirm order`);
 
                     const timer = setTimeout( ()=>{

@@ -7,8 +7,24 @@ import { useEffect, useContext} from 'react';
 import NotificationContext from '../store/notification-context';
 import AuthContext from '../store/auth-context';
 
+const API_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://freshorderapi.onrender.com"
+    : "http://localhost:8800";
+
+// const API_URL = "http://localhost:8800";
+
+console.log("API URI: ", API_URL);
+
 //instance where the token is used
-const axiosJWT = axios.create();
+const axiosJWT = axios.create({
+    baseURL: API_URL
+});
+
+// axios instance WITHOUT interceptors(not authentication based requests)
+const axiosBase = axios.create({
+  baseURL: API_URL,
+});
 
 const useAxiosJWTInterceptors = ()=>{
     const {dispatchAction} = useContext(AuthContext);
@@ -30,7 +46,8 @@ const useAxiosJWTInterceptors = ()=>{
                     return Promise.reject(new Error("Session Expired"));
                 }
                 else{ //create new token and replace it with old one
-                    const res = await axios.post('http://localhost:8800/api/auth/refresh', {token:user.accessToken });
+                    // const res = await axios.post('http://localhost:8800/api/auth/refresh', {token:user.accessToken });
+                    const res = await axiosBase.post('/api/auth/refresh', {token:user.accessToken });
                     const refresh_token = res.data.new_token;
 
                     //replace token in localStorage
@@ -57,4 +74,4 @@ const useAxiosJWTInterceptors = ()=>{
 }
 
 //axiosJWT is instance and every request on it will run defined interceptor()
-export {axiosJWT, useAxiosJWTInterceptors}
+export {axiosBase, axiosJWT, useAxiosJWTInterceptors}
