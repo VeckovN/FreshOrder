@@ -12,16 +12,12 @@ const API_URL =
     ? "https://freshorderapi.onrender.com"
     : "http://localhost:8800";
 
-// const API_URL = "http://localhost:8800";
-
-console.log("API URI: ", API_URL);
-
-//instance where the token is used
+//instance with JWT interceptor for authenticated requests
 const axiosJWT = axios.create({
     baseURL: API_URL
 });
 
-// axios instance WITHOUT interceptors(not authentication based requests)
+// instance without interceptors for public or utility requests
 const axiosBase = axios.create({
   baseURL: API_URL,
 });
@@ -46,7 +42,6 @@ const useAxiosJWTInterceptors = ()=>{
                     return Promise.reject(new Error("Session Expired"));
                 }
                 else{ //create new token and replace it with old one
-                    // const res = await axios.post('http://localhost:8800/api/auth/refresh', {token:user.accessToken });
                     const res = await axiosBase.post('/api/auth/refresh', {token:user.accessToken });
                     const refresh_token = res.data.new_token;
 
