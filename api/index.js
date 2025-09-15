@@ -27,7 +27,10 @@ const connection = async () =>{
 }
 
 //CORS Configuration (react app allowed)
-const whitelist = ["http://localhost:3000"]
+const whitelist = [
+  "http://localhost:3000",
+  "https://freshorderapp.netlify.app/"
+]
 const corsOptions = {
   origin: function (origin, callback) {
     if (!origin || whitelist.indexOf(origin) !== -1) {
