@@ -12,7 +12,7 @@ const ProductTable = ({categoryItems, onChangeProduct, headers}) =>{
                         <th>Name</th>
                         <th>Price</th>
                         <th>Description</th>
-                        <th>IsDeleted</th>
+                        <th>IsDel</th>
                         <th>Action</th>
                     </tr>
                 </thead>

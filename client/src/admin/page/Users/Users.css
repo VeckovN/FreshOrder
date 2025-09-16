@@ -6,6 +6,7 @@
 }
 
 .users_container h1{
+    font-size: 1.4rem;
     margin:1rem 0rem 1rem 0rem;
     font-family: 'Handlee', cursive;
 }
@@ -80,7 +81,6 @@
     .users_table{
         margin:1rem 0rem;
         font-size:.9rem;
-
         width: 90%;
     }
     
@@ -120,7 +120,7 @@
     }
 
     .users_container h1{
-        font-size:1.5rem;
+        font-size:1.3rem;
         margin:1rem 0rem .5rem 0rem;
     }
 
@@ -136,20 +136,18 @@
         height: 2.5rem; 
     }
     
-    .page_number{
-        width: 1.5rem;
-        height: 1.5rem;
-        margin:.5rem .2rem 4rem .2rem;
-        font-size:.7rem;
-    }
 }
 
 @media screen and (max-width:540px){
-    .users_table{
-        font-size:1rem;
+    
+    .users_table {
+        display:flex;
+        justify-content: center;
+        /* align-items: center; */
+        font-size:.9rem;
         margin:1rem 0rem;
         border-spacing: 0em 0em;
-        width: 90%;
+        width: 95%;
     }
 
     .users_table th{
@@ -166,20 +164,22 @@
         padding:.5em 1.3rem;
         width: 100%;
         height: 100%;
+
+        border-radius: 6px 6px 0px 0px;
+        border-radius: unset;
     }
 
     .users_table td:first-child
     {
         border-radius: 6px 6px 0px 0px;
-        border-radius: unset;
-    }
-    .users_table td:first-child{
         padding-top:1.5em;
     }
    
     .users_table td:last-child {
         border-radius: 0 6px 6px 0;
         border-radius: unset;
+        padding-bottom:1em;
+        margin-bottom: 1em;
     }
 
     .users_table td::before{
@@ -190,25 +190,15 @@
     .users_table td:last-child::before{
         content: none;
     }
-
-    /* or with first/last-child */
-    /* .users_table  tbody tr:first-child td:first-child{ */
-    .users_table  tbody tr:first-of-type td:first-child{ 
-        border-radius: 6px 6px 0px 0px;
-    }
-    .users_table  tbody tr:last-of-type td:last-child{
+    .users_table .edit_btn_td:last-child {
         border-radius: 0px 0px 6px 6px;
-    }
-
-    .users_table  tbody tr:last-child .edit_btn_td {
-        padding-bottom: 1.5em;
     }
 
 }
 
 @media screen and (max-width:420px){
     .users_table{
-        font-size:.8rem;
+        font-size:.75rem;
     }
 
     .users_table th{
@@ -218,12 +208,6 @@
     .users_table td{
         grid-template-columns: 15ch auto;
         gap:.5rem;
-    }
-
-    .page_number{
-        width: 1.3rem;
-        height: 1.3rem;
-        font-size:.6rem;
     }
 }
 

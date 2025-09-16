@@ -25,10 +25,15 @@ const AdminOrderList = ({orders, onConfirmOrder}) =>{
                     <td data-cell="Username:">{order.user ? order.user.username : "username"}</td>
                     <td data-cell="Email:">{order.user ? order.user.email : "emailAdr@gmail.com"}</td>
                     <td data-cell="Address:">{order.user ? order.user.address : "address"}</td>
-                    <td id='products-td' data-cell="Products:">{order.products.map(prod =>{
-                            return <p key={prod.product ? prod.product._id : prod._id}>{prod.product!=null ? `${prod.product.name}  x${prod.amount}` : 'Deleted Product'}</p>
-                        })}</td>
-
+                    <td id='products-td' data-cell="Products:">
+                        {order.products.map(prod =>{
+                            return (
+                                <span className='product-item' key={prod.product ? prod.product._id : prod._id}>
+                                    {prod.product!=null ? `${prod.product.name}  x${prod.amount}` : 'Deleted Product'}
+                                </span>
+                            )
+                        })}
+                    </td>
                     <td data-cell="Total:">{totalPrice.toFixed(2)}$</td>    
                     <td data-cell="Status">{order.isCompleted ? <p>Done</p> : <p>Pending</p>}</td>     
                     <td data-cell="CreatedAt:">
