@@ -87,12 +87,14 @@ const Users = () =>{
                     </tbody>
                 </table>
 
-                <Pagination 
-                    itemsPerPage={itemsPerPage} 
-                    totalItems={totalData} 
-                    onPageNumberSelect={getDataPerPage} 
-                    currentPage={currentPage ? currentPage : '1'}
-                />
+                {totalData > 0 && !firstRender.current &&  (
+                    <Pagination 
+                        itemsPerPage={itemsPerPage} 
+                        totalItems={totalData} 
+                        onPageNumberSelect={getDataPerPage} 
+                        currentPage={currentPage ? currentPage : '1'}
+                    />
+                )}
 
             </div>
         </main>
