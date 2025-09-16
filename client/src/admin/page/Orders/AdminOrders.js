@@ -19,11 +19,11 @@ const AdminOrders = ()=>{
     const [itemsPerPage, setItemsPerPage] = useState('5');
     const [currentPage, setCurrentPage] = useState('1');
     const [sort, setSort] = useState({});
+    const firstRender = useRef(true);
 
     const {user} = useContext(AuthContext);
     const {showAdminOrderDelivery} = useContext(modalContext);
     const headers = configureHeader(user.accessToken);
-    const firstRender = useRef(true);
     
     useEffect(()=>{
         //This will prevent to not render on INITIAL 
@@ -39,16 +39,14 @@ const AdminOrders = ()=>{
             const res = await axiosJWT.get(`/api/orders?page=${pageNumber}&limit=${itemsPerPage}&sort=${sort.status}`, {headers})
             const data = res.data;
 
-            const timer = setTimeout(()=>{
-                setIsLoading(false);
-                setOrders(data);
-                setCurrentPage(pageNumber);
-                firstRender.current = false;
-            }, 300);
+            setIsLoading(false);
+            setOrders(data);
+            setCurrentPage(pageNumber);
 
-            return() =>{
-                clearTimeout(timer);
-            }
+            if(!firstRender.current)
+                window.scrollTo({ behavior: 'smooth', top: 0 });
+
+            firstRender.current = false;
         }
         catch(err){
             console.error(err);
@@ -119,13 +117,14 @@ const AdminOrders = ()=>{
                     />
                 </div>
             </div> 
-            {!firstRender.current
-                && <Pagination 
+            {totalOrders > 0 && !firstRender.current &&  (
+                <Pagination 
                         itemsPerPage={itemsPerPage} 
                         totalItems={totalOrders} 
                         onPageNumberSelect={getDataPerPage} 
                         currentPage={currentPage ? currentPage : '1'} 
                     />
+            )
             }
         </div>
     )
