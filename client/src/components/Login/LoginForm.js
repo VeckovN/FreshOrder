@@ -1,13 +1,14 @@
 import FormInput from "../UI/Modal/FormInput/FormInput"
+import LoadingCircleSpinner from "../../utils/LoadingCircleSpinner"
 
 const LoginForm = ({loading, values, handleChanges, errors, submitForm, showRegister }) =>{
 
     return(
         <form className='loginForm'>
-            {loading &&
-            <div className='loadingBackground'>
-                <div className='loader'></div>
-            </div>
+            {loading && 
+                <div className='loadingBackground'>
+                    <LoadingCircleSpinner/>
+                </div>
             }
 
             <div className='welcome-text'>
@@ -23,7 +24,6 @@ const LoginForm = ({loading, values, handleChanges, errors, submitForm, showRegi
                         values={values}
                         errors={errors}
                         handleChanges={handleChanges}
-                        // placeholder='example@gmail.com'
                         placeholder='Enter email address'
                     />
                 </div>

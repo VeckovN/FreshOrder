@@ -16,34 +16,8 @@
 }
 
 .loadingBackground{
-    opacity: 1;
-    z-index: 40;
-}
-
-.loader{
-    position:absolute;
-    left:45%;
-    top:40%;
-    /* transform: translate(-50%, -50%); */
-
-    border:10px solid rgb(0, 0, 0);
-    border-top: 10px solid #dee1e4;
-    border-radius: 50%; 
-    width:70px;
-    height:70px;
-    animation: spin 1s  infinite;
-
-    opacity: 1;
-    z-index: 40;
-}
-
-@keyframes spin{
-    0%{
-        transform:rotate(0deg);
-    }
-    100%{
-        transform:rotate(360deg);
-    }
+    background-color: rgba(20, 20, 20, 0.6); 
+    z-index: 50;
 }
 
 .welcome-text{
@@ -113,12 +87,12 @@
         top:-.5rem;
         min-height: 150px;
     }
-    .loadingBackground{
+    /* .loadingBackground{
         position:absolute;
         background-color: rgba(14, 10, 8, 0.61);
         height: 20rem;
         
-    }
+    } */
 
     .register_input_field label{
         font-size: .8rem;
