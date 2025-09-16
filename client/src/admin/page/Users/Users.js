@@ -4,6 +4,7 @@ import {convertDate, configureHeader} from '../../../utils/Helper.js'
 import Pagination from '../../../utils/Pagination/Pagination';
 import authContext from '../../../store/auth-context';
 import modalContext from '../../../store/modal-context.js';
+import LoadingSpinner from '../../../utils/LoadingSpinner.js';
 import './Users.css'
 
 const Users = () =>{
@@ -12,6 +13,7 @@ const Users = () =>{
     const {showAdminUpdate} = useContext(modalContext);
     const headers = configureHeader(user.accessToken)
     const [data, setData] = useState([]);
+    const [isloading, setIsLoading] = useState(false);
 
     const [totalData, setTotalData] = useState('');
     const [currentPage, setCurrentPage] = useState('1');
@@ -25,10 +27,12 @@ const Users = () =>{
     //initial (onMountCompoennt) pageNumber is ofc 1 this will be called in Pagination 
     const getDataPerPage = async(pageNumber) =>{
         try{
+            setIsLoading(true);
             const res = await axiosJWT.get(`/api/users?page=${pageNumber}&limit=${itemsPerPage}`,{headers})
             const users = res.data;
             setData(users);
             setCurrentPage(pageNumber);
+            setIsLoading(false);
         }
         catch(err){
             console.error(err);
@@ -46,6 +50,7 @@ const Users = () =>{
             <div className="users_container">
                 <h1> All Users </h1>
                 <table className ="users_table">
+                {isloading && <LoadingSpinner/>}
                     <thead>
                         <tr>
                             <th>Username</th>

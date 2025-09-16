@@ -3,11 +3,12 @@
 }
 
 .user-info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
     height: 2rem;
     width: 100%;
-
-    text-align: center;
 
     font-size:1.2em;
     border-radius: 5px;

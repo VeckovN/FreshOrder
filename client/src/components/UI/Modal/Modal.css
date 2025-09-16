@@ -79,10 +79,18 @@
 }
 
 .loading-modal-body{
-    background-color: rgba(8, 8, 8, 0.2);
-    opacity: .2;
+    position: relative
+}
 
-    z-index: 10;
+.loading-modal-body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(8, 8, 8, 0.5); /* dark transparent overlay */
+    z-index: 10; /* sits above the form */
 }
 
 .cartModal::-webkit-scrollbar{

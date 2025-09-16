@@ -6,7 +6,6 @@
     width: 100%;
     font-weight: 500;
     border-spacing: 0 .6em;
-    
 }
 
 .category-table th{
@@ -142,14 +141,18 @@
     .category-table th{ 
         font-size:.8rem;
         padding:.4rem .3rem;
-
     }
     
     .category-table td{
-        padding: 0rem 0rem;
+        padding: 0rem .1rem;
         font-size:.7rem;
         margin:0rem 0;
     }
+
+    .td-product-input-price{
+        width: 5rem;
+    }
+
 
     .action-button{
         margin:.1em 0;
@@ -186,15 +189,17 @@
         flex-wrap: wrap;
     }
 
+    .category-table th{ 
+        font-size:.8rem;
+        padding:.3rem .1rem;
+    }
+
     .category-table td{
-        padding: 0rem 0rem;
         font-size:.5rem;
         margin:0rem 0;
     }
 
-    .category-table th{ 
-        font-size:.8rem;
-        padding:.2rem .10rem;
-
+     .td-product::placeholder{
+        font-size: .6rem;
     }
 }

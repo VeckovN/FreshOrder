@@ -79,6 +79,16 @@
 }
 
 
+#products-td .product-item {
+    display: block;     
+    margin: 0;             
+    padding: 0;
+}
+
+#products-td {
+    padding: .2rem 1.3rem; /* match other td cells */
+}
+
 @media screen and (max-width:1150px){
     .orders_table{
         width: 100%;
@@ -161,10 +171,10 @@
 @media screen and (max-width:540px){
 
     .orders_table{
-        font-size:1rem;
+        font-size:.9rem;
         margin:1rem 0rem;
         border-spacing: .0em 0em;
-        width: 90%;
+        width: 95%;
     }
 
     .orders_table th{
@@ -178,6 +188,12 @@
         background-color: rgba(63, 63, 63, 0.8);
         text-align: start;
         padding:.2rem 1.3rem;
+    }
+
+    #products-td .product-item {
+        padding:.1em 0em;
+        display: block;
+        grid-column: 2; /* force into value column */
     }
 
     .pending-tr td{
@@ -203,7 +219,7 @@
 
     .orders_table tr td:last-child{ 
         border-radius: 0px 0px 6px 6px;
-        margin-bottom: .3em;
+        margin-bottom: 1em;
         padding-bottom:1em;
     }
 
@@ -225,17 +241,13 @@
     .orders_table .button-td::before{
         content: none;
     }
-
-    #products-td{
-        padding:.2rem 1.3em;
-    }
 }
 
 
 @media screen and (max-width:420px){
     .orders_table{
         font-size:.7rem;
-        width: 90%;
+        width: 95%;
     }
 
     .orders_table td{

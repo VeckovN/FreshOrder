@@ -50,8 +50,8 @@ header{
 
 .links li, a{
     text-decoration: none;
-    color:rgb(78, 78, 78);
-    font-weight: 500;
+    color:rgb(41, 41, 41);
+    font-weight: 600;
     padding:.5rem .5rem; 
     cursor: pointer;
 }

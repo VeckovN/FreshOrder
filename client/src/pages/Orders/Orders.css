@@ -193,8 +193,8 @@
 @media screen and (max-width:590px){
 
     .container-table{
-        /* width: 100%; */
-        padding:0rem .4rem;
+        width: 100%;
+        padding:0rem;
     }
 
     .container-table h2{
@@ -203,7 +203,7 @@
     }
     
     .table-header{
-        padding: .8em .3em;
+        padding: .8em .4em;
         margin: .3rem;
     }
 
@@ -226,12 +226,13 @@
 
 
 @media screen and (max-width:420px){
+
     .table li{
         font-size: .7rem;
     }
 
     .table-row{
-        padding: .5em .2em;
+        padding: .5em .3em;
     }
 }
 
