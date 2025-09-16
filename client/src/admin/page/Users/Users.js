@@ -1,4 +1,4 @@
-import {useState, useEffect, useContext} from 'react';
+import {useState, useEffect, useRef, useContext} from 'react';
 import { axiosJWT } from '../../../services/axiosJWTInstance.js';
 import {convertDate, configureHeader} from '../../../utils/Helper.js'
 import Pagination from '../../../utils/Pagination/Pagination';
@@ -14,6 +14,7 @@ const Users = () =>{
     const headers = configureHeader(user.accessToken)
     const [data, setData] = useState([]);
     const [isloading, setIsLoading] = useState(false);
+    const firstRender = useRef(true);
 
     const [totalData, setTotalData] = useState('');
     const [currentPage, setCurrentPage] = useState('1');
@@ -33,6 +34,11 @@ const Users = () =>{
             setData(users);
             setCurrentPage(pageNumber);
             setIsLoading(false);
+
+            if(!firstRender.current)
+                window.scrollTo({ behavior: 'smooth', top: 0 });
+
+            firstRender.current = false;
         }
         catch(err){
             console.error(err);
