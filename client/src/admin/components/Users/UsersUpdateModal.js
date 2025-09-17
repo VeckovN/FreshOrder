@@ -75,7 +75,12 @@ const UsersUpdateModal = () =>{
             //show new list of users
         }
         catch(err){
-            addError("You can't delete user right now")
+            if(err.response.data && err.response.data.message){
+                console.error("Error" + err.response.data.message);
+                addError(err.response.data.message);
+            }
+            else
+                console.error("An error occurred : " + err);
         }
     }
 

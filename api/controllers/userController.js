@@ -2,11 +2,21 @@ import User from '../models/User.js'
 import { createError } from '../utility/error.js';
 import bcrypt from 'bcryptjs';
 
-export const updateUser  = async (req,res,next)=>{
-    //id from url
+export const updateUser = async (req,res,next)=>{
     try{
         const id = req.params.id;
         const newContext = req.body;
+
+        const existingUser =  await User.findById(id);
+        const loggedUser = await User.findById(req.user.id);
+
+        //Watch on demo account (user)
+        if(existingUser.email === 'veckov@gmail.com')
+            return next(createError(404, "Demo account cannot update profile data"))
+
+        // //if the logged user(demo admin) try to delete user
+        if(loggedUser.email === 'admin@gmail.com')
+            return next(createError(404, "Demo Admin account cannot update profile data"))
 
         if(newContext.username){
             const user = await User.findOne({username: newContext.username})
@@ -47,8 +57,18 @@ export const updateUser  = async (req,res,next)=>{
 
 export const deleteUser = async (req,res,next)=>{
     try{
-        const userID = await User.findById(req.params.id);
+        const user = await User.findById(req.params.id);
+        if(!user){
+            return next(createError(404, "User not found"));
+        }
 
+        const loggedUserID = req.user.id;
+        const loggedUser = await User.findById(loggedUserID);
+        //don't allow demo account to delete user 
+        if(loggedUser.email === 'admin@gmail.com'){
+            return next(createError(403, "Demo Admin account cannot delete users"));
+        }
+            
         //!!!CASSCADE DELETE WITHOUT MIDDLEWARE!!!!
         // //DELETE ALL ORDERS From User WHERE IS orders:IDS 
         // const ordersIDs = userID.orders;
@@ -63,8 +83,8 @@ export const deleteUser = async (req,res,next)=>{
 
         //!!!!WHEN WE FOUND UserBYId WE CALLED THIS MIDDLEWARE order !!!!
         //(this middleware will delete all user orders)
-        User.findById(userID, (err, order)=>{
-            console.log("FOUND USER WIHT ID: " + userID);
+        User.findById(user, (err, order)=>{
+            console.log("FOUND USER WIHT ID: " + user.id);
             //when we found user call callback, -second argument(order) for calling middleware
             if(err) return next(err);
             //call middleware from User Model
@@ -93,23 +113,9 @@ export const getUser = async (req,res,next)=>{
 
 export const getUsers = async (req,res,next)=>{
     try{
-        //if page doesn't exist then default is 1
         const page = req.query.page || 1;
         const limit = req.query.limit || 5;
-
-        // //index 0 is start index -> we got index 1 from frond as start index
-        // const startIndex = (page - 1) * limit; 
-        // const endIndex = page * limit ; //-1 isn't needed, endIndex is used in .slice as second parameter and this value ins't counted
-        // //--- e.g on page 1 with 5 limit we got 1-1 * 5 => 0 
-        // //we got 0,1,2,3,4 -> 5 items 
-        // //endindex is 5-1 -> page * limit(5) - 1 
-
-        // //e.g on page 2 with 5 limit we got (2-1)= 1 * 5 => 5 StartIndex
-        // // we'll show index 5,6,7,8,9
-        // //----EndIndex is 10-1 -> page *limit (10) - 1
-
         const startIndex = (page - 1) * limit;
-        //SKIP PROPS SHOULD BE startIndex
     
         await User.find({isAdmin:false})
         .skip(startIndex) //page 1 -> from 0 is going to index 5(not 5)(limit) , page 2 ->5

@@ -35,7 +35,12 @@ const ProductDelete = () =>{
             closeModal();
         }
         catch(err){
-            addError("You can't delete the product right now");
+            if(err.response.data && err.response.data.message){
+                console.error("Error" + err.response.data.message);
+                addError(err.response.data.message);
+            }
+            else
+                console.error("An error occurred : " + err);
         }
     }
 

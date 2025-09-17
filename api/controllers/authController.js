@@ -81,8 +81,8 @@ export const refresh = async(req,res) =>{
         jwt.verify(refresh_token, process.env.SECRET_KEY, (err,user) =>{
             if(err)
                 console.log(err);
-            //use same info as old token
-            const new_token  = jwt.sign({id:user._id, isAdmin:user.isAdmin}, process.env.SECRET_KEY, {expiresIn: '15m'}); 
+
+            const new_token  = jwt.sign({id:user.id, isAdmin:user.isAdmin}, process.env.SECRET_KEY, {expiresIn: '15m'}); 
 
             res.status(200).json({
                 new_token: new_token
