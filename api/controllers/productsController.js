@@ -1,4 +1,6 @@
 import Product from '../models/Product.js'
+import User from '../models/User.js';
+import { createError } from '../utility/error.js';
 
 export const createProduct = async (req,res) =>{
     const newProduct = new Product(req.body);
@@ -32,6 +34,13 @@ export const updateProduct  = async (req,res,next)=>{
 
 export const deleteProduct = async (req,res,next)=>{
     try{
+        const loggedUserID = req.user.id;
+        const loggedUser = await User.findById(loggedUserID);
+        //don't allow demo account to delete user 
+        if(loggedUser.email === 'admin@gmail.com'){
+            return next(createError(403, "Demo Admin account cannot delete products"));
+        }
+
         await Product.findByIdAndDelete(req.params.id)
         res.status(200).send("Product has been deleted");
     }

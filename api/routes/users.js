@@ -5,10 +5,8 @@ import {verifyUser, verifyAdmin} from '../utility/verifyToken.js';
 
 const router = express.Router();
 
-// /users
 router.put('/updateuser/:id', verifyUser, updateUser);
 router.put('/:id', verifyAdmin ,updateUser);
-router.delete('/:id', deleteUser);
 router.delete('/:id', verifyUser, deleteUser);
 router.get('/count', verifyUser ,getUserCount);
 router.get('/:id', verifyUser, getUser);
