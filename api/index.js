@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import multer from 'multer';
 
+import healthRoute from './routes/health.js';
 import authRoute from './routes/auth.js'
 import userRoute  from './routes/users.js'
 import productRoute from './routes/products.js'
@@ -62,6 +63,7 @@ app.post('/api/products/create', upload.single('image'),
 )
 
 app.use("/api/auth", authRoute);
+app.use("/api/health", healthRoute);
 app.use("/api/users", userRoute); 
 app.use("/api/products", productRoute);
 app.use("/api/orders", orderRoute);
