@@ -14,7 +14,7 @@ const convertDate =(date) =>{
     if(minutes.length == 1)
         minutes = '0' + minutes
     
-    const stringDate = `${day}/${month}/${year}`
+    const stringDate = `${day}/${month+1}/${year}`
     // const stringHourDate = dateNew.toLocaleDateString('en-US')
     const stringHourDate = `${hours}:${minutes}`
 
