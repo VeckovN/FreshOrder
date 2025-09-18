@@ -1,7 +1,9 @@
-# FreshOrder
+# FreshOrder 
+🖥️ **Live App**: [Visit FreshOrder App](https://freshorderapp.netlify.app/)
 
 ## Table of Contents
  * [Project Overview](#project-overview)
+ * [Demo Accounts](#demo-accounts)
  * [Technologies](#technologies)
  * [Core Features](#core-features)
  * [Setup](#setup)
@@ -10,6 +12,17 @@
 ## Project Overview
 Fresh Order is a full-stack web application designed to simplify the food ordering process by connecting clients with restaurant and enabling seamless product and order management.
 The application allows guests to browse and add food items to their cart, clients to place and track their orders, and administrators to manage products, orders, and users efficiently.
+
+## Demo Accounts 
+
+To help you quickly explore the app without creating an account, you can use the following demo accounts. These accounts already have some data set up for testing purposes.
+
+| Role | Email | Password | Demo Account Limitations |
+|------|-------|----------|-------------|
+| User | veckov@gmail.com | veckov | Cannot update profile data |
+| Admin | admin@gmail.com | admin | Cannot delete users, update user profiles, or delete products |
+
+**Tip:** You can create your own user account without any limitations. New accounts have full functionality
 
 ## Technologies
 * Frontend: HTML5, CSS3, ReactJS 
