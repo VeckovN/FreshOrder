@@ -9,7 +9,6 @@ import CartModal from './CartModal';
 import './Cart.css'
 
 const Cart = () =>{
-    const {user} = useContext(authContext);
     const ctxCart = useContext(cartContext);
     const ctxModal = useContext(modalContext);
 
@@ -24,17 +23,14 @@ const Cart = () =>{
     const increseCartItemAmount = id => ctxCart.increaseAmount(id);
     const decreaseCartItemAmount = id =>  ctxCart.decreaseItemFromCart(id);
 
-    const orderCartItems = () =>{
-        if(user){
-            if(cartItems.length >0){
-                ctxCart.orderItems(); 
-                addSuccess("You have successfully ordered")
-            }
-            else
-                addError("You can't order empty cart");
+    const orderCartItems = async() =>{
+        try {
+            await ctxCart.orderItems(); // now properly awaited
+            addSuccess("You have successfully ordered")
+        } catch (error) {;
+            addError(error.message || "Something went wrong. Please try again.");
+            return;
         }
-        else
-            addError("You must be logged in")
     }
 
     const ItemsList = 
