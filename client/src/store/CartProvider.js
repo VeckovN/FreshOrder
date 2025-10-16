@@ -2,7 +2,6 @@ import {useReducer} from 'react'
 import {axiosJWT} from '../services/axiosJWTInstance';
 import CartContext from "./cart-context";
 
-
 const InitialCartState = {
     items:[],
     amountTotal: 0,
@@ -12,11 +11,6 @@ const InitialCartState = {
 const ReducerCart = (state,action) =>{
 
     if(action.type ==='AddItem'){
-
-        //if item exists we don't want to add it as the new one
-        //we want to increase amount of this existing item
-
-        //find if this item exists in our Array of items
         const indexOfExistingItem = state.items.findIndex(item => item.id === action.item.id)
         const itemFound = state.items[indexOfExistingItem];
 
@@ -50,7 +44,6 @@ const ReducerCart = (state,action) =>{
 
 
     if(action.type === "DecreaseItem"){
-
         //if the item amount is 1 next action will remove item from the cart
         const indexOfExistingItem = state.items.findIndex(item => item.id === action.id)
         const itemFound = state.items[indexOfExistingItem];
@@ -98,49 +91,11 @@ const ReducerCart = (state,action) =>{
         }
     }
 
-    if(action.type = "OrderItems"){
-        //from auth -> logged user
-        const userInfo = JSON.parse(localStorage.getItem('user'));
-        
-        if(userInfo){
-            const ID = userInfo._id;
-            if(state.items.length>0)
-            {
-                const products = state.items.map(item =>{
-                    return {product:item.id, amount:item.amount}
-                })
-
-                const Order = {
-                    user:ID, //in schema user prop instaed of thisID
-                    products:products
-                }
-            
-                const User = localStorage.getItem('user');
-                const accessToken = User.accessToken;
-                const headers = {
-                    'authorization' : "Bearer " + accessToken
-                };
-                
-                axiosJWT.post('http://localhost:8800/api/orders', Order, {headers})
-                .then((res)=>{
-                })
-                .catch((err)=>{
-                    console.error(err);
-                })
-            } 
-            else{
-                console.error("No Products in cart");
-            }
-        }
-        else{
-            alert("Login to order food!!!")
-            
-            //return the current Items and Cart amountTotal 
-            return {
-                items:state.items,
-                amountTotal:state.amountTotal
-            }
-        }   
+    if(action.type === "ClearCart"){
+         return {
+            items: [],
+            amountTotal: 0,
+        };
     }
 
     //return defaut State
@@ -164,8 +119,37 @@ const CartProvider = props =>{
         dispatchAction({type:'IncreaseItem', id:id})
     }
     
-    const orderItemsHandler = () =>{
-        dispatchAction({type:'OrderItems'});
+    const orderItemsHandler = async() =>{
+        const userInfo = JSON.parse(localStorage.getItem('user'));
+        if(!userInfo) throw new Error("You must be logged in.");
+
+        if(cartState.items.length <= 0) throw new Error("Cart is empty!");
+        
+        const ID = userInfo._id;
+
+        const products = cartState.items.map(item =>{
+            return {product:item.id, amount:item.amount}
+        })
+
+        const Order = {
+            user:ID, //in schema user prop instaed of thisID
+            products:products
+        }
+    
+        const User = localStorage.getItem('user');
+        const accessToken = User.accessToken;
+
+        try {
+            await axiosJWT.post("/api/orders", Order, {
+                headers: { authorization: "Bearer " + accessToken },
+            });
+            dispatchAction({type:'ClearCart'})
+            return "You have successfully ordered";
+        } catch (err) {
+            console.error(err);
+            throw new Error("Unable to place your order at this time.");
+        }
+        
     }
 
     // const loadingOrderHandler = () =>{
