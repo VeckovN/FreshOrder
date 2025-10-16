@@ -24,7 +24,8 @@
     float:left;
     left: 50%;
     transform: translate(-50%, -50%);
-    animation: fadeIn .1s ease-in;
+
+    animation: slideIn .1s ease-in;
 
     border-radius: 1rem;
     
@@ -123,15 +124,10 @@
 
 }
 
-
-@keyframes fadeIn {
+@keyframes slideIn {
     0% {
       opacity: 0;
-      /* transform: translateX(-50%); */
-      transform: translate(-50%, -100%)
-    }
-    50% {
-        opacity: .5;
+      transform: translate(-50%, -50%)
     }
     100% {
       opacity: 1;
