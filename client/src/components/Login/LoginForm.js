@@ -16,6 +16,25 @@ const LoginForm = ({loading, values, handleChanges, errors, submitForm, showRegi
                 <div id="login-text"> Login to FreshOrder </div>
             </div>
 
+
+            <div className='demo-accounts'>
+                <h3> Demo Accounts</h3>
+                <div className='accounts-container'>
+                    <div className='info'>
+                        <h3>Client</h3>
+                        <div>Email: <span> veckov@gmail.com</span></div>
+                        <div>Pass: <span> veckov</span></div>
+                    </div>
+
+                      <div className='info'>
+                        <h3>Admin</h3>
+                        <div>Email: <span>admin@gmail.com</span></div>
+                        <div>Pass: <span>admin</span></div>
+                    </div>
+
+                </div>
+            </div>
+
             <div className="input-login-container">
                 <div className='input-login'>
                     <FormInput 
