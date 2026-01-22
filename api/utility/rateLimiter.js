@@ -31,6 +31,15 @@ export const loginLimiter = rateLimit({
     keyGenerator: getKey
 });
 
+export const refreshLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 15, 
+    message: 'Too many token refresh attempts. Please try again later.',
+    standardHeaders: true,
+    legacyHeaders: false,
+    handler: rateLimitHandler,
+    keyGenerator: getKey
+});
 
 //General API READ operations limiter
 export const apiReadLimiter = rateLimit({
