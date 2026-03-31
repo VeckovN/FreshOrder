@@ -33,15 +33,21 @@ const useAxiosJWTInterceptors = ()=>{
                 const user = JSON.parse(localStorage.getItem('user'));
                 const currentDate = new Date();
                 const decodedToken = jwtDecode(user.accessToken);
-
                 //*1000 - convert to miliseconds, both need to be in the same units
-                if(currentDate.getTime() >= decodedToken.exp *1000){
+                const expiresAt = decodedToken.exp *1000;
+
+                if(currentDate.getTime() >= expiresAt){
+                    // Token fully expired → logout
                     dispatchAction({type:"LOGOUT"}); 
                     addError("You're session time expired!"); 
                     navigate('/');
                     return Promise.reject(new Error("Session Expired"));
                 }
-                else{ //create new token and replace it with old one
+
+                //create new token and replace it with old one
+                const refreshTreshold = 60 * 1000; //60s
+                //Only refresh if the token expires within the next 60 seconds (close to be expire not on every request)
+                if(expiresAt - currentDate.getTime() < refreshTreshold){
                     const res = await axiosBase.post('/api/auth/refresh', {token:user.accessToken });
                     const refresh_token = res.data.new_token;
 
@@ -51,6 +57,11 @@ const useAxiosJWTInterceptors = ()=>{
                     //set new Token in header for ror the incoming request
                     config.headers["authorization"] = "Bearer " + refresh_token;  //update header
                 }
+                else{
+                    //Token is still valid - just use it as-is
+                    config.headers["authorization"] = "Bearer " + user.accessToken;
+                }
+               
                 return config;
             },
             (error)=>{
@@ -64,7 +75,6 @@ const useAxiosJWTInterceptors = ()=>{
             axiosJWT.interceptors.request.eject(requestInterceptor);
         }
     }, [])
-
 
 }
 
